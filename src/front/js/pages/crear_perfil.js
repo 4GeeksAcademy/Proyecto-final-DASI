@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export const CrearPerfil = () => {
+    
     const [contact, setContact] = useState({
         nombre: "",
         apellidos: "",
