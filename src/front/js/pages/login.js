@@ -13,7 +13,7 @@ export const Login = () => {
 
     const handlerNavigate = (e)=>{
         e.preventDefault()
-        navigate("/") /* introducir la terminación de la page "Registro usuario" */
+        navigate("/") /* introducir la ruta de la page "Registro usuario" */
     }
     
 	async function handlerSubmit(e)  {
