@@ -25,7 +25,7 @@ export const Login = () => {
                 <br/>
                 <br/>
 
-                <a href="#" class="link-primary">Cre</a>
+                <a href="#" class="link-primary">Crear perfil</a>
 
             </div>
 
