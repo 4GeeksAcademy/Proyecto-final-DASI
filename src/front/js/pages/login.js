@@ -1,35 +1,70 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
+// import axios from "axios"
 
 export const Login = () => {
+
 	const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handlerNavigate = (e)=>{
+        e.preventDefault()
+        navigate("/") /* introducir la terminación de la page "Registro usuario" */
+    }
+    
+	async function handlerSubmit(e)  {
+		e.preventDefault()
+		let logged = await actions.login(email, password)
+		if (logged){
+			navigate('/') /* --> HOME */
+		} else{
+			setEmail("");
+			setPassword("");
+		}
+		
+	};
+
 
 	return (
-		<div className=" text-center bg-success bg-opacity-25">
+		<div className=" text-center bg-success bg-opacity-25 pb-5">
 
-            <h1 id="log" >Login</h1>
+            <h1 id="log">Log in</h1>
 
-            <div className="col-6 m-auto" >
+            <form onSubmit={handlerSubmit} className="col-3 m-auto pb-5">
+					
+					<div className="form-group my-4">
+						{/* <label>Email</label> */}
+						<input
+							type="email"
+							value={email}
+							className="form-control"
+							placeholder="Enter email"
+							onChange={e => setEmail(e.target.value)}
+						/>
+					</div>
+					<div className="form-group">
+						{/* <label>Password</label> */}
+						<input
+							type="password"
+							value={password}
+							className="form-control"
+							placeholder="Enter password"
+							onChange={e => setPassword(e.target.value)}
+						/>
+					</div>
+					
+					<button type="submit" className="btn btn-submit mt-5 form-control col-4">
+						Submit
+					</button>
 
-                <div className="input-group my-4 ">
-                <input type="email" className="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="button-addon2"/>
-                </div>
+				</form>
 
-                <div className="input-group">
-                <input type="password" className="form-control" placeholder="Contraseña" aria-label="Recipient's username" aria-describedby="button-addon2"/>
-                </div>
-
-                <input class="btn btn-submit mt-5" type="submit" value="Submit"></input>
-
-                <br/>
-                <br/>
-
-                <a href="#" class="link-primary">Crear perfil</a>
-
-            </div>
-
-
+                <a href="#" className="link-primary" onClick={handlerNavigate}>Crear perfil</a>
+            
 		</div>
 	);
 };

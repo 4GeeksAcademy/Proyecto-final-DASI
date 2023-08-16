@@ -1,3 +1,4 @@
+// import axios from "axios"
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -13,9 +14,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			log: false
 		},
 		actions: {
+
+			// -------------------------- LOG IN & LOG OUT --------------------------
+
+			logout: () => {
+				localStorage.removeItem("token")
+				setStore({log:false})
+
+				return false
+			},
+
+			login: async (dataEmail,dataPassword) => {
+
+				try {
+
+					let data = await axios.post('',{
+
+						email:dataEmail,
+
+						password:dataPassword
+
+					})
+
+					console.log(data);
+
+					localStorage.setItem("token",data.data.access_token)
+
+					setStore({token:data.data.access_token})
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+
+					return false;
+
+				}
+			},
+
+
+
+
+
+
+
+
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
