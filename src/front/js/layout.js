@@ -6,7 +6,7 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
-import { CrearPerfil } from "./pages/crear_perfil";
+import { CrearPerfil } from "./pages/crear_perfil.js";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
