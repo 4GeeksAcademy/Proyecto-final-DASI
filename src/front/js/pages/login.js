@@ -63,7 +63,7 @@ export const Login = () => {
 
 				</form>
 
-                <a href="#" className="link-primary" onClick={handlerNavigate}>Crear perfil</a>
+                <a href="#" className="link-primary" onClick={handlerNavigate}>Nuevo usuario</a>
             
 		</div>
 	);
