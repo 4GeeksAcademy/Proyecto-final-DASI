@@ -1,10 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+
+	async function redireccion(){
+
+		let logged = await actions.getProfile();
+		if(!logged) {
+			navigate("/")
+		}
+	} 
+
+	useEffect(() => {
+		
+		redireccion()
+
+	}, []);
+
 
 	return (
 		<div className="text-center mt-5">
