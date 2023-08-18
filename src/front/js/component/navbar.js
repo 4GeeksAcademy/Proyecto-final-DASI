@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light ">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 			<div className="container-fluid">
 				<a className="navbar-brand" href="#">
 					<img src="https://media.istockphoto.com/id/1023035296/es/vector/ensalada-icono-vector-de-se%C3%B1al-y-s%C3%ADmbolo-aisladas-sobre-fondo-blanco-el-concepto-de-logotipo.jpg?s=612x612&w=0&k=20&c=HMLUg1UhDlldPBK_ZNc9XBm9a5nJtbJrDk3JCj9qD30=" alt="" width="50" height="50"/>
