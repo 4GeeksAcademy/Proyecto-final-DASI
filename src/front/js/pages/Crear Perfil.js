@@ -7,7 +7,7 @@ export const Perfil = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Crear Perfil</h1>
+			<h1 className="mb-5 display-2">Crear Perfil</h1>
 			<di>
 				<form style={{margin: "0 400px 0 400px"}}>
 					<div className="input-group mb-3" style={{width: "50%", margin: "20px auto"}}>
