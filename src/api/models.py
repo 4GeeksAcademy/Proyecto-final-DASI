@@ -1,6 +1,6 @@
 # import os
 # import sys
-from sqlalchemy import Column, ForeignKey, Integer, String, Table, delete, select
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, delete, select,Float
 # from sqlalchemy.orm import relationship, declarative_base, backref
 # from sqlalchemy import create_engine
 # #from eralchemy2 import render_er
@@ -18,15 +18,18 @@ class User(db.Model):
     direccion = db.Column(db.String(120), unique=False, nullable=False)
     telefono = db.Column(db.Integer, unique=True, nullable=False)
     codigo_postal = db.Column(db.Integer, unique=False, nullable=False)
-    
-    
-    comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
-    comunidad_autonoma  = db.relationship('ComunidadAutonoma', backref='users', lazy=True)
-    provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'),nullable=False)
-    provincia  = db.relationship('Provincia', backref='users', lazy=True)
-    #comunidad_autonoma  = db.relationship('ComunidadAutonoma', lazy='select',backref=db.backref('users', lazy='joined')) prueba
-    #provincia_id = db.Column(db.Integer, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    #funcionaba en otro repo de diagrama
+    comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
+    provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'),nullable=False)
+
+    #funcionaba
+    #comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
+    #comunidad_autonoma  = db.relationship('ComunidadAutonoma', backref='users', lazy=True)
+    #provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'),nullable=False)
+    #provincia  = db.relationship('Provincia', backref='users', lazy=True)
+  
+    
 
 
     def __repr__(self):
@@ -44,10 +47,10 @@ class User(db.Model):
 
 class ComunidadAutonoma(db.Model):
     __tablename__ = 'comunidades_autonomas'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
+    user = db.relationship('User', backref='comunidades_autonomas', lazy=True)
+    provincia = db.relationship('Provincia', backref='comunidades_autonomas', lazy=True)
     
     #user = db.relationship('User', backref='comunidades_autonomas', lazy=True)
     #provincia = db.relationship('Provincia', backref='comunidades_autonomas', lazy=True)
@@ -69,10 +72,12 @@ class Provincia(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
-    #comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
+    user = db.relationship('User', backref='provincias', lazy=True)
     comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
-    comunidad_autonoma  = db.relationship('ComunidadAutonoma', backref='provincias', lazy=True)
-    #user = db.relationship('User', backref='provincias', lazy=True)
+    #funcionaba
+    #comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
+    #comunidad_autonoma  = db.relationship('ComunidadAutonoma', backref='provincias', lazy=True)
+    
 
     
    
