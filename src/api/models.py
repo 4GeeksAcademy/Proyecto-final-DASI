@@ -84,7 +84,9 @@ class PerfilProductor(db.Model):
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    #productor = db.relationship('Producto', backref='perfil_productores', lazy=True)
+    producto = db.relationship('Producto', backref='perfil_productores', lazy=True)
+    #user = db.relationship('User', backref='comunidades_autonomas', lazy=True)
+
     #one2one relationship with user
     #user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     #user = db.relationship("User", back_populates="perfil_productores")
@@ -106,7 +108,8 @@ class PerfilProductor(db.Model):
 class Producto(db.Model):
     __tablename__ = 'productos'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    productor_id = db.Column(db.Integer, ForeignKey('perfil_productores.id'),nullable=False)
+    productor_id = db.Column(db.Integer, db.ForeignKey('perfil_productores.id'),nullable=False)
+    #comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
     nombre = db.Column(db.String(250), nullable=True)
     variedad = db.Column(db.String(250), nullable=True)
     cantidad = db.Column(db.Integer, nullable=True)
