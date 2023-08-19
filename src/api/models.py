@@ -4,6 +4,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Table, delete, selec
 db = SQLAlchemy()
 
 class User(db.Model):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(20), unique=False, nullable=False)
     apellido = db.Column(db.String(50), unique=False, nullable=False)
@@ -17,7 +18,7 @@ class User(db.Model):
     comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'),nullable=False)
     #one2one relationship with perfil_productor
-    #productor = db.relationship("PerfilProductor", uselist=False,back_populates="user")
+    #productor = db.relationship("PerfilProductor", uselist=False,back_populates="users")
     #favoritos = db.relationship('favoritos_productores', backref='user', lazy=True)
     #fin de one2one relationship with user
 
@@ -88,9 +89,14 @@ class PerfilProductor(db.Model):
     #user = db.relationship('User', backref='comunidades_autonomas', lazy=True)
 
     #one2one relationship with user
-    #user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    #user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     #user = db.relationship("User", back_populates="perfil_productores")
     #fin de one2one relationship with user
+
+    
+
+
+
     nombre_huerta = db.Column(db.String(250), nullable=True)
     foto_portada = db.Column(db.String(250), nullable=True)
     foto_perfil = db.Column(db.String(250), nullable=True)
