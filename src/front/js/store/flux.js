@@ -54,6 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 		// -------------------------- LOG IN & LOG OUT --------------------------
+		
 			logout: () => {
 				localStorage.removeItem("token")
 				setStore({log:false})
