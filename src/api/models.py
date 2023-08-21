@@ -18,7 +18,8 @@ class User(db.Model):
     comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'),nullable=False)
     #one2one relationship with perfil_productor
-    #productor = db.relationship("PerfilProductor", uselist=False,back_populates="users")
+    productor = db.relationship("PerfilProductor", uselist=False,back_populates="user")
+    #child = relationship("Child", uselist=False, back_populates="parent")
     #favoritos = db.relationship('favoritos_productores', backref='user', lazy=True)
     #fin de one2one relationship with user
 
@@ -89,8 +90,10 @@ class PerfilProductor(db.Model):
     #user = db.relationship('User', backref='comunidades_autonomas', lazy=True)
 
     #one2one relationship with user
-    #user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    #user = db.relationship("User", back_populates="perfil_productores")
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user = db.relationship("User", back_populates="productor")
+    #parent_id = mapped_column(ForeignKey("parent_table.id"))
+    #parent = relationship("Parent", back_populates="child")
     #fin de one2one relationship with user
 
     
