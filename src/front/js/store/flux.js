@@ -19,6 +19,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 			log: false
 		},
 		actions: {
+			
+			// -------------------------- LOG IN & LOG OUT --------------------------
+
+			logout: () => {
+				localStorage.removeItem("token")
+				setStore({log:false})
+
+				return false
+			},
+
+			login: async (dataEmail,dataPassword) => {
+
+				try {
+
+					let data = await axios.post('https://vigilant-space-waddle-x6467v5jqr5c66p6-3001.app.github.dev/login',{
+
+						email:dataEmail,
+
+						password:dataPassword
+
+					})
+
+					console.log(data);
+
+					localStorage.setItem("token",data.data.access_token)
+
+					setStore({token:data.data.access_token})
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+
+					return false;
+
+				}
+			},
 
 			// OBTENER TODOS LOS PRODUCTORES
 
@@ -31,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 				.catch(err => console.error(err))
 				},
-				
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
