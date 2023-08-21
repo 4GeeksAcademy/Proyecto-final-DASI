@@ -1,34 +1,55 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
-export const CrearPerfil = () => {
+export const Registro = () => {
+
+    const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
     
     const [contact, setContact] = useState({
         nombre: "",
         apellidos: "",
         telefono: "",
         email: "",
-        com_autonoma: "",
-        provincia: "",
+        comunidad_autonoma_id: "",
+        provincia_id: "",
         codigo_postal: "",
-        dirección: "",
-        sexo: ""
+        dirección: ""
     });
 
     //Crear contacto
-    const createContact = event => {
-        event.preventDefault();
-        console.log(contact);
-        fetch("https://assets.breatheco.de/apis/fake/contact/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(contact)
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.log(error));
-    };
+
+    async function createContact(e)  {
+		e.preventDefault()
+        let nuevo_registro = await actions.registro(
+            contact.nombre,
+            contact.apellidos,
+            contact.telefono,
+            contact.email,
+            contact.comunidad_autonoma_id,
+            contact.provincia_id,
+            contact.codigo_postal,
+            contact.dirección
+
+        );
+        if (nuevo_registro) {
+            navigate('/');
+		} else{
+			setContact({
+                nombre: "",
+                apellidos: "",
+                telefono: "",
+                email: "",
+                comunidad_autonoma_id: "",
+                provincia_id: "",
+                codigo_postal: "",
+                dirección: ""
+            });
+		}
+		
+	};
+
 
     const handleChange = event => {
         setContact({ ...contact, [event.target.name]: event.target.value });
@@ -123,17 +144,6 @@ export const CrearPerfil = () => {
                                 className="form-control"
                                 placeholder="Añada aquí su dirección"
                                 name="dirección"
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Sexo</label>
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Añada aquí si es usted mujer, hombre, o no quiere definirse."
-                                name="sexo"
                             />
                         </div>
 

@@ -1,5 +1,6 @@
 import React, {useContext, useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
 
 import { Context } from "../store/appContext.js";
 
@@ -30,8 +31,9 @@ export const Navbar = () => {
 		if (!logout) {
 			navigate("/login")
 		}
-		
     }
+
+
 
 
 	return (
@@ -46,6 +48,7 @@ export const Navbar = () => {
 						<li className="nav-item">
 							<a className="nav-link active" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
 						</li>
+
 						<li className="nav-item" id="btn-home">
 							<a className="nav-link active" aria-current="page" href="#" onClick={handlerHome}>Home</a>
 						</li>
@@ -69,58 +72,9 @@ export const Navbar = () => {
 						
 
 						{/* FAVORITOS */}
-						{(store.log === false) ? null : 
-							<div className="dropdown mx-4">
+					
 
-								<button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-									Favorites
-
-									{/* CONTADOR */}
-
-									<span className="badge bg-secondary mx-2">{store.favoritos.length}</span>
-
-								</button>
-
-								<ul className="dropdown-menu  dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-
-									{/* CONDICIONAL LISTADO FAVORITOS */}
-								
-								
-									{store.favoritos.length === 0?  
-									
-										<li className="mx-2" >
-											Empty
-										</li>
-										
-										:store.favoritos.map((el,i) => (
-											
-											<li id={i} key = {i} className="mx-2" >
-												
-												{store.productores.find(nom => nom.name === el.name)? 
-
-													<Link to= {`/Perfil productor/${el.id}`}> /* Enlazar perfil productor*/
-														{el.name}
-													</Link>
-														
-													:null
-												}
-
-												{/* BOTON ELIMINAR */}
-
-												<button  type="button" onClick={(e) => actions.removeFav(e,el)} className="btn float-end px-2 py-0" aria-label="Close">
-												<i className="fas fa-trash"></i>
-												</button>
-							
-											</li>
-										))
-									}
-									
-								</ul>
-							</div> }
-
-						
-
-						{/* <li className="nav-item dropdown">
+						<li className="nav-item dropdown">
 						<a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Favoritos
 						</a>
@@ -130,7 +84,7 @@ export const Navbar = () => {
 							<li><hr className="dropdown-divider"/></li>
 							<li><a className="dropdown-item" href="#">Something else here</a></li>
 						</ul>
-						</li> */}
+						</li>
 
 						{/* CARRITO */}
 						
