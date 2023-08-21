@@ -9,21 +9,20 @@ export const AddProduct = () => {
     const navigate = useNavigate();
 
     const [product, setProduct] = useState({
-        nombre: "",
+        nombre: "Nombre",
         cantidad: "",
-        unidad_medida: "",
-        lista: "",
+        unidad_medida: "Medida",
+        lista: "Lista",
         variedad: "",
-        tipo: "",
-        recogida: "",
+        recogida: "Recogida",
         precio: ""
     });
 
-    //AÑADIR / MODIFICAR PRODUCTO
+    //AÑADIR PRODUCTO
 
     async function addProduct(e)  {
 		e.preventDefault()
-        let nuevo_producto = await actions.registro(
+        let nuevo_producto = await actions.newProduct(
             product.nombre,
             product.cantidad,
             product.unidad_medida,
@@ -38,13 +37,13 @@ export const AddProduct = () => {
             navigate('/'); /* enlace a perfil productor*/
 		} else{
 			setProduct({
-                nombre: "",
+                nombre: "Nombre",
                 cantidad: "",
-                unidad_medida: "",
-                lista: "",
+                unidad_medida: "Medida",
+                lista: "Lista",
                 variedad: "",
-                tipo: "",
-                recogida: "",
+                tipo: "Tipo",
+                recogida: "Recogida",
                 precio: ""
             });
 		}
@@ -63,6 +62,11 @@ export const AddProduct = () => {
         console.log(product);
       };
 
+      useEffect(() => {
+		
+		actions.getNombreProducto();
+
+	}, []);
 
 	return (
 		<div className="pb-5 text-center m-auto">
@@ -70,15 +74,78 @@ export const AddProduct = () => {
             <h1 className="mt-5" >Añadir producto</h1>
 
             <form onSubmit={addProduct} className=" pb-5 ">
+
+                <div className="d-inline-flex my-3 mx-5 text-start" >
+                    
+                    <div className="dropdown form-group  mx-4">
+                        
+                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {product.nombre}
+                        </button>
+                        <ul className="dropdown-menu">
+
+                            {store.nombre_producto.map((item) => 
+                                <li><a className="dropdown-item" 
+                                        onClick={handleDropdownClick} 
+                                        name="nombre" 
+                                        href="#">{item}
+                                </a></li>
+                                )}
+
+                        </ul>
+                    </div>
+
+                    <div className="dropdown form-group  mx-4">
+                        
+                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {product.unidad_medida}
+                        </button>
+                        <ul className="dropdown-menu">
+
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por unidad</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por kilo</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div className="dropdown form-group  mx-4">
+                        
+                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {product.lista}
+                        </button>
+                        <ul className="dropdown-menu">
+
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Semanal</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Mensual</a></li>
+
+                        </ul>
+                    </div>
+                    
+
+                    <div className="dropdown form-group  mx-4">
+                        
+                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {product.recogida}
+                        </button>
+                        <ul className="dropdown-menu">
+
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Huerto</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Mercado</a></li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
 					
                 <div className="form-group my-3 col-6 m-auto text-start">
-                    <label>Nombre</label>
+                    <label>Variedad</label>
                     <input
                         type="text"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder="Añada aquí su nombre"
-                        name="nombre"
+                        placeholder="Añada aquí la variedad de su producto"
+                        name="variedad"
                     />
                 </div>
 
@@ -88,129 +155,9 @@ export const AddProduct = () => {
                         type="number"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder="Añada aquí su nombre"
+                        placeholder="Cantidad disponible"
                         name="cantidad"
                     />
-                </div>
-
-                <div className="d-inline-flex my-3 mx-5 text-start" >
-
-                    <div className="dropdown form-group  mx-4">
-                        
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Unidad de Medida
-                        </button>
-                        <ul className="dropdown-menu">
-
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por unidad</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por kilo</a></li>
-                
-                        </ul>
-                    </div>
-                    <div className="dropdown form-group  mx-4">
-                        
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Lista
-                        </button>
-                        <ul className="dropdown-menu">
-
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Semanal</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Mensual</a></li>
-                
-                        </ul>
-                    </div>
-                    <div className="dropdown form-group  mx-4">
-                        
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Variedad
-                        </button>
-                        <ul className="dropdown-menu">
-
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por unidad</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por kilo</a></li>
-                
-                        </ul>
-                    </div>
-                    <div className="dropdown form-group  mx-4">
-                        
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Tipo
-                        </button>
-                        <ul className="dropdown-menu">
-
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por unidad</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="unidad_medida" href="#">Por kilo</a></li>
-                
-                        </ul>
-                    </div>
-                    <div className="dropdown form-group  mx-4">
-                        
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Recogida
-                        </button>
-                        <ul className="dropdown-menu">
-
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Huerto</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Mercado</a></li>
-                
-                        </ul>
-                    </div>
-
-                    {/* <div className="form-group  mx-4">
-                        <label>Unidad de Medida</label>
-                        <input
-                            type="text"
-                            onChange={handleChange}
-                            className="form-control"
-                            placeholder="Añada aquí su nombre"
-                            name="nombre"
-                        />
-                    </div> */}
-
-                    <div className="form-group mx-4 ">
-                        <label>Lista</label>
-                        <input
-                            type="text"
-                            onChange={handleChange}
-                            className="form-control"
-                            placeholder="Añada aquí su nombre"
-                            name="nombre"
-                        />
-                    </div>
-
-                    <div className="form-group mx-4">
-                        <label>Variedad</label>
-                        <input
-                            type="text"
-                            onChange={handleChange}
-                            className="form-control"
-                            placeholder="Añada aquí su nombre"
-                            name="nombre"
-                        />
-                    </div>
-
-                    <div className="form-group mx-4">
-                        <label>Tipo</label>
-                        <input
-                            type="text"
-                            onChange={handleChange}
-                            className="form-control"
-                            placeholder="Añada aquí su nombre"
-                            name="nombre"
-                        />
-                    </div>
-
-                    <div className="form-group mx-4">
-                        <label>Recogida</label>
-                        <input
-                            type="text"
-                            onChange={handleChange}
-                            className="form-control"
-                            placeholder="Añada aquí su nombre"
-                            name="nombre"
-                        />
-                    </div>
-
                 </div>
 
                 <div className="form-group my-3 col-6 m-auto text-start">
@@ -219,7 +166,7 @@ export const AddProduct = () => {
                         type="number"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder="Añada aquí su nombre"
+                        placeholder="Precio de su producto"
                         name="precio"
                     />
                 </div>
