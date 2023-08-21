@@ -12,7 +12,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
 #from admin import setup_admin
-from api.models import db, User, Provincia, ComunidadAutonoma
+from api.models import db, User, Provincia, ComunidadAutonoma, ProductoNombre,Producto,PerfilProductor
 #from models import Person
 #for authentication
 #from flask_jwt_extended import create_access_token
@@ -40,6 +40,37 @@ def get_all_users():
 
     users_query = User.query.all()
     results = list(map(lambda item: item.serialize(), users_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+#crear productoNombre
+@api.route('/producto', methods=['POST'])
+def save_products():
+
+    request_body = request.get_json(force=True)
+    for x in request_body:
+        item = ProductoNombre(nombre= x['nombre'])
+        db.session.add(item)
+    
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Nombre de producto Created', item.serialize()]
+    }
+
+    return jsonify(response_body), 200
+
+#get lista de productoNombre
+@api.route('/producto', methods=['Get'])
+def get_all_products():
+
+    productos_query = ProductoNombre.query.all()
+    results = list(map(lambda item: item.serialize(), productos_query))
 
     response_body = {
        "results": results

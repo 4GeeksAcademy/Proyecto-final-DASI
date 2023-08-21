@@ -141,10 +141,15 @@ class ProductoNombre(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     nombre = db.Column(db.String(250), nullable=True)
     
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre
+        }
   
 
     def __repr__(self):
-        return '<Producto %r>' % self.nombre      
+        return '<ProductoNombre %r>' % self.nombre      
 
 # class FavoritoProductor(db.Model):
 #     __tablename__ = 'favoritos_productores'
