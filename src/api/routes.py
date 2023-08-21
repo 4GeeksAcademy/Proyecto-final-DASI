@@ -92,7 +92,8 @@ def add_user():
                    telefono= request_body['telefono'],
                    codigo_postal= request_body['codigo_postal'],
                    comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
-                   provincia_id= request_body['provincia_id']
+                   provincia_id= request_body['provincia_id'],
+                   is_active = request_body['is_active']
                    
                    )
     
@@ -103,7 +104,7 @@ def add_user():
 
     response_body = {
         'msg':'ok',
-        "results": ['Favorito Created', favorito.serialize()]
+        "results": ['Usuario Created', usuario.serialize()]
     }
 
     return jsonify(response_body), 200
