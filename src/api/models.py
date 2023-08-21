@@ -3,6 +3,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Table, delete, selec
 
 db = SQLAlchemy()
 
+
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +25,7 @@ class User(db.Model):
     #fin de one2one relationship with user
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f"<User {self.email}>"
 
     def serialize(self):
         return {
@@ -33,6 +34,7 @@ class User(db.Model):
             "email": self.email
             # do not serialize the password, its a security breach
         }
+
 
 class ComunidadAutonoma(db.Model):
     __tablename__ = 'comunidades_autonomas'
