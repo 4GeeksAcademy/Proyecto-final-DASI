@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/home.css";
-// import axios from "axios"
+import axios from "axios"
 
 export const Login = () => {
 
@@ -13,7 +13,7 @@ export const Login = () => {
 
     const handlerNavigate = (e)=>{
         e.preventDefault()
-        navigate("/registro") /* introducir la ruta de la page "Registro usuario" */
+        navigate("/") /* introducir la ruta de la page "Registro usuario" */
     }
     
 	async function handlerSubmit(e)  {

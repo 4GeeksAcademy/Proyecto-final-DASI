@@ -1,8 +1,9 @@
-// import axios from "axios"
+import axios from "axios"
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			productores: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -18,8 +19,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			log: false
 		},
 		actions: {
-
-			// -------------------------- LOG IN & LOG OUT --------------------------
+			
+			
+			
 
 			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
 
@@ -51,6 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+		// -------------------------- LOG IN & LOG OUT --------------------------
 			logout: () => {
 				localStorage.removeItem("token")
 				setStore({log:false})
@@ -86,6 +89,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 			},
+
+
+
+
+
+
+
 
 
 			// Use getActions to call a function within a fuction
