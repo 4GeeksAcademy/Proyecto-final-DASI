@@ -65,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post('https://vigilant-space-waddle-x6467v5jqr5c66p6-3001.app.github.dev/login',{
+					let data = await axios.post(process.env.BACKEND_URL + '/login',{
 
 						email:dataEmail,
 
@@ -84,6 +84,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					console.log(error);
+
+					return false;
+
+				}
+			},
+
+			// -------------------------- PROFILE --------------------------
+
+			getProfile: async () => {
+
+				let token =localStorage.getItem("token")
+
+				try {
+
+					let data = await axios.get(process.env.BACKEND_URL + '/profile',{
+
+						headers:{
+							"Authorization": `Bearer ${token}`,						
+						}
+
+					})
+
+					console.log(data);
+
+					// localStorage.setItem("token",data.data.access_token)
+
+					// setStore({token:data.data.access_token})
+					setStore({log:true})
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+					setStore({log:false})
+
 
 					return false;
 
