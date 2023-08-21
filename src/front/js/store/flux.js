@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			productores: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -16,6 +17,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+
+
+			// OBTENER TODOS LOS PRODUCTORES
+
+			getProductores: () => {
+				fetch("https://ominous-spork-g4x4x774557c9x46-3001.app.github.dev/", {
+					method: "GET"
+				})
+				.then(res => res.json())
+				.then(data => setStore({ productores: data.results}))
+		
+				.catch(err => console.error(err))
+				},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
