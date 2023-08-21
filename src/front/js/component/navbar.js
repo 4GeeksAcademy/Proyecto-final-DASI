@@ -1,7 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useContext, useState, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { Context } from "../store/appContext.js";
 
 export const Navbar = () => {
+
+	const { actions, store } = useContext(Context);
+	const navigate = useNavigate()
+
+	const handlerNavigate = (e)=>{
+        e.preventDefault()
+        navigate("/") /* --> Enlace a perfil productor*/
+    }
+
+	const handlerNavHome = (e)=>{
+        e.preventDefault()
+        navigate("/") /* --> Enlace a la home*/
+    }
+
+	const handlerLogIn = (e)=>{
+		e.preventDefault()
+		navigate("/login")
+	}
+
+	const handlerLogOut = (e)=>{
+        e.preventDefault()
+        // localStorage.removeItem("token")
+		let logout = actions.logout()
+		if (!logout) {
+			navigate("/login")
+		}
+		
+    }
+
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 			<div className="container-fluid">
@@ -12,15 +44,28 @@ export const Navbar = () => {
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
 
 						<li className="nav-item">
-							<a className="nav-link active" aria-current="page" href="#">Ir a mi huerto</a>
+							<a className="nav-link active" aria-current="page" href="#" onClick={handlerNavigate}>Ir a mi huerto</a>
 						</li>
 						<li className="nav-item" id="btn-home">
-							<a className="nav-link active" aria-current="page" href="#">Home</a>
+							<a className="nav-link active" aria-current="page" href="#" onClick={handlerNavHome}>Home</a>
 						</li>
 
-						<li className="nav-item" id="btn-login">
-						<a className="nav-link active" aria-current="page" href="#">Log in</a>
+						{/* */}
+						{ (store.log === false) ? 
+
+						<li className="nav-item" id="btn-login" onClick={handlerLogIn}>
+							<a className="nav-link active" aria-current="page" href="#">Log in</a>
 						</li>
+
+						:<li className="nav-item" id="btn-login" onClick={handlerLogOut}>
+							<a className="nav-link active" aria-current="page" href="#">Log out</a>
+						</li>
+
+						// <button type="button" className="btn btn-primary" onClick={handlerLogIn}>Log in</button>
+
+						// : <button type="button" className="btn btn-primary" onClick={handlerLogOut}>Log out</button>
+
+						}
 						
 
 						{/* FAVORITOS */}
