@@ -28,7 +28,6 @@ export const AddProduct = () => {
             product.unidad_medida,
             product.lista,
             product.variedad,
-            product.tipo,
             product.recogida,
             product.precio
 
@@ -38,11 +37,10 @@ export const AddProduct = () => {
 		} else{
 			setProduct({
                 nombre: "Nombre",
-                cantidad: store.cantidad,
+                cantidad: "",
                 unidad_medida: "Medida",
                 lista: "Lista",
                 variedad: "",
-                tipo: "Tipo",
                 recogida: "Recogida",
                 precio: ""
             });

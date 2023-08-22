@@ -47,7 +47,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					unidad_medida: unidad_medida,
 					lista: lista,
 					variedad: variedad,
-					tipo: tipo,
 					recogida: recogida,
 					precio: precio
 
