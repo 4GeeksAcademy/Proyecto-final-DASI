@@ -60,19 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// -------------------------- AÑADIR VALORES DEL PRODUCTO --------------------------
-			
-			addValues: (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
-				setStore({ nombre: nombre });
-				setStore({ cantidad: cantidad });
-				setStore({ unidad_medida: unidad_medida });
-				setStore({ lista: lista});
-				setStore({ variedad: variedad});
-				setStore({ recogida: recogida});
-				setStore({ precio: precio});
-				setStore({ id: id });
-			},
-			
+		
 			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
 
 				try {
