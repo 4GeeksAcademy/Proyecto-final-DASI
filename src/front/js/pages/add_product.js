@@ -38,7 +38,7 @@ export const AddProduct = () => {
 		} else{
 			setProduct({
                 nombre: "Nombre",
-                cantidad: "",
+                cantidad: store.cantidad,
                 unidad_medida: "Medida",
                 lista: "Lista",
                 variedad: "",
