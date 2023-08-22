@@ -18,12 +18,33 @@ export const Perfil = () => {
 		setNewProfile({ ...newProfile, [event.target.name]: event.target.value})
 	}
 
-	function handleSubmit(e) {
+	// function handleSubmit(e) {
+	// 	e.preventDefault()
+	// 	// console.log(newProfile);
+	// 	actions.crearPerfil(newProfile)
+	// 	setNewProfile("")
+	// }
+
+	async function handleSubmit(e) {
 		e.preventDefault()
-		// console.log(newProfile);
-		actions.crearPerfil(newProfile)
-		setNewProfile("")
-	}
+
+		let nuevo_productor = await actions.crearPerfil(
+			newProfile.nombre_huerto,
+			newProfile.info,
+			newProfile.problemas,
+			newProfile.donde_encontrar
+		)
+		if(nuevo_productor) {
+			navigate('/')
+		}else {
+			setNewProfile({
+				nombre_huerto: "",
+				info: "",
+				problemas: "",
+				donde_encontrar: ""
+			})
+		};
+	};
 
 
  

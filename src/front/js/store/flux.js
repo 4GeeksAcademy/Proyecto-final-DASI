@@ -19,19 +19,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
-			crearPerfil: (nombre_huerto, info, problemas, donde_encontrar) => {
+			crearPerfil: async (nombre_huerto, info, problemas, donde_encontrar) => {
 
-				console.log(nombre_huerto, info, problemas, donde_encontrar);
-
-				let response = axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil_productor', {
+				try {
+					let response = await axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil_productor', {
 						nombre_huerto: nombre_huerto,
 						info: info,
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 				})
-				.then((Response) => Response.json())
-				.then((data)=>console.log(data))
-				.catch((error)=>console.log(error))
+					let data = await response.json();
+					console.log(data);
+
+				} catch (error) {
+					console.log(error);
+				}
+
+
+				console.log(nombre_huerto, info, problemas, donde_encontrar);
+
 			},
 
 			// Use getActions to call a function within a fuction
