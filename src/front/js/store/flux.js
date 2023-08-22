@@ -4,6 +4,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			productores: [],
+			nombre_producto:[],
+			
+			nombre: "",
+			cantidad: "",
+			unidad_medida: "",
+			lista: "",
+			variedad: "",
+			recogida: "",
+			precio: "",
+			id: "",
+
 			demo: [
 				{
 					title: "FIRST",
@@ -19,10 +30,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 			log: false
 		},
 		actions: {
-			
-			
-			
 
+			// -------------------------- EDITAR PRODUCTO--------------------------
+
+			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
+				try {
+
+					let data = await axios.put(process.env.BACKEND_URL + '/api/producto',{
+					nombre : nombre,
+					cantidad: cantidad,
+					unidad_medida: unidad_medida,
+					lista: lista,
+					variedad: variedad,
+					recogida: recogida,
+					precio: precio
+
+					})
+
+					console.log(data);
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+
+					return false;
+
+				}
+			},
+
+			// -------------------------- AÑADIR VALORES DEL PRODUCTO --------------------------
+			
+			addValues: (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
+				setStore({ nombre: nombre });
+				setStore({ cantidad: cantidad });
+				setStore({ unidad_medida: unidad_medida });
+				setStore({ lista: lista});
+				setStore({ variedad: variedad});
+				setStore({ recogida: recogida});
+				setStore({ precio: precio});
+				setStore({ id: id });
+			},
+			
 			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
 
 				try {
