@@ -5,23 +5,3 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
-
-.portada-input {
-    display: none; 
-}
-
-.portada-label {
-    margin-right: 40px;
-    color: #05ac37;
-    font-size: larger;
-    padding-top: 30px;
-    height: 100px;
-    width: 150px;
-    border-radius: 6px;
-    border: 1px dashed #0ee44e;
-}
-
-.portada-label:hover {
-    color: #224e0d;
-    border: 1px dashed #224e0d
-}

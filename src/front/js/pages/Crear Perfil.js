@@ -1,42 +1,120 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import { useNavigate } from "react-router-dom";
 
 export const Perfil = () => {
 	const { store, actions } = useContext(Context);
+	const navigate = useNavigate();
 
+	const [newProfile, setNewProfile] = useState({
+		nombre_huerto: "",
+		info: "",
+		problemas: "",
+		donde_encontrar: ""
+	});
+
+	const handleChange = event => {
+		setNewProfile({ ...newProfile, [event.target.name]: event.target.value})
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault()
+		// console.log(newProfile);
+		actions.crearPerfil(newProfile)
+		setNewProfile("")
+	}
+
+
+ 
 	return (
-		<div className="text-center mt-5">
+		<div className="Container">
+			<div className="row justify-content-center">
+				<div className="col-md-8">
+					<h1  className="text-center mb-5 mt-5 display-2">Crear Perfil</h1>
+					<form onSubmit={handleSubmit}>
+						<div className="form-floating mb-3">
+							<input 
+							type="text"
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Nombre Huerto"
+							name= "nombre_huerto"
+							/>
+							<label htmlFor="floatingInput">Nombre Huerto</label>
+						</div>
+						<div className="form-floating mb-3">
+							<input 
+							type="text" 
+							onChange={handleChange}
+							className="form-control" 
+							placeholder="¿Quién eres?"
+							name="info"
+							/>
+							<label htmlFor="floatingInput">¿Quién eres?</label>
+						</div>
+						<div className="form-floating mb-3">
+							<input
+							type="text"
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Nombre Huerto"
+							name="problemas"
+							/>
+							<label htmlFor="floatingInput">¿Cuáles son tus problemas como agricultor?</label>
+						</div>
+						<div className="form-floating mb-3">
+							<input 
+							type="text"
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Nombre Huerto"
+							name="donde_encontrar"
+							/>
+							<label htmlFor="floatingInput">¿Dónde y cuándo podemos encontrarte</label>
+						</div>
+						<div className="d-flex justify-content-center">
+							<button className="btn btn-success" type="submit">
+								Registro
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	);
+};
+
+
+
+
+
+{/* <div className="text-center mt-5">
 			<h1 className="mb-5 display-2">Crear Perfil</h1>
 			<di>
 				<form style={{margin: "0 400px 0 400px"}}>
-					<div className="input-group mb-3" style={{width: "50%", margin: "20px auto"}}>
-						<input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Nombre Huerto"/>
-					</div>
-					<div className="d-flex justify-content-center">
-						<input className="portada-input" type="file" id="file"/>
-						<label className="portada-label" for="file">Foto Portada</label>
-
-						<input className="portada-input" type="file" id="file"/>
-						<label className="portada-label" for="file">Foto Perfil</label>
-					</div>
-					
-					<div className="input-group mb-3" style={{width: "50%", margin: "20px auto"}}>
-						<input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="¿Quién eres?"/>
+					<div className="input-group mb-3 border border-danger" style={{width: "50%", margin: "20px auto"}}>
+						<label>Nombre Huerto</label>
+						<input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Añade el nombre de tu huerto"/>
 					</div>
 					<div className="input-group mb-3" style={{width: "50%", margin: "20px auto"}}>
+						<label>¿Quién eres?</label>
+						<input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="¿Cuéntanos sobre ti?"/>
+					</div>
+					<div className="input-group mb-3" style={{width: "50%", margin: "20px auto"}}>
+						<label>¿Cómo te podemos ayudar?</label>
 						<input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="¿Cuáles son tus problemas como agriculltor?"/>
 					</div>
 					<div className="input-group mb-3" style={{width: "50%", margin: "20px auto"}}>
-						<input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="¿Dónde y cuándo podemos encontrarle?"/>
+						<label>Ubicación</label>
+						<input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="¿Dónde y cuándo podemos encontrarte?"/>
 					</div>
 					<div>
-						<button className="btn btn-success">
+						<button className="btn btn-success" type="submit">
 							Registro
 						</button>
 					</div>
 				</form>
 			</di>
-		</div>
-	);
-};
+		</div> */}
