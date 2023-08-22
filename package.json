@@ -73,6 +73,7 @@
 		]
 	},
 	"dependencies": {
+		"@doncicuto/es-autonomous-communities": "^1.0.2",
 		"axios": "^1.4.0",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",

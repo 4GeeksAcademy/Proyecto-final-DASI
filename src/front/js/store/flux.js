@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post('https://ideal-spoon-pxgr5jxjr96c4x9-3001.app.github.dev/api/registro',{
+					let data = await axios.post('https://vigilant-goggles-ww97qrwr575hg776-3001.app.github.dev/api/registro',{
 					nombre : nombre,
 					apellido : apellido,
 					password : password,
