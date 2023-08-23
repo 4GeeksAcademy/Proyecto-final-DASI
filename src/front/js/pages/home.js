@@ -1,29 +1,11 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
+import { Context } from "../store/appContext";
 import "../../styles/home.css";
 
 export const Home = () => {
-  const communityData = {
-    "Andalucía": ["Almería", "Cádiz", "Córdoba", "Granada", "Huelva", "Jaén", "Málaga", "Sevilla"],
-    "Aragón": ["Huesca", "Teruel", "Zaragoza"],
-    "Asturias": ["Oviedo"],
-    "Baleares": ["Palma de Mallorca"],
-    "Canarias": ["Santa Cruz de Tenerife", "Las Palmas de Gran Canaria"],
-    "Cantabria": ["Santander"],
-    "Castilla-La Mancha": ["Albacete", "Ciudad Real", "Cuenca", "Guadalajara", "Toledo"],
-    "Castilla y León": ["Ávila", "Burgos", "León", "Salamanca", "Segovia", "Soria", "Valladolid", "Zamora"],
-    "Cataluña": ["Barcelona", "Girona", "Lleida", "Tarragona"],
-    "Comunidad Valenciana": ["Alicante", "Castellón de la Plana", "Valencia"],
-    "Extremadura": ["Badajoz", "Cáceres"],
-    "Galicia": ["La Coruña", "Lugo", "Orense", "Pontevedra"],
-    "Madrid": ["Madrid"],
-    "Murcia": ["Murcia"],
-    "Navarra": ["Pamplona"],
-    "País Vasco": ["Bilbao", "San Sebastián", "Vitoria"],
-    "La Rioja": ["Logroño"],
-    "Ceuta": ["Ceuta"],
-    "Melilla": ["Melilla"],
-  };
 
+  const { store, actions } = useContext(Context);
+  const communityData = store.communityData;
 
   const categories = [
     {
@@ -58,6 +40,15 @@ export const Home = () => {
       ...prevSelectedOptions,
       [categoryLabel]: option,
     }));
+  };
+  const handleSubmit = () => {
+
+    const formData = {
+      selectedCommunity,
+      selectedProvince,
+      selectedOptions,
+    };
+    console.log("Datos enviados:", formData);
   };
 
   return (
@@ -140,6 +131,11 @@ export const Home = () => {
             ))}
           </ul>
         </div>
+      </div>
+      <div className="container pt-2 d-flex justify-content-center">
+        <button type="button" className="btn btn-primary mt-3" onClick={handleSubmit}>
+          Enviar
+        </button>
       </div>
       <div className="container pt-5 d-flex justify-content-center">
         <img src="https://www.google.com/maps/vt/data=9-vFr39yIfHtm7b0Jg4x_dYsFtJOlx1Gtjfe9ekL3xu4axrueV0686kJuG0Q34gDGfrnIGbtyI1-bDm1ZhnAlum_cd0wymSBwt7G4nAKteGt_Bn8Y4voGdGLEoF9S5aNU2YqhpY-jPKsvC9PJWJ4Z6nJkQvoEGJ1ho1ubZCIFlv-jWl0JnANlLKtAYh9T_sfiVoZaUS3-gRYfyiipCFwjxd8hu65hWjv7YfiLtE29s_VgCQIu-g" alt="Mapa provisional" />

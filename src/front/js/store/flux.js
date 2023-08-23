@@ -3,6 +3,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			communityData: {
+				"Andalucía": ["Almería", "Cádiz", "Córdoba", "Granada", "Huelva", "Jaén", "Málaga", "Sevilla"],
+				"Aragón": ["Huesca", "Teruel", "Zaragoza"],
+				"Asturias": ["Oviedo"],
+				"Baleares": ["Palma de Mallorca"],
+				"Canarias": ["Santa Cruz de Tenerife", "Las Palmas de Gran Canaria"],
+				"Cantabria": ["Santander"],
+				"Castilla-La Mancha": ["Albacete", "Ciudad Real", "Cuenca", "Guadalajara", "Toledo"],
+				"Castilla y León": ["Ávila", "Burgos", "León", "Salamanca", "Segovia", "Soria", "Valladolid", "Zamora"],
+				"Cataluña": ["Barcelona", "Girona", "Lleida", "Tarragona"],
+				"Comunidad Valenciana": ["Alicante", "Castellón de la Plana", "Valencia"],
+				"Extremadura": ["Badajoz", "Cáceres"],
+				"Galicia": ["La Coruña", "Lugo", "Orense", "Pontevedra"],
+				"Madrid": ["Madrid"],
+				"Murcia": ["Murcia"],
+				"Navarra": ["Pamplona"],
+				"País Vasco": ["Bilbao", "San Sebastián", "Vitoria"],
+				"La Rioja": ["Logroño"],
+				"Ceuta": ["Ceuta"],
+				"Melilla": ["Melilla"],
+			  },
 			productores: [],
 			demo: [
 				{
