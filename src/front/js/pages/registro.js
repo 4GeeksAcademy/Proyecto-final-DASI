@@ -62,7 +62,7 @@ export const Registro = () => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-8">
-                    <h1 className="text-center mt-5">Crear perfil</h1>
+                    <h1 className="text-center mt-5">Registro Nuevo Usuario</h1>
                     <form onSubmit={createContact}>
                         <div className="form-group">
                             <label>Nombre</label>
@@ -106,13 +106,13 @@ export const Registro = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Contraseña</label>
+                            <label>Password</label>
                             <input
                                 type="password"
                                 onChange={handleChange}
                                 className="form-control"
-                                placeholder="Añada aquí su contraseña"
-                                name="contraseña" />
+                                placeholder="Añada aquí su password"
+                                name="password" />
                         </div>
 
                         <div className="form-group">

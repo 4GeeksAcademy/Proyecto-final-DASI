@@ -135,21 +135,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- REGISTRO --------------------------
 
-			registro: async (nombre, apellido, email, password, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
+			registro: async (nombre, apellido, telefono, password, email, comunidad_autonoma_id, provincia_id, codigo_postal, direccion) => {
 
 				try {
 
-					let data = await axios.post('https://ideal-spoon-pxgr5jxjr96c4x9-3001.app.github.dev/api/registro',{
+					let data = await axios.post(process.env.BACKEND_URL + '/api/registro',{
 					nombre : nombre,
 					apellido : apellido,
+					telefono : telefono,
 					password : password,
 					email : email,
-					direccion : direccion,
-					telefono : telefono,
-					codigo_postal : codigo_postal,
 					comunidad_autonoma_id : comunidad_autonoma_id,
-					provincia_id : provincia_id
-
+					provincia_id : provincia_id,
+					codigo_postal : codigo_postal,
+					direccion : direccion,
+					is_active: true
+					
 					})
 
 					console.log(data);
