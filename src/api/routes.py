@@ -11,19 +11,18 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
-#from admin import setup_admin
+# from admin import setup_admin
 from api.models import db, User, Provincia, ComunidadAutonoma, ProductoNombre,Producto,PerfilProductor
 #from models import Person
 #for authentication
-#from flask_jwt_extended import create_access_token
-#from flask_jwt_extended import get_jwt_identity
-#from flask_jwt_extended import jwt_required
-#from flask_jwt_extended import JWTManager
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
 #for checking email
 import re
 
 api = Blueprint('api', __name__)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -236,3 +235,32 @@ def create_user():
 
     return jsonify(response_body), 200
 
+# -------------------- LOGIN --------------------
+
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg": "email do not exist"}), 404
+
+    if password != user.password:
+        return jsonify({"msg": "Bad password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+# -------------------- PROFILE --------------------
+
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def get_profile():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    if user is None:
+        return jsonify({"msg": "user do not exist"}), 404
+    return jsonify(logged_in_as=current_user), 200

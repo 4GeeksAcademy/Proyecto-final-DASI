@@ -2,9 +2,6 @@ import React, { Component } from "react";
 
 export const Footer = () => (
 
-	<footer className="footer mt-auto py-3 text-center">
-
-	
 	<footer className="footer bg-success bg-opacity-25">
 		<div className="container">
 			<div className="row pt-3">
