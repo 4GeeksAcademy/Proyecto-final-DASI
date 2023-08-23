@@ -11,6 +11,7 @@ export const Registro = () => {
         nombre: "",
         apellidos: "",
         telefono: "",
+        password: "",
         email: "",
         comunidad_autonoma_id: "",
         provincia_id: "",
@@ -26,6 +27,7 @@ export const Registro = () => {
             contact.nombre,
             contact.apellidos,
             contact.telefono,
+            contact.password,
             contact.email,
             contact.comunidad_autonoma_id,
             contact.provincia_id,
@@ -40,6 +42,7 @@ export const Registro = () => {
                 nombre: "",
                 apellidos: "",
                 telefono: "",
+                password: "",
                 email: "",
                 comunidad_autonoma_id: "",
                 provincia_id: "",
@@ -100,6 +103,16 @@ export const Registro = () => {
                                 className="form-control"
                                 placeholder="Añada aquí su Email"
                                 name="email" />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Contraseña</label>
+                            <input
+                                type="password"
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Añada aquí su contraseña"
+                                name="contraseña" />
                         </div>
 
                         <div className="form-group">

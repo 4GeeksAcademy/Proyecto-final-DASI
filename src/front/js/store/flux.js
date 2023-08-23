@@ -35,6 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+ 			// -------------------------- CREAR PERFIL --------------------------
 
 			crearPerfil: async (nombre_huerto, info, problemas, donde_encontrar) => {
 
@@ -103,9 +104,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			
-			// -------------------------- REGISTRO --------------------------
-
-
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
 			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
@@ -135,8 +133,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-		
-			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
+			// -------------------------- REGISTRO --------------------------
+
+			registro: async (nombre, apellido, email, password, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
 
 				try {
 
