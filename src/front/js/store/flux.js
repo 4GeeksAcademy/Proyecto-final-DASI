@@ -17,7 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			recogida: "",
 			precio: "",
 			id: "",
-
+			
+			log: false,
+			token:"",
 
 			demo: [
 				{
@@ -31,7 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			log: false
+			
 		},
 		actions: {
 
@@ -192,6 +194,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("token",data.data.access_token)
 
 					setStore({token:data.data.access_token})
+					// setStore({log:true})
+
 
 					return true;
 
@@ -209,7 +213,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getProfile: async () => {
 
 				let token =localStorage.getItem("token")
-
+				
 				try {
 
 					let data = await axios.get(process.env.BACKEND_URL + '/profile',{
@@ -220,21 +224,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					console.log(data);
+					
+					// const store = getStore();
 
-					// localStorage.setItem("token",data.data.access_token)
 
-					// setStore({token:data.data.access_token})
-					setStore({log:true})
-
+					console.log(data.status);
+					
+					// setStore({log:true})
+					data.status === 401 ? setStore({log:false}) : setStore({log:true});
 					return true;
 
 				} catch (error) {
 
 					console.log(error);
-					setStore({log:false})
-
-
+					// setStore({log:false})
+					// setStore({log:true})
+					
+					
 					return false;
 
 				}

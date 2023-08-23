@@ -9,16 +9,16 @@ export const Home = () => {
 	async function redireccion(){
 
 		let logged = await actions.getProfile();
-		if(!logged) {
-			navigate("/")
-		}
+		// if(!logged) {
+		// 	navigate("/")
+		// }
 	} 
 
-	// useEffect(() => {
+	useEffect(() => {
 		
-	// 	redireccion()
+		redireccion()
 
-	// }, []);
+	}, []);
 
 
 	return (

@@ -34,8 +34,6 @@ export const Navbar = () => {
     }
 
 
-
-
 	return (
 
 		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -65,12 +63,12 @@ export const Navbar = () => {
 								<a className="nav-link active" aria-current="page" href="#">Log out</a>
 							</li>
 
-						// <button type="button" className="btn btn-primary" onClick={handlerLogIn}>Log in</button>
-
-						// : <button type="button" className="btn btn-primary" onClick={handlerLogOut}>Log out</button>
+					
 
 						}
-						
+						{/* <li className="nav-item" id="btn-login" onClick={handlerLogOut}>
+								<a className="nav-link active" aria-current="page" href="#">Log out</a>
+							</li> */}
 
 						{/* FAVORITOS */}
 					
