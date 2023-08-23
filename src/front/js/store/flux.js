@@ -28,6 +28,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  },
 			productores: [],
 
+			perfil:[],
+
 			nombre_producto:[],
 			
 			nombre: "",
@@ -56,6 +58,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+			pedirPerfil: async () => {
+
+				try {
+					let response = await axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil', {
+				})
+					let data = await response.json();
+					setStore({ perfil: data})
+
+				} catch (error) {
+					console.log(error);
+				}
+
+
+				console.log(nombre_huerto, info, problemas, donde_encontrar);
+
+			},
 
 			crearPerfil: async (nombre_huerto, info, problemas, donde_encontrar) => {
 

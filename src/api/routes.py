@@ -34,6 +34,17 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+# Pedir perfil agricultor
+@api.route('/perfil', methods=['GET'])
+def obtener_perfiles():
+    perfiles = PerfilProductor.query.all()  # Realiza la consulta para obtener todos los perfiles
+    results = list(map(lambda item: item.serialize(), perfiles))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
 
 # probando acceso a bd
 @api.route('/users', methods=['GET'])

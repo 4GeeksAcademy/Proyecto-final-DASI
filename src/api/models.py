@@ -116,6 +116,8 @@ class PerfilProductor(db.Model):
         return {
             "id": self.id,
             "nombre_huerta": self.nombre_huerta,
+            "problemas": self.problemas,
+            "donde_encontrar": self.donde_encontrar,
             "latitud": self.latitud,
             "longitud": self.longitud
             # do not serialize the password, its a security breach

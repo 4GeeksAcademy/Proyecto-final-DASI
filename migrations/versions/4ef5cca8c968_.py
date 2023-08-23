@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 6295c58a4807
+Revision ID: 4ef5cca8c968
 Revises: 
-Create Date: 2023-08-21 09:48:27.137312
+Create Date: 2023-08-23 11:10:49.224735
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6295c58a4807'
+revision = '4ef5cca8c968'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,11 @@ def upgrade():
     op.create_table('comunidades_autonomas',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=250), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('productoNombres',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('nombre', sa.String(length=250), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('provincias',
@@ -39,7 +44,6 @@ def upgrade():
     sa.Column('direccion', sa.String(length=120), nullable=False),
     sa.Column('telefono', sa.Integer(), nullable=False),
     sa.Column('codigo_postal', sa.Integer(), nullable=False),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.Column('comunidad_autonoma_id', sa.Integer(), nullable=False),
     sa.Column('provincia_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['comunidad_autonoma_id'], ['comunidades_autonomas.id'], ),
@@ -81,5 +85,6 @@ def downgrade():
     op.drop_table('perfil_productores')
     op.drop_table('users')
     op.drop_table('provincias')
+    op.drop_table('productoNombres')
     op.drop_table('comunidades_autonomas')
     # ### end Alembic commands ###
