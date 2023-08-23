@@ -78,6 +78,54 @@ def get_all_products():
 
     return jsonify(response_body), 200
 
+#get lista de Comunidades Autonomas
+@api.route('/ca', methods=['Get'])
+def get_all_ca():
+
+    ca_query = ComunidadAutonoma.query.all()
+    results = list(map(lambda item: item.serialize(), ca_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+
+#post lista de Comunidades Autonomas
+@api.route('/ca', methods=['POST'])
+def add_ca():
+
+    request_body = request.get_json(force=True)
+
+    for x in request_body:
+        item = ComunidadAutonoma(name= x['name'])
+        db.session.add(item)
+
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['CA Created', item.serialize()]
+    }
+
+    return jsonify(response_body), 200
+
+#get lista de Provincias
+@api.route('/provincias', methods=['Get'])
+def get_all_provincias():
+
+    provincia_query = Provincia.query.all()
+    results = list(map(lambda item: item.serialize(), provincia_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+
+
+
 # crear usuario
 @api.route('/registro', methods=['POST'])
 def add_user():
