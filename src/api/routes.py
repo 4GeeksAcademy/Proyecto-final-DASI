@@ -154,6 +154,17 @@ def add_user():
 
     request_body = request.get_json(force=True)
 
+    #add validation
+    atributos = ["nombre","apellido","password","email","direccion","telefono","codigo_postal","comunidad_autonoma_id","provincia_id","is_active"]
+    
+    for x in atributos:
+        if x not in request_body:
+            response = f'You need to specify the {x}', 400
+            return response
+    #if 'nombre' not in body:
+    #    raise APIException('You need to specify the nombre', status_code=400)
+
+
     usuario = User(nombre= request_body['nombre'],
                    apellido= request_body['apellido'],
                    password= request_body['password'],
