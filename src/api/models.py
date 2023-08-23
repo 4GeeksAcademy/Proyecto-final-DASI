@@ -48,7 +48,7 @@ class ComunidadAutonoma(db.Model):
     
    
     def __repr__(self):
-        return '<ComunidadAutonoma %r>' % self.id
+        return '<ComunidadAutonoma %r>' % self.name
 
     def serialize(self):
         return {
@@ -74,7 +74,7 @@ class Provincia(db.Model):
     
    
     def __repr__(self):
-        return '<Provincia %r>' % self.id
+        return '<Provincia %r>' % self.name
 
     def serialize(self):
         return {
@@ -99,10 +99,6 @@ class PerfilProductor(db.Model):
     #parent = relationship("Parent", back_populates="child")
     #fin de one2one relationship with user
 
-    
-
-
-
     nombre_huerta = db.Column(db.String(250), nullable=True)
     foto_portada = db.Column(db.String(250), nullable=True)
     foto_perfil = db.Column(db.String(250), nullable=True)
@@ -112,10 +108,19 @@ class PerfilProductor(db.Model):
     longitud = db.Column(db.Float, nullable=True)
     # relationship with favorito
     #favoritos = db.relationship('favoritos_productores', backref='perfil_productores', lazy=True)
+
+    def __repr__(self):
+        return '<PerfilProductor %r>' % self.nombre_huerta
  
 
-    def to_dict(self):
-        return {}
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre_huerta": self.nombre_huerta,
+            "latitud": self.latitud,
+            "longitud": self.longitud
+            # do not serialize the password, its a security breach
+        }
 
 class Producto(db.Model):
     __tablename__ = 'productos'
@@ -129,8 +134,23 @@ class Producto(db.Model):
     precio = db.Column(db.Float, nullable=True)
   
 
-    def to_dict(self):
-        return {}    
+    def __repr__(self):
+        return '<Producto %r>' % self.nombre
+
+class ProductoNombre(db.Model):
+    __tablename__ = 'productoNombres'
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    nombre = db.Column(db.String(250), nullable=True)
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre
+        }
+  
+
+    def __repr__(self):
+        return '<ProductoNombre %r>' % self.nombre      
 
 # class FavoritoProductor(db.Model):
 #     __tablename__ = 'favoritos_productores'
