@@ -34,6 +34,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+
 # probando acceso a bd
 @api.route('/users', methods=['GET'])
 def get_all_users():
@@ -154,3 +155,4 @@ def create_user():
     }
 
     return jsonify(response_body), 200
+

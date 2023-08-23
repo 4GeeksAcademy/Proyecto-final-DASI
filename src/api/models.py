@@ -57,6 +57,7 @@ class ComunidadAutonoma(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class Provincia(db.Model):
     __tablename__ = 'provincias'
     # Here we define columns for the table address.
@@ -142,3 +143,4 @@ class Producto(db.Model):
 
 #     def to_dict(self):
 #         return {}   
+
