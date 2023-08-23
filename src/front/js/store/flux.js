@@ -1,9 +1,24 @@
+
 import axios from "axios";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			productores: [],
+
+			nombre_producto:[],
+			
+			nombre: "",
+			cantidad: "",
+			unidad_medida: "",
+			lista: "",
+			variedad: "",
+			recogida: "",
+			precio: "",
+			id: "",
+
+
 			demo: [
 				{
 					title: "FIRST",
@@ -15,9 +30,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			log: false
 		},
 		actions: {
+
 
 			crearPerfil: async (nombre_huerto, info, problemas, donde_encontrar) => {
 
@@ -39,6 +56,198 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(nombre_huerto, info, problemas, donde_encontrar);
 
 			},
+
+
+
+			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
+
+			getNombreProducto: async() => {
+
+				try{
+					const resp = await axios.get(process.env.BACKEND_URL + "/api/producto")
+					const data = await resp.json()
+					setStore({ nombre_producto: data.nombre })
+
+					return data;
+				}catch(error){
+					console.log("Error loading message from backend", error)
+				}
+			},
+			// -------------------------- AÑADIR PRODUCTO --------------------------
+
+			newProduct: async (nombre, cantidad, unidad_medida, lista, variedad, tipo, recogida, precio) => {
+
+				try {
+
+					let data = await axios.post(process.env.BACKEND_URL + '/api/producto',{
+					nombre : nombre,
+					cantidad: cantidad,
+					unidad_medida: unidad_medida,
+					lista: lista,
+					variedad: variedad,
+					recogida: recogida,
+					precio: precio
+
+					})
+
+					console.log(data);
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+
+					return false;
+
+				}
+			},
+			
+			// -------------------------- REGISTRO --------------------------
+
+
+			// -------------------------- EDITAR PRODUCTO--------------------------
+
+			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
+				try {
+
+					let data = await axios.put(process.env.BACKEND_URL + '/api/producto',{
+					nombre : nombre,
+					cantidad: cantidad,
+					unidad_medida: unidad_medida,
+					lista: lista,
+					variedad: variedad,
+					recogida: recogida,
+					precio: precio
+
+					})
+
+					console.log(data);
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+
+					return false;
+
+				}
+			},
+
+		
+			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
+
+				try {
+
+					let data = await axios.post('https://ideal-spoon-pxgr5jxjr96c4x9-3001.app.github.dev/api/registro',{
+					nombre : nombre,
+					apellido : apellido,
+					password : password,
+					email : email,
+					direccion : direccion,
+					telefono : telefono,
+					codigo_postal : codigo_postal,
+					comunidad_autonoma_id : comunidad_autonoma_id,
+					provincia_id : provincia_id
+
+					})
+
+					console.log(data);
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+
+					return false;
+
+				}
+			},
+
+		// -------------------------- LOG IN & LOG OUT --------------------------
+		
+			logout: () => {
+				localStorage.removeItem("token")
+				setStore({log:false})
+
+				return false
+			},
+
+			login: async (dataEmail,dataPassword) => {
+
+				try {
+
+					let data = await axios.post(process.env.BACKEND_URL + '/api/login',{
+
+						email:dataEmail,
+
+						password:dataPassword
+
+					})
+
+					console.log(data);
+
+					localStorage.setItem("token",data.data.access_token)
+
+					setStore({token:data.data.access_token})
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+
+					return false;
+
+				}
+			},
+
+			// -------------------------- PROFILE --------------------------
+
+			getProfile: async () => {
+
+				let token =localStorage.getItem("token")
+
+				try {
+
+					let data = await axios.get(process.env.BACKEND_URL + '/profile',{
+
+						headers:{
+							"Authorization": `Bearer ${token}`,						
+						}
+
+					})
+
+					console.log(data);
+
+					// localStorage.setItem("token",data.data.access_token)
+
+					// setStore({token:data.data.access_token})
+					setStore({log:true})
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
+					setStore({log:false})
+
+
+					return false;
+
+				}
+			},
+
+
+
+
+
+
+
+
+
 
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

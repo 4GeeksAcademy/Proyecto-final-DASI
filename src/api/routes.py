@@ -1,9 +1,26 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+#from flask import Flask, request, jsonify, url_for, Blueprint
+#from api.models import db, User
+#from api.utils import generate_sitemap, APIException
+#
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
-from api.utils import generate_sitemap, APIException
+from flask_migrate import Migrate
+from flask_swagger import swagger
+from flask_cors import CORS
+#from utils import APIException, generate_sitemap
+#from admin import setup_admin
+from api.models import db, User, Provincia, ComunidadAutonoma
+#from models import Person
+#for authentication
+#from flask_jwt_extended import create_access_token
+#from flask_jwt_extended import get_jwt_identity
+#from flask_jwt_extended import jwt_required
+#from flask_jwt_extended import JWTManager
+#for checking email
+import re
 
 api = Blueprint('api', __name__)
 
@@ -13,6 +30,128 @@ def handle_hello():
 
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+
+    return jsonify(response_body), 200
+
+
+# probando acceso a bd
+@api.route('/users', methods=['GET'])
+def get_all_users():
+
+    users_query = User.query.all()
+    results = list(map(lambda item: item.serialize(), users_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+
+# crear usuario
+@api.route('/registro', methods=['POST'])
+def add_user():
+
+    request_body = request.get_json(force=True)
+
+    usuario = User(nombre= request_body['nombre'],
+                   apellido= request_body['apellido'],
+                   password= request_body['password'],
+                   email= request_body['email'],
+                   direccion= request_body['direccion'],
+                   telefono= request_body['telefono'],
+                   codigo_postal= request_body['codigo_postal'],
+                   comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
+                   provincia_id= request_body['provincia_id']
+                   
+                   )
+    
+
+    db.session.add(usuario)
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Favorito Created', favorito.serialize()]
+    }
+
+    return jsonify(response_body), 200
+
+# sample post to create favoritos
+# {
+#     "characters_id": null,
+#     "planets_id":1
+    
+# }
+#sample response
+# {
+#     "msg": "ok",
+#     "results": [
+#         "Favorito Created",
+#         {
+#             "characters": null,
+#             "id": 7,
+#             "planets": "Planeta de los simios",
+#             "user_id": 1
+#         }
+#     ]
+# }
+# USERS
+
+@api.route('/users', methods=['POST'])
+
+
+
+def create_user():
+
+    request_body = request.get_json(force=True)
+
+    user = User(email=request_body['email'],
+                password=request_body['password'],
+                is_active=request_body['is_active'])
+    
+    if request_body['email'] is None or request_body['password'] is None or request_body['is_active'] is None:
+        return jsonify ({
+            'msg':'missing parameters (email, password, is_active are required)'
+        }), 400
+    
+    # Verificamos email válido (basico)
+
+    # if "@" not in request_body['email'] or "." not in request_body['email']:
+    #     return jsonify ({
+    #         'msg':'wrong email format(check @ .)'
+    #     }), 400
+
+    # Verificamos email válido (pro)
+    def validar_email(email):
+        # Patrón de expresión regular para validar el email
+        patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        
+        # Usamos re.match() para verificar el patrón en el email proporcionado
+        if re.match(patron_email, email):
+            return True
+        else:
+            return False
+
+
+
+    # Ejemplo de uso:
+
+    # email_ejemplo = "usuario@example.com"
+    if validar_email(request_body['email']):
+        print("El email es válido.")
+    else:
+        return jsonify ({
+            'msg':'wrong email format(check @ .)'
+        }), 400
+
+    db.session.add(user)
+    db.session.commit()
+
+
+    response_body = {
+       "results": 'User Created'
     }
 
     return jsonify(response_body), 200

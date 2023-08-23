@@ -1,3 +1,34 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
+/* ------------------- LOG IN CSS ------------------- */
+
+.btn-submit{
+    background-color: #91C788;
+    width: 26%;
+}
+
+#log {
+
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+}
+
+/* ------------------- NAVBAR / FOOTER ------------------- */
+
+#btn-home{
+    margin-left: 31rem !important;
+}
+
+#btn-login{
+
+    margin-left: 28rem !important;
+}
+
+footer{
+
+    height: 152px;
+}
+
+/* ------------------- ADD PRODUCT ------------------- */
