@@ -35,6 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+ 			// -------------------------- CREAR PERFIL --------------------------
 
 			crearPerfil: async (nombre_huerto, info, problemas, donde_encontrar) => {
 
@@ -103,9 +104,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			
-			// -------------------------- REGISTRO --------------------------
-
-
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
 			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
@@ -135,22 +133,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-		
-			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
+			// -------------------------- REGISTRO --------------------------
+
+			registro: async (nombre, apellido, telefono, password, email, comunidad_autonoma_id, provincia_id, codigo_postal, direccion) => {
 
 				try {
 
-					let data = await axios.post('https://ideal-spoon-pxgr5jxjr96c4x9-3001.app.github.dev/api/registro',{
+					let data = await axios.post(process.env.BACKEND_URL + '/api/registro',{
 					nombre : nombre,
 					apellido : apellido,
+					telefono : telefono,
 					password : password,
 					email : email,
-					direccion : direccion,
-					telefono : telefono,
-					codigo_postal : codigo_postal,
 					comunidad_autonoma_id : comunidad_autonoma_id,
-					provincia_id : provincia_id
-
+					provincia_id : provincia_id,
+					codigo_postal : codigo_postal,
+					direccion : direccion,
+					is_active: true
+					
 					})
 
 					console.log(data);
