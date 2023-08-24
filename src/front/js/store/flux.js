@@ -17,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			recogida: "",
 			precio: "",
 			id: "",
-			log_productor: false,
+			
 			log: false,
 			token:"",
 
@@ -38,25 +38,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 
 
-			crearPerfil: async (nombre_huerto, info, problemas, donde_encontrar) => {
+			crearPerfil: async (nombre_huerta, problemas, donde_encontrar) => {
 
 				try {
-					let response = await axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil_productor', {
-						nombre_huerto: nombre_huerto,
-						info: info,
+					let data = await axios.post(process.env.BACKEND_URL + '/api/crear_perfil', {
+						nombre_huerta: nombre_huerta,
+						// info: info,
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 				})
-					let data = await response.json();
-					console.log(data);
-					setStore({log_productor: false})
+					// let data = await response.json();
+					console.log("Perfil creado", data);
+					
 
 				} catch (error) {
 					console.log(error);
 				}
 
 
-				console.log(nombre_huerto, info, problemas, donde_encontrar);
+				// console.log(nombre_huerta, info, problemas, donde_encontrar);
 
 			},
 
@@ -106,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			
-			// -------------------------- REGISTRO --------------------------
+			
 
 
 			// -------------------------- EDITAR PRODUCTO--------------------------
@@ -138,36 +138,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-		
-			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
+		// -------------------------- REGISTRO --------------------------
+		registro: async (nombre, apellido, telefono, password, email, comunidad_autonoma_id, provincia_id, codigo_postal, direccion) => {
 
-				try {
+			try {
 
-					let data = await axios.post('https://ideal-spoon-pxgr5jxjr96c4x9-3001.app.github.dev/api/registro',{
-					nombre : nombre,
-					apellido : apellido,
-					password : password,
-					email : email,
-					direccion : direccion,
-					telefono : telefono,
-					codigo_postal : codigo_postal,
-					comunidad_autonoma_id : comunidad_autonoma_id,
-					provincia_id : provincia_id
+				let data = await axios.post(process.env.BACKEND_URL + '/api/registro',{
+				nombre : nombre,
+				apellido : apellido,
+				telefono : telefono,
+				password : password,
+				email : email,
+				comunidad_autonoma_id : comunidad_autonoma_id,
+				provincia_id : provincia_id,
+				codigo_postal : codigo_postal,
+				direccion : direccion,
+				is_active: true
+				
+				})
 
-					})
+				console.log(data);
 
-					console.log(data);
+				return true;
 
-					return true;
+			} catch (error) {
 
-				} catch (error) {
+				console.log(error);
 
-					console.log(error);
+				return false;
 
-					return false;
-
-				}
-			},
+			}
+		},
 
 		// -------------------------- LOG IN & LOG OUT --------------------------
 		
@@ -243,6 +244,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 					return false;
 
+				}
+			},
+
+			// -------------------------- OBTENER TODOS LOS PRODUCTORES --------------------------
+
+			getProductores: async() => {
+
+				try{
+					const data = await axios.get(process.env.BACKEND_URL + "/api/perfil_productor")
+					// const data = await resp.json()
+					setStore({ productores: data.results })
+
+					return data;
+				}catch(error){
+					console.log("Error loading message from backend", error)
 				}
 			},
 

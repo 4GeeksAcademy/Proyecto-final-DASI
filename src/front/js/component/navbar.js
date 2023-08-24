@@ -11,7 +11,7 @@ export const Navbar = () => {
 
 	const handlerPerfil = (e)=>{
         e.preventDefault()
-        navigate("/") /* --> Enlace a perfil productor*/
+        navigate("/perfil_productor") /* --> Enlace a perfil productor*/
     }
 
 	const handlerHome = (e)=>{
@@ -32,6 +32,13 @@ export const Navbar = () => {
 			navigate("/login")
 		}
     }
+
+	useEffect(() => {
+		
+		actions.getProductores()
+		console.log(store.productores);
+
+	}, []);
 
 
 	return (
