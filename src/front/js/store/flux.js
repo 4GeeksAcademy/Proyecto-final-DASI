@@ -36,28 +36,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 
 
-			crearPerfil: async (nombre_huerto, info, problemas, donde_encontrar) => {
+			crearPerfil: async (nombre_huerta, problemas, donde_encontrar) => {
 
 				try {
-					let response = await axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil_productor', {
-						nombre_huerto: nombre_huerto,
-						info: info,
+					let data = await axios.post(process.env.BACKEND_URL + '/api/crear_perfil', {
+						nombre_huerta: nombre_huerta,
+						// info: info,
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 				})
-					let data = await response.json();
-					console.log(data);
+					// let data = await response.json();
+					console.log("Perfil creado", data);
+					
 
 				} catch (error) {
 					console.log(error);
 				}
 
 
-				console.log(nombre_huerto, info, problemas, donde_encontrar);
+				// console.log(nombre_huerta, info, problemas, donde_encontrar);
 
 			},
-
-
 
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
 
