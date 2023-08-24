@@ -17,7 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			recogida: "",
 			precio: "",
 			id: "",
-
+			
+			log: false,
+			token:"",
 
 			demo: [
 				{
@@ -31,9 +33,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			log: false
+			
 		},
 		actions: {
+
+ 			// -------------------------- CREAR PERFIL --------------------------
 
 
 			crearPerfil: async (nombre_huerta, info, problemas, donde_encontrar) => {
@@ -42,22 +46,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil_productor', {
 						nombre_huerta: nombre_huerta,
 						info: info,
+
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 				})
-					let data = await response.json();
-					console.log(data);
+					// let data = await response.json();
+					console.log("Perfil creado", data);
+					
 
 				} catch (error) {
 					console.log(error);
 				}
 
 
-				console.log(nombre_huerto, info, problemas, donde_encontrar);
+				// console.log(nombre_huerta, info, problemas, donde_encontrar);
 
 			},
-
-
 
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
 
@@ -103,9 +107,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			
-			// -------------------------- REGISTRO --------------------------
-
-
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
 			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
@@ -135,22 +136,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-		
-			registro: async (nombre, apellido, password, email, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id) => {
+			// -------------------------- REGISTRO --------------------------
+
+			registro: async (nombre, apellido, telefono, password, email, comunidad_autonoma_id, provincia_id, codigo_postal, direccion) => {
 
 				try {
 
-					let data = await axios.post('https://ideal-spoon-pxgr5jxjr96c4x9-3001.app.github.dev/api/registro',{
+					let data = await axios.post(process.env.BACKEND_URL + '/api/registro',{
 					nombre : nombre,
 					apellido : apellido,
+					telefono : telefono,
 					password : password,
 					email : email,
-					direccion : direccion,
-					telefono : telefono,
-					codigo_postal : codigo_postal,
 					comunidad_autonoma_id : comunidad_autonoma_id,
-					provincia_id : provincia_id
-
+					provincia_id : provincia_id,
+					codigo_postal : codigo_postal,
+					direccion : direccion,
+					is_active: true
+					
 					})
 
 					console.log(data);
@@ -193,6 +196,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({token:data.data.access_token})
 
+
 					return true;
 
 				} catch (error) {
@@ -209,7 +213,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getProfile: async () => {
 
 				let token =localStorage.getItem("token")
-
+				
 				try {
 
 					let data = await axios.get(process.env.BACKEND_URL + '/profile',{
@@ -220,21 +224,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					console.log(data);
+					
+					// const store = getStore();
 
-					// localStorage.setItem("token",data.data.access_token)
 
-					// setStore({token:data.data.access_token})
-					setStore({log:true})
-
+					console.log(data.status);
+					
+					// setStore({log:true})
+					data.status === 401 ? setStore({log:false}) : setStore({log:true});
 					return true;
 
 				} catch (error) {
 
 					console.log(error);
-					setStore({log:false})
-
-
+					// setStore({log:false})
+					// setStore({log:true})
+					
+					
 					return false;
 
 				}
