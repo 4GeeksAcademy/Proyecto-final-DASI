@@ -14,6 +14,7 @@ class User(db.Model):
     direccion = db.Column(db.String(120), unique=False, nullable=False)
     telefono = db.Column(db.Integer, unique=True, nullable=False)
     codigo_postal = db.Column(db.Integer, unique=False, nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     #funcionaba en otro repo de diagrama
     comunidad_autonoma_id = db.Column(db.Integer, db.ForeignKey('comunidades_autonomas.id'),nullable=False)
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'),nullable=False)
@@ -116,10 +117,9 @@ class PerfilProductor(db.Model):
         return {
             "id": self.id,
             "nombre_huerta": self.nombre_huerta,
-            "problemas": self.problemas,
-            "donde_encontrar": self.donde_encontrar,
             "latitud": self.latitud,
-            "longitud": self.longitud
+            "longitud": self.longitud,
+            "user_id": self.user_id
             # do not serialize the password, its a security breach
         }
 
@@ -164,4 +164,3 @@ class ProductoNombre(db.Model):
 
 #     def to_dict(self):
 #         return {}   
-

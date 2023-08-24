@@ -11,19 +11,18 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
-#from admin import setup_admin
+# from admin import setup_admin
 from api.models import db, User, Provincia, ComunidadAutonoma, ProductoNombre,Producto,PerfilProductor
 #from models import Person
 #for authentication
-#from flask_jwt_extended import create_access_token
-#from flask_jwt_extended import get_jwt_identity
-#from flask_jwt_extended import jwt_required
-#from flask_jwt_extended import JWTManager
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
 #for checking email
 import re
 
 api = Blueprint('api', __name__)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -34,17 +33,6 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-# Pedir perfil agricultor
-@api.route('/perfil', methods=['GET'])
-def obtener_perfiles():
-    perfiles = PerfilProductor.query.all()  # Realiza la consulta para obtener todos los perfiles
-    results = list(map(lambda item: item.serialize(), perfiles))
-
-    response_body = {
-       "results": results
-    }
-
-    return jsonify(response_body), 200
 
 # probando acceso a bd
 @api.route('/users', methods=['GET'])
@@ -136,6 +124,27 @@ def get_all_provincias():
 
     return jsonify(response_body), 200
 
+#post lista de Provincias
+@api.route('/provincias', methods=['POST'])
+def add_provincia():
+
+    request_body = request.get_json(force=True)
+
+    for x in request_body:
+        item = Provincia(name= x['name'],
+                        comunidad_autonoma_id= x['comunidad_autonoma_id'])
+        print(item)
+        db.session.add(item)
+
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Provincia Created', item.serialize()]
+    }
+
+    return jsonify(response_body), 200
 
 
 # crear usuario
@@ -143,6 +152,17 @@ def get_all_provincias():
 def add_user():
 
     request_body = request.get_json(force=True)
+
+    #add validation
+    atributos = ["nombre","apellido","password","email","direccion","telefono","codigo_postal","comunidad_autonoma_id","provincia_id","is_active"]
+    
+    for x in atributos:
+        if x not in request_body:
+            response = f'You need to specify the {x}', 400
+            return response
+    #if 'nombre' not in body:
+    #    raise APIException('You need to specify the nombre', status_code=400)
+
 
     usuario = User(nombre= request_body['nombre'],
                    apellido= request_body['apellido'],
@@ -247,3 +267,71 @@ def create_user():
 
     return jsonify(response_body), 200
 
+
+# -------------------- PERFIL PRODUCTOR --------------------
+
+@api.route('/perfil_productor', methods=['Get'])
+def get_all_productores():
+
+    Productor_query = PerfilProductor.query.all()
+    results = list(map(lambda item: item.serialize(), Productor_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+
+# -------------------- CREAR PERFIL PRODUCTOR --------------------
+
+@api.route('/perfil_productor', methods=['POST'])
+def add_productor():
+
+    request_body = request.get_json(force=True)
+
+    productor = PerfilProductor(nombre_huerta= request_body['nombre_huerta'],
+                #    info= request_body['info'],
+                   problemas= request_body['problemas'],
+                   donde_encontrar= request_body['donde_encontrar']
+                   )
+    
+    db.session.add(productor)
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Productor Created', productor.serialize()]
+    }
+
+    return jsonify(response_body), 200
+
+# -------------------- LOGIN --------------------
+
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg": "email do not exist"}), 404
+
+    if password != user.password:
+        return jsonify({"msg": "Bad password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+# -------------------- PROFILE --------------------
+
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def get_profile():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    if user is None:
+        return jsonify({"msg": "user do not exist"}), 404
+    return jsonify(logged_in_as=current_user), 200
