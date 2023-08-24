@@ -34,7 +34,7 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
 
-                        <Route element={<Perfil />} path="/perfil_productor" />
+                        <Route element={<Perfil />} path="/crear_perfil" />
                         <Route element={<EditProduct />} path="/edit_product" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Perfil />} path="/perfil" />

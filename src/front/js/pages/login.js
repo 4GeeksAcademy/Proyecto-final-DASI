@@ -11,12 +11,12 @@ export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const handlerNavigate = (e) => {
-		e.preventDefault()
-		navigate("/registro") /* introducir la ruta de la page "Registro usuario" */
-	}
-
-	async function handlerSubmit(e) {
+    const handlerNavigate = (e)=>{
+        e.preventDefault()
+        navigate("/registro") 
+    }
+    
+	async function handlerSubmit(e)  {
 		e.preventDefault()
 		let logged = await actions.login(email, password)
 		if (logged) {

@@ -11,6 +11,7 @@ export const Registro = () => {
         nombre: "",
         apellidos: "",
         telefono: "",
+        password: "",
         email: "",
         comunidad_autonoma_id: "",
         provincia_id: "",
@@ -20,12 +21,22 @@ export const Registro = () => {
 
     //Crear contacto
 
-    async function createContact(e) {
-        e.preventDefault()
+    async function createContact(e)  {
+		e.preventDefault()
+        console.log(contact.nombre,
+            contact.apellidos,
+            contact.telefono,
+            contact.password,
+            contact.email,
+            contact.comunidad_autonoma_id,
+            contact.provincia_id,
+            contact.codigo_postal,
+            contact.dirección);
         let nuevo_registro = await actions.registro(
             contact.nombre,
             contact.apellidos,
             contact.telefono,
+            contact.password,
             contact.email,
             contact.comunidad_autonoma_id,
             contact.provincia_id,
@@ -40,6 +51,7 @@ export const Registro = () => {
                 nombre: "",
                 apellidos: "",
                 telefono: "",
+                password: "",
                 email: "",
                 comunidad_autonoma_id: "",
                 provincia_id: "",
@@ -56,42 +68,41 @@ export const Registro = () => {
     };
 
     return (
-        <div className="bg-success bg-opacity-25" style={{ minHeight: '100vh' }}>
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <h1 className="text-center mt-5">Crear perfil</h1>
-                        <form onSubmit={createContact}>
-                            <div className="form-group">
-                                <label>Nombre</label>
-                                <input
-                                    type="text"
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Añada aquí su nombre"
-                                    name="nombre"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Apellidos</label>
-                                <input
-                                    type="text"
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Añada aquí sus apellidos"
-                                    name="apellidos"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Telefono</label>
-                                <input
-                                    type="tel"
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Añada aquí el telefono"
-                                    name="telefono"
-                                />
-                            </div>
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-md-8">
+                    <h1 className="text-center mt-5">Registro Nuevo Usuario</h1>
+                    <form onSubmit={createContact}>
+                        <div className="form-group">
+                            <label>Nombre</label>
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Añada aquí su nombre"
+                                name="nombre"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Apellidos</label>
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Añada aquí sus apellidos"
+                                name="apellidos"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Telefono</label>
+                            <input
+                                type="tel"
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Añada aquí el telefono"
+                                name="telefono"
+                            />
+                        </div>
 
                             <div className="form-group">
                                 <label>Email</label>
@@ -103,28 +114,38 @@ export const Registro = () => {
                                     name="email" />
                             </div>
 
-                            <div className="form-group">
-                                <label>Comunidad Autónoma</label>
-                                <input
-                                    type="text"
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Añada aquí su Comunidad Autónoma"
-                                    name="com_autonoma"
-                                />
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Añada aquí su password"
+                                name="password" />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Comunidad Autónoma</label>
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Añada aquí su Comunidad Autónoma"
+                                name="comunidad_autonoma_id"
+                            />
 
                             </div>
 
-                            <div className="form-group">
-                                <label>Provincia</label>
-                                <input
-                                    type="text"
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Añada aquí su provincia"
-                                    name="provincia"
-                                />
-                            </div>
+                        <div className="form-group">
+                            <label>Provincia</label>
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Añada aquí su provincia"
+                                name="provincia_id"
+                            />
+                        </div>
 
                             <div className="form-group">
                                 <label>Codigo Postal</label>
@@ -155,6 +176,5 @@ export const Registro = () => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };

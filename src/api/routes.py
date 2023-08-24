@@ -335,3 +335,4 @@ def get_profile():
     if user is None:
         return jsonify({"msg": "user do not exist"}), 404
     return jsonify(logged_in_as=current_user), 200
+
