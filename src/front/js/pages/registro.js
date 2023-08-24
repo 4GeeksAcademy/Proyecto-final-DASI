@@ -23,6 +23,15 @@ export const Registro = () => {
 
     async function createContact(e)  {
 		e.preventDefault()
+        console.log(contact.nombre,
+            contact.apellidos,
+            contact.telefono,
+            contact.password,
+            contact.email,
+            contact.comunidad_autonoma_id,
+            contact.provincia_id,
+            contact.codigo_postal,
+            contact.dirección);
         let nuevo_registro = await actions.registro(
             contact.nombre,
             contact.apellidos,
@@ -122,7 +131,7 @@ export const Registro = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su Comunidad Autónoma"
-                                name="com_autonoma"
+                                name="comunidad_autonoma_id"
                             />
 
                         </div>
@@ -134,7 +143,7 @@ export const Registro = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su provincia"
-                                name="provincia"
+                                name="provincia_id"
                             />
                         </div>
 
