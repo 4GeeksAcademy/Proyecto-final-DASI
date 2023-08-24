@@ -59,7 +59,7 @@ export const Perfil = () => {
 							type="text"
 							onChange={handleChange}
 							className="form-control"
-							placeholder="Nombre Huerto"
+							placeholder="Nombre Huerta"
 							name= "nombre_huerta"
 							/>
 							<label htmlFor="floatingInput">Nombre Huerta</label>
