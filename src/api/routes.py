@@ -236,3 +236,40 @@ def create_user():
 
     return jsonify(response_body), 200
 
+# -------------------- PERFIL PRODUCTOR --------------------
+
+@api.route('/perfil_productor', methods=['Get'])
+def get_all_productores():
+
+    Productor_query = PerfilProductor.query.all()
+    results = list(map(lambda item: item.serialize(), Productor_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+
+# -------------------- CREAR PERFIL PRODUCTOR --------------------
+
+@api.route('/perfil_productor', methods=['POST'])
+def add_productor():
+
+    request_body = request.get_json(force=True)
+
+    productor = PerfilProductor(nombre_huerta= request_body['nombre_huerta'],
+                #    info= request_body['info'],
+                   problemas= request_body['problemas'],
+                   donde_encontrar= request_body['donde_encontrar']
+                   )
+    
+    db.session.add(productor)
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Productor Created', productor.serialize()]
+    }
+
+    return jsonify(response_body), 200

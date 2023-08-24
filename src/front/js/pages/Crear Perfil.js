@@ -8,8 +8,8 @@ export const Perfil = () => {
 	const navigate = useNavigate();
 
 	const [newProfile, setNewProfile] = useState({
-		nombre_huerto: "",
-		info: "",
+		nombre_huerta: "",
+		// info: "",
 		problemas: "",
 		donde_encontrar: ""
 	});
@@ -29,8 +29,8 @@ export const Perfil = () => {
 		e.preventDefault()
 
 		let nuevo_productor = await actions.crearPerfil(
-			newProfile.nombre_huerto,
-			newProfile.info,
+			newProfile.nombre_huerta,
+			// newProfile.info,
 			newProfile.problemas,
 			newProfile.donde_encontrar
 		)
@@ -38,8 +38,8 @@ export const Perfil = () => {
 			navigate('/')
 		}else {
 			setNewProfile({
-				nombre_huerto: "",
-				info: "",
+				nombre_huerta: "",
+				// info: "",
 				problemas: "",
 				donde_encontrar: ""
 			})
@@ -60,11 +60,11 @@ export const Perfil = () => {
 							onChange={handleChange}
 							className="form-control"
 							placeholder="Nombre Huerto"
-							name= "nombre_huerto"
+							name= "nombre_huerta"
 							/>
-							<label htmlFor="floatingInput">Nombre Huerto</label>
+							<label htmlFor="floatingInput">Nombre Huerta</label>
 						</div>
-						<div className="form-floating mb-3">
+						{/* <div className="form-floating mb-3">
 							<input 
 							type="text" 
 							onChange={handleChange}
@@ -73,7 +73,7 @@ export const Perfil = () => {
 							name="info"
 							/>
 							<label htmlFor="floatingInput">¿Quién eres?</label>
-						</div>
+						</div> */}
 						<div className="form-floating mb-3">
 							<input
 							type="text"

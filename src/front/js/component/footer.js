@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 
 export const Footer = () => (
-
-	<footer className="footer mt-auto py-3 text-center">
-
-	
-	<footer className="footer bg-success bg-opacity-25">
+<footer className="footer bg-success bg-opacity-25">
 		<div className="container">
 			<div className="row pt-3">
 				<div className="accordion d-flex col-md-6 " id="accordionPanelsStayOpenExample">
