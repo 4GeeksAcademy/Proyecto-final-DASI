@@ -124,6 +124,27 @@ def get_all_provincias():
 
     return jsonify(response_body), 200
 
+#post lista de Provincias
+@api.route('/provincias', methods=['POST'])
+def add_provincia():
+
+    request_body = request.get_json(force=True)
+
+    for x in request_body:
+        item = Provincia(name= x['name'],
+                        comunidad_autonoma_id= x['comunidad_autonoma_id'])
+        print(item)
+        db.session.add(item)
+
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Provincia Created', item.serialize()]
+    }
+
+    return jsonify(response_body), 200
 
 
 # crear usuario
@@ -131,6 +152,17 @@ def get_all_provincias():
 def add_user():
 
     request_body = request.get_json(force=True)
+
+    #add validation
+    atributos = ["nombre","apellido","password","email","direccion","telefono","codigo_postal","comunidad_autonoma_id","provincia_id","is_active"]
+    
+    for x in atributos:
+        if x not in request_body:
+            response = f'You need to specify the {x}', 400
+            return response
+    #if 'nombre' not in body:
+    #    raise APIException('You need to specify the nombre', status_code=400)
+
 
     usuario = User(nombre= request_body['nombre'],
                    apellido= request_body['apellido'],
