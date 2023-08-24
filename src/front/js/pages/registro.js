@@ -109,7 +109,7 @@ export const Registro = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su Comunidad Autónoma"
-                                name="com_autonoma"
+                                name="comunidad_autonoma_id"
                             />
 
                         </div>
@@ -121,7 +121,7 @@ export const Registro = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su provincia"
-                                name="provincia"
+                                name="provincia_id"
                             />
                         </div>
 

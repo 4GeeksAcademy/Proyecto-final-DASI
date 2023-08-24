@@ -17,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			recogida: "",
 			precio: "",
 			id: "",
-			
+			log_productor: false,
 			log: false,
 			token:"",
 
@@ -49,6 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					let data = await response.json();
 					console.log(data);
+					setStore({log_productor: false})
 
 				} catch (error) {
 					console.log(error);
