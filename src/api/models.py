@@ -118,7 +118,8 @@ class PerfilProductor(db.Model):
             "id": self.id,
             "nombre_huerta": self.nombre_huerta,
             "latitud": self.latitud,
-            "longitud": self.longitud
+            "longitud": self.longitud,
+            "user_id": self.user_id
             # do not serialize the password, its a security breach
         }
 

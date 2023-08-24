@@ -14,11 +14,11 @@ export const Home = () => {
 		// }
 	} 
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-		redireccion()
+	// 	redireccion()
 
-	}, []);
+	// }, []);
 
 
 	return (

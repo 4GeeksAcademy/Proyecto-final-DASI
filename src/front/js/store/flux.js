@@ -39,12 +39,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
  			// -------------------------- CREAR PERFIL --------------------------
 
-			crearPerfil: async (nombre_huerta, problemas, donde_encontrar) => {
+
+			crearPerfil: async (nombre_huerta, info, problemas, donde_encontrar) => {
 
 				try {
-					let data = await axios.post(process.env.BACKEND_URL + '/api/crear_perfil', {
+					let response = await axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil_productor', {
 						nombre_huerta: nombre_huerta,
-						// info: info,
+						info: info,
+
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 				})
