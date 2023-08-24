@@ -26,6 +26,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User {self.email}>"
+        # return '<User %r>' % self.email
 
     def serialize(self):
         return {
@@ -118,7 +119,8 @@ class PerfilProductor(db.Model):
             "id": self.id,
             "nombre_huerta": self.nombre_huerta,
             "latitud": self.latitud,
-            "longitud": self.longitud
+            "longitud": self.longitud,
+            "user_id": self.user_id
             # do not serialize the password, its a security breach
         }
 

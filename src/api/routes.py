@@ -267,44 +267,57 @@ def get_profile():
 
 # -------------------- PERFIL PRODUCTOR --------------------
 
-@api.route("/perfil_productor", methods=["GET"])
-@jwt_required()
-def get_perfil_productor():
-    # Access the identity of the current user with get_jwt_identity
-    current_user = get_jwt_identity()
-    user = PerfilProductor.query.filter_by(user= User current_user).first()
-    if user is None:
-        return jsonify({"msg": "user do not exist"}), 404
-    return jsonify(logged_in_as=current_user), 200
+# @api.route("/perfil_productor", methods=["GET"])
+# @jwt_required()
+# def get_perfil_productor():
+#     # Access the identity of the current user with get_jwt_identity
+#     current_user = get_jwt_identity()
+#     user = PerfilProductor.query.filter_by(user= User.email).first()
+#     if user is None:
+#         return jsonify({"msg": "user do not exist"}), 404
+#     return jsonify(logged_in_as=current_user), 200
 
-# -------------------- CREAR PERFIL PRODUCTOR --------------------
 
-@api.route('/perfil_productor', methods=['POST'])
-def add_user():
+@api.route('/perfil_productor', methods=['Get'])
+def get_all_productores():
 
-    request_body = request.get_json(force=True)
-
-    usuario = User(nombre= request_body['nombre'],
-                   apellido= request_body['apellido'],
-                   password= request_body['password'],
-                   email= request_body['email'],
-                   direccion= request_body['direccion'],
-                   telefono= request_body['telefono'],
-                   codigo_postal= request_body['codigo_postal'],
-                   comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
-                   provincia_id= request_body['provincia_id'],
-                   is_active = request_body['is_active']
-                   
-                   )
-    
-
-    db.session.add(usuario)
-    db.session.commit()
-
+    Productor_query = PerfilProductor.query.all()
+    results = list(map(lambda item: item.serialize(), Productor_query))
 
     response_body = {
-        'msg':'ok',
-        "results": ['Usuario Created', usuario.serialize()]
+       "results": results
     }
 
     return jsonify(response_body), 200
+
+# -------------------- CREAR PERFIL PRODUCTOR --------------------
+
+# @api.route('/perfil_productor', methods=['POST'])
+# def add_user():
+
+#     request_body = request.get_json(force=True)
+
+#     usuario = User(nombre= request_body['nombre'],
+#                    apellido= request_body['apellido'],
+#                    password= request_body['password'],
+#                    email= request_body['email'],
+#                    direccion= request_body['direccion'],
+#                    telefono= request_body['telefono'],
+#                    codigo_postal= request_body['codigo_postal'],
+#                    comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
+#                    provincia_id= request_body['provincia_id'],
+#                    is_active = request_body['is_active']
+                   
+#                    )
+    
+
+#     db.session.add(usuario)
+#     db.session.commit()
+
+
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['Usuario Created', usuario.serialize()]
+#     }
+
+#     return jsonify(response_body), 200
