@@ -30,7 +30,7 @@ export const Login = () => {
 
 
 	return (
-		<div className=" text-center bg-success bg-opacity-25 pb-5" style={{ minHeight: '100vh' }}>
+		<div className=" text-center bg-success bg-opacity-25 pb-5" style={{ minHeight: '80vh' }}>
 
 			<h1 id="log">Log in</h1>
 

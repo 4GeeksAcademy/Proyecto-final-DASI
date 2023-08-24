@@ -42,18 +42,24 @@ export const Home = () => {
       [categoryLabel]: option,
     }));
   };
+
   const handleSubmit = () => {
 
     const formData = {
       selectedCommunity,
-      selectedProvince,
-      selectedOptions,
+      selectedProvince
     };
     console.log("Datos enviados:", formData);
+    actions.pedirPerfil();
   };
 
+  // async function handlerSubmit(e)  {
+	// 	e.preventDefault()
+	// 	await actions.login(email, password)
+  // }
+
   return (
-    <div className="bg-success bg-opacity-25" style={{ minHeight: '100vh' }}>
+    <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
       <div className="container pt-5 d-flex justify-content-center">
         {categories.map((category, index) => (
           <div className="btn-group" key={index}>

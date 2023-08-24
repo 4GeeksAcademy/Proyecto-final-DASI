@@ -68,6 +68,7 @@ export const Registro = () => {
     };
 
     return (
+        <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-8">
@@ -175,6 +176,7 @@ export const Registro = () => {
                         </form>
                     </div>
                 </div>
+            </div>
             </div>
     );
 };
