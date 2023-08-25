@@ -69,14 +69,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(getStore());
 
 
-					sincroToken: async () => {
+				} catch (error) {
+					console.log(error);
+				}
+			},
 
-						let token = localStorage.getItem("token")
-						setStore({ token: token })
-						setStore({ log: true })
-
-					}
-
+			sincroToken: async () => {
+				try {
+					let token = localStorage.getItem("token");
+					setStore({ token: token });
+					setStore({ log: true });
 				} catch (error) {
 					console.log(error);
 				}
