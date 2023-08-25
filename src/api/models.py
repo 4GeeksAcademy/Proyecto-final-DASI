@@ -3,6 +3,16 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Table, delete, selec
 
 db = SQLAlchemy()
 
+# add Favorito with many to many relationship
+
+# step 1. table with tables ids
+user_productor = db.Table('user_productor',
+                    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+                    db.Column('productor_id', db.Integer, db.ForeignKey('perfil_productores.id'))
+                    )
+
+#step 2.
+#favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users') # in User
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -20,8 +30,8 @@ class User(db.Model):
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'),nullable=False)
     #one2one relationship with perfil_productor
     productor = db.relationship("PerfilProductor", uselist=False,back_populates="user")
-    #child = relationship("Child", uselist=False, back_populates="parent")
-    #favoritos = db.relationship('favoritos_productores', backref='user', lazy=True)
+    #many2many relationship with favoritos
+    favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users')
     #fin de one2one relationship with user
 
     def __repr__(self):
@@ -154,6 +164,9 @@ class ProductoNombre(db.Model):
 
     def __repr__(self):
         return '<ProductoNombre %r>' % self.nombre      
+
+
+
 
 # class FavoritoProductor(db.Model):
 #     __tablename__ = 'favoritos_productores'
