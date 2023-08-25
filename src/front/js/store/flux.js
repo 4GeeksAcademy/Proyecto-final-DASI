@@ -61,6 +61,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+
+			sincroToken: async () => {
+
+				let token =localStorage.getItem("token")
+				setStore({ token: token })
+				setStore({ log: true })
+
+			},
+
 			pedirPerfil: async () => {
 				try {
 					let response = await axios.get(process.env.BACKEND_URL + "api/perfil_productor");
@@ -263,8 +272,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const store = getStore();
 
 				
-						if (store.token != " ") setStore({log:true})
-						else setStore({log:false})
+						if (!store.token) setStore({log:false})
+						else setStore({log:true})
 						
 
 					return true;

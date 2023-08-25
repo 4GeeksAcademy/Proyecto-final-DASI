@@ -40,6 +40,7 @@ export const Navbar = () => {
 	
 
 	useEffect(() => {
+		// redireccion()
 		
 		actions.getProfile();
 	

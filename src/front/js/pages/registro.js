@@ -43,6 +43,7 @@ export const Registro = () => {
         setContact({ ...contact, [event.target.name]: event.target.value });
     };
 
+    
     return (
         <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
         <div className="container">

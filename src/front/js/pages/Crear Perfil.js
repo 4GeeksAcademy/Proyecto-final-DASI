@@ -64,7 +64,12 @@ export const Perfil = () => {
 			})
 		};
 	};
+	// useEffect(() => {
+		
+	// 	actions.getProfile();
+	
 
+	// }, []);
 
  
 	return (
