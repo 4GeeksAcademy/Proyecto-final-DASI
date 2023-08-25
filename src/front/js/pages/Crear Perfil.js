@@ -157,6 +157,7 @@ export const Perfil = () => {
 							/>
 							<label htmlFor="floatingInput">¿Dónde y cuándo podemos encontrarte</label>
 						</div>
+						
 						<div className="d-flex justify-content-center">
 							<button className="btn btn-success" type="submit">
 								Registro
