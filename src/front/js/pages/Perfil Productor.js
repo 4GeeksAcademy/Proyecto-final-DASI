@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 import "../../styles/home.css";
 
-export const PerfilProductor = () => {
+export const PerfilProductor = props => {
 	const { store, actions } = useContext(Context);
 
 
@@ -10,6 +12,11 @@ export const PerfilProductor = () => {
 		<div className="Container">
 			<div className="p-4" >
 				<img src="https://www.huercasa.com/sites/default/files/2021-10/huerto-urbano-ni%C3%B1os-huercasa.jpg" className="img-fluid w-100 portada" alt="..." />
+				<div className="fs-3 d-flex justify-content-end">
+						<span className="btn btn-success mx-2" style={{marginTop: "-50px", width: "40px", height: "40px"}}>
+							<i className="fa-solid fa-pen-to-square"></i>
+						</span>
+				</div>
 			</div>
 			<div className="d-flex">
 				<img className="img-perfil" src="https://www.telegraph.co.uk/content/dam/news/2016/08/23/106598324PandawaveNEWS_trans_NvBQzQNjv4Bqeo_i_u9APj8RuoebjoAHt0k9u7HhRJvuo-ZLenGRumA.jpg?impolicy=logo-overlay" />
@@ -40,9 +47,11 @@ export const PerfilProductor = () => {
 			<div className="mt-5 mx-5 border border-success border-3 p-3">
 				<div className="d-flex justify-content-between">
 					<span className="display-4 mb-4">Productos de la Semana</span>
-					<button className="btn btn-success" style={{width: "35px", height: "35px"}}>
-						<i className="fa-solid fa-plus"></i>
-					</button>
+					<Link to="/add_product">
+						<button className="btn btn-success" style={{width: "35px", height: "35px"}}>
+							<i className="fa-solid fa-plus"></i>
+						</button>
+					</Link>
 				</div>
 				<div>
 					<ul className="d-flex justify-content-evenly">
@@ -163,4 +172,7 @@ export const PerfilProductor = () => {
 
 		</div>
 	);
+};
+PerfilProductor.propTypes = {
+    nombre_huerto: PropTypes.string
 };
