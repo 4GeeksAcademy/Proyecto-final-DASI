@@ -1,4 +1,4 @@
-7from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, delete, select,Float
 
 db = SQLAlchemy()
@@ -81,7 +81,8 @@ class PerfilProductor(db.Model):
     direccion = db.Column(db.String(120), unique=False, nullable=False)
     telefono = db.Column(db.Integer, unique=True, nullable=False)
     codigo_postal = db.Column(db.Integer, unique=False, nullable=False)
- 
+    comunidad_autonoma = db.Column(db.String(250), nullable=True)
+    provincia = db.Column(db.String(250), nullable=True)
     foto_portada = db.Column(db.String(250), nullable=True)
     foto_perfil = db.Column(db.String(250), nullable=True)
     problemas = db.Column(db.String(250), nullable=True)
