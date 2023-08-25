@@ -8,8 +8,14 @@ export const Perfil = () => {
 	const navigate = useNavigate();
 
 	const [newProfile, setNewProfile] = useState({
+		nombre : "",
+		apellido : "",
+		direccion : "",
+		telefono : "",
+		codigo_postal : "",
+		comunidad_autonoma_id : "",
+		provincia_id : "",
 		nombre_huerta: "",
-		// info: "",
 		problemas: "",
 		donde_encontrar: ""
 	});
@@ -29,14 +35,29 @@ export const Perfil = () => {
 		e.preventDefault()
 
 		let nuevo_productor = await actions.crearPerfil(
+			newProfile.nombre,
+			newProfile.apellido, 
+			newProfile.direccion,
+			newProfile.telefono,
+			newProfile.codigo_postal,
+			newProfile.comunidad_autonoma_id,
+			newProfile.provincia_id,
 			newProfile.nombre_huerta,
 			newProfile.problemas,
 			newProfile.donde_encontrar
+			
 		)
 		if(nuevo_productor) {
 			navigate('/') /* --> perfil del productor*/
 		}else {
 			setNewProfile({
+				nombre : "",
+				apellido : "",
+				direccion : "",
+				telefono : "",
+				codigo_postal : "",
+				comunidad_autonoma_id : "",
+				provincia_id : "",
 				nombre_huerta: "",
 				problemas: "",
 				donde_encontrar: ""
@@ -53,7 +74,7 @@ export const Perfil = () => {
 					<h1  className="text-center mb-5 mt-5 display-2">Crear Perfil</h1>
 					<form onSubmit={handleSubmit}>
 					<div className="form-floating mb-3">
-                            <label htmlFor="floatingInput">Nombre</label>
+                            
                             <input
                                 type="text"
                                 onChange={handleChange}
@@ -61,9 +82,10 @@ export const Perfil = () => {
                                 placeholder="Añada aquí su nombre"
                                 name="username"
                             />
+							<label htmlFor="floatingInput">Nombre</label>
                         </div>
 						<div className="form-floating mb-3">
-                            <label htmlFor="floatingInput">Apellidos</label>
+                            
                             <input
                                 type="text"
                                 onChange={handleChange}
@@ -71,9 +93,10 @@ export const Perfil = () => {
                                 placeholder="Añada aquí sus apellidos"
                                 name="apellidos"
                             />
+							<label htmlFor="floatingInput">Apellidos</label>
                         </div>
 						<div className="form-floating mb-3">
-                            <label htmlFor="floatingInput">Telefono</label>
+                            
                             <input
                                 type="tel"
                                 onChange={handleChange}
@@ -81,9 +104,10 @@ export const Perfil = () => {
                                 placeholder="Añada aquí el telefono"
                                 name="telefono"
                             />
+							<label htmlFor="floatingInput">Telefono</label>
                         </div>
 						<div className="form-floating mb-3">
-                            <label htmlFor="floatingInput">Comunidad Autónoma</label>
+                            
                             <input
                                 type="text"
                                 onChange={handleChange}
@@ -91,11 +115,11 @@ export const Perfil = () => {
                                 placeholder="Añada aquí su Comunidad Autónoma"
                                 name="comunidad_autonoma_id"
                             />
+							<label htmlFor="floatingInput">Comunidad Autónoma</label>
 
                             </div>
 
                         <div className="form-floating mb-3">
-                            <label htmlFor="floatingInput">Provincia</label>
                             <input
                                 type="text"
                                 onChange={handleChange}
@@ -103,10 +127,11 @@ export const Perfil = () => {
                                 placeholder="Añada aquí su provincia"
                                 name="provincia_id"
                             />
+							<label htmlFor="floatingInput">Provincia</label>
                         </div>
 
 						<div className="form-floating mb-3">
-							<label htmlFor="floatingInput">Codigo Postal</label>
+							
 							<input
 								type="text"
 								onChange={handleChange}
@@ -114,10 +139,11 @@ export const Perfil = () => {
 								placeholder="Añada aquí su codigo postal"
 								name="codigo_postal"
 							/>
+							<label htmlFor="floatingInput">Codigo Postal</label>
 						</div>
 
 						<div className="form-floating mb-3">
-							<label htmlFor="floatingInput">Dirección</label>
+							
 							<input
 								type="text"
 								onChange={handleChange}
@@ -125,6 +151,7 @@ export const Perfil = () => {
 								placeholder="Añada aquí su dirección"
 								name="dirección"
 							/>
+							<label htmlFor="floatingInput">Dirección</label>
 						</div>
 						<div className="form-floating mb-3">
 							<input 
@@ -157,7 +184,7 @@ export const Perfil = () => {
 							/>
 							<label htmlFor="floatingInput">¿Dónde y cuándo podemos encontrarte</label>
 						</div>
-						
+
 						<div className="d-flex justify-content-center">
 							<button className="btn btn-success" type="submit">
 								Registro
