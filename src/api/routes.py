@@ -290,11 +290,18 @@ def add_productor():
 
     request_body = request.get_json(force=True)
 
-    productor = PerfilProductor(nombre_huerta= request_body['nombre_huerta'],
-                #    info= request_body['info'],
-                   problemas= request_body['problemas'],
-                   donde_encontrar= request_body['donde_encontrar']
-                   )
+    productor = PerfilProductor(
+        nombre= request_body['nombre'],
+        apellido= request_body['apellido'],
+        direccion= request_body['direccion'],
+        telefono= request_body['telefono'],
+        codigo_postal= request_body['codigo_postal'],
+        comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
+        provincia_id= request_body['provincia_id'],
+        nombre_huerta= request_body['nombre_huerta'],     
+        problemas= request_body['problemas'],
+        donde_encontrar= request_body['donde_encontrar']
+          )
     
     db.session.add(productor)
     db.session.commit()

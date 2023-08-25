@@ -8,55 +8,31 @@ export const Registro = () => {
     const navigate = useNavigate();
 
     const [contact, setContact] = useState({
-        nombre: "",
-        apellidos: "",
-        telefono: "",
+        username: "",
         password: "",
         email: "",
-        comunidad_autonoma_id: "",
-        provincia_id: "",
-        codigo_postal: "",
-        dirección: ""
     });
 
     //Crear contacto
 
     async function createContact(e)  {
 		e.preventDefault()
-        console.log(contact.nombre,
-            contact.apellidos,
-            contact.telefono,
+        console.log(contact.username,
             contact.password,
-            contact.email,
-            contact.comunidad_autonoma_id,
-            contact.provincia_id,
-            contact.codigo_postal,
-            contact.dirección);
+            contact.email)
         let nuevo_registro = await actions.registro(
-            contact.nombre,
-            contact.apellidos,
-            contact.telefono,
+            contact.username,
             contact.password,
-            contact.email,
-            contact.comunidad_autonoma_id,
-            contact.provincia_id,
-            contact.codigo_postal,
-            contact.dirección
+            contact.email
 
         );
         if (nuevo_registro) {
             navigate('/');
         } else {
             setContact({
-                nombre: "",
-                apellidos: "",
-                telefono: "",
+                username: "",
                 password: "",
                 email: "",
-                comunidad_autonoma_id: "",
-                provincia_id: "",
-                codigo_postal: "",
-                dirección: ""
             });
         }
 
@@ -67,6 +43,7 @@ export const Registro = () => {
         setContact({ ...contact, [event.target.name]: event.target.value });
     };
 
+    
     return (
         <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
         <div className="container">
@@ -81,10 +58,10 @@ export const Registro = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su nombre"
-                                name="nombre"
+                                name="username"
                             />
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label>Apellidos</label>
                             <input
                                 type="text"
@@ -93,8 +70,8 @@ export const Registro = () => {
                                 placeholder="Añada aquí sus apellidos"
                                 name="apellidos"
                             />
-                        </div>
-                        <div className="form-group">
+                        </div> */}
+                        {/* <div className="form-group">
                             <label>Telefono</label>
                             <input
                                 type="tel"
@@ -103,7 +80,7 @@ export const Registro = () => {
                                 placeholder="Añada aquí el telefono"
                                 name="telefono"
                             />
-                        </div>
+                        </div> */}
 
                             <div className="form-group">
                                 <label>Email</label>
@@ -125,7 +102,7 @@ export const Registro = () => {
                                 name="password" />
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label>Comunidad Autónoma</label>
                             <input
                                 type="text"
@@ -167,8 +144,8 @@ export const Registro = () => {
                                     className="form-control"
                                     placeholder="Añada aquí su dirección"
                                     name="dirección"
-                                />
-                            </div>
+                                /> */}
+                            {/* </div> */}
 
                             <button type="submit" className="btn btn-primary form-control mt-3">
                                 Registro
@@ -177,6 +154,6 @@ export const Registro = () => {
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     );
 };

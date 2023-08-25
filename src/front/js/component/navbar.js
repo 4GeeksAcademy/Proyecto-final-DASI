@@ -11,7 +11,11 @@ export const Navbar = () => {
 
 	const handlerPerfil = (e)=>{
         e.preventDefault()
+		actions.pedirPerfil()
+		console.log(store.perfil);
 		store.log === false ? navigate('/login') : 
+		
+
         navigate("/crear_perfil") /* --> Enlace a perfil productor*/
     }
 
@@ -36,6 +40,7 @@ export const Navbar = () => {
 	
 
 	useEffect(() => {
+		// redireccion()
 		
 		actions.getProfile();
 	

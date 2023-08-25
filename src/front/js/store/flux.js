@@ -61,24 +61,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+
 			pedirPerfil: async (filters) => {
 				try {
 					let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor", filters);
 					setStore({ perfil: response.data.results });
 					console.log(getStore());
+
+
+					sincroToken: async () => {
+
+						let token = localStorage.getItem("token")
+						setStore({ token: token })
+						setStore({ log: true })
+
+					}
+
 				} catch (error) {
 					console.log(error);
 				}
 			},
 
 
-			crearPerfil: async (nombre_huerta, problemas, donde_encontrar) => {
+			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id, nombre_huerta, problemas, donde_encontrar) => {
 
 				try {
-					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
-						nombre_huerta: nombre_huerta,
-						// info: info,
+					let data = await axios.post(process.env.BACKEND_URL + 'api/perfil_productor', {
 
+						nombre: nombre,
+						apellido: apellido,
+						direccion: direccion,
+						telefono: telefono,
+						codigo_postal: codigo_postal,
+						comunidad_autonoma_id: comunidad_autonoma_id,
+						provincia_id: provincia_id,
+						nombre_huerta: nombre_huerta,
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 					})
@@ -89,9 +106,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log(error);
 				}
-
-
-				// console.log(nombre_huerta, info, problemas, donde_encontrar);
 
 			},
 
@@ -106,6 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return productos;
 				} catch (error) {
 					console.log("Error loading message from backend", error)
+
 				}
 			},
 			// -------------------------- AÑADIR PRODUCTO --------------------------
@@ -114,7 +129,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/producto', {
+					let data = await axios.post(process.env.BACKEND_URL + 'api/producto', {
 						nombre: nombre,
 						cantidad: cantidad,
 						unidad_medida: unidad_medida,
@@ -143,7 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
 				try {
 
-					let data = await axios.put(process.env.BACKEND_URL + '/api/producto', {
+					let data = await axios.put(process.env.BACKEND_URL + 'api/producto', {
 						nombre: nombre,
 						cantidad: cantidad,
 						unidad_medida: unidad_medida,
@@ -169,20 +184,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- REGISTRO --------------------------
 
-			registro: async (nombre, apellido, telefono, password, email, comunidad_autonoma_id, provincia_id, codigo_postal, direccion) => {
+			registro: async (nombre, password, email) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/registro', {
+
+					let data = await axios.post(process.env.BACKEND_URL + 'api/registro', {
 						nombre: nombre,
 						apellido: apellido,
 						telefono: telefono,
 						password: password,
 						email: email,
-						comunidad_autonoma_id: comunidad_autonoma_id,
-						provincia_id: provincia_id,
-						codigo_postal: codigo_postal,
-						direccion: direccion,
 						is_active: true
 
 					})
@@ -213,7 +225,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/login', {
+					let data = await axios.post(process.env.BACKEND_URL + 'api/login', {
 
 						email: dataEmail,
 
@@ -247,7 +259,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.get(process.env.BACKEND_URL + '/profile', {
+					let data = await axios.get(process.env.BACKEND_URL + 'profile', {
 
 						headers: {
 							"Authorization": `Bearer ${token}`,
@@ -258,8 +270,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const store = getStore();
 
 
-					if (store.token != " ") setStore({ log: true })
-					else setStore({ log: false })
+					if (!store.token) setStore({ log: false })
+					else setStore({ log: true })
 
 
 					return true;
