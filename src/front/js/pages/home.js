@@ -47,7 +47,8 @@ export const Home = () => {
 
     const formData = {
       selectedCommunity,
-      selectedProvince
+      selectedProvince,
+      selectedOptions
     };
     console.log("Datos enviados:", formData);
     actions.pedirPerfil();

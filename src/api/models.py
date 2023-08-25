@@ -1,4 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
+7from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, delete, select,Float
 
 db = SQLAlchemy()
