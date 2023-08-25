@@ -338,28 +338,29 @@ def get_profile():
 
 # -------------------- Pedido --------------------
 
-@api.route("/Pedido", methods=["POST"])
+@api.route("/pedido", methods=["POST"])
 def add_Pedido():
     
     request_body = request.get_json(force=True)
 
     #add validation
-    atributos = ["user_id","fecha_recogida","productos"]
+    atributos = ["user_id","fecha_recogida","cantidad_solicitada"]
     
     for x in atributos:
         if x not in request_body:
             response = f'You need to specify the {x}', 400
             return response
     
-    Pedido = Pedido(user_id= request_body['user_id'],
+    pedido = Pedido(user_id= request_body['user_id'],
                  fecha_recogida= request_body['fecha_recogida'],
-                 productos= request_body['productos']
+                 producto_id= request_body['producto_id'],
+                 cantidad_solicitada= request_body['cantidad_solicitada']
                    
                    
                    )
     
 
-    db.session.add(Pedido)
+    db.session.add(pedido)
     db.session.commit()
 
 

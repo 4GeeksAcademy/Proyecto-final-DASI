@@ -186,8 +186,8 @@ class Pedido(db.Model):
     
     def serialize(self):
         return {
-            "id": self.id,
-            "fecha_recogida": self.fecha_recogida
+            "id": self.id
+            #"fecha_recogida": self.fecha_recogida
             
         }
   
