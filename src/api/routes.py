@@ -12,7 +12,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
 # from admin import setup_admin
-from api.models import db, User, Provincia, ComunidadAutonoma, ProductoNombre,Producto,PerfilProductor
+from api.models import db, User, Provincia, ComunidadAutonoma, ProductoNombre,Producto,PerfilProductor,Pedido
 #from models import Person
 #for authentication
 from flask_jwt_extended import create_access_token
@@ -65,7 +65,7 @@ def save_products():
 
     return jsonify(response_body), 200
 
-#get lista de productoNombre
+#get Pedido de productoNombre
 @api.route('/producto', methods=['Get'])
 def get_all_products():
 
@@ -78,7 +78,7 @@ def get_all_products():
 
     return jsonify(response_body), 200
 
-#get lista de Comunidades Autonomas
+#get Pedido de Comunidades Autonomas
 @api.route('/ca', methods=['Get'])
 def get_all_ca():
 
@@ -91,7 +91,7 @@ def get_all_ca():
 
     return jsonify(response_body), 200
 
-#post lista de Comunidades Autonomas
+#post Pedido de Comunidades Autonomas
 @api.route('/ca', methods=['POST'])
 def add_ca():
 
@@ -111,7 +111,7 @@ def add_ca():
 
     return jsonify(response_body), 200
 
-#get lista de Provincias
+#get Pedido de Provincias
 @api.route('/provincias', methods=['Get'])
 def get_all_provincias():
 
@@ -124,7 +124,7 @@ def get_all_provincias():
 
     return jsonify(response_body), 200
 
-#post lista de Provincias
+#post Pedido de Provincias
 @api.route('/provincias', methods=['POST'])
 def add_provincia():
 
@@ -336,3 +336,49 @@ def get_profile():
         return jsonify({"msg": "user do not exist"}), 404
     return jsonify(logged_in_as=current_user), 200
 
+# -------------------- Pedido --------------------
+
+@api.route("/Pedido", methods=["POST"])
+def add_Pedido():
+    
+    request_body = request.get_json(force=True)
+
+    #add validation
+    atributos = ["user_id","fecha_recogida","productos"]
+    
+    for x in atributos:
+        if x not in request_body:
+            response = f'You need to specify the {x}', 400
+            return response
+    
+    Pedido = Pedido(user_id= request_body['user_id'],
+                 fecha_recogida= request_body['fecha_recogida'],
+                 productos= request_body['productos']
+                   
+                   
+                   )
+    
+
+    db.session.add(Pedido)
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Pedido Created', Pedido.serialize()]
+    }
+
+    return jsonify(response_body), 200
+    # email = request.json.get("email", None)
+    # password = request.json.get("password", None)
+
+    # user = User.query.filter_by(email=email).first()
+
+    # if user is None:
+    #     return jsonify({"msg": "email do not exist"}), 404
+
+    # if password != user.password:
+    #     return jsonify({"msg": "Bad password"}), 401
+
+    # access_token = create_access_token(identity=email)
+    # return jsonify(access_token=access_token)

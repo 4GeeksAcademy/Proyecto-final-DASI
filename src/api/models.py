@@ -11,10 +11,10 @@ user_productor = db.Table('user_productor',
                     db.Column('productor_id', db.Integer, db.ForeignKey('perfil_productores.id'))
                     )
 
-lista_producto = db.Table('lista_producto',
-                    db.Column('lista_id', db.Integer, db.ForeignKey('listas.id')),
-                    db.Column('producto_id', db.Integer, db.ForeignKey('productos.id'))
-                    )
+# Pedido_producto = db.Table('Pedido_producto',
+#                     db.Column('Pedido_id', db.Integer, db.ForeignKey('Pedidos.id')),
+#                     db.Column('producto_id', db.Integer, db.ForeignKey('productos.id'))
+#                     )
 
 #step 2.
 #favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users') # in User
@@ -37,7 +37,7 @@ class User(db.Model):
     productor = db.relationship("PerfilProductor", uselist=False,back_populates="user")
     #many2many relationship with favoritos
     favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users')
-    lista = db.relationship('Lista', backref='users', lazy=True)
+    Pedido = db.relationship('Pedido', backref='users', lazy=True)
 
     def __repr__(self):
         return f"<User {self.email}>"
@@ -150,6 +150,7 @@ class Producto(db.Model):
     precio = db.Column(db.Float, nullable=True)
     tipo_produccion = db.Column(db.String(250), nullable=True)
     recogida = db.Column(db.String(250), nullable=True)
+    pedido = db.relationship('Pedido', backref='productos', lazy=True)
   
 
     def __repr__(self):
@@ -170,12 +171,15 @@ class ProductoNombre(db.Model):
     def __repr__(self):
         return '<ProductoNombre %r>' % self.nombre
 
-class Lista(db.Model):
-    __tablename__ = 'listas'
+#Pedido de pedidos
+class Pedido(db.Model):
+    __tablename__ = 'pedidos'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
     fecha_recogida = db.Column(db.Date, nullable=True)
-    productos = db.relationship('Producto', secondary=lista_producto, backref='listas')
+    producto_id = db.Column(db.Integer, db.ForeignKey('productos.id'),nullable=False)
+    cantidad_solicitada = db.Column(db.Integer, nullable=False)
+    #productos = db.relationship('Producto', secondary=Pedido_producto, backref='Pedidos') de many to many
     
 
     
@@ -183,7 +187,8 @@ class Lista(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre
+            "fecha_recogida": self.fecha_recogida
+            
         }
   
 
