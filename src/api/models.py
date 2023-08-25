@@ -133,6 +133,8 @@ class Producto(db.Model):
     cantidad = db.Column(db.Integer, nullable=True)
     unidad_medida = db.Column(db.String(250), nullable=True)
     precio = db.Column(db.Float, nullable=True)
+    tipo_produccion = db.Column(db.String(250), nullable=True)
+    recogida = db.Column(db.String(250), nullable=True)
   
 
     def __repr__(self):
