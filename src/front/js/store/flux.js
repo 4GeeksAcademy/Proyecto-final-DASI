@@ -40,12 +40,12 @@ const getState = ({ getStore, getActions, setStore }) => {
  			// -------------------------- CREAR PERFIL --------------------------
 
 
-			crearPerfil: async (nombre_huerta, info, problemas, donde_encontrar) => {
+			crearPerfil: async (nombre_huerta, problemas, donde_encontrar) => {
 
 				try {
-					let response = await axios.post('https://refactored-carnival-6jvv96qjv5gfxrp-3001.app.github.dev/api/perfil_productor', {
+					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
 						nombre_huerta: nombre_huerta,
-						info: info,
+						// info: info,
 
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
@@ -223,23 +223,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 
 					})
-
 					
-					// const store = getStore();
+					const store = getStore();
 
+				
+						if (store.token != " ") setStore({log:true})
+						else setStore({log:false})
+						
 
-					console.log(data.status);
-					
-					// setStore({log:true})
-					data.status === 401 ? setStore({log:false}) : setStore({log:true});
 					return true;
 
 				} catch (error) {
 
 					console.log(error);
-					// setStore({log:false})
-					// setStore({log:true})
-					
 					
 					return false;
 

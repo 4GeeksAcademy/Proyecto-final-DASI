@@ -35,7 +35,7 @@ export const Perfil = () => {
 			newProfile.donde_encontrar
 		)
 		if(nuevo_productor) {
-			navigate('/')
+			navigate('/') /* --> perfil del productor*/
 		}else {
 			setNewProfile({
 				nombre_huerta: "",
