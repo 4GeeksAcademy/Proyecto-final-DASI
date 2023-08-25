@@ -33,9 +33,19 @@ export const Navbar = () => {
 			navigate("/login")
 		}
     }
+	// async function redireccion(){
+
+	// 	store.log === true ? null
+	// 	:actions.getProfile()
+
+		// let logged = await actions.getProfile();
+		// if(!logged) {
+		// 	navigate("/")
+		// }
 	
 
 	useEffect(() => {
+		// redireccion()
 		
 		actions.getProfile();
 	

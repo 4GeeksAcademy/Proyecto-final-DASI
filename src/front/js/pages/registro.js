@@ -67,6 +67,7 @@ export const Registro = () => {
         setContact({ ...contact, [event.target.name]: event.target.value });
     };
 
+    
     return (
         <div className="container">
             <div className="row justify-content-center">

@@ -29,6 +29,13 @@ export const Login = () => {
 		
 	};
 
+	// useEffect(() => {
+		
+	// 	actions.getProfile();
+	
+
+	// }, []);
+
 
 	return (
 		<div className=" text-center bg-success bg-opacity-25 pb-5">
