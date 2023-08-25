@@ -5,3 +5,24 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+/* body {
+    min-height: 100vh;
+}
+footer {
+    position: sticky;
+    top: 100%;
+} */
+.portada {
+    height: 300px;
+    object-fit: cover;
+}
+.img-perfil {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: -130px 50px 0 30px;
+}
+li {
+    list-style-type: none;
+}
