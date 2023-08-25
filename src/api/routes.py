@@ -12,7 +12,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
 # from admin import setup_admin
-from api.models import db, User, Provincia, ComunidadAutonoma, ProductoNombre,Producto,PerfilProductor
+from api.models import db, User, ProductoNombre,Producto,PerfilProductor
 #from models import Person
 #for authentication
 from flask_jwt_extended import create_access_token
@@ -78,73 +78,73 @@ def get_all_products():
 
     return jsonify(response_body), 200
 
-#get lista de Comunidades Autonomas
-@api.route('/ca', methods=['Get'])
-def get_all_ca():
+# #get lista de Comunidades Autonomas
+# @api.route('/ca', methods=['Get'])
+# def get_all_ca():
 
-    ca_query = ComunidadAutonoma.query.all()
-    results = list(map(lambda item: item.serialize(), ca_query))
+#     ca_query = ComunidadAutonoma.query.all()
+#     results = list(map(lambda item: item.serialize(), ca_query))
 
-    response_body = {
-       "results": results
-    }
+#     response_body = {
+#        "results": results
+#     }
 
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
 
-#post lista de Comunidades Autonomas
-@api.route('/ca', methods=['POST'])
-def add_ca():
+# #post lista de Comunidades Autonomas
+# @api.route('/ca', methods=['POST'])
+# def add_ca():
 
-    request_body = request.get_json(force=True)
+#     request_body = request.get_json(force=True)
 
-    for x in request_body:
-        item = ComunidadAutonoma(name= x['name'])
-        db.session.add(item)
+#     for x in request_body:
+#         item = ComunidadAutonoma(name= x['name'])
+#         db.session.add(item)
 
-    db.session.commit()
-
-
-    response_body = {
-        'msg':'ok',
-        "results": ['CA Created', item.serialize()]
-    }
-
-    return jsonify(response_body), 200
-
-#get lista de Provincias
-@api.route('/provincias', methods=['Get'])
-def get_all_provincias():
-
-    provincia_query = Provincia.query.all()
-    results = list(map(lambda item: item.serialize(), provincia_query))
-
-    response_body = {
-       "results": results
-    }
-
-    return jsonify(response_body), 200
-
-#post lista de Provincias
-@api.route('/provincias', methods=['POST'])
-def add_provincia():
-
-    request_body = request.get_json(force=True)
-
-    for x in request_body:
-        item = Provincia(name= x['name'],
-                        comunidad_autonoma_id= x['comunidad_autonoma_id'])
-        print(item)
-        db.session.add(item)
-
-    db.session.commit()
+#     db.session.commit()
 
 
-    response_body = {
-        'msg':'ok',
-        "results": ['Provincia Created', item.serialize()]
-    }
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['CA Created', item.serialize()]
+#     }
 
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
+
+# #get lista de Provincias
+# @api.route('/provincias', methods=['Get'])
+# def get_all_provincias():
+
+#     provincia_query = Provincia.query.all()
+#     results = list(map(lambda item: item.serialize(), provincia_query))
+
+#     response_body = {
+#        "results": results
+#     }
+
+#     return jsonify(response_body), 200
+
+# #post lista de Provincias
+# @api.route('/provincias', methods=['POST'])
+# def add_provincia():
+
+#     request_body = request.get_json(force=True)
+
+#     for x in request_body:
+#         item = Provincia(name= x['name'],
+#                         comunidad_autonoma_id= x['comunidad_autonoma_id'])
+#         print(item)
+#         db.session.add(item)
+
+#     db.session.commit()
+
+
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['Provincia Created', item.serialize()]
+#     }
+
+#     return jsonify(response_body), 200
 
 
 # crear usuario
@@ -154,7 +154,7 @@ def add_user():
     request_body = request.get_json(force=True)
 
     #add validation
-    atributos = ["nombre","apellido","password","email","direccion","telefono","codigo_postal","comunidad_autonoma_id","provincia_id","is_active"]
+    atributos = ["username","password","email"]
     
     for x in atributos:
         if x not in request_body:
@@ -164,19 +164,13 @@ def add_user():
     #    raise APIException('You need to specify the nombre', status_code=400)
 
 
-    usuario = User(nombre= request_body['nombre'],
-                   apellido= request_body['apellido'],
+    usuario = User(username= request_body['username'],
                    password= request_body['password'],
-                   email= request_body['email'],
-                   direccion= request_body['direccion'],
-                   telefono= request_body['telefono'],
-                   codigo_postal= request_body['codigo_postal'],
-                   comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
-                   provincia_id= request_body['provincia_id'],
-                   is_active = request_body['is_active']
+                   email= request_body['email']
+                   
                    
                    )
-    
+    print(usuario)
 
     db.session.add(usuario)
     db.session.commit()
