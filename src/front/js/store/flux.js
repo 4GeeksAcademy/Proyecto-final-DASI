@@ -63,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			pedirPerfil: async () => {
 				try {
-					let response = await axios.get(process.env.BACKEND_URL + "/api/perfil_productor");
+					let response = await axios.get(process.env.BACKEND_URL + "api/perfil_productor");
 					let data = response.data;
 					setStore({ perfil: data });
 					console.log (data)
@@ -73,13 +73,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			crearPerfil: async (nombre_huerta, problemas, donde_encontrar) => {
+			crearPerfil: async ( nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma_id, provincia_id, nombre_huerta, problemas, donde_encontrar) => {
 
 				try {
-					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
+					let data = await axios.post(process.env.BACKEND_URL + 'api/perfil_productor', {
+						
+						nombre : nombre,
+						apellido : apellido,
+						direccion : direccion,
+						telefono : telefono,
+						codigo_postal : codigo_postal,
+						comunidad_autonoma_id : comunidad_autonoma_id,
+						provincia_id : provincia_id,
 						nombre_huerta: nombre_huerta,
-						// info: info,
-
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 				})
@@ -101,7 +107,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getNombreProducto: async() => {
 
 				try{
-					const resp = await axios.get(process.env.BACKEND_URL + "/api/producto")
+					const resp = await axios.get(process.env.BACKEND_URL + "api/producto")
 					const data = await resp.json()
 					setStore({ nombre_producto: data.nombre })
 
@@ -116,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/producto',{
+					let data = await axios.post(process.env.BACKEND_URL + 'api/producto',{
 					nombre : nombre,
 					cantidad: cantidad,
 					unidad_medida: unidad_medida,
@@ -145,7 +151,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
 				try {
 
-					let data = await axios.put(process.env.BACKEND_URL + '/api/producto',{
+					let data = await axios.put(process.env.BACKEND_URL + 'api/producto',{
 					nombre : nombre,
 					cantidad: cantidad,
 					unidad_medida: unidad_medida,
@@ -175,8 +181,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/registro',{
-					username : nombre,
+
+					let data = await axios.post(process.env.BACKEND_URL + 'api/registro',{
+					nombre : nombre,
+					apellido : apellido,
+					telefono : telefono,
 					password : password,
 					email : email,
 					is_active: true
@@ -209,7 +218,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/login',{
+					let data = await axios.post(process.env.BACKEND_URL + 'api/login',{
 
 						email:dataEmail,
 
@@ -243,7 +252,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 				try {
 
-					let data = await axios.get(process.env.BACKEND_URL + '/profile',{
+					let data = await axios.get(process.env.BACKEND_URL + 'profile',{
 
 						headers:{
 							"Authorization": `Bearer ${token}`,						
