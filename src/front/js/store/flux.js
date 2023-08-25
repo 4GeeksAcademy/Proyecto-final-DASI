@@ -177,9 +177,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- REGISTRO --------------------------
 
-			registro: async (nombre, apellido, telefono, password, email, comunidad_autonoma_id, provincia_id, codigo_postal, direccion) => {
+			registro: async (nombre, password, email) => {
 
 				try {
+
 
 					let data = await axios.post(process.env.BACKEND_URL + 'api/registro',{
 					nombre : nombre,
@@ -187,10 +188,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					telefono : telefono,
 					password : password,
 					email : email,
-					comunidad_autonoma_id : comunidad_autonoma_id,
-					provincia_id : provincia_id,
-					codigo_postal : codigo_postal,
-					direccion : direccion,
 					is_active: true
 					
 					})
