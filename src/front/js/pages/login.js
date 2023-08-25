@@ -21,7 +21,8 @@ export const Login = () => {
 		let logged = await actions.login(email, password)
 		if (logged) {
 			navigate('/') /* --> HOME */
-		} else {
+			actions.getProfile()
+		} else{
 			setEmail("");
 			setPassword("");
 		}
