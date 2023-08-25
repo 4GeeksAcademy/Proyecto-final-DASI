@@ -69,7 +69,7 @@ def save_products():
 @api.route('/producto', methods=['Get'])
 def get_all_products():
 
-    productos_query = ProductoNombre.query.all()
+    productos_query = Producto.query.all()
     results = list(map(lambda item: item.serialize(), productos_query))
 
     response_body = {
@@ -264,10 +264,16 @@ def create_user():
 
 # -------------------- PERFIL PRODUCTOR --------------------
 
-@api.route('/perfil_productor', methods=['Get'])
+@api.route('/perfil_productor', methods=['Post'])
 def get_all_productores():
+    request_body = request.get_json(force=True)
 
-    Productor_query = PerfilProductor.query.all()
+    Productor_query = PerfilProductor.query
+
+    if (request_body['selectedOptions'] != {} and request_body['selectedOptions']['Producto'] != None):
+        Productor_query.filter(PerfilProductor.producto.any(nombre=request_body['selectedOptions']['Producto'] ))
+    
+
     results = list(map(lambda item: item.serialize(), Productor_query))
 
     response_body = {
@@ -275,6 +281,7 @@ def get_all_productores():
     }
 
     return jsonify(response_body), 200
+
 
 # -------------------- CREAR PERFIL PRODUCTOR --------------------
 

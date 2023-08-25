@@ -122,6 +122,12 @@ class Producto(db.Model):
 
     def __repr__(self):
         return '<Producto %r>' % self.nombre
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre
+        }
 
 class ProductoNombre(db.Model):
     __tablename__ = 'productoNombres'

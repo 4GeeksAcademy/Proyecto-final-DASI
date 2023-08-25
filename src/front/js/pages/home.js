@@ -1,4 +1,4 @@
-import React, { useState , useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Card } from "../component/card.home"
 import "../../styles/home.css";
@@ -8,10 +8,25 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const communityData = store.communityData;
 
+
+
+  async function GetProducts() {
+    await actions.getNombreProducto();
+  }
+
+  useEffect(() => {
+    GetProducts();
+  }, []);
+
+  const categoryProduct = {
+    label: "Producto",
+    options: store.nombre_producto
+  };
+
   const categories = [
     {
       label: "Producto",
-      options: ["Tomate", "Cebolla", "Pimiento"]
+      options: store.nombre_producto.map(x => x.nombre)
     },
     {
       label: "Recogida",
@@ -47,20 +62,35 @@ export const Home = () => {
 
     const formData = {
       selectedCommunity,
-      selectedProvince
+      selectedProvince,
+      selectedOptions
     };
     console.log("Datos enviados:", formData);
-    actions.pedirPerfil();
+    actions.pedirPerfil(formData);
   };
 
   // async function handlerSubmit(e)  {
-	// 	e.preventDefault()
-	// 	await actions.login(email, password)
+  // 	e.preventDefault()
+  // 	await actions.login(email, password)
   // }
+
+
 
   return (
     <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
       <div className="container pt-5 d-flex justify-content-center">
+        {/* <ul className="dropdown-menu">
+          {categoryProduct.options.map((option, optionIndex) => (
+            <li key={optionIndex}>
+              <button
+                className={`dropdown-item ${option === selectedOptions[category.label] ? "active" : ""}`}
+                onClick={() => handleOptionSelect(category.label, option.id)}
+              >
+                {option.nombre}
+              </button>
+            </li>
+          ))}
+        </ul> */}
         {categories.map((category, index) => (
           <div className="btn-group" key={index}>
             <button type="button" className="btn btn-secondary ms-3 custom-dropdown-btn">
@@ -74,6 +104,7 @@ export const Home = () => {
             >
               <span className="visually-hidden">Toggle Dropdown</span>
             </button>
+
             <ul className="dropdown-menu">
               {category.options.map((option, optionIndex) => (
                 <li key={optionIndex}>
@@ -139,7 +170,7 @@ export const Home = () => {
           </ul>
         </div>
       </div>
-      
+
       <div className="container pt-2 d-flex justify-content-center">
         <button type="button" className="btn btn-primary mt-3" onClick={handleSubmit}>
           Enviar
@@ -152,7 +183,7 @@ export const Home = () => {
       <div className="container pt-4">
         <Card />
       </div>
-      
+
     </div>
   );
 };
