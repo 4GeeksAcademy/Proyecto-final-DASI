@@ -11,6 +11,11 @@ user_productor = db.Table('user_productor',
                     db.Column('productor_id', db.Integer, db.ForeignKey('perfil_productores.id'))
                     )
 
+lista_producto = db.Table('lista_producto',
+                    db.Column('lista_id', db.Integer, db.ForeignKey('listas.id')),
+                    db.Column('producto_id', db.Integer, db.ForeignKey('productos.id'))
+                    )
+
 #step 2.
 #favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users') # in User
 
@@ -32,7 +37,7 @@ class User(db.Model):
     productor = db.relationship("PerfilProductor", uselist=False,back_populates="user")
     #many2many relationship with favoritos
     favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users')
-    #fin de one2one relationship with user
+    lista = db.relationship('Lista', backref='users', lazy=True)
 
     def __repr__(self):
         return f"<User {self.email}>"
@@ -163,7 +168,27 @@ class ProductoNombre(db.Model):
   
 
     def __repr__(self):
-        return '<ProductoNombre %r>' % self.nombre      
+        return '<ProductoNombre %r>' % self.nombre
+
+class Lista(db.Model):
+    __tablename__ = 'listas'
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
+    fecha_recogida = db.Column(db.Date, nullable=True)
+    productos = db.relationship('Producto', secondary=lista_producto, backref='listas')
+    
+
+    
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre
+        }
+  
+
+    def __repr__(self):
+        return '<ProductoNombre %r>' % self.nombre           
 
 
 
