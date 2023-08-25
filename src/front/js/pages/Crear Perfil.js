@@ -84,7 +84,7 @@ export const Perfil = () => {
 							type="text"
 							onChange={handleChange}
 							className="form-control"
-							placeholder="Nombre Huerto"
+							placeholder="Tus problemas"
 							name="problemas"
 							/>
 							<label htmlFor="floatingInput">¿Cuáles son tus problemas como agricultor?</label>
@@ -94,7 +94,7 @@ export const Perfil = () => {
 							type="text"
 							onChange={handleChange}
 							className="form-control"
-							placeholder="Nombre Huerto"
+							placeholder="Donde y cuando encontrarte"
 							name="donde_encontrar"
 							/>
 							<label htmlFor="floatingInput">¿Dónde y cuándo podemos encontrarte</label>

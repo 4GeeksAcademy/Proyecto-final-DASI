@@ -1,18 +1,52 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState , useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import { Card } from "../component/card.home"
 import "../../styles/home.css";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+
+  const { store, actions } = useContext(Context);
+  const communityData = store.communityData;
+
+  const categories = [
+    {
+      label: "Producto",
+      options: ["Tomate", "Cebolla", "Pimiento"]
+    },
+    {
+      label: "Recogida",
+      options: ["En huerto", "En mercado"]
+    },
+    {
+      label: "Tipo de producción",
+      options: ["Ecológica", "Estándar"]
+    }
+  ];
+
+  const [selectedCommunity, setSelectedCommunity] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedProvince, setSelectedProvince] = useState("");
+
+  const handleCommunitySelect = (community) => {
+    setSelectedCommunity(community);
+    setSelectedProvince("");
+  };
+
+  const handleProvinceSelect = (province) => {
+    setSelectedProvince(province);
+  };
+
+  const handleOptionSelect = (categoryLabel, option) => {
+    setSelectedOptions((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [categoryLabel]: option,
+    }));
+  };
+
+  const handleSubmit = () => {
 
 	
-	// useEffect(() => {
-		
-	// 	actions.getProfile();
-	
 
-	// }, []);
 	return (
 		<div className="text-center mt-5">
 			<h1>Hello Rigo!!</h1>
