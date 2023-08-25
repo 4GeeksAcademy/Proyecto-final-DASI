@@ -204,4 +204,3 @@ class Lista(db.Model):
 
 #     def to_dict(self):
 #         return {}   
-

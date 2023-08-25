@@ -56,7 +56,7 @@ export const Navbar = () => {
 						<li className="nav-item">
 							<a className="nav-link active" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
 						</li>
-
+		
 						<li className="nav-item" id="btn-home">
 							<a className="nav-link active" aria-current="page" href="#" onClick={handlerHome}>Home</a>
 						</li>
