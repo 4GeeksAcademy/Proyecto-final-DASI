@@ -10,10 +10,11 @@ export const AddProduct = () => {
 
     const [product, setProduct] = useState({
         nombre: "Nombre",
-        cantidad: "",
+        cantidad: "", 
         unidad_medida: "Medida",
-        lista: "Lista",
+        pedido: "Pedido",
         variedad: "",
+        tipo_produccion: "Producción",
         recogida: "Recogida",
         precio: ""
     });
@@ -22,12 +23,14 @@ export const AddProduct = () => {
 
     async function addProduct(e)  {
 		e.preventDefault()
+        console.log(product);
         let nuevo_producto = await actions.newProduct(
             product.nombre,
             product.cantidad,
             product.unidad_medida,
-            product.lista,
+            product.pedido,
             product.variedad,
+            product.tipo_produccion,
             product.recogida,
             product.precio
 
@@ -39,8 +42,9 @@ export const AddProduct = () => {
                 nombre: "Nombre",
                 cantidad: "",
                 unidad_medida: "Medida",
-                lista: "Lista",
+                pedido: "Pedido",
                 variedad: "",
+                tipo_produccion: "Producción",
                 recogida: "Recogida",
                 precio: ""
             });
@@ -82,10 +86,11 @@ export const AddProduct = () => {
                         </button>
                         <ul className="dropdown-menu">
 
-                            {store.nombre_producto.map((item) => 
+                            {store.nombre.map((item) => 
                                 <li><a className="dropdown-item" 
                                         onClick={handleDropdownClick} 
                                         name="nombre" 
+                                        // key={item.id}
                                         href="#">{item}
                                 </a></li>
                                 )}
@@ -109,12 +114,12 @@ export const AddProduct = () => {
                     <div className="dropdown form-group  mx-4">
                         
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {product.lista}
+                        {product.pedido}
                         </button>
                         <ul className="dropdown-menu">
 
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Semanal</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Mensual</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="pedido" href="#">Semanal</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="pedido" href="#">Mensual</a></li>
 
                         </ul>
                     </div>
@@ -129,6 +134,18 @@ export const AddProduct = () => {
 
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Huerto</a></li>
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Mercado</a></li>
+
+                        </ul>
+                    </div>
+                    <div className="dropdown form-group  mx-4">
+                        
+                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {product.tipo_produccion}
+                        </button>
+                        <ul className="dropdown-menu">
+
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Ecológica</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Estándard</a></li>
 
                         </ul>
                     </div>

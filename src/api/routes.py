@@ -47,23 +47,53 @@ def get_all_users():
 
     return jsonify(response_body), 200
 #crear productoNombre
+# @api.route('/producto', methods=['POST'])
+# def save_products():
+
+#     request_body = request.get_json(force=True)
+#     for x in request_body:
+#         item = ProductoNombre(nombre= x['nombre'])
+#         db.session.add(item)
+    
+#     db.session.commit()
+
+
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['Nombre de producto Created', item.serialize()]
+#     }
+
+#     return jsonify(response_body), 200
+
+# -------------------- CREAR PRODUCTO --------------------
+
 @api.route('/producto', methods=['POST'])
-def save_products():
+def add_producto():
 
     request_body = request.get_json(force=True)
-    for x in request_body:
-        item = ProductoNombre(nombre= x['nombre'])
-        db.session.add(item)
+
+    producto = Producto(
+        nombre= request_body['nombre'],
+        cantidad= request_body['cantidad'],
+        unidad_medida= request_body['unidad_medida'],
+        pedido= request_body['pedido'],
+        variedad= request_body['variedad'],
+        tipo_produccion= request_body['tipo_produccion'],
+        recogida= request_body['recogida'],
+        precio= request_body['precio'],
+    )
     
+    db.session.add(producto)
     db.session.commit()
 
 
     response_body = {
         'msg':'ok',
-        "results": ['Nombre de producto Created', item.serialize()]
+        "results": ['Producto Created', producto.serialize()]
     }
 
     return jsonify(response_body), 200
+
 
 #get lista de productoNombre
 @api.route('/producto', methods=['Get'])

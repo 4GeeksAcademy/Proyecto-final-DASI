@@ -31,17 +31,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			perfil:[],
 
-			nombre_producto:[],
+			// nombre_producto:["Tomate", "Berenjena", "Pepino", "Lechuga"],
 			
-			nombre: "",
+			nombre: ["Tomate", "Berenjena", "Pepino", "Lechuga"],
 			cantidad: "",
 			unidad_medida: "",
 			lista: "",
 			variedad: "",
+			tipo_produccion: "",
 			recogida: "",
 			precio: "",
 			id: "",
 			
+		
 			log: false,
 			token:"",
 
@@ -116,8 +118,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getNombreProducto: async() => {
 
 				try{
-					const resp = await axios.get(process.env.BACKEND_URL + "api/producto")
-					const data = await resp.json()
+					const data = await axios.get(process.env.BACKEND_URL + "api/producto")
+					// const data = await resp.json()
 					setStore({ nombre_producto: data.nombre })
 
 					return data;
@@ -127,7 +129,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			// -------------------------- AÑADIR PRODUCTO --------------------------
 
-			newProduct: async (nombre, cantidad, unidad_medida, lista, variedad, tipo, recogida, precio) => {
+			newProduct: async (nombre, cantidad, unidad_medida, pedido, variedad, tipo_produccion, recogida, precio) => {
 
 				try {
 
@@ -135,8 +137,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					nombre : nombre,
 					cantidad: cantidad,
 					unidad_medida: unidad_medida,
-					lista: lista,
+					pedido: pedido,
 					variedad: variedad,
+					tipo_produccion: tipo_produccion,
 					recogida: recogida,
 					precio: precio
 
@@ -186,15 +189,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- REGISTRO --------------------------
 
-			registro: async (nombre, password, email) => {
+			registro: async (username, password, email) => {
 
 				try {
 
 
 					let data = await axios.post(process.env.BACKEND_URL + 'api/registro',{
-					nombre : nombre,
-					apellido : apellido,
-					telefono : telefono,
+					username : username,
 					password : password,
 					email : email,
 					is_active: true
