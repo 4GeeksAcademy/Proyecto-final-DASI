@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+
 import { Card } from "../component/card.home"
 import { Mapa } from "../component/mapa.home"
+
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -147,8 +149,8 @@ export const Home = () => {
         </button>
       </div>
       <div className="container pt-5 d-flex justify-content-center">
-        {/* <img src="https://www.google.com/maps/vt/data=9-vFr39yIfHtm7b0Jg4x_dYsFtJOlx1Gtjfe9ekL3xu4axrueV0686kJuG0Q34gDGfrnIGbtyI1-bDm1ZhnAlum_cd0wymSBwt7G4nAKteGt_Bn8Y4voGdGLEoF9S5aNU2YqhpY-jPKsvC9PJWJ4Z6nJkQvoEGJ1ho1ubZCIFlv-jWl0JnANlLKtAYh9T_sfiVoZaUS3-gRYfyiipCFwjxd8hu65hWjv7YfiLtE29s_VgCQIu-g" alt="Mapa provisional" /> */}
-        < Mapa />
+         <img src="https://www.google.com/maps/vt/data=9-vFr39yIfHtm7b0Jg4x_dYsFtJOlx1Gtjfe9ekL3xu4axrueV0686kJuG0Q34gDGfrnIGbtyI1-bDm1ZhnAlum_cd0wymSBwt7G4nAKteGt_Bn8Y4voGdGLEoF9S5aNU2YqhpY-jPKsvC9PJWJ4Z6nJkQvoEGJ1ho1ubZCIFlv-jWl0JnANlLKtAYh9T_sfiVoZaUS3-gRYfyiipCFwjxd8hu65hWjv7YfiLtE29s_VgCQIu-g" alt="Mapa provisional" /> 
+        {/*< Mapa /> */}
       </div>
 
       <div className="container pt-4">
