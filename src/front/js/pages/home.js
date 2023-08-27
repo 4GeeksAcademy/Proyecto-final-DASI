@@ -18,23 +18,15 @@ export const Home = () => {
     GetProducts();
   }, []);
 
-  const categoryProduct = {
-    label: "Producto",
-    options: store.nombre_producto
-  };
 
   const categories = [
     {
       label: "Producto",
-      options: store.nombre_producto.map(x => x.nombre)
-    },
-    {
-      label: "Recogida",
-      options: ["En huerto", "En mercado"]
+      options: Array.from(new Set(store.nombre_producto.map(x => x.nombre)))
     },
     {
       label: "Tipo de producción",
-      options: ["Ecológica", "Estándar"]
+      options: Array.from(new Set(store.nombre_producto.map(x => x.tipo_produccion)))
     }
   ];
 

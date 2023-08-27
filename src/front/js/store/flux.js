@@ -30,6 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			perfil: [],
+			nombre_huerta: [],
 
 			nombre_producto: [],
 
@@ -67,6 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor", filters);
 					setStore({ perfil: response.data.results });
 					console.log(getStore());
+					console.log(getStore().perfil[0].nombre_huerta)
 
 
 				} catch (error) {

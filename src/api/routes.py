@@ -264,23 +264,52 @@ def create_user():
 
 # -------------------- PERFIL PRODUCTOR --------------------
 
-@api.route('/perfil_productor', methods=['Post'])
+# @api.route('/perfil_productor', methods=['Post'])
+# def get_all_productores():
+#     request_body = request.get_json(force=True)
+
+#     Productor_query = PerfilProductor.query
+
+#     if (request_body['selectedOptions'] != {} and request_body['selectedOptions']['Producto'] != None):
+#         Productor_query.filter(PerfilProductor.producto.any(nombre=request_body['selectedOptions']['Producto'] ))
+#     if (request_body['selectedCommunity'] != {} and request_body['selectedCommunity']['PerfilProductor'] != None):
+#         Productor_query.filter(PerfilProductor.any(comunidad_autonoma_id=request_body['selectedCommunity']['PerfilProductor'] ))
+
+#     results = list(map(lambda item: item.serialize(), Productor_query))
+
+#     response_body = {
+#        "results": results
+#     }
+
+#     return jsonify(response_body), 200
+
+@api.route('/perfil_productor', methods=['POST'])
 def get_all_productores():
     request_body = request.get_json(force=True)
 
     Productor_query = PerfilProductor.query
 
-    if (request_body['selectedOptions'] != {} and request_body['selectedOptions']['Producto'] != None):
-        Productor_query.filter(PerfilProductor.producto.any(nombre=request_body['selectedOptions']['Producto'] ))
+    if request_body['selectedOptions'] and request_body['selectedOptions']['Producto']:
+        product_name = request_body['selectedOptions']['Producto']
+        Productor_query = Productor_query.filter(PerfilProductor.producto.any(nombre=product_name))
+
+    if request_body['selectedCommunity'] and request_body['selectedCommunity']:
+        community_name = request_body['selectedCommunity']
+        Productor_query = Productor_query.filter(PerfilProductor.comunidad_autonoma_id == community_name)
     
+    if request_body['selectedProvince'] and request_body['selectedProvince']:
+        province_name = request_body['selectedProvince']
+        Productor_query = Productor_query.filter(PerfilProductor.provincia_id == province_name)
 
     results = list(map(lambda item: item.serialize(), Productor_query))
 
     response_body = {
-       "results": results
+        "results": results
     }
 
     return jsonify(response_body), 200
+
+
 
 
 # -------------------- CREAR PERFIL PRODUCTOR --------------------
