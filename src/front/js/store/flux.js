@@ -137,13 +137,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 
 					let data = await axios.post(process.env.BACKEND_URL + 'api/producto',{
-					nombre : nombre,
+					nombre : str(nombre),
 					cantidad: cantidad,
-					unidad_medida: unidad_medida,
-					pedido: pedido,
+					unidad_medida: str(unidad_medida),
+					pedido: str(pedido),
 					variedad: variedad,
-					tipo_produccion: tipo_produccion,
-					recogida: recogida,
+					tipo_produccion: str(tipo_produccion),
+					recogida: str(recogida),
 					precio: precio
 
 					})
