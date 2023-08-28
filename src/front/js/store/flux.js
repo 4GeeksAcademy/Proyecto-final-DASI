@@ -57,8 +57,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-
-
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
 
 			getNombreProducto: async() => {
