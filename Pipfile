@@ -19,7 +19,11 @@ cloudinary = "*"
 flask-admin = "*"
 typing-extensions = "*"
 flask-jwt-extended = "*"
+
 folium = "*"
+
+geopy = "*"
+
 
 [requires]
 python_version = "3.10"

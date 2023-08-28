@@ -22,7 +22,12 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 #for checking email
 import re
+
 import folium
+
+#for geocode /#Importing the Nominatim geocoder class 
+from geopy.geocoders import Nominatim
+
 
 api = Blueprint('api', __name__)
 
@@ -285,25 +290,38 @@ def add_productor():
 
     request_body = request.get_json(force=True)
 
+    #making an instance of Nominatim class
+    print(request_body)
+    geolocator = Nominatim(user_agent="delahuerta_request")
+    loc_list = [request_body['direccion'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+    loc =  ','.join(loc_list)
+    location = geolocator.geocode(loc)
+    print("ok")
+
     productor = PerfilProductor(
         nombre= request_body['nombre'],
         apellido= request_body['apellido'],
         direccion= request_body['direccion'],
         telefono= request_body['telefono'],
         codigo_postal= request_body['codigo_postal'],
-        comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
-        provincia_id= request_body['provincia_id'],
+        comunidad_autonoma= request_body['comunidad_autonoma'],
+        provincia= request_body['provincia'],
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
-        donde_encontrar= request_body['donde_encontrar']
+        donde_encontrar= request_body['donde_encontrar'],
+        latitud = location.latitude,
+        longitud =location.longitude
           )
     
+
+
     db.session.add(productor)
     db.session.commit()
 
 
     response_body = {
         'msg':'ok',
+        #"address":loc,
         "results": ['Productor Created', productor.serialize()]
     }
 
