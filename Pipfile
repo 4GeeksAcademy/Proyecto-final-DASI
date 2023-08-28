@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-flask = "*"
 sqlalchemy = "==1.4.46"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
@@ -19,11 +18,9 @@ cloudinary = "*"
 flask-admin = "*"
 typing-extensions = "*"
 flask-jwt-extended = "*"
-
 folium = "*"
-
 geopy = "*"
-
+flask = "*"
 
 [requires]
 python_version = "3.10"
