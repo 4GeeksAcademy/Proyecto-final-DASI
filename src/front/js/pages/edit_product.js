@@ -62,12 +62,17 @@ export const EditProduct = () => {
         console.log(product);
       };
 
-      useEffect(() => {
+    //   useEffect(() => {
 		
-		actions.getNombreProducto();
+	// 	actions.getNombreProducto();
 
-	}, []);
+	// }, []);
+    // useEffect(() => {
+		
+	// 	actions.getProfile();
+	
 
+	// }, []);
 	return (
 		<div className="pb-5 text-center m-auto">
 

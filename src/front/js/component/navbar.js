@@ -11,7 +11,12 @@ export const Navbar = () => {
 
 	const handlerPerfil = (e)=>{
         e.preventDefault()
-        navigate("/") /* --> Enlace a perfil productor*/
+		actions.pedirPerfil()
+		console.log(store.perfil);
+		store.log === false ? navigate('/login') : 
+		
+
+        navigate("/crear_perfil") /* --> Enlace a perfil productor*/
     }
 
 	const handlerHome = (e)=>{
@@ -32,8 +37,15 @@ export const Navbar = () => {
 			navigate("/login")
 		}
     }
+	
 
+	useEffect(() => {
+		// redireccion()
+		
+		actions.getProfile();
+	
 
+	}, []);
 
 
 	return (
@@ -49,7 +61,7 @@ export const Navbar = () => {
 						<li className="nav-item">
 							<a className="nav-link active" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
 						</li>
-
+		
 						<li className="nav-item" id="btn-home">
 							<a className="nav-link active" aria-current="page" href="#" onClick={handlerHome}>Home</a>
 						</li>
@@ -65,12 +77,12 @@ export const Navbar = () => {
 								<a className="nav-link active" aria-current="page" href="#">Log out</a>
 							</li>
 
-						// <button type="button" className="btn btn-primary" onClick={handlerLogIn}>Log in</button>
-
-						// : <button type="button" className="btn btn-primary" onClick={handlerLogOut}>Log out</button>
+					
 
 						}
-						
+						{/* <li className="nav-item" id="btn-login" onClick={handlerLogOut}>
+								<a className="nav-link active" aria-current="page" href="#">Log out</a>
+							</li> */}
 
 						{/* FAVORITOS */}
 					

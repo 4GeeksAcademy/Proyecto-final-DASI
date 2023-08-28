@@ -11,19 +11,18 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
-#from admin import setup_admin
-from api.models import db, User, Provincia, ComunidadAutonoma
+# from admin import setup_admin
+from api.models import db, User, ProductoNombre,Producto,PerfilProductor
 #from models import Person
 #for authentication
-#from flask_jwt_extended import create_access_token
-#from flask_jwt_extended import get_jwt_identity
-#from flask_jwt_extended import jwt_required
-#from flask_jwt_extended import JWTManager
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
 #for checking email
 import re
 
 api = Blueprint('api', __name__)
-
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -47,6 +46,106 @@ def get_all_users():
     }
 
     return jsonify(response_body), 200
+#crear productoNombre
+@api.route('/producto', methods=['POST'])
+def save_products():
+
+    request_body = request.get_json(force=True)
+    for x in request_body:
+        item = ProductoNombre(nombre= x['nombre'])
+        db.session.add(item)
+    
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Nombre de producto Created', item.serialize()]
+    }
+
+    return jsonify(response_body), 200
+
+#get lista de productoNombre
+@api.route('/producto', methods=['Get'])
+def get_all_products():
+
+    productos_query = ProductoNombre.query.all()
+    results = list(map(lambda item: item.serialize(), productos_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+
+# #get lista de Comunidades Autonomas
+# @api.route('/ca', methods=['Get'])
+# def get_all_ca():
+
+#     ca_query = ComunidadAutonoma.query.all()
+#     results = list(map(lambda item: item.serialize(), ca_query))
+
+#     response_body = {
+#        "results": results
+#     }
+
+#     return jsonify(response_body), 200
+
+# #post lista de Comunidades Autonomas
+# @api.route('/ca', methods=['POST'])
+# def add_ca():
+
+#     request_body = request.get_json(force=True)
+
+#     for x in request_body:
+#         item = ComunidadAutonoma(name= x['name'])
+#         db.session.add(item)
+
+#     db.session.commit()
+
+
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['CA Created', item.serialize()]
+#     }
+
+#     return jsonify(response_body), 200
+
+# #get lista de Provincias
+# @api.route('/provincias', methods=['Get'])
+# def get_all_provincias():
+
+#     provincia_query = Provincia.query.all()
+#     results = list(map(lambda item: item.serialize(), provincia_query))
+
+#     response_body = {
+#        "results": results
+#     }
+
+#     return jsonify(response_body), 200
+
+# #post lista de Provincias
+# @api.route('/provincias', methods=['POST'])
+# def add_provincia():
+
+#     request_body = request.get_json(force=True)
+
+#     for x in request_body:
+#         item = Provincia(name= x['name'],
+#                         comunidad_autonoma_id= x['comunidad_autonoma_id'])
+#         print(item)
+#         db.session.add(item)
+
+#     db.session.commit()
+
+
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['Provincia Created', item.serialize()]
+#     }
+
+#     return jsonify(response_body), 200
+
 
 # crear usuario
 @api.route('/registro', methods=['POST'])
@@ -54,18 +153,24 @@ def add_user():
 
     request_body = request.get_json(force=True)
 
-    usuario = User(nombre= request_body['nombre'],
-                   apellido= request_body['apellido'],
+    #add validation
+    atributos = ["username","password","email"]
+    
+    for x in atributos:
+        if x not in request_body:
+            response = f'You need to specify the {x}', 400
+            return response
+    #if 'nombre' not in body:
+    #    raise APIException('You need to specify the nombre', status_code=400)
+
+
+    usuario = User(username= request_body['username'],
                    password= request_body['password'],
-                   email= request_body['email'],
-                   direccion= request_body['direccion'],
-                   telefono= request_body['telefono'],
-                   codigo_postal= request_body['codigo_postal'],
-                   comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
-                   provincia_id= request_body['provincia_id']
+                   email= request_body['email']
+                   
                    
                    )
-    
+    print(usuario)
 
     db.session.add(usuario)
     db.session.commit()
@@ -73,7 +178,7 @@ def add_user():
 
     response_body = {
         'msg':'ok',
-        "results": ['Favorito Created', favorito.serialize()]
+        "results": ['Usuario Created', usuario.serialize()]
     }
 
     return jsonify(response_body), 200
@@ -155,4 +260,80 @@ def create_user():
     }
 
     return jsonify(response_body), 200
+
+
+# -------------------- PERFIL PRODUCTOR --------------------
+
+@api.route('/perfil_productor', methods=['GET'])
+def get_all_productores():
+
+    Productor_query = PerfilProductor.query.all()
+    results = list(map(lambda item: item.serialize(), Productor_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
+
+# -------------------- CREAR PERFIL PRODUCTOR --------------------
+
+@api.route('/perfil_productor', methods=['POST'])
+def add_productor():
+
+    request_body = request.get_json(force=True)
+
+    productor = PerfilProductor(
+        nombre= request_body['nombre'],
+        apellido= request_body['apellido'],
+        direccion= request_body['direccion'],
+        telefono= request_body['telefono'],
+        codigo_postal= request_body['codigo_postal'],
+        comunidad_autonoma_id= request_body['comunidad_autonoma_id'],
+        provincia_id= request_body['provincia_id'],
+        nombre_huerta= request_body['nombre_huerta'],     
+        problemas= request_body['problemas'],
+        donde_encontrar= request_body['donde_encontrar']
+          )
+    
+    db.session.add(productor)
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": ['Productor Created', productor.serialize()]
+    }
+
+    return jsonify(response_body), 200
+
+# -------------------- LOGIN --------------------
+
+@api.route("/login", methods=["POST"])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg": "email do not exist"}), 404
+
+    if password != user.password:
+        return jsonify({"msg": "Bad password"}), 401
+
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+# -------------------- PROFILE --------------------
+
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def get_profile():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    if user is None:
+        return jsonify({"msg": "user do not exist"}), 404
+    return jsonify(logged_in_as=current_user), 200
 
