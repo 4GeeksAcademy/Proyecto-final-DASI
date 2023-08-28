@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 export const Footer = () => (
 
-
 	<footer className="footer bg-success bg-opacity-25">
 
 		<div className="container">

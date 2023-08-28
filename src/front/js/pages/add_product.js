@@ -18,10 +18,12 @@ export const AddProduct = () => {
         precio: ""
     });
 
+    
     //AÑADIR PRODUCTO
 
     async function addProduct(e)  {
 		e.preventDefault()
+        console.log("AddProduct: ",product);
         let nuevo_producto = await actions.newProduct(
             product.nombre,
             product.cantidad,
@@ -52,7 +54,7 @@ export const AddProduct = () => {
     const handleChange = event => {
         setProduct({ ...product, [event.target.name]: event.target.value });
 
-        console.log(product);
+        console.log("handleChangeProduct: ",product);
     };
 
     const handleDropdownClick = (event) => {
