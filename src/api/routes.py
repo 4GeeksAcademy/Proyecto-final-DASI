@@ -302,11 +302,11 @@ def get_all_productores():
 
     if request_body['selectedCommunity'] and request_body['selectedCommunity']:
         community_name = request_body['selectedCommunity']
-        Productor_query = Productor_query.filter(PerfilProductor.comunidad_autonoma_id == community_name)
+        Productor_query = Productor_query.filter(PerfilProductor.comunidad_autonoma == community_name)
     
     if request_body['selectedProvince'] and request_body['selectedProvince']:
         province_name = request_body['selectedProvince']
-        Productor_query = Productor_query.filter(PerfilProductor.provincia_id == province_name)
+        Productor_query = Productor_query.filter(PerfilProductor.provincia == province_name)
 
     results = list(map(lambda item: item.serialize(), Productor_query))
 
