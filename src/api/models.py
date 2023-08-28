@@ -132,13 +132,6 @@ class Producto(db.Model):
 
     def __repr__(self):
         return '<Producto %r>' % self.nombre
-    
-    def serialize(self):
-        return {
-            "id": self.id,
-            "nombre": self.nombre,
-            "tipo_produccion": self.tipo_produccion
-        }
 
 class ProductoNombre(db.Model):
     __tablename__ = 'productoNombres'
@@ -149,7 +142,6 @@ class ProductoNombre(db.Model):
         return {
             "id": self.id,
             "nombre": self.nombre
-
         }
   
 

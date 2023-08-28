@@ -1,11 +1,6 @@
-
-import React, { useState, useContext, useEffect } from "react";
-
+import React, { useState , useContext } from "react";
 import { Context } from "../store/appContext";
-
-import { Card } from "../component/card.home"
-import { Mapa } from "../component/mapa.home"
-
+import { Card } from "../component/card.home.js"
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -13,25 +8,18 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const communityData = store.communityData;
 
-
-
-  async function GetProducts() {
-    await actions.getNombreProducto();
-  }
-
-  useEffect(() => {
-    GetProducts();
-  }, []);
-
-
   const categories = [
     {
       label: "Producto",
-      options: Array.from(new Set(store.nombre_producto.map(x => x.nombre)))
+      options: ["Tomate", "Cebolla", "Pimiento"]
+    },
+    {
+      label: "Recogida",
+      options: ["En huerto", "En mercado"]
     },
     {
       label: "Tipo de producción",
-      options: Array.from(new Set(store.nombre_producto.map(x => x.tipo_produccion)))
+      options: ["Ecológica", "Estándar"]
     }
   ];
 
@@ -59,35 +47,20 @@ export const Home = () => {
 
     const formData = {
       selectedCommunity,
-      selectedProvince,
-      selectedOptions
+      selectedProvince
     };
     console.log("Datos enviados:", formData);
-    actions.pedirPerfil(formData);
+    actions.pedirPerfil();
   };
 
   // async function handlerSubmit(e)  {
-  // 	e.preventDefault()
-  // 	await actions.login(email, password)
+	// 	e.preventDefault()
+	// 	await actions.login(email, password)
   // }
-
-
 
   return (
     <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
       <div className="container pt-5 d-flex justify-content-center">
-        {/* <ul className="dropdown-menu">
-          {categoryProduct.options.map((option, optionIndex) => (
-            <li key={optionIndex}>
-              <button
-                className={`dropdown-item ${option === selectedOptions[category.label] ? "active" : ""}`}
-                onClick={() => handleOptionSelect(category.label, option.id)}
-              >
-                {option.nombre}
-              </button>
-            </li>
-          ))}
-        </ul> */}
         {categories.map((category, index) => (
           <div className="btn-group" key={index}>
             <button type="button" className="btn btn-secondary ms-3 custom-dropdown-btn">
@@ -101,7 +74,6 @@ export const Home = () => {
             >
               <span className="visually-hidden">Toggle Dropdown</span>
             </button>
-
             <ul className="dropdown-menu">
               {category.options.map((option, optionIndex) => (
                 <li key={optionIndex}>
@@ -167,21 +139,20 @@ export const Home = () => {
           </ul>
         </div>
       </div>
-
+      
       <div className="container pt-2 d-flex justify-content-center">
         <button type="button" className="btn btn-primary mt-3" onClick={handleSubmit}>
           Enviar
         </button>
       </div>
       <div className="container pt-5 d-flex justify-content-center">
-         <img src="https://www.google.com/maps/vt/data=9-vFr39yIfHtm7b0Jg4x_dYsFtJOlx1Gtjfe9ekL3xu4axrueV0686kJuG0Q34gDGfrnIGbtyI1-bDm1ZhnAlum_cd0wymSBwt7G4nAKteGt_Bn8Y4voGdGLEoF9S5aNU2YqhpY-jPKsvC9PJWJ4Z6nJkQvoEGJ1ho1ubZCIFlv-jWl0JnANlLKtAYh9T_sfiVoZaUS3-gRYfyiipCFwjxd8hu65hWjv7YfiLtE29s_VgCQIu-g" alt="Mapa provisional" /> 
-        {/*< Mapa /> */}
+        <img src="https://www.google.com/maps/vt/data=9-vFr39yIfHtm7b0Jg4x_dYsFtJOlx1Gtjfe9ekL3xu4axrueV0686kJuG0Q34gDGfrnIGbtyI1-bDm1ZhnAlum_cd0wymSBwt7G4nAKteGt_Bn8Y4voGdGLEoF9S5aNU2YqhpY-jPKsvC9PJWJ4Z6nJkQvoEGJ1ho1ubZCIFlv-jWl0JnANlLKtAYh9T_sfiVoZaUS3-gRYfyiipCFwjxd8hu65hWjv7YfiLtE29s_VgCQIu-g" alt="Mapa provisional" />
       </div>
 
       <div className="container pt-4">
         <Card />
       </div>
-
+      
     </div>
   );
 };
