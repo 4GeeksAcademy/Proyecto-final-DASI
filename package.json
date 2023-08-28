@@ -33,6 +33,7 @@
 		"@babel/preset-env": "^7.16.4",
 		"@babel/preset-react": "^7.16.0",
 		"@babel/runtime": "^7.16.3",
+		"@types/leaflet": "^1.9.3",
 		"babel-eslint": "^10.1.0",
 		"babel-loader": "^8.2.3",
 		"babel-plugin-transform-class-properties": "^6.24.1",
@@ -76,9 +77,11 @@
 		"@doncicuto/es-autonomous-communities": "^1.0.2",
 		"axios": "^1.4.0",
 		"flask": "^0.2.10",
+		"leaflet": "^1.9.4",
 		"prop-types": "^15.6.1",
-		"react": "^16.8.4",
-		"react-dom": "^16.8.4",
+		"react": "^16.14.0",
+		"react-dom": "^16.14.0",
+		"react-leaflet": "^4.2.1",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0"
 	}
