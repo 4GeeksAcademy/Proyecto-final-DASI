@@ -32,16 +32,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			perfil:[],
 
 			// nombre_producto:["Tomate", "Berenjena", "Pepino", "Lechuga"],
-			
-			nombre: ["Tomate", "Berenjena", "Pepino", "Lechuga"],
-			cantidad: "",
-			unidad_medida: "",
-			lista: "",
-			variedad: "",
-			tipo_produccion: "",
-			recogida: "",
-			precio: "",
-			id: "",
+			producto: {
+
+				"nombre": ["Tomate", "Berenjena", "Pepino", "Lechuga", "Pimiento"],
+				"cantidad": "",
+				"unidad_medida": "",
+				"lista": "",
+				"variedad": "",
+				"tipo_produccion": "",
+				"recogida": "",
+				"precio": "",
+				"id": "",	
+				
+			},
 			
 		
 			log: false,

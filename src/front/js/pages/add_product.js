@@ -7,6 +7,7 @@ export const AddProduct = () => {
 
 	const { store, actions } = useContext(Context);
     const navigate = useNavigate();
+    const producto = store.producto;
 
     const [product, setProduct] = useState({
         nombre: "Nombre",
@@ -86,7 +87,7 @@ export const AddProduct = () => {
                         </button>
                         <ul className="dropdown-menu">
 
-                            {store.nombre.map((item) => 
+                            {producto.nombre.map((item) => 
                                 <li><a className="dropdown-item" 
                                         onClick={handleDropdownClick} 
                                         name="nombre" 

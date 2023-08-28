@@ -73,13 +73,13 @@ def add_producto():
     request_body = request.get_json(force=True)
 
     producto = Producto(
-        nombre= request_body['nombre'],
+        nombre= request_body[str('nombre')],
         cantidad= request_body['cantidad'],
-        unidad_medida= request_body['unidad_medida'],
-        pedido= request_body['pedido'],
+        unidad_medida= request_body[str('unidad_medida')],
+        pedido= request_body[str('pedido')],
         variedad= request_body['variedad'],
-        tipo_produccion= request_body['tipo_produccion'],
-        recogida= request_body['recogida'],
+        tipo_produccion= request_body[str('tipo_produccion')],
+        recogida= request_body[str('recogida')],
         precio= request_body['precio'],
     )
     
