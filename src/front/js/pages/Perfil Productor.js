@@ -17,16 +17,6 @@ export const PerfilProductor = () => {
 		{"variedad":"Melocotón","precio":17, "cantidad":8, "id":7}
 	]);
 
-	// let products = [
-	// 	{"variedad":"Cocos","precio":2, "cantidad":20, "id":1},
-	// 	{"variedad":"Tommate","precio":10, "cantidad":3, "id":2},
-	// 	{"variedad":"Cambur","precio":13, "cantidad":7, "id":3},
-	// 	{"variedad":"Piña","precio":4, "cantidad":7, "id":4},
-	// 	{"variedad":"Naranja","precio":6, "cantidad":7, "id":5},
-	// 	{"variedad":"Sandía","precio":1, "cantidad":5, "id":6}
-		
-	// ]
-
 	function deleteProduct(id) {
 		const newArray = products.filter((l) => l.id !== id);
 		setProducts(newArray); 
