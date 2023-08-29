@@ -12,7 +12,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
 # from admin import setup_admin
-from api.models import db, User, ProductoNombre,Producto,PerfilProductor
+from api.models import db, User, ProductoNombre,Producto,PerfilProductor,Pedido
 #from models import Person
 #for authentication
 from flask_jwt_extended import create_access_token
@@ -78,20 +78,31 @@ def add_producto():
         nombre= request_body ['nombre'],
         cantidad= request_body['cantidad'],
         unidad_medida= request_body['unidad_medida'],
-        pedido= request_body['pedido'],
+        # pedido= request_body['pedido'],
         variedad= request_body['variedad'],
         tipo_produccion= request_body['tipo_produccion'],
         recogida= request_body['recogida'],
         precio= request_body['precio'],
+        productor_id= request_body['productor_id']
     )
     
     db.session.add(producto)
     db.session.commit()
 
+    # pedido = Pedido(
+    #     user_id= request_body ['productor_id'],
+    #     # fecha_recogida= request_body['fecha_recogida'],
+    #     producto_id= producto.serialize()["id"],
+    #     cantidad_solicitada= request_body['cantidad'],
+    # )
+
+    # db.session.add(pedido)
+    # db.session.commit()
+
 
     response_body = {
         'msg':'ok',
-        "results": ['Producto Created', producto.serialize()]
+        "result": {'Producto Created': producto.serialize()}
     }
 
     return jsonify(response_body), 200

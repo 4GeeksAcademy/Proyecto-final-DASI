@@ -163,7 +163,7 @@ class Pedido(db.Model):
     __tablename__ = 'pedidos'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
-    fecha_recogida = db.Column(db.Date, nullable=True)
+    # fecha_recogida = db.Column(db.Date, nullable=True)
     producto_id = db.Column(db.Integer, db.ForeignKey('productos.id'),nullable=False)
     cantidad_solicitada = db.Column(db.Integer, nullable=False)
     #productos = db.relationship('Producto', secondary=Pedido_producto, backref='Pedidos') de many to many

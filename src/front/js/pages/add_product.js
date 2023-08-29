@@ -161,7 +161,6 @@ export const AddProduct = () => {
                     <input
                         type="text"
                         onChange={handleChange}
-                        // onChange={(e) => setProduct(e.target.value)}
                         className="form-control"
                         placeholder="Añada aquí la variedad de su producto"
                         name="variedad"
