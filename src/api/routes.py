@@ -141,9 +141,21 @@ def edit_product(id):
 
     product1 = Producto.query.get(id)
     product1.nombre = body["nombre"]
+    product1.variedad = body["variedad"]
+    product1.cantidad = body["cantidad"]
+    product1.unidad_medida = body["unidad_medida"]
+    product1.precio = body["precio"]
+    product1.recogida = body["recogida"]
     product1.tipo_produccion = body["tipo_produccion"]
+
     db.session.commit()
+
+    if product1.nombre is None:
+        return jsonify({"msg": "the product does not exist"})
+
     return jsonify(product1.serialize()), 200
+
+    
 
    
 
