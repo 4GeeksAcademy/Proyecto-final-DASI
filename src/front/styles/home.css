@@ -1,3 +1,25 @@
+
+/*
+    home.css: This website contains selectors only used in home.css
+
+    All pages share the styles on index.css but you should create 
+    one more css for each page that will contain the selected used 
+    on that page only (the ones not reused in other pages).
+*/
+.portada {
+    height: 300px;
+    object-fit: cover;
+}
+.img-perfil {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: -130px 50px 0 30px;
+}
+li {
+    list-style-type: none;
+}
 .custom-dropdown-btn {
     width: 170px;
   }

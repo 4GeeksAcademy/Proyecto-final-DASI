@@ -17,6 +17,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Perfil } from "./pages/Crear Perfil";
+import { PerfilProductor } from "./pages/Perfil Productor";
 
 //create your first component
 const Layout = () => {
@@ -33,8 +34,12 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<PerfilProductor />} path="/perfil" />
+                        <Route element={<Perfil />} path="/perfil_productor" />
+
 
                         <Route element={<Perfil />} path="/crear_perfil" />
+
                         <Route element={<EditProduct />} path="/edit_product" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Perfil />} path="/perfil" />
