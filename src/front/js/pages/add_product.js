@@ -67,7 +67,8 @@ export const AddProduct = () => {
 
       useEffect(() => {
 		
-		actions.getNombreProducto();
+		// actions.getNombreProducto();
+    
 
 	}, []);
 
@@ -87,11 +88,11 @@ export const AddProduct = () => {
                         </button>
                         <ul className="dropdown-menu">
 
-                            {producto.nombre.map((item) => 
+                            {producto.nombre.map((item,i) => 
                                 <li><a className="dropdown-item" 
                                         onClick={handleDropdownClick} 
                                         name="nombre" 
-                                        // key={item.id}
+                                        // key={i}
                                         href="#">{item}
                                 </a></li>
                                 )}
@@ -159,6 +160,7 @@ export const AddProduct = () => {
                     <input
                         type="text"
                         onChange={handleChange}
+                        // onChange={(e) => setProduct(e.target.value)}
                         className="form-control"
                         placeholder="Añada aquí la variedad de su producto"
                         name="variedad"
