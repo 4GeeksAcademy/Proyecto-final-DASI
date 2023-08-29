@@ -13,7 +13,7 @@ export const AddProduct = () => {
         nombre: "Nombre",
         cantidad: "", 
         unidad_medida: "Medida",
-        pedido: "Pedido",
+        // pedido: "Pedido",
         variedad: "",
         tipo_produccion: "Producción",
         recogida: "Recogida",
@@ -30,7 +30,7 @@ export const AddProduct = () => {
             product.nombre,
             product.cantidad,
             product.unidad_medida,
-            product.pedido,
+            // product.pedido,
             product.variedad,
             product.tipo_produccion,
             product.recogida,
@@ -44,7 +44,7 @@ export const AddProduct = () => {
                 nombre: "Nombre",
                 cantidad: "",
                 unidad_medida: "Medida",
-                pedido: "Pedido",
+                // pedido: "Pedido",
                 variedad: "",
                 tipo_produccion: "Producción",
                 recogida: "Recogida",
@@ -114,7 +114,7 @@ export const AddProduct = () => {
                         </ul>
                     </div>
 
-                    <div className="dropdown form-group  mx-4">
+                    {/* <div className="dropdown form-group  mx-4">
                         
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {product.pedido}
@@ -125,7 +125,7 @@ export const AddProduct = () => {
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="pedido" href="#">Mensual</a></li>
 
                         </ul>
-                    </div>
+                    </div> */}
                     
 
                     <div className="dropdown form-group  mx-4">

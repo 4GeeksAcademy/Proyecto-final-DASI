@@ -67,6 +67,7 @@ def get_all_users():
 
 #     return jsonify(response_body), 200
 
+
 # -------------------- CREAR PRODUCTO --------------------
 
 @api.route('/producto', methods=['POST'])
@@ -105,6 +106,30 @@ def add_producto():
         "result": {'Producto Created': producto.serialize()}
     }
 
+    return jsonify(response_body), 200
+
+
+# -------------------- ELIMINAR PRODUCTO --------------------
+
+@api.route('/producto/<int:id>', methods=['DELETE'])
+def del_producto(id):
+ 
+
+    producto_query= Producto.query.filter_by(id=id).first()
+    
+    if producto_query is None:
+        return jsonify({"msg": "the product does not exist"})
+
+    db.session.delete(producto_query)
+    db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "results": 'Product deleted'
+    }
+    
+    
     return jsonify(response_body), 200
 
 

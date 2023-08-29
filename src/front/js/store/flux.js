@@ -27,8 +27,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"Melilla": ["Melilla"],
 			},
 			productores: [],
-
-
 			perfil: [],
 			nombre_huerta: [],
 
@@ -145,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					nombre :nombre,
 					cantidad: cantidad,
 					unidad_medida:unidad_medida,
-					pedido:pedido,
+					// pedido:pedido,
 					variedad: variedad,
 					tipo_produccion:tipo_produccion,
 					recogida:recogida,
