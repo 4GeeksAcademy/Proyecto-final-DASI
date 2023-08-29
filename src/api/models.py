@@ -136,8 +136,8 @@ class Producto(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre,
-            "tipo_produccion": self.tipo_produccion
+           "nombre": self.nombre,
+            "tipo_produccion": self.tipo_produccion 
         }
 
 

@@ -132,6 +132,20 @@ def del_producto(id):
     
     return jsonify(response_body), 200
 
+# -------------------- EDITAR PRODUCTO --------------------
+
+@api.route('/producto/<int:id>', methods=['PUT'])
+def edit_product(id):
+
+    body = request.get_json(force=True) #{ 'username': 'new_username'}
+
+    product1 = Producto.query.get(id)
+    product1.nombre = body["nombre"]
+    product1.tipo_produccion = body["tipo_produccion"]
+    db.session.commit()
+    return jsonify(product1.serialize()), 200
+
+   
 
 #get lista de productoNombre
 @api.route('/producto', methods=['Get'])
