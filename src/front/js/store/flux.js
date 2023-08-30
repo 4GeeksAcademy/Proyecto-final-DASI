@@ -27,22 +27,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"Melilla": ["Melilla"],
 			},
 			productores: [],
-
-
 			perfil: [],
 			nombre_huerta: [],
 
-			nombre_producto: [],
+			nombre_producto:[],
+			producto: {
 
-			nombre: "",
-			cantidad: "",
-			unidad_medida: "",
-			lista: "",
-			variedad: "",
-			recogida: "",
-			precio: "",
-			id: "",
-
+				"nombre": ["Tomate", "Berenjena", "Pepino", "Lechuga", "Pimiento"],
+				"cantidad": "",
+				"unidad_medida": "",
+				"lista": "",
+				"variedad": "",
+				"tipo_produccion": "",
+				"recogida": "",
+				"precio": "",
+				"id": "",	
+				
+			},
+			
+		
 			log: false,
 			token: "",
 
@@ -119,30 +122,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getNombreProducto: async () => {
 
-				try {
-					const resp = await axios.get(process.env.BACKEND_URL + "/api/producto")
-					const productos = resp.data.results;
-					setStore({ nombre_producto: productos })
-					return productos;
-				} catch (error) {
+				try{
+					const data = await axios.get(process.env.BACKEND_URL + "api/producto")
+					// const data = await resp.json()
+					setStore({ nombre_producto: data.nombre })
+
+					return data;
+				}catch(error){
 					console.log("Error loading message from backend", error)
 
 				}
 			},
 			// -------------------------- AÑADIR PRODUCTO --------------------------
 
-			newProduct: async (nombre, cantidad, unidad_medida, lista, variedad, tipo, recogida, precio) => {
+			newProduct: async (nombre, cantidad, unidad_medida, pedido, variedad, tipo_produccion, recogida, precio) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + 'api/producto', {
-						nombre: nombre,
-						cantidad: cantidad,
-						unidad_medida: unidad_medida,
-						lista: lista,
-						variedad: variedad,
-						recogida: recogida,
-						precio: precio
+					let data = await axios.post(process.env.BACKEND_URL + 'api/producto',{
+					nombre :nombre,
+					cantidad: cantidad,
+					unidad_medida:unidad_medida,
+					// pedido:pedido,
+					variedad: variedad,
+					tipo_produccion:tipo_produccion,
+					recogida:recogida,
+					precio: precio
 
 					})
 
@@ -195,13 +200,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 
 
-					let data = await axios.post(process.env.BACKEND_URL + 'api/registro', {
-						username: username,
-						// apellido: apellido,
-						// telefono: telefono,
-						password: password,
-						email: email,
-						is_active: true
+
+					let data = await axios.post(process.env.BACKEND_URL + 'api/registro',{
+					username : username,
+					password : password,
+					email : email
+					
+					
 
 					})
 

@@ -52,12 +52,12 @@ export const Registro = () => {
                     <h1 className="text-center mt-5">Registro Nuevo Usuario</h1>
                     <form onSubmit={createContact}>
                         <div className="form-group">
-                            <label>Nombre</label>
+                            <label>Usuario</label>
                             <input
                                 type="text"
                                 onChange={handleChange}
                                 className="form-control"
-                                placeholder="Añada aquí su nombre"
+                                placeholder="Añada aquí su usuario"
                                 name="username"
                             />
                         </div>

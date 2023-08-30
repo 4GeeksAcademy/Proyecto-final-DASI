@@ -26,11 +26,11 @@ export const Home = () => {
   const categories = [
     {
       label: "Producto",
-      options: Array.from(new Set(store.nombre_producto.map(x => x.nombre)))
+      options: Array.from(new Set(store.nombre_producto?.map(x => x.nombre)))
     },
     {
       label: "Tipo de producción",
-      options: Array.from(new Set(store.nombre_producto.map(x => x.tipo_produccion)))
+      options: Array.from(new Set(store.nombre_producto?.map(x => x.tipo_produccion)))
     }
   ];
 
@@ -88,7 +88,7 @@ export const Home = () => {
             </li>
           ))}
         </ul> */}
-        {categories.map((category, index) => (
+        {categories.length > 0 ? categories.map((category, index) => (
           <div className="btn-group" key={index}>
             <button type="button" className="btn btn-secondary ms-3 custom-dropdown-btn">
               {selectedOptions[category.label] || category.label}
@@ -115,7 +115,7 @@ export const Home = () => {
               ))}
             </ul>
           </div>
-        ))}
+        )) : "cargando"} 
         <div className="btn-group">
           <button type="button" className="btn btn-secondary ms-3 custom-dropdown-btn">
             {selectedCommunity || "Com. Autónoma"}

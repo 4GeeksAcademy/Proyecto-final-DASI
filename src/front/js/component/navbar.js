@@ -14,8 +14,6 @@ export const Navbar = () => {
 		actions.pedirPerfil()
 		console.log(store.perfil);
 		store.log === false ? navigate('/login') : 
-		
-
         navigate("/crear_perfil") /* --> Enlace a perfil productor*/
     }
 
