@@ -31,7 +31,7 @@ export const Home = () => {
       options: Array.from(new Set(store.nombre_producto?.map(x => x.nombre)))
     },
     {
-      label: "Tipo de producción",
+      label: "Tipo de produccion",
       options: Array.from(new Set(store.nombre_producto?.map(x => x.tipo_produccion)))
     }
   ];
@@ -64,7 +64,6 @@ export const Home = () => {
       selectedOptions
     };
     console.log("Datos enviados:", formData);
-    console.log(store.perfil)
     actions.pedirPerfil(formData);
   };
 

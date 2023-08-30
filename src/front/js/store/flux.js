@@ -70,15 +70,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
 					setStore({ perfil: response.data.results });
 					console.log(getStore());
-					//if getStore().perfil.length != 0:  //agregar condicional para evitar error cuando no hay perfil creado
-					console.log(getStore().perfil[0].nombre_huerta)
+					if (getStore().perfil.length !== 0) {
+						console.log(getStore().perfil[0].nombre_huerta);
+					} else {
+						console.log("No hay ningún perfil de productor.");
+					}
 
 
 				} catch (error) {
 					console.log(error);
 				}
 			},
-
 
 			sincroToken: async () => {
 
@@ -106,7 +108,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						problemas: problemas,
 						donde_encontrar: donde_encontrar
 					})
-					// let data = await response.json();
 					console.log("Perfil creado", data);
 
 
@@ -114,26 +115,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 
-
-				// console.log(nombre_huerta, info, problemas, donde_encontrar);
-
 			},
 
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
 
 			getNombreProducto: async () => {
-
 				try {
-					const data = await axios.get(process.env.BACKEND_URL + "/api/producto")
-					// const data = await resp.json()
-					setStore({ nombre_producto: data.nombre })
-
-					return data;
+				  const response = await axios.get(process.env.BACKEND_URL + "/api/producto");
+				  const data = response.data;
+			  
+				  setStore({ nombre_producto: data.results }); // Aquí corregido
+			  
+				  return data;
 				} catch (error) {
-					console.log("Error loading message from backend", error)
-
+				  console.log("Error loading message from backend", error);
 				}
-			},
+			  },
 			// -------------------------- AÑADIR PRODUCTO --------------------------
 
 			newProduct: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
