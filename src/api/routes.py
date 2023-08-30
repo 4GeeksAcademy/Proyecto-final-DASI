@@ -247,36 +247,51 @@ def get_all_products():
 def add_user():
 
     request_body = request.get_json(force=True)
-
-    #add validation
-    atributos = ["username","password","email"]
-    
-    for x in atributos:
-        if x not in request_body:
-            response = f'You need to specify the {x}', 400
-            return response
-    #if 'nombre' not in body:
-    #    raise APIException('You need to specify the nombre', status_code=400)
-
-
-    usuario = User(username= request_body['username'],
-                   password= request_body['password'],
-                   email= request_body['email']
-                   
-                   
-                   )
-    print(usuario)
-
-    db.session.add(usuario)
+    for x in request_body:
+        item = User(username= x['username'],
+                    password= x['password'],
+                    email= x['email'])
+        db.session.add(item)
     db.session.commit()
 
 
     response_body = {
-        'msg':'ok',
-        "results": ['Usuario Created', usuario.serialize()]
+       'msg':'ok',
+       "results": ['Usuario Created', item.serialize()]
     }
 
     return jsonify(response_body), 200
+
+
+    #add validation
+    # atributos = ["username","password","email"]
+    
+    # for x in atributos:
+    #     if x not in request_body:
+    #         response = f'You need to specify the {x}', 400
+    #         return response
+    #if 'nombre' not in body:
+    #    raise APIException('You need to specify the nombre', status_code=400)
+
+
+    # usuario = User(username= request_body['username'],
+    #                password= request_body['password'],
+    #                email= request_body['email']
+                   
+                   
+    #                )
+    # print(usuario)
+
+    # db.session.add(usuario)
+    # db.session.commit()
+
+
+    # response_body = {
+    #     'msg':'ok',
+    #     "results": ['Usuario Created', item.serialize()]
+    # }
+
+    # return jsonify(response_body), 200
 
 # sample post to create favoritos
 # {
