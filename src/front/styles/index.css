@@ -2,6 +2,8 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 
+@import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
+
 /* ------------------- LOG IN CSS ------------------- */
 
 .btn-submit{
@@ -32,3 +34,7 @@ footer{
 }
 
 /* ------------------- ADD PRODUCT ------------------- */
+
+/*------------------------MAPA-------------------------*/
+
+#mapa { width: 100%; height: 580px; }
