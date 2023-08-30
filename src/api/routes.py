@@ -406,6 +406,7 @@ def add_productor():
 
     request_body = request.get_json(force=True)
 
+
     #making an instance of Nominatim class
     print(request_body)
     geolocator = Nominatim(user_agent="delahuerta_request")
