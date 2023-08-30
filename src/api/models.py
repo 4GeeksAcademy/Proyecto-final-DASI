@@ -137,7 +137,13 @@ class Producto(db.Model):
         return {
             "id": self.id,
             "nombre": self.nombre,
-            "tipo_produccion": self.tipo_produccion
+            "tipo_produccion": self.tipo_produccion,
+            "variedad": self.variedad,
+            "cantidad": self.cantidad,
+            "unidad_medida": self.unidad_medida,
+            "precio": self.precio,
+            "recogida": self.recogida,
+
         }
 
 
@@ -149,7 +155,8 @@ class ProductoNombre(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre
+            "nombre": self.nombre,
+            "tipo_produccion": self.tipo_produccion
         }
   
 
@@ -162,7 +169,7 @@ class Pedido(db.Model):
     __tablename__ = 'pedidos'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
-    fecha_recogida = db.Column(db.Date, nullable=True)
+    # fecha_recogida = db.Column(db.Date, nullable=True)
     producto_id = db.Column(db.Integer, db.ForeignKey('productos.id'),nullable=False)
     cantidad_solicitada = db.Column(db.Integer, nullable=False)
     #productos = db.relationship('Producto', secondary=Pedido_producto, backref='Pedidos') de many to many

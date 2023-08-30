@@ -7,13 +7,15 @@ export const AddProduct = () => {
 
 	const { store, actions } = useContext(Context);
     const navigate = useNavigate();
+    const producto = store.producto;
 
     const [product, setProduct] = useState({
         nombre: "Nombre",
-        cantidad: "",
+        cantidad: "", 
         unidad_medida: "Medida",
-        lista: "Lista",
+        // pedido: "Pedido",
         variedad: "",
+        tipo_produccion: "Producción",
         recogida: "Recogida",
         precio: ""
     });
@@ -23,13 +25,14 @@ export const AddProduct = () => {
 
     async function addProduct(e)  {
 		e.preventDefault()
-        console.log("AddProduct: ",product);
+        console.log(product);
         let nuevo_producto = await actions.newProduct(
             product.nombre,
             product.cantidad,
             product.unidad_medida,
-            product.lista,
+            // product.pedido,
             product.variedad,
+            product.tipo_produccion,
             product.recogida,
             product.precio
 
@@ -41,8 +44,9 @@ export const AddProduct = () => {
                 nombre: "Nombre",
                 cantidad: "",
                 unidad_medida: "Medida",
-                lista: "Lista",
+                // pedido: "Pedido",
                 variedad: "",
+                tipo_produccion: "Producción",
                 recogida: "Recogida",
                 precio: ""
             });
@@ -64,7 +68,8 @@ export const AddProduct = () => {
 
       useEffect(() => {
 		
-		actions.getNombreProducto();
+		// actions.getNombreProducto();
+    
 
 	}, []);
 
@@ -84,10 +89,11 @@ export const AddProduct = () => {
                         </button>
                         <ul className="dropdown-menu">
 
-                            {store.nombre_producto.map((item) => 
+                            {producto.nombre.map((item,i) => 
                                 <li><a className="dropdown-item" 
                                         onClick={handleDropdownClick} 
                                         name="nombre" 
+                                        // key={i}
                                         href="#">{item}
                                 </a></li>
                                 )}
@@ -108,18 +114,18 @@ export const AddProduct = () => {
                         </ul>
                     </div>
 
-                    <div className="dropdown form-group  mx-4">
+                    {/* <div className="dropdown form-group  mx-4">
                         
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {product.lista}
+                        {product.pedido}
                         </button>
                         <ul className="dropdown-menu">
 
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Semanal</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Mensual</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="pedido" href="#">Semanal</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="pedido" href="#">Mensual</a></li>
 
                         </ul>
-                    </div>
+                    </div> */}
                     
 
                     <div className="dropdown form-group  mx-4">
@@ -131,6 +137,18 @@ export const AddProduct = () => {
 
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Huerto</a></li>
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Mercado</a></li>
+
+                        </ul>
+                    </div>
+                    <div className="dropdown form-group  mx-4">
+                        
+                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {product.tipo_produccion}
+                        </button>
+                        <ul className="dropdown-menu">
+
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Ecológica</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Estándard</a></li>
 
                         </ul>
                     </div>

@@ -12,7 +12,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
 # from admin import setup_admin
-from api.models import db, User, ProductoNombre,Producto,PerfilProductor
+from api.models import db, User, ProductoNombre,Producto,PerfilProductor,Pedido
 #from models import Person
 #for authentication
 from flask_jwt_extended import create_access_token
@@ -49,23 +49,115 @@ def get_all_users():
 
     return jsonify(response_body), 200
 #crear productoNombre
+# @api.route('/producto', methods=['POST'])
+# def save_products():
+
+#     request_body = request.get_json(force=True)
+#     for x in request_body:
+#         item = ProductoNombre(nombre= x['nombre'])
+#         db.session.add(item)
+    
+#     db.session.commit()
+
+
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['Nombre de producto Created', item.serialize()]
+#     }
+
+#     return jsonify(response_body), 200
+
+
+# -------------------- CREAR PRODUCTO --------------------
+
 @api.route('/producto', methods=['POST'])
-def save_products():
+def add_producto():
 
     request_body = request.get_json(force=True)
-    for x in request_body:
-        item = ProductoNombre(nombre= x['nombre'])
-        db.session.add(item)
+
+    producto = Producto(
+        nombre= request_body ['nombre'],
+        cantidad= request_body['cantidad'],
+        unidad_medida= request_body['unidad_medida'],
+        # pedido= request_body['pedido'],
+        variedad= request_body['variedad'],
+        tipo_produccion= request_body['tipo_produccion'],
+        recogida= request_body['recogida'],
+        precio= request_body['precio'],
+        productor_id= request_body['productor_id']
+    )
     
+    db.session.add(producto)
+    db.session.commit()
+
+    # pedido = Pedido(
+    #     user_id= request_body ['productor_id'],
+    #     # fecha_recogida= request_body['fecha_recogida'],
+    #     producto_id= producto.serialize()["id"],
+    #     cantidad_solicitada= request_body['cantidad'],
+    # )
+
+    # db.session.add(pedido)
+    # db.session.commit()
+
+
+    response_body = {
+        'msg':'ok',
+        "result": {'Producto Created': producto.serialize()}
+    }
+
+    return jsonify(response_body), 200
+
+
+# -------------------- ELIMINAR PRODUCTO --------------------
+
+@api.route('/producto/<int:id>', methods=['DELETE'])
+def del_producto(id):
+ 
+
+    producto_query= Producto.query.filter_by(id=id).first()
+    
+    if producto_query is None:
+        return jsonify({"msg": "the product does not exist"})
+
+    db.session.delete(producto_query)
     db.session.commit()
 
 
     response_body = {
         'msg':'ok',
-        "results": ['Nombre de producto Created', item.serialize()]
+        "results": 'Product deleted'
     }
-
+    
+    
     return jsonify(response_body), 200
+
+# -------------------- EDITAR PRODUCTO --------------------
+
+@api.route('/producto/<int:id>', methods=['PUT'])
+def edit_product(id):
+
+    body = request.get_json(force=True) #{ 'username': 'new_username'}
+
+    product1 = Producto.query.get(id)
+    product1.nombre = body["nombre"]
+    product1.variedad = body["variedad"]
+    product1.cantidad = body["cantidad"]
+    product1.unidad_medida = body["unidad_medida"]
+    product1.precio = body["precio"]
+    product1.recogida = body["recogida"]
+    product1.tipo_produccion = body["tipo_produccion"]
+
+    db.session.commit()
+
+    if product1.nombre is None:
+        return jsonify({"msg": "the product does not exist"})
+
+    return jsonify(product1.serialize()), 200
+
+    
+
+   
 
 #get lista de productoNombre
 @api.route('/producto', methods=['Get'])
