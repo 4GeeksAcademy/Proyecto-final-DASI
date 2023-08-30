@@ -9,7 +9,7 @@ export const Mapa = () => {
     const { store } = useContext(Context);
     const perfiles = store.perfil;
 
-    const position = [43.3540886, -2.8421462]
+    const position = [39.854010220603925, -4.013509804550462]
 
     const myIcon = L.icon({
         iconUrl: 'myIcon.png',
@@ -17,18 +17,29 @@ export const Mapa = () => {
     });
 
     return (
-        <MapContainer id="mapa" center={position} zoom={13} scrollWheelZoom={false}>
+        <MapContainer id="mapa" center={position} zoom={6} scrollWheelZoom={false}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
             {/* <Marker position={position},  {icon: myIcon}> */}
-            <Marker position={position}>
+            {/* <Marker position={position}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
                 </Popup>
-            </Marker>
+            </Marker> */}
+
+            {/* Marker for each Productor */}
+            {perfiles.map(perfil => (
+
+                <Marker position={[perfil.latitud, perfil.longitud]}>
+                    <Popup>
+                        {perfil.nombre_huerta}
+                    </Popup>
+                </Marker >
+
+            ))}
 
 
         </MapContainer>
