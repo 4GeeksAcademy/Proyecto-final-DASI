@@ -358,7 +358,7 @@ def create_user():
 
 # -------------------- PERFIL PRODUCTOR --------------------
 
-@api.route('/perfil_productor', methods=['POST'])
+@api.route('/perfil_productor_home', methods=['POST'])
 def get_all_productores():
     request_body = request.get_json(force=True)
 
