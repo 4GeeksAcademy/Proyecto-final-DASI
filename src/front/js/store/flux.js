@@ -32,6 +32,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			perfil_productor: [],
 
+			perfil_productor: [],
+
 			nombre_producto: [],
 			producto: {
 

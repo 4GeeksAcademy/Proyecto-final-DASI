@@ -8,13 +8,13 @@ export const Perfil = () => {
 	const navigate = useNavigate();
 
 	const [newProfile, setNewProfile] = useState({
-		nombre: "",
-		apellido: "",
-		direccion: "",
-		telefono: "",
-		codigo_postal: "",
-		comunidad_autonoma: "",
-		provincia: "",
+		nombre : "",
+		apellido : "",
+		direccion : "",
+		telefono : "",
+		codigo_postal : "",
+		comunidad_autonoma : "",
+		provincia : "",
 		nombre_huerta: "",
 		problemas: "",
 		donde_encontrar: ""
