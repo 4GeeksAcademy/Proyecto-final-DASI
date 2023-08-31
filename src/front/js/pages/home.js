@@ -14,8 +14,6 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const communityData = store.communityData;
 
-
-
   async function GetProducts() {
     await actions.getNombreProducto();
   }
