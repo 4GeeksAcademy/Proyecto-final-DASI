@@ -65,17 +65,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+			// pedirPerfil: async (filters) => {
+			// 	try {
+			// 		let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
+			// 		setStore({ perfil: response.data.results });
+			// 		console.log(getStore());
+					
+			// 		console.log(getStore().perfil[0].nombre_huerta)
+
+
+			// 	} catch (error) {
+			// 		console.log(error);
+			// 		getStore().perfil.length === 0 ? console.log('No hay productores') : null //agregar condicional para evitar error cuando no hay perfil creado
+			// 	}
+			// },
+
 			pedirPerfil: async (filters) => {
 				try {
-					let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
+					let response = await axios.get(process.env.BACKEND_URL + "/api/perfil_productor", filters);
 					setStore({ perfil: response.data.results });
 					console.log(getStore());
-					//if getStore().perfil.length != 0:  //agregar condicional para evitar error cuando no hay perfil creado
+					
 					console.log(getStore().perfil[0].nombre_huerta)
 
 
 				} catch (error) {
 					console.log(error);
+					getStore().perfil.length === 0 ? console.log('No hay productores') : null //agregar condicional para evitar error cuando no hay perfil creado
 				}
 			},
 
