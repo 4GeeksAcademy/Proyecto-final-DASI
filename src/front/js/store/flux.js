@@ -27,6 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"Melilla": ["Melilla"],
 			},
 			productores: [],
+			usuarios: [],
 			perfil: [],
 			nombre_huerta: [],
 
@@ -83,10 +84,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			pedirPerfil: async (filters) => {
 				try {
 					let response = await axios.get(process.env.BACKEND_URL + "/api/perfil_productor", filters);
-					setStore({ perfil: response.data.results });
-					console.log(getStore());
+					setStore({ perfil: response.data.results});
+
+					const idPerfilArray = getStore().perfil.map(item => item.user_id);
+
+					setStore({ perfil: idPerfilArray});
+
+					console.log(getStore().perfil);
 					
-					console.log(getStore().perfil[0].nombre_huerta)
+					// console.log(getStore().perfil[0].nombre_huerta)
 
 
 				} catch (error) {
@@ -260,12 +266,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					console.log(data);
+					
 
 					localStorage.setItem("token", data.data.access_token)
 
 					setStore({ token: data.data.access_token })
-
+					
 
 					return true;
 
@@ -286,7 +292,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.get(process.env.BACKEND_URL + '/profile', {
+					let data = await axios.get(process.env.BACKEND_URL + 'api/profile', {
 
 						headers: {
 							"Authorization": `Bearer ${token}`,
@@ -311,6 +317,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 			},
+
+			// -------------------------- TODOS LOS USUARIOS --------------------------
+
+			getUsuarios: async () => {
+
+				try {
+				
+					const response = await axios.get(process.env.BACKEND_URL + "api/users")
+
+					let resultados = response.data.results
+					setStore({ usuarios: resultados})
+					
+					const idArray = getStore().usuarios.map(item => item.id);
+
+					setStore({ usuarios: idArray})
+
+					console.log(getStore().usuarios);
+
+					return response;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+
+				}
+			},
+
+
 
 
 			// Use getActions to call a function within a fuction
