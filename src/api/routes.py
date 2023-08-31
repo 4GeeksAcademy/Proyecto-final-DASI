@@ -242,24 +242,43 @@ def get_all_products():
 
 
 # crear usuario
+
+
 @api.route('/registro', methods=['POST'])
 def add_user():
 
     request_body = request.get_json(force=True)
-    for x in request_body:
-        item = User(username= x['username'],
-                    password= x['password'],
-                    email= x['email'])
-        db.session.add(item)
+
+    #add validation
+    atributos = ["username","password","email"]
+    
+    for x in atributos:
+        if x not in request_body:
+            response = f'You need to specify the {x}', 400
+            return response
+    #if 'nombre' not in body:
+    #    raise APIException('You need to specify the nombre', status_code=400)
+
+
+    usuario = User(username= request_body['username'],
+                   password= request_body['password'],
+                   email= request_body['email']
+                   
+                   
+                   )
+    print(usuario)
+
+    db.session.add(usuario)
     db.session.commit()
 
 
     response_body = {
-       'msg':'ok',
-       "results": ['Usuario Created', item.serialize()]
+        'msg':'ok',
+        "results": ['Usuario Created', usuario.serialize()]
     }
 
     return jsonify(response_body), 200
+
 
 
     #add validation
