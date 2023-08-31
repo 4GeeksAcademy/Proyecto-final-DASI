@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"Madrid": ["Madrid"],
 				"Murcia": ["Murcia"],
 				"Navarra": ["Pamplona"],
-				"País Vasco": ["Bilbao", "San Sebastián", "Vitoria"],
+				"País Vasco": ["Vizcaya", "Guipúzcoa", "Álava"],
 				"La Rioja": ["Logroño"],
 				"Ceuta": ["Ceuta"],
 				"Melilla": ["Melilla"],
