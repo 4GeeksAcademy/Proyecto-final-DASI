@@ -48,7 +48,8 @@ export const Perfil = () => {
 			
 		)
 		if(nuevo_productor) {
-			navigate('/perfil/<int:user_id>') /* --> perfil del productor*/
+			console.log(store.perfil_productor);
+			// navigate('/perfil/' + nuevo_productor.id) /* --> perfil del productor*/
 		}else {
 			setNewProfile({
 				nombre : "",

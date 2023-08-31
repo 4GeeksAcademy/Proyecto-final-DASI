@@ -93,7 +93,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar) => {
-
 				try {
 					let response = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
 
@@ -110,6 +109,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					// let data = await response.json();
 					console.log("Perfil creado", response);
+					setStore({perfil_productor: response.data})
+					return true
 
 
 				} catch (error) {
