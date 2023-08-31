@@ -30,6 +30,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			perfil: [],
 			nombre_huerta: [],
 
+			perfil_productor: [],
+
 			nombre_producto: [],
 			producto: {
 
@@ -93,7 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar) => {
 
 				try {
-					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
+					let response = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
 
 						nombre: nombre,
 						apellido: apellido,
@@ -107,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						donde_encontrar: donde_encontrar
 					})
 					// let data = await response.json();
-					console.log("Perfil creado", data);
+					console.log("Perfil creado", response);
 
 
 				} catch (error) {
@@ -118,6 +120,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log(nombre_huerta, info, problemas, donde_encontrar);
 
 			},
+
+			// -------------------------OBTENER TODOS LOS PERFILES PRODUCTOR --------------------------
+			getPerfilProductor: async () => {
+
+				try {
+					let response = await axios.get(process.env.BACKEND_URL + "/api/perfil_productor")
+					setStore({ perfil_productor: response.results })
+					console.log(getStore());
+
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+
+				}
+			},
+
+			// -------------------------OBTENER UN PERFIL DE PRODUCTOR --------------------------
+
+		
+
 
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
 

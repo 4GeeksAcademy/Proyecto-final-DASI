@@ -7,6 +7,8 @@ import "../../styles/home.css";
 export const PerfilProductor = () => {
 	const { store, actions } = useContext(Context);	
 
+	const perfiles_productores = store.perfil;
+
 	const [products, setProducts] = useState ([
 		{"variedad":"Cocos","precio":2, "cantidad":20, "id":1},
 		{"variedad":"Tommate","precio":10, "cantidad":3, "id":2},
@@ -36,11 +38,11 @@ export const PerfilProductor = () => {
 			</div>
 			<div className="d-flex">
 				<img className="img-perfil" src="https://www.telegraph.co.uk/content/dam/news/2016/08/23/106598324PandawaveNEWS_trans_NvBQzQNjv4Bqeo_i_u9APj8RuoebjoAHt0k9u7HhRJvuo-ZLenGRumA.jpg?impolicy=logo-overlay" />
-				<h1 className="display-2 ms-5 mt-5">El Huerto de Juan</h1>
+				<h1 className="display-2 ms-5 mt-5">EL Huerto de Juan</h1>
 			</div>
 			<div className="row mx-5 mt-5">
 				<div className="col-2 ps-5 bg-success bg-opacity-25 me-5">
-					<ul className="mt-5 fs-4">
+					<ul className="mt-5 fs-4">{perfiles_productores.map((item) => (<li key={item.id} id={item.id}>{item.nombre}</li>))}
 						<h4 className="fs-4">Info</h4>
 						<li>Nombre</li>
 						<li>Teléfono </li>

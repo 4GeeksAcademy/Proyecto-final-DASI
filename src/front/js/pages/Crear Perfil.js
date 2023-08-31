@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Perfil = () => {
 	const { store, actions } = useContext(Context);
@@ -13,8 +13,8 @@ export const Perfil = () => {
 		direccion : "",
 		telefono : "",
 		codigo_postal : "",
-		comunidad_autonoma_id : "",
-		provincia_id : "",
+		comunidad_autonoma : "",
+		provincia : "",
 		nombre_huerta: "",
 		problemas: "",
 		donde_encontrar: ""
@@ -40,15 +40,15 @@ export const Perfil = () => {
 			newProfile.direccion,
 			newProfile.telefono,
 			newProfile.codigo_postal,
-			newProfile.comunidad_autonoma_id,
-			newProfile.provincia_id,
+			newProfile.comunidad_autonoma,
+			newProfile.provincia,
 			newProfile.nombre_huerta,
 			newProfile.problemas,
 			newProfile.donde_encontrar
 			
 		)
 		if(nuevo_productor) {
-			navigate('/') /* --> perfil del productor*/
+			navigate('/perfil/<int:user_id>') /* --> perfil del productor*/
 		}else {
 			setNewProfile({
 				nombre : "",
@@ -56,8 +56,8 @@ export const Perfil = () => {
 				direccion : "",
 				telefono : "",
 				codigo_postal : "",
-				comunidad_autonoma_id : "",
-				provincia_id : "",
+				comunidad_autonoma : "",
+				provincia : "",
 				nombre_huerta: "",
 				problemas: "",
 				donde_encontrar: ""
@@ -85,7 +85,7 @@ export const Perfil = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su nombre"
-                                name="username"
+                                name="nombre"
                             />
 							<label htmlFor="floatingInput">Nombre</label>
                         </div>
@@ -96,7 +96,7 @@ export const Perfil = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí sus apellidos"
-                                name="apellidos"
+                                name="apellido"
                             />
 							<label htmlFor="floatingInput">Apellidos</label>
                         </div>
@@ -118,7 +118,7 @@ export const Perfil = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su Comunidad Autónoma"
-                                name="comunidad_autonoma_id"
+                                name="comunidad_autonoma"
                             />
 							<label htmlFor="floatingInput">Comunidad Autónoma</label>
 
@@ -130,7 +130,7 @@ export const Perfil = () => {
                                 onChange={handleChange}
                                 className="form-control"
                                 placeholder="Añada aquí su provincia"
-                                name="provincia_id"
+                                name="provincia"
                             />
 							<label htmlFor="floatingInput">Provincia</label>
                         </div>
@@ -154,7 +154,7 @@ export const Perfil = () => {
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Añada aquí su dirección"
-								name="dirección"
+								name="direccion"
 							/>
 							<label htmlFor="floatingInput">Dirección</label>
 						</div>
@@ -190,7 +190,7 @@ export const Perfil = () => {
 							<label htmlFor="floatingInput">¿Dónde y cuándo podemos encontrarte</label>
 						</div>
 
-						<div className="d-flex justify-content-center">
+						<div className="d-flex justify-content-center mb-5">
 							<button className="btn btn-success" type="submit">
 								Registro
 							</button>
@@ -203,6 +203,7 @@ export const Perfil = () => {
 	);
 };
 
+{/* <Link to={`/perfil/${perfil.id}`} className="btn btn-primary">Ir a su perfil</Link> */}
 
 
 
