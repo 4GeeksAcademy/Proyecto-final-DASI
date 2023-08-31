@@ -73,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ perfil: response.data.results });
 					console.log(getStore());
 					if (getStore().perfil.length !== 0) {
-						console.log(getStore().perfil[0].nombre_huerta);
+						// console.log(getStore().perfil[0].nombre_huerta);
 					} else {
 						console.log("No hay ningún perfil de productor.");
 					}
@@ -95,6 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar) => {
+				let user_id = localStorage.getItem("user_id")
 				try {
 					let response = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
 
@@ -107,7 +108,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						provincia: provincia,
 						nombre_huerta: nombre_huerta,
 						problemas: problemas,
-						donde_encontrar: donde_encontrar
+						donde_encontrar: donde_encontrar,
+						user_id: user_id
 					})
 					// let data = await response.json();
 					console.log("Perfil creado", response);
@@ -267,9 +269,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(data);
 
 					localStorage.setItem("token", data.data.access_token)
+					localStorage.setItem("user_id", data.data.user_id)
 
 					setStore({ token: data.data.access_token })
-
 
 					return true;
 

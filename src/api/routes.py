@@ -427,6 +427,7 @@ def add_productor():
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
         donde_encontrar= request_body['donde_encontrar'],
+        user_id=request_body['user_id'],
         latitud = location.latitude,
         longitud =location.longitude
           )
@@ -497,7 +498,7 @@ def login():
         return jsonify({"msg": "Bad password"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify({"access_token":access_token, "user_id":user.id})
 
 # -------------------- PROFILE --------------------
 
