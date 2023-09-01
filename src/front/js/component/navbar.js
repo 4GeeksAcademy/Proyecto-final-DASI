@@ -53,7 +53,7 @@ export const Navbar = () => {
 		redireccion()
 		
 		// actions.getProfile();
-			
+	
 
 	}, []);
 

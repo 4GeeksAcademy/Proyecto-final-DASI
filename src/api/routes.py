@@ -248,33 +248,16 @@ def get_all_products():
 def add_user():
 
     request_body = request.get_json(force=True)
-
-    #add validation
-    atributos = ["username","password","email"]
-    
-    for x in atributos:
-        if x not in request_body:
-            response = f'You need to specify the {x}', 400
-            return response
-    #if 'nombre' not in body:
-    #    raise APIException('You need to specify the nombre', status_code=400)
-
-
-    usuario = User(username= request_body['username'],
-                   password= request_body['password'],
-                   email= request_body['email']
-                   
-                   
-                   )
-    print(usuario)
-
-    db.session.add(usuario)
+    # for x in request_body:
+    item = User(username=request_body['username'],
+                    password=request_body['password'],
+                    email=request_body['email'])
+    db.session.add(item)
     db.session.commit()
 
-
     response_body = {
-        'msg':'ok',
-        "results": ['Usuario Created', usuario.serialize()]
+        'msg': 'ok',
+        "results": ['Usuario Created', item.serialize()]
     }
 
     return jsonify(response_body), 200
@@ -341,12 +324,11 @@ def create_user():
     request_body = request.get_json(force=True)
 
     user = User(email=request_body['email'],
-                password=request_body['password'],
-                is_active=request_body['is_active'])
+                password=request_body['password'])
     
-    if request_body['email'] is None or request_body['password'] is None or request_body['is_active'] is None:
+    if request_body['email'] is None or request_body['password'] is None:
         return jsonify ({
-            'msg':'missing parameters (email, password, is_active are required)'
+            'msg':'missing parameters (email, password, are required)'
         }), 400
     
     # Verificamos email válido (basico)
@@ -473,6 +455,7 @@ def add_productor():
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
         donde_encontrar= request_body['donde_encontrar'],
+        user_id=request_body['user_id'],
         latitud = location.latitude,
         longitud =location.longitude
           )
@@ -508,7 +491,7 @@ def login():
     
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify({"access_token":access_token, "user_id":user.id})
 
 # -------------------- PROFILE --------------------
 

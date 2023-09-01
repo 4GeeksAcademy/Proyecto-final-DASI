@@ -83,26 +83,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			pedirPerfil: async (filters) => {
 				try {
-					let response = await axios.get(process.env.BACKEND_URL + "/api/perfil_productor", filters);
-					setStore({ perfil: response.data.results});
-
-					const idPerfilArray = getStore().perfil.map(item => item.user_id);
-
-					setStore({ perfil: idPerfilArray});
-
-					console.log(getStore().perfil);
-					
-					// console.log(getStore().perfil[0].nombre_huerta)
+					let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
+					setStore({ perfil: response.data.results });
+					console.log(getStore());
+					if (getStore().perfil.length !== 0) {
+						// console.log(getStore().perfil[0].nombre_huerta);
+					} else {
+						console.log("No hay ningún perfil de productor.");
+					}
 
 
 				} catch (error) {
 					console.log(error);
-					getStore().perfil.length === 0 ? console.log('No hay productores') : null 
+					
 				}
 			},
 
-			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar) => {
+			sincroToken: async () => {
 
+				let token = localStorage.getItem("token")
+				setStore({ token: token })
+				setStore({ log: true })
+
+			},
+
+
+
+			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar) => {
+				let user_id = localStorage.getItem("user_id")
 				try {
 					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
 
@@ -115,9 +123,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						provincia: provincia,
 						nombre_huerta: nombre_huerta,
 						problemas: problemas,
-						donde_encontrar: donde_encontrar
+						donde_encontrar: donde_encontrar,
+						user_id: user_id
 					})
-					// let data = await response.json();
 					console.log("Perfil creado", data);
 
 
@@ -125,26 +133,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				}
 
-
-				// console.log(nombre_huerta, info, problemas, donde_encontrar);
-
 			},
 
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
 
 			getNombreProducto: async () => {
-
 				try {
-					const data = await axios.get(process.env.BACKEND_URL + "/api/producto")
-					// const data = await resp.json()
-					setStore({ nombre_producto: data.nombre })
-
-					return data;
+				  const response = await axios.get(process.env.BACKEND_URL + "/api/producto");
+				  const data = response.data;
+			  
+				  setStore({ nombre_producto: data.results }); // Aquí corregido
+			  
+				  return data;
 				} catch (error) {
-					console.log("Error loading message from backend", error)
-
+				  console.log("Error loading message from backend", error);
 				}
-			},
+			  },
 			// -------------------------- AÑADIR PRODUCTO --------------------------
 
 			newProduct: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
@@ -258,9 +262,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 
 					localStorage.setItem("token", data.data.access_token)
+					localStorage.setItem("user_id", data.data.user_id)
 
 					setStore({ token: data.data.access_token })
-					
 
 					return true;
 

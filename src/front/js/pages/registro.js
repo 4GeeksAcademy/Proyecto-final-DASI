@@ -27,7 +27,7 @@ export const Registro = () => {
 
         );
         if (nuevo_registro) {
-            navigate('/');
+            navigate('/login');
         } else {
             setContact({
                 username: "",
@@ -61,26 +61,6 @@ export const Registro = () => {
                                 name="username"
                             />
                         </div>
-                        {/* <div className="form-group">
-                            <label>Apellidos</label>
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Añada aquí sus apellidos"
-                                name="apellidos"
-                            />
-                        </div> */}
-                        {/* <div className="form-group">
-                            <label>Telefono</label>
-                            <input
-                                type="tel"
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Añada aquí el telefono"
-                                name="telefono"
-                            />
-                        </div> */}
 
                             <div className="form-group">
                                 <label>Email</label>
@@ -101,51 +81,6 @@ export const Registro = () => {
                                 placeholder="Añada aquí su password"
                                 name="password" />
                         </div>
-
-                        {/* <div className="form-group">
-                            <label>Comunidad Autónoma</label>
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Añada aquí su Comunidad Autónoma"
-                                name="comunidad_autonoma_id"
-                            />
-
-                            </div>
-
-                        <div className="form-group">
-                            <label>Provincia</label>
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Añada aquí su provincia"
-                                name="provincia_id"
-                            />
-                        </div>
-
-                            <div className="form-group">
-                                <label>Codigo Postal</label>
-                                <input
-                                    type="text"
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Añada aquí su codigo postal"
-                                    name="codigo_postal"
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>Dirección</label>
-                                <input
-                                    type="text"
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Añada aquí su dirección"
-                                    name="dirección"
-                                /> */}
-                            {/* </div> */}
 
                             <button type="submit" className="btn btn-primary form-control mt-3">
                                 Registro
