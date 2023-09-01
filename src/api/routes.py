@@ -246,20 +246,20 @@ def get_all_products():
 def add_user():
 
     request_body = request.get_json(force=True)
-    for x in request_body:
-        item = User(username= x['username'],
-                    password= x['password'],
-                    email= x['email'])
-        db.session.add(item)
+    # for x in request_body:
+    item = User(username=request_body['username'],
+                    password=request_body['password'],
+                    email=request_body['email'])
+    db.session.add(item)
     db.session.commit()
 
-
     response_body = {
-       'msg':'ok',
-       "results": ['Usuario Created', item.serialize()]
+        'msg': 'ok',
+        "results": ['Usuario Created', item.serialize()]
     }
 
     return jsonify(response_body), 200
+
 
 
     #add validation
@@ -322,12 +322,11 @@ def create_user():
     request_body = request.get_json(force=True)
 
     user = User(email=request_body['email'],
-                password=request_body['password'],
-                is_active=request_body['is_active'])
+                password=request_body['password'])
     
-    if request_body['email'] is None or request_body['password'] is None or request_body['is_active'] is None:
+    if request_body['email'] is None or request_body['password'] is None:
         return jsonify ({
-            'msg':'missing parameters (email, password, is_active are required)'
+            'msg':'missing parameters (email, password, are required)'
         }), 400
     
     # Verificamos email válido (basico)
