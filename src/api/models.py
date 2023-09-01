@@ -50,6 +50,8 @@ class User(db.Model):
     # favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users')
     # lista = db.relationship('Lista', backref='users', lazy=True)
 
+
+
     def __repr__(self):
         return f"<User {self.email}>"
 
@@ -57,7 +59,8 @@ class User(db.Model):
         return {
             "id": self.id,
             "nombre": self.username,
-            "email": self.email
+            "email": self.email,
+            "productor": self.productor
             # do not serialize the password, its a security breach
         }
 

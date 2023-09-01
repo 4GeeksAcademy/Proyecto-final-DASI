@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"Melilla": ["Melilla"],
 			},
 			productores: [],
-			usuarios: [],
+			usuario: [],
 			perfil: [],
 			nombre_huerta: [],
 
@@ -97,20 +97,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 					console.log(error);
-					getStore().perfil.length === 0 ? console.log('No hay productores') : null //agregar condicional para evitar error cuando no hay perfil creado
+					getStore().perfil.length === 0 ? console.log('No hay productores') : null 
 				}
 			},
-
-
-			// sincroToken: async () => {
-
-			// 	let token = localStorage.getItem("token")
-			// 	setStore({ token: token })
-			// 	setStore({ log: true })
-
-			// },
-
-
 
 			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar) => {
 
@@ -292,7 +281,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.get(process.env.BACKEND_URL + 'api/profile', {
+					let data = await axios.get(process.env.BACKEND_URL + '/api/profile', {
 
 						headers: {
 							"Authorization": `Bearer ${token}`,
@@ -307,6 +296,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// else setStore({ log: true })
 
 					setStore({log:true})
+					console.log(data);
 
 
 					return true;
@@ -364,7 +354,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 				
-					const response = await axios.get(process.env.BACKEND_URL + "api/users")
+					const response = await axios.get(process.env.BACKEND_URL + "/api/users")
 
 					let resultados = response.data.results
 					setStore({ usuarios: resultados})

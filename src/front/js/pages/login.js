@@ -20,7 +20,7 @@ export const Login = () => {
 		e.preventDefault()
 		let logged = await actions.login(email, password)
 		if (logged) {
-			navigate('/') /* --> HOME */
+			navigate('/') 
 			actions.getProfile()
 		} else{
 			setEmail("");

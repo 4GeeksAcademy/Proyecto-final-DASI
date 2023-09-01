@@ -13,18 +13,10 @@ export const Navbar = () => {
         e.preventDefault()
 		actions.pedirPerfil()
 		actions.getUsuarios()
+		// store.log === false ? navigate('/login') : 
 		store.log === false ? navigate('/login') : 
 
-		// let tienenElementoComun = store.perfil.some(elemento => store.usuarios.includes(elemento));
-
-		// 	if (tienenElementoComun) {
-		// 		console.log("Los arrays tienen elementos en común.");
-		// 	} else {
-		// 		console.log("Los arrays no tienen elementos en común.");
-		// 	}
-		// store.perfil.map((item) => 
 		
-		// )
         navigate("/perfil") /* --> Enlace a perfil productor*/
     }
 
@@ -61,7 +53,7 @@ export const Navbar = () => {
 		redireccion()
 		
 		// actions.getProfile();
-	
+			
 
 	}, []);
 
