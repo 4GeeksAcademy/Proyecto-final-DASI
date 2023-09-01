@@ -489,10 +489,9 @@ def login():
     if password != user.password:
         return jsonify({"msg": "Bad password"}), 401
     
-
+    print(user.serialize())
     access_token = create_access_token(identity=email)
-    return jsonify({"access_token":access_token, "user_id":user.id})
-
+    return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"]})
 # -------------------- PROFILE --------------------
 
 @api.route("/profile", methods=["GET"])

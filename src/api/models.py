@@ -56,11 +56,16 @@ class User(db.Model):
         return f"<User {self.email}>"
 
     def serialize(self):
+        user_productor = PerfilProductor.query.filter_by(user_id=self.id).first()
+        is_productor = False if user_productor is None else True
+        info_productor = None if user_productor is None else user_productor.serialize()
+        print(user_productor)
         return {
             "id": self.id,
             "nombre": self.username,
             "email": self.email,
-            "productor": self.productor
+            "info_productor": info_productor,
+            "productor": is_productor
             # do not serialize the password, its a security breach
         }
 
@@ -96,7 +101,7 @@ class PerfilProductor(db.Model):
     #favoritos = db.relationship('favoritos_productores', backref='perfil_productores', lazy=True)
 
     def __repr__(self):
-        return '<PerfilProductor %r>' % self.nombre_huerta
+        return '<PerfilProductor %r>' % self.id
  
 
     def serialize(self):
