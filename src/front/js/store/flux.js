@@ -102,13 +102,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			sincroToken: async () => {
+			// sincroToken: async () => {
 
-				let token = localStorage.getItem("token")
-				setStore({ token: token })
-				setStore({ log: true })
+			// 	let token = localStorage.getItem("token")
+			// 	setStore({ token: token })
+			// 	setStore({ log: true })
 
-			},
+			// },
 
 
 
@@ -300,11 +300,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					const store = getStore();
+					// const store = getStore();
 
 
-					if (!store.token) setStore({ log: false })
-					else setStore({ log: true })
+					// if (!store.token) setStore({ log: false })
+					// else setStore({ log: true })
+
+					setStore({log:true})
 
 
 					return true;
@@ -312,10 +314,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					console.log(error);
+					setStore({log:false})
 
 					return false;
 
 				}
+			},
+
+			// -------------------------- VALIDACIÓN TOKEN --------------------------
+
+
+			validToken: async () => {
+
+				let token = localStorage.getItem("token")
+
+				try {
+
+					//codigo exitoso
+
+					let data = await axios.get(process.env.BACKEND_URL + '/api/validate',{
+
+						headers:{
+
+							"Authorization": `Bearer ${token}`,
+
+						}
+
+					})
+
+					console.log(data);
+
+					return true;
+
+				} catch (error) {
+
+					//manejar los errrores
+
+					console.log(error);
+
+					return false;
+
+				}
+
 			},
 
 			// -------------------------- TODOS LOS USUARIOS --------------------------

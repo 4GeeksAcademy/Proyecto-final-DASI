@@ -13,7 +13,7 @@ export const Navbar = () => {
         e.preventDefault()
 		actions.pedirPerfil()
 		actions.getUsuarios()
-		// store.log === false ? navigate('/login') : 
+		store.log === false ? navigate('/login') : 
 
 		// let tienenElementoComun = store.perfil.some(elemento => store.usuarios.includes(elemento));
 
@@ -46,10 +46,19 @@ export const Navbar = () => {
 			navigate("/login")
 		}
     }
+
+
+	async function redireccion(){
+
+		let logged = await actions.getProfile();
+		// if(!logged) {
+		// 	navigate("/login")
+		// }
+	} 
 	
 
 	useEffect(() => {
-		// redireccion()
+		redireccion()
 		
 		// actions.getProfile();
 	

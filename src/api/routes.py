@@ -522,3 +522,15 @@ def get_profile():
         return jsonify({"msg": "user do not exist"}), 404
     return jsonify(logged_in_as=current_user), 200
 
+# -------------------- VALIDATE--------------------
+
+@api.route("/validate", methods=["GET"])
+@jwt_required()
+def check_valid():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    if user is None:
+        return False
+    return True
+
