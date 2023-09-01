@@ -402,7 +402,7 @@ def get_all_productores():
 
 # -------------------- CREAR PERFIL PRODUCTOR --------------------
 
-@api.route('/perfil_productor', methods=['POST'])
+@api.route('/crear_perfil', methods=['POST'])
 def add_productor():
 
     request_body = request.get_json(force=True)
@@ -449,7 +449,7 @@ def add_productor():
 # --------------- OBTENER TODOS LOS PRODUCTORES ------
 
 
-@api.route('/perfil_productor/', methods=['GET'])
+@api.route('/crear_perfil/', methods=['GET'])
 def get_all_perfiles_productor():
 
     perfil_query = PerfilProductor.query.all()

@@ -7,7 +7,7 @@ import "../../styles/home.css";
 export const PerfilProductor = () => {
 	const { store, actions } = useContext(Context);	
 
-	const perfiles_productores = store.perfil;
+	const perfiles_productores = store.perfil_productor;
 
 	const [products, setProducts] = useState ([
 		{"variedad":"Cocos","precio":2, "cantidad":20, "id":1},
