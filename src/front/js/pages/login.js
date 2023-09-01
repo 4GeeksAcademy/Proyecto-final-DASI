@@ -18,7 +18,9 @@ export const Login = () => {
     
 	async function handlerSubmit(e)  {
 		e.preventDefault()
+		
 		let logged = await actions.login(email, password)
+
 		if (logged) {
 			navigate('/') 
 			actions.getProfile()
@@ -26,6 +28,8 @@ export const Login = () => {
 			setEmail("");
 			setPassword("");
 		}
+		console.log(store.info_productor);
+		console.log(store.is_productor);
 
 	};
 

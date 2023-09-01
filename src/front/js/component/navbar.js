@@ -11,12 +11,9 @@ export const Navbar = () => {
 
 	const handlerPerfil = (e)=>{
         e.preventDefault()
-		actions.pedirPerfil()
-		actions.getUsuarios()
-		// store.log === false ? navigate('/login') : 
-		store.log === false ? navigate('/login') : 
-
-		
+		console.log(store.is_productor);
+		store.log === false && store.is_productor === false ? navigate('/login') : 
+		store.log === true && store.is_productor === false ? navigate('/crear_perfil') :
         navigate("/perfil") /* --> Enlace a perfil productor*/
     }
 
@@ -32,7 +29,6 @@ export const Navbar = () => {
 
 	const handlerLogOut = (e)=>{
         e.preventDefault()
-        // localStorage.removeItem("token")
 		let logout = actions.logout()
 		if (!logout) {
 			navigate("/login")
@@ -40,21 +36,12 @@ export const Navbar = () => {
     }
 
 
-	async function redireccion(){
-
-		let logged = await actions.getProfile();
-		// if(!logged) {
-		// 	navigate("/login")
-		// }
-	} 
 	
 
 	useEffect(() => {
-		redireccion()
-		
-		// actions.getProfile();
-	
 
+		actions.getProfile();
+	
 	}, []);
 
 
@@ -90,11 +77,10 @@ export const Navbar = () => {
 					
 
 						}
-						{/* <li className="nav-item" id="btn-login" onClick={handlerLogOut}>
-								<a className="nav-link active" aria-current="page" href="#">Log out</a>
-							</li> */}
 
 						{/* FAVORITOS */}
+
+						{ (store.log === true) ? 
 					
 
 						<li className="nav-item dropdown">
@@ -108,8 +94,12 @@ export const Navbar = () => {
 							<li><a className="dropdown-item" href="#">Something else here</a></li>
 						</ul>
 						</li>
+						
+						: null}
 
 						{/* CARRITO */}
+
+						{ (store.log === true) ? 
 						
 						<li className="nav-item dropdown">
 							<a className="nav-link dropdown-toggle" href="#" id="carrito" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -122,6 +112,9 @@ export const Navbar = () => {
 								<li><a className="dropdown-item" href="#">Something else here</a></li>
 							</ul>
 						</li>
+
+						: null}
+						
 						
 					</ul>
 			

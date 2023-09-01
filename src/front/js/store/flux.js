@@ -30,6 +30,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuario: [],
 			perfil: [],
 			nombre_huerta: [],
+			info_productor: [],
+			is_productor: false,
 
 			nombre_producto: [],
 			producto: {
@@ -259,12 +261,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
+					console.log(data.data.productor );
+
 					
 
 					localStorage.setItem("token", data.data.access_token)
 					localStorage.setItem("user_id", data.data.user_id)
 
 					setStore({ token: data.data.access_token })
+					setStore({ info_productor: data.data.info_productor })
+					setStore({ is_productor: data.data.productor })
+
 
 					return true;
 
