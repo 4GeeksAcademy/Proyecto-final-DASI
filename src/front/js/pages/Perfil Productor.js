@@ -22,6 +22,8 @@ export const PerfilProductor = () => {
 		setProducts(newArray); 
 	}
 
+	
+
 
 
 	return(
