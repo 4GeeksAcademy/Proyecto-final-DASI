@@ -61,7 +61,6 @@ def add_producto():
         nombre= request_body ['nombre'],
         cantidad= request_body['cantidad'],
         unidad_medida= request_body['unidad_medida'],
-        # pedido= request_body['pedido'],
         variedad= request_body['variedad'],
         tipo_produccion= request_body['tipo_produccion'],
         recogida= request_body['recogida'],
@@ -141,6 +140,20 @@ def get_all_products():
     }
 
     return jsonify(response_body), 200
+
+# get lista de Productos by ID de Productor
+@api.route('/producto_by_id_productor/<int:productor_id>', methods=['Get'])
+def get_all_products_by_Id(productor_id):
+
+    productos_query = Producto.query.filter_by(productor_id=productor_id).first()
+    # productos_query = Producto.query.all()
+    results = list(map(lambda item: item.serialize(), productos_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 2
 
 
 # crear usuario
@@ -287,6 +300,41 @@ def add_productor():
     }
 
     return jsonify(response_body), 200
+
+# --------------- OBTENER TODOS LOS PRODUCTORES ------
+
+
+@api.route('/crear_perfil/', methods=['GET'])
+def get_all_perfiles_productor():
+
+    perfil_query = PerfilProductor.query.all()
+    results = list(map(lambda item: item.serialize(), perfil_query))
+    print(perfil_query)
+    print(results)
+
+    response_body = {
+        "message": "ok",
+        "results": results
+
+    }
+
+    return jsonify(response_body), 200
+
+# --------------- OBTENER UN PRODUCTOR ---------------------
+
+@api.route('/perfil/<int:user_id>', methods=['GET'])
+def get_one_productor(user_id):
+
+    user_query = PerfilProductor.query.filter_by(id=user_id).first()
+
+    response_body = {
+        "message": "ok",
+        "result": user_query.serialize()
+
+    }
+
+    return jsonify(response_body), 200
+
 
 # -------------------- LOGIN --------------------
 

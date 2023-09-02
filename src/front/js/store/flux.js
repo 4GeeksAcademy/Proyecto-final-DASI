@@ -30,8 +30,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuario: [],
 			perfil: [],
 			nombre_huerta: [],
-			info_productor: [],
+			info_productor: "",
 			is_productor: false,
+
+			// perfil_productor:[],
+
+			add_producto: [],
 
 			nombre_producto: [],
 			producto: {
@@ -111,7 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar) => {
+			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, descripcion, donde_encontrar) => {
 				let user_id = localStorage.getItem("user_id")
 				try {
 					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
@@ -126,15 +130,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 						nombre_huerta: nombre_huerta,
 						problemas: problemas,
 						donde_encontrar: donde_encontrar,
+						descripcion: descripcion,
 						user_id: user_id
 					})
 					console.log("Perfil creado", data);
+					// setStore({perfil_productor: response.data})
+					// return true
 
 
 				} catch (error) {
 					console.log(error);
 				}
 
+			},
+
+			// ---------------------------------- OBTENER TODOS LOS PRODUCTORES -----------------------
+
+			getPerfilProductor: async () => {
+
+				try {
+					let response = await axios.get(process.env.BACKEND_URL + "/api/crear_perfil")
+					setStore({ perfil_productor: response.results })
+					console.log(getStore());
+
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+
+				}
 			},
 
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
@@ -151,10 +173,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.log("Error loading message from backend", error);
 				}
 			  },
+
+			  getProductoPorProductorId: async () => {
+				try {
+				  const response = await axios.get(process.env.BACKEND_URL + "/api/producto_by_id_productor");
+				  const data = response.data;
+			  
+				  setStore({ nombre_producto: data.results }); // Aquí corregido
+			  
+				  return data;
+				} catch (error) {
+				  console.log("Error loading message from backend", error);
+				}
+			  },
+
+
 			// -------------------------- AÑADIR PRODUCTO --------------------------
 
 			newProduct: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
-
+				let productor_id = getStore().info_productor.id
+				
+				console.log("productor id del flux", productor_id);
 				try {
 
 					let data = await axios.post(process.env.BACKEND_URL + '/api/producto', {
@@ -164,10 +203,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						variedad: variedad,
 						tipo_produccion: tipo_produccion,
 						recogida: recogida,
-						precio: precio
+						precio: precio,
+						productor_id: productor_id
 
 					})
-
 					console.log(data);
 
 					return true;
@@ -262,6 +301,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 
 					console.log(data.data.productor );
+					console.log(getStore().info_productor );
 
 					
 

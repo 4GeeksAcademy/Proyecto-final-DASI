@@ -38,7 +38,7 @@ export const AddProduct = () => {
 
         );
         if (nuevo_producto) {
-            navigate('/'); /* enlace a perfil productor*/
+            navigate('/perfil'); /* enlace a perfil productor*/
 		} else{
 			setProduct({
                 nombre: "Nombre",
