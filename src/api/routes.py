@@ -242,6 +242,8 @@ def get_all_products():
 
 
 # crear usuario
+
+
 @api.route('/registro', methods=['POST'])
 def add_user():
 
@@ -372,23 +374,24 @@ def create_user():
 
 # -------------------- PERFIL PRODUCTOR --------------------
 
-@api.route('/perfil_productor_home', methods=['POST'])
+
+@api.route('/perfil_productor', methods=['GET'])
 def get_all_productores():
-    request_body = request.get_json(force=True)
+    # request_body = request.get_json(force=True)
 
-    Productor_query = PerfilProductor.query
+    Productor_query = PerfilProductor.query.all()
 
-    if request_body['selectedOptions'] and request_body['selectedOptions']['Producto']:
-        product_name = request_body['selectedOptions']['Producto']
-        Productor_query = Productor_query.filter(PerfilProductor.producto.any(nombre=product_name))
+    # if request_body['selectedOptions'] and request_body['selectedOptions']['Producto']:
+    #     product_name = request_body['selectedOptions']['Producto']
+    #     Productor_query = Productor_query.filter(PerfilProductor.producto.any(nombre=product_name))
 
-    if request_body['selectedCommunity'] and request_body['selectedCommunity']:
-        community_name = request_body['selectedCommunity']
-        Productor_query = Productor_query.filter(PerfilProductor.comunidad_autonoma == community_name)
+    # if request_body['selectedCommunity'] and request_body['selectedCommunity']:
+    #     community_name = request_body['selectedCommunity']
+    #     Productor_query = Productor_query.filter(PerfilProductor.comunidad_autonoma == community_name)
     
-    if request_body['selectedProvince'] and request_body['selectedProvince']:
-        province_name = request_body['selectedProvince']
-        Productor_query = Productor_query.filter(PerfilProductor.provincia == province_name)
+    # if request_body['selectedProvince'] and request_body['selectedProvince']:
+    #     province_name = request_body['selectedProvince']
+    #     Productor_query = Productor_query.filter(PerfilProductor.provincia == province_name)
 
     results = list(map(lambda item: item.serialize(), Productor_query))
 
@@ -397,6 +400,33 @@ def get_all_productores():
     }
 
     return jsonify(response_body), 200
+
+
+# @api.route('/perfil_productor_home', methods=['POST'])
+# def get_all_productores():
+#     request_body = request.get_json(force=True)
+
+#     Productor_query = PerfilProductor.query
+
+#     if request_body['selectedOptions'] and request_body['selectedOptions']['Producto']:
+#         product_name = request_body['selectedOptions']['Producto']
+#         Productor_query = Productor_query.filter(PerfilProductor.producto.any(nombre=product_name))
+
+#     if request_body['selectedCommunity'] and request_body['selectedCommunity']:
+#         community_name = request_body['selectedCommunity']
+#         Productor_query = Productor_query.filter(PerfilProductor.comunidad_autonoma == community_name)
+    
+#     if request_body['selectedProvince'] and request_body['selectedProvince']:
+#         province_name = request_body['selectedProvince']
+#         Productor_query = Productor_query.filter(PerfilProductor.provincia == province_name)
+
+#     results = list(map(lambda item: item.serialize(), Productor_query))
+
+#     response_body = {
+#         "results": results
+#     }
+
+#     return jsonify(response_body), 200
 
 # -------------------- CREAR PERFIL PRODUCTOR --------------------
 
@@ -458,10 +488,10 @@ def login():
 
     if password != user.password:
         return jsonify({"msg": "Bad password"}), 401
-
+    
+    print(user.serialize())
     access_token = create_access_token(identity=email)
-    return jsonify({"access_token":access_token, "user_id":user.id})
-
+    return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"]})
 # -------------------- PROFILE --------------------
 
 @api.route("/profile", methods=["GET"])
@@ -473,4 +503,16 @@ def get_profile():
     if user is None:
         return jsonify({"msg": "user do not exist"}), 404
     return jsonify(logged_in_as=current_user), 200
+
+# -------------------- VALIDATE--------------------
+
+@api.route("/validate", methods=["GET"])
+@jwt_required()
+def check_valid():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    if user is None:
+        return False
+    return True
 

@@ -27,8 +27,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"Melilla": ["Melilla"],
 			},
 			productores: [],
+			usuario: [],
 			perfil: [],
 			nombre_huerta: [],
+			info_productor: [],
+			is_productor: false,
 
 			nombre_producto: [],
 			producto: {
@@ -65,6 +68,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+			// pedirPerfil: async (filters) => {
+			// 	try {
+			// 		let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
+			// 		setStore({ perfil: response.data.results });
+			// 		console.log(getStore());
+					
+			// 		console.log(getStore().perfil[0].nombre_huerta)
+
+
+			// 	} catch (error) {
+			// 		console.log(error);
+			// 		getStore().perfil.length === 0 ? console.log('No hay productores') : null //agregar condicional para evitar error cuando no hay perfil creado
+			// 	}
+			// },
+
 			pedirPerfil: async (filters) => {
 				try {
 					let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
@@ -79,6 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 					console.log(error);
+					
 				}
 			},
 
@@ -242,12 +261,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					console.log(data);
+					console.log(data.data.productor );
+
+					
 
 					localStorage.setItem("token", data.data.access_token)
 					localStorage.setItem("user_id", data.data.user_id)
 
 					setStore({ token: data.data.access_token })
+					setStore({ info_productor: data.data.info_productor })
+					setStore({ is_productor: data.data.productor })
+
 
 					return true;
 
@@ -268,7 +292,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.get(process.env.BACKEND_URL + '/profile', {
+					let data = await axios.get(process.env.BACKEND_URL + '/api/profile', {
 
 						headers: {
 							"Authorization": `Bearer ${token}`,
@@ -276,11 +300,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					const store = getStore();
+					// const store = getStore();
 
 
-					if (!store.token) setStore({ log: false })
-					else setStore({ log: true })
+					// if (!store.token) setStore({ log: false })
+					// else setStore({ log: true })
+
+					setStore({log:true})
+					console.log(data);
 
 
 					return true;
@@ -288,11 +315,75 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					console.log(error);
+					setStore({log:false})
 
 					return false;
 
 				}
 			},
+
+			// -------------------------- VALIDACIÓN TOKEN --------------------------
+
+
+			validToken: async () => {
+
+				let token = localStorage.getItem("token")
+
+				try {
+
+					//codigo exitoso
+
+					let data = await axios.get(process.env.BACKEND_URL + '/api/validate',{
+
+						headers:{
+
+							"Authorization": `Bearer ${token}`,
+
+						}
+
+					})
+
+					console.log(data);
+
+					return true;
+
+				} catch (error) {
+
+					//manejar los errrores
+
+					console.log(error);
+
+					return false;
+
+				}
+
+			},
+
+			// -------------------------- TODOS LOS USUARIOS --------------------------
+
+			getUsuarios: async () => {
+
+				try {
+				
+					const response = await axios.get(process.env.BACKEND_URL + "/api/users")
+
+					let resultados = response.data.results
+					setStore({ usuarios: resultados})
+					
+					const idArray = getStore().usuarios.map(item => item.id);
+
+					setStore({ usuarios: idArray})
+
+					console.log(getStore().usuarios);
+
+					return response;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+
+				}
+			},
+
+
 
 
 			// Use getActions to call a function within a fuction

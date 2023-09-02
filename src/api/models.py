@@ -50,14 +50,22 @@ class User(db.Model):
     # favoritos = db.relationship('PerfilProductor', secondary=user_productor, backref='users')
     # lista = db.relationship('Lista', backref='users', lazy=True)
 
+
+
     def __repr__(self):
         return f"<User {self.email}>"
 
     def serialize(self):
+        user_productor = PerfilProductor.query.filter_by(user_id=self.id).first()
+        is_productor = False if user_productor is None else True
+        info_productor = None if user_productor is None else user_productor.serialize()
+        print(user_productor)
         return {
             "id": self.id,
             "nombre": self.username,
-            "email": self.email
+            "email": self.email,
+            "info_productor": info_productor,
+            "productor": is_productor
             # do not serialize the password, its a security breach
         }
 
@@ -93,7 +101,7 @@ class PerfilProductor(db.Model):
     #favoritos = db.relationship('favoritos_productores', backref='perfil_productores', lazy=True)
 
     def __repr__(self):
-        return '<PerfilProductor %r>' % self.nombre_huerta
+        return '<PerfilProductor %r>' % self.id
  
 
     def serialize(self):
@@ -110,7 +118,8 @@ class PerfilProductor(db.Model):
             "problemas": self.problemas,
             "donde_encontrar": self.donde_encontrar,
             "latitud": self.latitud,
-            "longitud": self.longitud
+            "longitud": self.longitud,
+            "user_id": self.user_id 
             
             # do not serialize the password, its a security breach
         }

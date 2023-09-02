@@ -27,7 +27,7 @@ export const Registro = () => {
 
         );
         if (nuevo_registro) {
-            navigate('/login');
+            navigate('/');
         } else {
             setContact({
                 username: "",
