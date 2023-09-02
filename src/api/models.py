@@ -154,6 +154,7 @@ class Producto(db.Model):
             "unidad_medida": self.unidad_medida,
             "precio": self.precio,
             "recogida": self.recogida,
+            "productor_id": self.productor_id
 
         }
 

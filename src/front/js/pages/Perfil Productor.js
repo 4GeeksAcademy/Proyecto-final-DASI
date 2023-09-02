@@ -7,15 +7,15 @@ import "../../styles/home.css";
 export const PerfilProductor = () => {
 	const { store, actions } = useContext(Context);	
 
-	const [products, setProducts] = useState ([
-		{"variedad":"Cocos","precio":2, "cantidad":20, "id":1},
-		{"variedad":"Tommate","precio":10, "cantidad":3, "id":2},
-		{"variedad":"Cambur","precio":13, "cantidad":7, "id":3},
-		{"variedad":"Piña","precio":4, "cantidad":7, "id":4},
-		{"variedad":"Naranja","precio":6, "cantidad":7, "id":5},
-		{"variedad":"Sandía","precio":1, "cantidad":5, "id":6},
-		{"variedad":"Melocotón","precio":17, "cantidad":8, "id":7}
-	]);
+	// const [products, setProducts] = useState ([
+	// 	{"variedad":"Cocos","precio":2, "cantidad":20, "id":1},
+	// 	{"variedad":"Tommate","precio":10, "cantidad":3, "id":2},
+	// 	{"variedad":"Cambur","precio":13, "cantidad":7, "id":3},
+	// 	{"variedad":"Piña","precio":4, "cantidad":7, "id":4},
+	// 	{"variedad":"Naranja","precio":6, "cantidad":7, "id":5},
+	// 	{"variedad":"Sandía","precio":1, "cantidad":5, "id":6},
+	// 	{"variedad":"Melocotón","precio":17, "cantidad":8, "id":7}
+	// ]);
 
 	function deleteProduct(id) {
 		const newArray = products.filter((l) => l.id !== id);
@@ -23,7 +23,10 @@ export const PerfilProductor = () => {
 	}
 
 	let info_productor = store.info_productor
-	console.log(info_productor);
+	// console.log(info_productor);
+	console.log(info_productor.id);
+
+	let add_producto = store.nombre_producto
 
 
 
@@ -72,14 +75,14 @@ export const PerfilProductor = () => {
 					</Link>
 				</div>
 				<div className="">
-					<ul className="d-flex justify-content-evenly flex-wrap m-3">{products.map((item => (
+					<ul className="d-flex justify-content-evenly flex-wrap m-3">{add_producto.map((item => (
 					<li key={item.id}>
 							<div className="card mb-3" style={{width: "12rem"}}>
 								<img className="card-img-top"  src="https://previews.123rf.com/images/sybirko/sybirko1802/sybirko180200008/94798081-personaje-de-dibujos-animados-de-col-lechuga-iceberg-s%C3%ADmbolo-vegetal-feliz-icono-de-comida.jpg" alt="..."/>
 								<div className="card-body text-center fs-5">
+									<p className="card-text">{item.nombre}</p>
 									<p className="card-text">{item.variedad}</p>
 									<p className="card-text">Precio:{item.precio}€</p>
-									<p className="card-text">Cantidad:{item.cantidad}</p>
 								</div>
 								<div className="fs-3 d-flex justify-content-end mb-2 me-2">	
 									<Link to="/edit_product">
@@ -97,70 +100,6 @@ export const PerfilProductor = () => {
 					</ul>
 				</div>
 			</div >
-
-	{/* CARD PRODUCTOS DEL PRÓXIMO MES */ }
-
-			< div className = "mt-5 mx-5 border border-success border-3 p-3 mb-5" >
-				<div className="d-flex justify-content-between">
-					<span className="display-4 mb-4">Productos del Próximo Mes</span>
-					<button className="btn btn-success" style={{width: "35px", height: "35px"}}>
-						<i className="fa-solid fa-plus"></i>
-					</button>
-				</div>
-				<div>
-					<ul className="d-flex justify-content-evenly">
-						<li>
-							<div className="card" style={{width: "18rem"}}>
-								<img className="card-img-top"  src="https://previews.123rf.com/images/sybirko/sybirko1802/sybirko180200008/94798081-personaje-de-dibujos-animados-de-col-lechuga-iceberg-s%C3%ADmbolo-vegetal-feliz-icono-de-comida.jpg" alt="..."/>
-								<div className="card-body text-center fs-3">
-									<p className="card-text">Zanahoria</p>
-								</div>
-								<div className="fs-3 d-flex justify-content-end mb-2 me-2">
-									<span className="btn btn-success mx-2">
-										<i className="fa-solid fa-pen-to-square"></i>
-									</span>
-									<span  className="btn btn-success">
-										<i className="fa-solid fa-trash"></i>
-									</span>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div className="card" style={{width: "18rem"}}>
-								<img className="card-img-top"  src="https://previews.123rf.com/images/sybirko/sybirko1802/sybirko180200008/94798081-personaje-de-dibujos-animados-de-col-lechuga-iceberg-s%C3%ADmbolo-vegetal-feliz-icono-de-comida.jpg" alt="..."/>
-								<div className="card-body text-center fs-3">
-									<p className="card-text">Zanahoria</p>
-								</div>
-								<div className="fs-3 d-flex justify-content-end mb-2 me-2">
-									<span className="btn btn-success mx-2">
-										<i className="fa-solid fa-pen-to-square"></i>
-									</span>
-									<span  className="btn btn-success">
-										<i className="fa-solid fa-trash"></i>
-									</span>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div className="card" style={{width: "18rem"}}>
-								<img className="card-img-top"  src="https://previews.123rf.com/images/sybirko/sybirko1802/sybirko180200008/94798081-personaje-de-dibujos-animados-de-col-lechuga-iceberg-s%C3%ADmbolo-vegetal-feliz-icono-de-comida.jpg" alt="..."/>
-								<div className="card-body text-center fs-3">
-									<p className="card-text">Zanahoria</p>
-								</div>
-								<div className="fs-3 d-flex justify-content-end mb-2 me-2">
-									<span className="btn btn-success mx-2">
-										<i className="fa-solid fa-pen-to-square"></i>
-									</span>
-									<span  className="btn btn-success">
-										<i className="fa-solid fa-trash"></i>
-									</span>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div >
-
 		</div >
 	);
 };

@@ -35,6 +35,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// perfil_productor:[],
 
+			add_producto: [],
+
 			nombre_producto: [],
 			producto: {
 
@@ -171,10 +173,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.log("Error loading message from backend", error);
 				}
 			  },
+
+			  getProductoPorProductorId: async () => {
+				try {
+				  const response = await axios.get(process.env.BACKEND_URL + "/api/producto_by_id_productor");
+				  const data = response.data;
+			  
+				  setStore({ nombre_producto: data.results }); // Aquí corregido
+			  
+				  return data;
+				} catch (error) {
+				  console.log("Error loading message from backend", error);
+				}
+			  },
+
+
 			// -------------------------- AÑADIR PRODUCTO --------------------------
 
 			newProduct: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
-
+				let productor_id = getStore().info_productor.id
+				
+				console.log("productor id del flux", productor_id);
 				try {
 
 					let data = await axios.post(process.env.BACKEND_URL + '/api/producto', {
@@ -184,10 +203,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						variedad: variedad,
 						tipo_produccion: tipo_produccion,
 						recogida: recogida,
-						precio: precio
+						precio: precio,
+						productor_id: productor_id
 
 					})
-
 					console.log(data);
 
 					return true;

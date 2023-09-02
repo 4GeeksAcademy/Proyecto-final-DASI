@@ -61,7 +61,6 @@ def add_producto():
         nombre= request_body ['nombre'],
         cantidad= request_body['cantidad'],
         unidad_medida= request_body['unidad_medida'],
-        # pedido= request_body['pedido'],
         variedad= request_body['variedad'],
         tipo_produccion= request_body['tipo_produccion'],
         recogida= request_body['recogida'],
@@ -141,6 +140,20 @@ def get_all_products():
     }
 
     return jsonify(response_body), 200
+
+# get lista de Productos by ID de Productor
+@api.route('/producto_by_id_productor/<int:productor_id>', methods=['Get'])
+def get_all_products_by_Id(productor_id):
+
+    productos_query = Producto.query.filter_by(productor_id=productor_id).first()
+    # productos_query = Producto.query.all()
+    results = list(map(lambda item: item.serialize(), productos_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 2
 
 
 # crear usuario
