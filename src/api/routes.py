@@ -288,6 +288,41 @@ def add_productor():
 
     return jsonify(response_body), 200
 
+# --------------- OBTENER TODOS LOS PRODUCTORES ------
+
+
+@api.route('/crear_perfil/', methods=['GET'])
+def get_all_perfiles_productor():
+
+    perfil_query = PerfilProductor.query.all()
+    results = list(map(lambda item: item.serialize(), perfil_query))
+    print(perfil_query)
+    print(results)
+
+    response_body = {
+        "message": "ok",
+        "results": results
+
+    }
+
+    return jsonify(response_body), 200
+
+# --------------- OBTENER UN PRODUCTOR ---------------------
+
+@api.route('/perfil/<int:user_id>', methods=['GET'])
+def get_one_productor(user_id):
+
+    user_query = PerfilProductor.query.filter_by(id=user_id).first()
+
+    response_body = {
+        "message": "ok",
+        "result": user_query.serialize()
+
+    }
+
+    return jsonify(response_body), 200
+
+
 # -------------------- LOGIN --------------------
 
 @api.route("/login", methods=["POST"])

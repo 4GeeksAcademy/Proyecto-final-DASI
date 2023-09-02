@@ -52,7 +52,7 @@ export const Perfil = () => {
 		);
 
 		if (nuevo_productor) {
-			navigate('/'); /* Perfil del productor */
+			navigate('/perfil'); /* Perfil del productor */
 		} else {
 			setNewProfile({
 				nombre: "",

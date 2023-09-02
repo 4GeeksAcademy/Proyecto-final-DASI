@@ -33,6 +33,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			info_productor: [],
 			is_productor: false,
 
+			perfil_productor:[],
+
 			nombre_producto: [],
 			producto: {
 
@@ -129,12 +131,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						user_id: user_id
 					})
 					console.log("Perfil creado", data);
+					// setStore({perfil_productor: response.data})
+					// return true
 
 
 				} catch (error) {
 					console.log(error);
 				}
 
+			},
+
+			// ---------------------------------- OBTENER TODOS LOS PRODUCTORES -----------------------
+
+			getPerfilProductor: async () => {
+
+				try {
+					let response = await axios.get(process.env.BACKEND_URL + "/api/crear_perfil")
+					setStore({ perfil_productor: response.results })
+					console.log(getStore());
+
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+
+				}
 			},
 
 			// -------------------------- OBTENER TODOS LOS PRODUCTOS (nombre) --------------------------
