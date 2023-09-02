@@ -162,11 +162,11 @@ def get_all_products_by_Id(productor_id):
 def add_user():
 
     request_body = request.get_json(force=True)
-    # for x in request_body:
-    item = User(username=request_body['username'],
-                    password=request_body['password'],
-                    email=request_body['email'])
-    db.session.add(item)
+    for x in request_body:
+        item = User(username=x['username'],
+                    password=x['password'],
+                    email=x['email'])
+        db.session.add(item)
     db.session.commit()
 
     response_body = {
