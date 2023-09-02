@@ -22,7 +22,8 @@ export const PerfilProductor = () => {
 		setProducts(newArray); 
 	}
 
-	
+	let info_productor = store.info_productor
+	console.log(info_productor);
 
 
 
@@ -38,21 +39,20 @@ export const PerfilProductor = () => {
 			</div>
 			<div className="d-flex">
 				<img className="img-perfil" src="https://www.telegraph.co.uk/content/dam/news/2016/08/23/106598324PandawaveNEWS_trans_NvBQzQNjv4Bqeo_i_u9APj8RuoebjoAHt0k9u7HhRJvuo-ZLenGRumA.jpg?impolicy=logo-overlay" />
-				<h1 className="display-2 ms-5 mt-5">El Huerto de Juan</h1>
+				<h1 className="display-2 ms-5 mt-5">{info_productor.nombre_huerta}</h1>
 			</div>
 			<div className="row mx-5 mt-5">
 				<div className="col-2 ps-5 bg-success bg-opacity-25 me-5">
 					<ul className="mt-5 fs-4">
 						<h4 className="fs-4">Info</h4>
-						<li>Nombre</li>
-						<li>Teléfono </li>
-						<li>E-mail </li>
-						<li>Dirección</li>
+						<li>Nombre: {info_productor.nombre}</li>
+						<li>Teléfono: {info_productor.telefono} </li>
+						<li>E-mail: {info_productor.email} </li>
+						<li>Dónde encontrar: {info_productor.donde_encontrar}</li>
 					</ul>
 				</div>
 				<div className="col-5 text-center me-5">
-					<span className="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, at mollitia atque ex ducimus qui dicta magnam assumenda eius quia dolorum minus nostrum provident iste, fuga doloribus harum quod? Maxime.
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, at mollitia atque ex ducimus qui dicta magnam assumenda eius quia dolorum minus nostrum provident iste, fuga doloribus harum quod? Maxime.Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, at mollitia atque ex ducimus qui dicta magnam assumenda eius quia dolorum minus nostrum provident iste, fuga doloribus harum quod? Maxime.Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, at mollitia atque ex ducimus qui dicta magnam assumenda eius quia dolorum minus nostrum provident iste, fuga doloribus harum quod? Maxime.
+					<span className="fs-5">{info_productor.descripcion}
 					</span>
 				</div>
 				<div className="col-2">

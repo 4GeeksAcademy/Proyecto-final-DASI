@@ -17,7 +17,8 @@ export const Perfil = () => {
 		provincia: "",
 		nombre_huerta: "",
 		problemas: "",
-		donde_encontrar: ""
+		donde_encontrar: "",
+		descripcion: ""
 	});
 
 	const handleChange = event => {
@@ -48,11 +49,12 @@ export const Perfil = () => {
 			newProfile.provincia,
 			newProfile.nombre_huerta,
 			newProfile.problemas,
-			newProfile.donde_encontrar
+			newProfile.donde_encontrar,
+			newProfile.descripcion
 		);
 
 		if (nuevo_productor) {
-			navigate('/perfil'); /* Perfil del productor */
+			navigate('/'); /* Perfil del productor */
 		} else {
 			setNewProfile({
 				nombre: "",
@@ -64,7 +66,8 @@ export const Perfil = () => {
 				provincia: "",
 				nombre_huerta: "",
 				problemas: "",
-				donde_encontrar: ""
+				donde_encontrar: "",
+				descripcion: ""
 			});
 		}
 	}
@@ -184,6 +187,16 @@ export const Perfil = () => {
 								name="problemas"
 							/>
 							<label htmlFor="floatingInput">¿Cuáles son tus problemas como agricultor?</label>
+						</div>
+						<div className="form-floating mb-3">
+							<input
+								type="text"
+								onChange={handleChange}
+								className="form-control"
+								placeholder="Cuéntanos quién eres"
+								name="descripcion"
+							/>
+							<label htmlFor="floatingInput">¿Quién eres?</label>
 						</div>
 						<div className="form-floating mb-3">
 							<input

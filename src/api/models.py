@@ -94,6 +94,7 @@ class PerfilProductor(db.Model):
     foto_portada = db.Column(db.String(250), nullable=True)
     foto_perfil = db.Column(db.String(250), nullable=True)
     problemas = db.Column(db.String(250), nullable=True)
+    descripcion = db.Column(db.String(400), nullable=True)
     donde_encontrar = db.Column(db.String(250), nullable=True)
     latitud = db.Column(db.Float, nullable=True)
     longitud = db.Column(db.Float, nullable=True)
@@ -116,6 +117,7 @@ class PerfilProductor(db.Model):
             "provincia ": self.provincia,
             "nombre_huerta": self.nombre_huerta,
             "problemas": self.problemas,
+            "descripcion": self.descripcion,
             "donde_encontrar": self.donde_encontrar,
             "latitud": self.latitud,
             "longitud": self.longitud,
