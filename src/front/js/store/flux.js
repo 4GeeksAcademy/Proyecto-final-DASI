@@ -77,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
 			// 		setStore({ perfil: response.data.results });
 			// 		console.log(getStore());
-					
+
 			// 		console.log(getStore().perfil[0].nombre_huerta)
 
 
@@ -101,7 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 					console.log(error);
-					
+
 				}
 			},
 
@@ -115,7 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, descripcion, donde_encontrar) => {
+			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas,donde_encontrar, descripcion) => {
 				let user_id = localStorage.getItem("user_id")
 				try {
 					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
@@ -134,7 +134,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						user_id: user_id
 					})
 					console.log("Perfil creado", data);
-					// setStore({perfil_productor: response.data})
+
+
 					// return true
 
 
@@ -163,36 +164,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getNombreProducto: async () => {
 				try {
-				  const response = await axios.get(process.env.BACKEND_URL + "/api/producto");
-				  const data = response.data;
-			  
-				  setStore({ nombre_producto: data.results }); // Aquí corregido
-			  
-				  return data;
-				} catch (error) {
-				  console.log("Error loading message from backend", error);
-				}
-			  },
+					const response = await axios.get(process.env.BACKEND_URL + "/api/producto");
+					const data = response.data;
 
-			  getProductoPorProductorId: async () => {
-				try {
-				  const response = await axios.get(process.env.BACKEND_URL + "/api/producto_by_id_productor");
-				  const data = response.data;
-			  
-				  setStore({ nombre_producto: data.results }); // Aquí corregido
-			  
-				  return data;
+					setStore({ nombre_producto: data.results }); // Aquí corregido
+
+					return data;
 				} catch (error) {
-				  console.log("Error loading message from backend", error);
+					console.log("Error loading message from backend", error);
 				}
-			  },
+			},
+
+			getProductoPorProductorId: async () => {
+				try {
+					const response = await axios.get(process.env.BACKEND_URL + "/api/producto_by_productor/1"); //falta agregar id de ptoductor como variable
+					const data = response.data;
+
+					setStore({ nombre_producto: data.results }); // Aquí corregido
+
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+				}
+			},
 
 
 			// -------------------------- AÑADIR PRODUCTO --------------------------
 
 			newProduct: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
 				let productor_id = getStore().info_productor.id
-				
+
 				console.log("productor id del flux", productor_id);
 				try {
 
@@ -300,10 +301,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					console.log(data.data.productor );
-					console.log(getStore().info_productor );
+					console.log(data.data.productor);
+					console.log(getStore().info_productor);
 
-					
+
 
 					localStorage.setItem("token", data.data.access_token)
 					localStorage.setItem("user_id", data.data.user_id)
@@ -346,7 +347,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// if (!store.token) setStore({ log: false })
 					// else setStore({ log: true })
 
-					setStore({log:true})
+					setStore({ log: true })
 					console.log(data);
 
 
@@ -355,7 +356,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					console.log(error);
-					setStore({log:false})
+					setStore({ log: false })
 
 					return false;
 
@@ -373,9 +374,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					//codigo exitoso
 
-					let data = await axios.get(process.env.BACKEND_URL + '/api/validate',{
+					let data = await axios.get(process.env.BACKEND_URL + '/api/validate', {
 
-						headers:{
+						headers: {
 
 							"Authorization": `Bearer ${token}`,
 
@@ -404,15 +405,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getUsuarios: async () => {
 
 				try {
-				
+
 					const response = await axios.get(process.env.BACKEND_URL + "/api/users")
 
 					let resultados = response.data.results
-					setStore({ usuarios: resultados})
-					
+					setStore({ usuarios: resultados })
+
 					const idArray = getStore().usuarios.map(item => item.id);
 
-					setStore({ usuarios: idArray})
+					setStore({ usuarios: idArray })
 
 					console.log(getStore().usuarios);
 

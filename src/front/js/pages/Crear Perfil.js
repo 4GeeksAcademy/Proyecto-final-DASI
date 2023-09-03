@@ -118,7 +118,7 @@ export const Perfil = () => {
 								className="form-control"
 								name="comunidad_autonoma"
 							>
-								
+
 								<option value=""></option>
 								{Object.keys(store.communityData).map((community, index) => (
 									<option key={index} value={community}>
@@ -188,26 +188,33 @@ export const Perfil = () => {
 							/>
 							<label htmlFor="floatingInput">¿Cuáles son tus problemas como agricultor?</label>
 						</div>
+
+
 						<div className="form-floating mb-3">
+
 							<input
 								type="text"
 								onChange={handleChange}
 								className="form-control"
-								placeholder="Cuéntanos quién eres"
+								placeholder="descripcion"
 								name="descripcion"
 							/>
-							<label htmlFor="floatingInput">¿Quién eres?</label>
+							<label htmlFor="floatingInput">Descripcion</label>
 						</div>
+
 						<div className="form-floating mb-3">
+
 							<input
 								type="text"
 								onChange={handleChange}
 								className="form-control"
-								placeholder="Donde y cuando encontrarte"
+								placeholder="donde_encontrar"
 								name="donde_encontrar"
 							/>
-							<label htmlFor="floatingInput">¿Dónde y cuándo podemos encontrarte</label>
+							<label htmlFor="floatingInput">Donde encontrar</label>
 						</div>
+
+
 
 						<div className="d-flex justify-content-center">
 							<button className="btn btn-success" type="submit">

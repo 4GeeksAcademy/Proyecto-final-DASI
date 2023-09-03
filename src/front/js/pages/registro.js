@@ -15,8 +15,8 @@ export const Registro = () => {
 
     //Crear contacto
 
-    async function createContact(e)  {
-		e.preventDefault()
+    async function createContact(e) {
+        e.preventDefault()
         console.log(contact.username,
             contact.password,
             contact.email)
@@ -27,7 +27,7 @@ export const Registro = () => {
 
         );
         if (nuevo_registro) {
-            navigate('/');
+            navigate('/login');
         } else {
             setContact({
                 username: "",
@@ -43,24 +43,24 @@ export const Registro = () => {
         setContact({ ...contact, [event.target.name]: event.target.value });
     };
 
-    
+
     return (
         <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <h1 className="text-center mt-5">Registro Nuevo Usuario</h1>
-                    <form onSubmit={createContact}>
-                        <div className="form-group">
-                            <label>Usuario</label>
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Añada aquí su usuario"
-                                name="username"
-                            />
-                        </div>
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+                        <h1 className="text-center mt-5">Registro Nuevo Usuario</h1>
+                        <form onSubmit={createContact}>
+                            <div className="form-group">
+                                <label>Usuario</label>
+                                <input
+                                    type="text"
+                                    onChange={handleChange}
+                                    className="form-control"
+                                    placeholder="Añada aquí su usuario"
+                                    name="username"
+                                />
+                            </div>
 
                             <div className="form-group">
                                 <label>Email</label>
@@ -72,15 +72,15 @@ export const Registro = () => {
                                     name="email" />
                             </div>
 
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input
-                                type="password"
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Añada aquí su password"
-                                name="password" />
-                        </div>
+                            <div className="form-group">
+                                <label>Password</label>
+                                <input
+                                    type="password"
+                                    onChange={handleChange}
+                                    className="form-control"
+                                    placeholder="Añada aquí su password"
+                                    name="password" />
+                            </div>
 
                             <button type="submit" className="btn btn-primary form-control mt-3">
                                 Registro

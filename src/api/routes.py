@@ -142,18 +142,21 @@ def get_all_products():
     return jsonify(response_body), 200
 
 # get lista de Productos by ID de Productor
-@api.route('/producto_by_id_productor/<int:productor_id>', methods=['Get'])
-def get_all_products_by_Id(productor_id):
+@api.route('/producto_by_productor/<int:id>', methods=['Get'])
+def get_all_products_by_Id(id):
 
-    productos_query = Producto.query.filter_by(productor_id=productor_id).first()
-    # productos_query = Producto.query.all()
+    productos_query = Producto.query.filter_by(productor_id=id).all()
+    #productos_query = Producto.query.filter_by(id=id).first()
+    #productos_query = Producto.query.all()
+    #productos_query = Producto.query.count()
+    #productos_query = Producto.query.filter_by(nombre="Tomate").all()
     results = list(map(lambda item: item.serialize(), productos_query))
-
+    #results = productos_query
     response_body = {
        "results": results
     }
 
-    return jsonify(response_body), 2
+    return jsonify(response_body), 200
 
 
 # crear usuario
@@ -163,11 +166,19 @@ def add_user():
 
     request_body = request.get_json(force=True)
     # for x in request_body:
+    #     item = User(username=x['username'],
+    #                 password=x['password'],
+    #                 email=x['email'])
+    #     db.session.add(item)
+    # db.session.commit()
+
     item = User(username=request_body['username'],
-                    password=request_body['password'],
-                    email=request_body['email'])
+                password=request_body['password'],
+                email=request_body['email'])
     db.session.add(item)
     db.session.commit()
+
+
 
     response_body = {
         'msg': 'ok',
@@ -282,6 +293,7 @@ def add_productor():
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
         donde_encontrar= request_body['donde_encontrar'],
+        descripcion= request_body['descripcion'],
         user_id=request_body['user_id'],
         latitud = location.latitude,
         longitud =location.longitude
