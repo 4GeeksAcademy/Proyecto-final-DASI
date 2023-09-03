@@ -102,8 +102,7 @@ class PerfilProductor(db.Model):
     #favoritos = db.relationship('favoritos_productores', backref='perfil_productores', lazy=True)
 
     def __repr__(self):
-        return '<PerfilProductor %r>' % self.id
- 
+        return '<PerfilProductor %r>' % self.nombre_huerta
 
     def serialize(self):
         return {

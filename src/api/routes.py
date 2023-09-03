@@ -142,18 +142,21 @@ def get_all_products():
     return jsonify(response_body), 200
 
 # get lista de Productos by ID de Productor
-@api.route('/producto_by_id_productor/<int:productor_id>', methods=['Get'])
-def get_all_products_by_Id(productor_id):
+@api.route('/producto_by_productor/<int:id>', methods=['Get'])
+def get_all_products_by_Id(id):
 
-    productos_query = Producto.query.filter_by(productor_id=productor_id).first()
-    # productos_query = Producto.query.all()
+    productos_query = Producto.query.filter_by(productor_id=id).all()
+    #productos_query = Producto.query.filter_by(id=id).first()
+    #productos_query = Producto.query.all()
+    #productos_query = Producto.query.count()
+    #productos_query = Producto.query.filter_by(nombre="Tomate").all()
     results = list(map(lambda item: item.serialize(), productos_query))
-
+    #results = productos_query
     response_body = {
        "results": results
     }
 
-    return jsonify(response_body), 2
+    return jsonify(response_body), 200
 
 
 # crear usuario
