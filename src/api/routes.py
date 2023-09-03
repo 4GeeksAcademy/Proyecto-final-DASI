@@ -293,6 +293,7 @@ def add_productor():
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
         donde_encontrar= request_body['donde_encontrar'],
+        descripcion= request_body['descripcion'],
         user_id=request_body['user_id'],
         latitud = location.latitude,
         longitud =location.longitude

@@ -6,7 +6,7 @@ import "../../styles/home.css";
 
 export const EditProduct = () => {
 
-	const { store, actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
     const navigate = useNavigate();
 
     const [product, setProduct] = useState({
@@ -21,8 +21,8 @@ export const EditProduct = () => {
 
     //EDITAR PRODUCTO
 
-    async function editProduct(e)  {
-		e.preventDefault()
+    async function editProduct(e) {
+        e.preventDefault()
         let nuevo_producto = await actions.upDate(
             product.nombre,
             product.cantidad,
@@ -34,9 +34,9 @@ export const EditProduct = () => {
 
         );
         if (nuevo_producto) {
-            navigate('/'); /* enlace a perfil productor*/
-		} else{
-			setProduct({
+            navigate('/perfil'); /* enlace a perfil productor*/
+        } else {
+            setProduct({
                 nombre: "Nombre",
                 cantidad: "",
                 unidad_medida: "Medida",
@@ -46,9 +46,9 @@ export const EditProduct = () => {
                 recogida: "Recogida",
                 precio: ""
             });
-		}
-		
-	};
+        }
+
+    };
 
 
     const handleChange = event => {
@@ -60,50 +60,50 @@ export const EditProduct = () => {
     const handleDropdownClick = (event) => {
         setProduct({ ...product, [event.target.name]: event.target.text });
         console.log(product);
-      };
+    };
 
     //   useEffect(() => {
-		
-	// 	actions.getNombreProducto();
 
-	// }, []);
+    // 	actions.getNombreProducto();
+
+    // }, []);
     // useEffect(() => {
-		
-	// 	actions.getProfile();
-	
 
-	// }, []);
-	return (
-		<div className="pb-5 text-center m-auto">
+    // 	actions.getProfile();
+
+
+    // }, []);
+    return (
+        <div className="pb-5 text-center m-auto">
 
             <h1 className="mt-5" >Editar producto</h1>
 
             <form onSubmit={editProduct} className=" pb-5 ">
 
                 <div className="d-inline-flex my-3 mx-5 text-start" >
-                    
+
                     <div className="dropdown form-group  mx-4">
-                        
+
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {product.nombre}
+                            {product.nombre}
                         </button>
                         <ul className="dropdown-menu">
 
-                            {store.nombre_producto.map((item) => 
-                                <li><a className="dropdown-item" 
-                                        onClick={handleDropdownClick} 
-                                        name="nombre" 
-                                        href="#">{item}
+                            {store.nombre_producto.map((item) =>
+                                <li><a className="dropdown-item"
+                                    onClick={handleDropdownClick}
+                                    name="nombre"
+                                    href="#">{item}
                                 </a></li>
-                                )}
+                            )}
 
                         </ul>
                     </div>
 
                     <div className="dropdown form-group  mx-4">
-                        
+
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {product.unidad_medida}
+                            {product.unidad_medida}
                         </button>
                         <ul className="dropdown-menu">
 
@@ -114,9 +114,9 @@ export const EditProduct = () => {
                     </div>
 
                     <div className="dropdown form-group  mx-4">
-                        
+
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {product.lista}
+                            {product.lista}
                         </button>
                         <ul className="dropdown-menu">
 
@@ -125,12 +125,12 @@ export const EditProduct = () => {
 
                         </ul>
                     </div>
-                    
+
 
                     <div className="dropdown form-group  mx-4">
-                        
+
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {product.recogida}
+                            {product.recogida}
                         </button>
                         <ul className="dropdown-menu">
 
@@ -142,7 +142,7 @@ export const EditProduct = () => {
 
 
                 </div>
-					
+
                 <div className="form-group my-3 col-6 m-auto text-start">
                     <label>Variedad</label>
                     <input
@@ -175,13 +175,13 @@ export const EditProduct = () => {
                         name="precio"
                     />
                 </div>
-					
+
                 <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center">
                     Submit
                 </button>
 
             </form>
-            
-		</div>
-	);
+
+        </div>
+    );
 };

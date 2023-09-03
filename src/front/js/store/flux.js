@@ -115,7 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, descripcion, donde_encontrar) => {
+			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas,donde_encontrar, descripcion) => {
 				let user_id = localStorage.getItem("user_id")
 				try {
 					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
@@ -134,7 +134,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						user_id: user_id
 					})
 					console.log("Perfil creado", data);
-					// setStore({perfil_productor: response.data})
+
+
 					// return true
 
 
