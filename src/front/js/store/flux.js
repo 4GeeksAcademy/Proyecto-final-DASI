@@ -166,10 +166,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//----------------------------OBTENER INFORMACION PUBLICA DE PERFIL DE PRODUCTOR----------------------
 			getInfoPublicaProductor: async (id) => {
 				try {
-					const response = await axios.get(process.env.BACKEND_URL + `/api/perfil/${id}`); //falta agregar id de ptoductor como variable
+					const response = await axios.get(process.env.BACKEND_URL + `/api/perfil/${id}`);
 					const data = response.data;
 
-					setStore({ info_productor_publico: data.results }); // Aquí corregido
+					setStore({ info_productor_publico: data.result }); // Aquí corregido
 
 					return data;
 				} catch (error) {
