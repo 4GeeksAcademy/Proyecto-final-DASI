@@ -31,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			perfil: [],
 			nombre_huerta: [],
 			info_productor: "",
+			info_productor_publico: "",
 			is_productor: false,
 
 			// perfil_productor:[],
@@ -115,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas,donde_encontrar, descripcion) => {
+			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar, descripcion) => {
 				let user_id = localStorage.getItem("user_id")
 				try {
 					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
@@ -159,6 +160,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 
+				}
+			},
+
+			//----------------------------OBTENER INFORMACION PUBLICA DE PERFIL DE PRODUCTOR----------------------
+			getInfoPublicaProductor: async (id) => {
+				try {
+					const response = await axios.get(process.env.BACKEND_URL + `/api/perfil/${id}`); //falta agregar id de ptoductor como variable
+					const data = response.data;
+
+					setStore({ info_productor_publico: data.results }); // Aquí corregido
+
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend endpoint api", error);
 				}
 			},
 
