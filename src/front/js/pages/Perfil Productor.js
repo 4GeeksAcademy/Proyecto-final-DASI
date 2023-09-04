@@ -37,6 +37,9 @@ export const PerfilProductor = () => {
 	async function GetProducts() {
 		await actions.getNombreProducto();
 	  }
+
+	  
+
 	
 	  useEffect(() => {
 		GetProducts();
@@ -118,6 +121,9 @@ export const PerfilProductor = () => {
 					</ul>
 				</div>
 			</div > */}
+			<a href="https://api.whatsapp.com/send?phone=680112737" target="_blank">Chat en WhatsApp</a>
+			<div class="elfsight-app-d211c1dd-dc7f-448b-a058-6a35bbf3bfa0"></div>
+			
 		</div >
 	);
 };
