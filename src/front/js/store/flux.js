@@ -134,9 +134,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						user_id: user_id
 					})
 					console.log("Perfil creado", data);
+					setStore({ info_productor: data.data.results[1] })
+					console.log(getStore().info_productor);
 
 
-					// return true
+					return true
 
 
 				} catch (error) {
@@ -302,7 +304,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 
 					console.log(data.data.productor);
-					console.log(getStore().info_productor);
+					// console.log(getStore().info_productor);
 
 
 
@@ -348,6 +350,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// else setStore({ log: true })
 
 					setStore({ log: true })
+
 					console.log(data);
 
 

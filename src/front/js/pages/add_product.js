@@ -66,12 +66,12 @@ export const AddProduct = () => {
         console.log(product);
     };
 
-    useEffect(() => {
-        window.location.href = '/perfil'
-        // actions.getNombreProducto();
+    // useEffect(() => {
+    //     window.location.href = '/perfil'
+    //     // actions.getNombreProducto();
 
 
-    }, [addProduct]);
+    // }, [addProduct]);
 
     return (
         <div className="pb-5 text-center m-auto">

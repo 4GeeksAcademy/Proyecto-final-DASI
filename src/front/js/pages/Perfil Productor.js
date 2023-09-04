@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import "../../styles/home.css";
+import { CardProducto } from "../component/card.producto.js";
 
 export const PerfilProductor = () => {
 
@@ -19,16 +20,12 @@ export const PerfilProductor = () => {
 	// 	{"variedad":"Melocotón","precio":17, "cantidad":8, "id":7}
 	// ]);
 
-	function deleteProduct(id) {
-		const newArray = products.filter((l) => l.id !== id);
-		setProducts(newArray);
-	}
+
 
 	let info_productor = store.info_productor
 	// console.log(info_productor);
 	console.log(info_productor.id);
 
-	let add_producto = store.nombre_producto
 
 	// useEffect(() => {
 	// 	console.log(add_producto)
@@ -37,6 +34,14 @@ export const PerfilProductor = () => {
 
 
 	// }, [add_producto]);
+	async function GetProducts() {
+		await actions.getNombreProducto();
+	  }
+	
+	  useEffect(() => {
+		GetProducts();
+	  }, []);
+	
 
 
 
@@ -61,7 +66,7 @@ export const PerfilProductor = () => {
 						<h4 className="fs-4">Info</h4>
 						<li>Nombre: {info_productor.nombre}</li>
 						<li>Teléfono: {info_productor.telefono} </li>
-						<li>E-mail: {info_productor.email} </li>
+						<li>Dirección: {info_productor.direccion} </li>
 						<li>Dónde encontrar: {info_productor.donde_encontrar}</li>
 					</ul>
 				</div>
@@ -73,10 +78,12 @@ export const PerfilProductor = () => {
 					<img className="" style={{ width: "550px", objectFit: "cover" }} src="https://static.diariofemenino.com/media/7515/huertoensuenos.jpg" />
 				</div>
 			</div>
-
+			<div>
+				<CardProducto />
+			</div>
 			{/* CARD PRODUCTOS DE LA SEMANA */}
 
-			<div className="mt-5 mx-5 border border-success border-3 p-3 overflow-x-auto" >
+			{/* <div className="mt-5 mx-5 border border-success border-3 p-3 overflow-x-auto" >
 				<div className="d-flex justify-content-between">
 					<span className="display-4 mb-4">Productos del mes</span>
 					<Link to="/add_product">
@@ -110,7 +117,7 @@ export const PerfilProductor = () => {
 					)}
 					</ul>
 				</div>
-			</div >
+			</div > */}
 		</div >
 	);
 };
