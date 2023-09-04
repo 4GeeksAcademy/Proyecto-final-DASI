@@ -11,10 +11,10 @@ export const CardProducto = () => {
 
     let add_producto = store.nombre_producto;
 
-    function deleteProduct(id) {
-		const newArray = products.filter((l) => l.id !== id);
-		setProducts(newArray);
-	}
+    // function deleteProduct(id) {
+	// 	const newArray = products.filter((l) => l.id !== id);
+	// 	setProducts(newArray);
+	// }
 
 
     return (

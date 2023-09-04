@@ -20,6 +20,7 @@ export const Home = () => {
 
   useEffect(() => {
     GetProducts();
+    actions.getProductor()
   }, []);
 
 
