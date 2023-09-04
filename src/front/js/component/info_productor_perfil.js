@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 import "../../styles/home.css";
-import { CardProducto } from "../component/card.producto.js";
-import { InfoProductorPerfil } from "../component/info_productor_perfil.js";
+import { CardProducto } from "./card.producto.js";
 
-export const PerfilProductorPublico = () => {
+export const InfoProductorPerfil = () => {
 
 
     const { store, actions } = useContext(Context);
@@ -32,10 +31,8 @@ export const PerfilProductorPublico = () => {
 
     return (
         <div className="Container" >
-
             <div className="p-4" >
-                <InfoProductorPerfil />
-                {/*    <img src="https://www.huercasa.com/sites/default/files/2021-10/huerto-urbano-ni%C3%B1os-huercasa.jpg" className="img-fluid w-100 portada" alt="..." />
+                <img src="https://www.huercasa.com/sites/default/files/2021-10/huerto-urbano-ni%C3%B1os-huercasa.jpg" className="img-fluid w-100 portada" alt="..." />
                 <div className="fs-3 d-flex justify-content-end">
                     <span className="btn btn-success mx-2" style={{ marginTop: "-50px", width: "40px", height: "40px" }}>
                         <i className="fa-solid fa-pen-to-square"></i>
@@ -62,11 +59,9 @@ export const PerfilProductorPublico = () => {
                 </div>
                 <div className="col-2">
                     <img className="" style={{ width: "550px", objectFit: "cover" }} src="https://static.diariofemenino.com/media/7515/huertoensuenos.jpg" />
-                </div> */}
+                </div>
             </div>
-            <div>
-                <CardProducto />
-            </div>
+
 
         </div >
     );
