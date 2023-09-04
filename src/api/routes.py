@@ -146,12 +146,7 @@ def get_all_products():
 def get_all_products_by_Id(id):
 
     productos_query = Producto.query.filter_by(productor_id=id).all()
-    #productos_query = Producto.query.filter_by(id=id).first()
-    #productos_query = Producto.query.all()
-    #productos_query = Producto.query.count()
-    #productos_query = Producto.query.filter_by(nombre="Tomate").all()
     results = list(map(lambda item: item.serialize(), productos_query))
-    #results = productos_query
     response_body = {
        "results": results
     }
@@ -316,7 +311,7 @@ def add_productor():
 # --------------- OBTENER TODOS LOS PRODUCTORES ------
 
 
-@api.route('/crear_perfil/', methods=['GET'])
+@api.route('/crear_perfil', methods=['GET'])
 def get_all_perfiles_productor():
 
     perfil_query = PerfilProductor.query.all()
@@ -367,6 +362,23 @@ def login():
     access_token = create_access_token(identity=email)
     return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"]})
 # -------------------- PROFILE --------------------
+
+
+@api.route("/get_productor", methods=["GET"])
+def getProductor():
+    users = User.query.all()
+    
+    serialized_users = [user.serialize() for user in users]
+    print(serialized_users)
+    
+    if serialized_users:
+        # Devuelve el campo "productor" del primer usuario serializado si hay usuarios
+        return jsonify({"productor": serialized_users[0]["productor"]})
+    else:
+        # Manejar el caso en el que no haya usuarios
+        return jsonify({"message": "No hay usuarios disponibles"}), 404  # Otra respuesta HTTP apropiada
+
+
 
 @api.route("/profile", methods=["GET"])
 @jwt_required()
