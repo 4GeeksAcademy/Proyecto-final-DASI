@@ -92,9 +92,14 @@ export const PerfilProductor = () => {
 					</ul>
 				</div>
 			</div > */}
-			<a href="https://api.whatsapp.com/send?phone=680112737" target="_blank">Chat en WhatsApp</a>
-		
+
+			<button type="button" className="btn btn-success fixed-bottom float-end" id="wp">
+				<a href="https://api.whatsapp.com/send?phone=680112737" className="link-light" id="wp-icon" >
+					<i className="fa-brands fa-whatsapp" ></i>
+				</a>
+			</button>
 			
+		
 		</div >
 	);
 };
