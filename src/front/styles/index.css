@@ -7,8 +7,9 @@
 /* ------------------- LOG IN CSS ------------------- */
 
 .btn-submit{
-    background-color: #91C788;
-    width: 26%;
+    background-color: #7ba873;
+    width: 53%;
+    letter-spacing: 2px;
 }
 
 #log {
@@ -16,6 +17,18 @@
     padding-top: 4rem !important;
     padding-bottom: 4rem !important;
 }
+
+#custom-hr {
+    border-top: 1px solid #bfbbbb;
+    margin: 20px auto;
+  }
+
+#btn-nu{
+    width: 13%; 
+    letter-spacing: 2px;
+    background-color: #3c5abb;
+}
+  
 
 /* ------------------- NAVBAR / FOOTER ------------------- */
 
