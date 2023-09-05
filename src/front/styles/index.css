@@ -56,3 +56,11 @@ footer{
     letter-spacing: 2px;
     background-color: #3c5abb;
 }
+
+/* ------------------- CREAR PERFIL ------------------- */
+
+#btn-cre{
+    width: 46%; 
+    letter-spacing: 2px;
+    background-color: #7ba873;
+}
