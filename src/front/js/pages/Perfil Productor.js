@@ -9,10 +9,12 @@ export const PerfilProductor = () => {
 
 	const { store, actions } = useContext(Context);
 
-
 	let info_productor = store.info_productor
 
-
+	async function GetProducts() {
+		await actions.getNombreProducto();
+	  }
+	
 	  useEffect(() => {
 		// actions.getProductosPorProductor();
 		// actions.getPerfilProductor()
@@ -20,7 +22,6 @@ export const PerfilProductor = () => {
 		// GetProductor();
 	  }, []);
 	
-
 	return (
 		<div className="Container" >
 			<div className="p-4" >
