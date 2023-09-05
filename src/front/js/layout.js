@@ -18,6 +18,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Perfil } from "./pages/Crear Perfil";
 import { PerfilProductor } from "./pages/Perfil Productor";
+import { PerfilProductorPublico } from "./pages/perfil_productor_publico";
 
 //create your first component
 const Layout = () => {
@@ -34,6 +35,7 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<PerfilProductorPublico />} path="/perfil/:theid" />
                         <Route element={<PerfilProductor />} path="/perfil" />
                         <Route element={<Perfil />} path="/crear_perfil" />
                         <Route element={<EditProduct />} path="/edit_product" />

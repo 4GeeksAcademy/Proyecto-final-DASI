@@ -33,7 +33,7 @@ export const Mapa = () => {
             {/* Marker for each Productor */}
             {perfiles.map(perfil => (
 
-                <Marker position={[perfil.latitud, perfil.longitud]}>
+                <Marker key={perfil.id} position={[perfil.latitud, perfil.longitud]}>
                     <Popup>
                         {perfil.nombre_huerta}
                     </Popup>
