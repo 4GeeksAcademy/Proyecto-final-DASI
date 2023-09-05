@@ -12,6 +12,11 @@
     letter-spacing: 2px;
 }
 
+.btn-submit:active{
+    background-color: #7ba873;
+
+}
+
 #log {
 
     padding-top: 4rem !important;
