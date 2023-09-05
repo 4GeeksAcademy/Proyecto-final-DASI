@@ -31,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			perfil: [],
 			nombre_huerta: [],
 			info_productor: "",
+			info_productor_publico: "",
 			is_productor: false,
 
 			// perfil_productor:[],
@@ -146,6 +147,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error loading message from backend", error)
 
+				}
+			},
+
+			//----------------------------OBTENER INFORMACION PUBLICA DE PERFIL DE PRODUCTOR----------------------
+			getInfoPublicaProductor: async (id) => {
+				try {
+					const response = await axios.get(process.env.BACKEND_URL + `/api/perfil/${id}`);
+					const data = response.data;
+
+					setStore({ info_productor_publico: data.result }); // Aquí corregido
+
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend endpoint api", error);
 				}
 			},
 
