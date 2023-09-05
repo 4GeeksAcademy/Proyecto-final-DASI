@@ -14,6 +14,9 @@ export const PerfilProductor = () => {
 	async function GetProducts() {
 		await actions.getNombreProducto();
 	  }
+
+	const openNewTab = () => {
+		window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');}
 	
 	  useEffect(() => {
 		// actions.getProductosPorProductor();
@@ -95,12 +98,12 @@ export const PerfilProductor = () => {
 				</div>
 			</div > */}
 
-			<button type="button" className="btn btn-success fixed-bottom float-end" id="wp">
-				<a href={`https://api.whatsapp.com/send?phone=${info_productor.telefono}`} className="link-light" id="wp-icon" >
+			
+			<button type="button" className="btn btn-success fixed-bottom float-end" id="wp" onClick={openNewTab}>
+				<a href="#" className="link-light" id="wp-icon" >
 					<i className="fa-brands fa-whatsapp" ></i>
 				</a>
 			</button>
-			
 		</div >
 	);
 };
