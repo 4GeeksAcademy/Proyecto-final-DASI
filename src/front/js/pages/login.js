@@ -10,6 +10,7 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [resp, setResp] = useState("");
 
 	const handlerNavigate = (e) => {
 		e.preventDefault()
@@ -27,6 +28,8 @@ export const Login = () => {
 		} else {
 			setEmail("");
 			setPassword("");
+			// email === "" || password === "" ?  console.log("te falta algo") : null
+			email === "" || password === "" ? setResp(<p>Debes rellenar todos los campos</p>) : null
 		}
 		console.log(store.info_productor);
 		console.log(store.is_productor);
@@ -50,6 +53,7 @@ export const Login = () => {
 
 				<div className="form-group my-4">
 					{/* <label>Email</label> */}
+					
 					<input
 						type="email"
 						value={email}
@@ -69,11 +73,14 @@ export const Login = () => {
 					/>
 				</div>
 
+				{resp}
+				{resp === "" ? store.respuesta_log : null}
+
 				<button type="submit" className="btn btn-submit mt-5 form-control col-4 fw-bold text-white fs-5">
 					Iniciar sesión
 				</button>
 
-				
+
 
 			</form>
 
