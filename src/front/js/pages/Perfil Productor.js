@@ -10,30 +10,8 @@ export const PerfilProductor = () => {
 
 	const { store, actions } = useContext(Context);
 
-	// const [products, setProducts] = useState ([
-	// 	{"variedad":"Cocos","precio":2, "cantidad":20, "id":1},
-	// 	{"variedad":"Tommate","precio":10, "cantidad":3, "id":2},
-	// 	{"variedad":"Cambur","precio":13, "cantidad":7, "id":3},
-	// 	{"variedad":"Piña","precio":4, "cantidad":7, "id":4},
-	// 	{"variedad":"Naranja","precio":6, "cantidad":7, "id":5},
-	// 	{"variedad":"Sandía","precio":1, "cantidad":5, "id":6},
-	// 	{"variedad":"Melocotón","precio":17, "cantidad":8, "id":7}
-	// ]);
-
-
-
 	let info_productor = store.info_productor
-	// console.log(info_productor);
-	console.log(info_productor.id);
 
-
-	// useEffect(() => {
-	// 	console.log(add_producto)
-	// 	//window.location.reload();
-	// 	// actions.getNombreProducto();
-
-
-	// }, [add_producto]);
 	async function GetProducts() {
 		await actions.getNombreProducto();
 	  }
@@ -42,10 +20,6 @@ export const PerfilProductor = () => {
 		GetProducts();
 	  }, []);
 	
-
-
-
-
 	return (
 		<div className="Container" >
 			<div className="p-4" >
