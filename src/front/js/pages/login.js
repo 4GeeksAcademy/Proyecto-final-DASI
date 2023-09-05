@@ -54,7 +54,7 @@ export const Login = () => {
 						type="email"
 						value={email}
 						className="form-control"
-						placeholder="Enter email"
+						placeholder="Introduzca su email"
 						onChange={e => setEmail(e.target.value)}
 					/>
 				</div>
@@ -64,7 +64,7 @@ export const Login = () => {
 						type="password"
 						value={password}
 						className="form-control"
-						placeholder="Enter password"
+						placeholder="Introduzca su contraseña"
 						onChange={e => setPassword(e.target.value)}
 					/>
 				</div>
