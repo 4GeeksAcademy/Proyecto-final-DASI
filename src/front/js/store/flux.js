@@ -310,19 +310,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// console.log(getStore().info_productor);
 
 
-
 					localStorage.setItem("token", data.data.access_token)
 					localStorage.setItem("user_id", data.data.user_id)
 					localStorage.setItem("productor_id", data.data.info_productor.id)
-
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
 					setStore({ is_productor: data.data.productor })
-
+					
 
 					return true;
 
 				} catch (error) {
+
+					
+
 
 					console.log(error);
 

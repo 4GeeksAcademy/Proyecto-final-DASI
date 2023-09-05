@@ -12,10 +12,11 @@ export const PerfilProductor = () => {
 
 	let info_productor = store.info_productor
 
+
 	  useEffect(() => {
-		actions.getProductosPorProductor();
-		actions.getPerfilProductor()
-		actions.getProductor()
+		// actions.getProductosPorProductor();
+		// actions.getPerfilProductor()
+		// actions.getProductor()
 		// GetProductor();
 	  }, []);
 	
@@ -94,12 +95,11 @@ export const PerfilProductor = () => {
 			</div > */}
 
 			<button type="button" className="btn btn-success fixed-bottom float-end" id="wp">
-				<a href="https://api.whatsapp.com/send?phone=680112737" className="link-light" id="wp-icon" >
+				<a href={`https://api.whatsapp.com/send?phone=${info_productor.telefono}`} className="link-light" id="wp-icon" >
 					<i className="fa-brands fa-whatsapp" ></i>
 				</a>
 			</button>
 			
-		
 		</div >
 	);
 };
