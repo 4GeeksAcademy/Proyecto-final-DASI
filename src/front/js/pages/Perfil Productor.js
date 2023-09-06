@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import PropTypes from "prop-types";
 import "../../styles/home.css";
 import { CardProducto } from "../component/card.producto.js";
 
@@ -15,9 +14,15 @@ export const PerfilProductor = () => {
 	async function GetProducts() {
 		await actions.getNombreProducto();
 	  }
+
+	const openNewTab = () => {
+		window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');}
 	
 	  useEffect(() => {
-		GetProducts();
+		// actions.getProductosPorProductor();
+		// actions.getPerfilProductor()
+		// actions.getProductor()
+		// GetProductor();
 	  }, []);
 	
 	return (
@@ -92,6 +97,13 @@ export const PerfilProductor = () => {
 					</ul>
 				</div>
 			</div > */}
+
+			
+			<button type="button" className="btn btn-success fixed-bottom float-end" id="wp" onClick={openNewTab}>
+				<a href="#" className="link-light" id="wp-icon" >
+					<i className="fa-brands fa-whatsapp" ></i>
+				</a>
+			</button>
 		</div >
 	);
 };
