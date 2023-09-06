@@ -4,6 +4,7 @@
 
 @import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
 
+
 /* ------------------- LOG IN CSS ------------------- */
 
 .btn-submit{
@@ -42,12 +43,12 @@
 footer{
 
     height: 128px;
-    color: #597c53;
+    background-color: #52734D;
 }
 
 
 nav {
-    color: #bfc446;
+    height: 85px;
 }
 
 #login{
@@ -55,6 +56,12 @@ nav {
     width: 79px;
     background-color: #7ba873;
     border-color: #7ba873;
+}
+
+#ir{
+    width: 132px;
+    background-color: #52734D;
+    border-color: #52734D;
 }
 
 /* ------------------- ADD PRODUCT ------------------- */
@@ -85,8 +92,8 @@ nav {
 #btn-re{
     width: 53%; 
     letter-spacing: 3px;
-    background-color: #597c53;
-    border-color: #597c53;
+    background-color: #7ba873;
+    border-color: #7ba873;
 }
 
 /* ------------------- CREAR PERFIL ------------------- */

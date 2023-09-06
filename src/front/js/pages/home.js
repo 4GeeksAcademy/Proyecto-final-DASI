@@ -68,7 +68,7 @@ export const Home = () => {
 
 
   return (
-    <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
+    <div className="  bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
       <div className="container pt-5 d-flex justify-content-center">
         {/* <ul className="dropdown-menu">
           {categoryProduct.options.map((option, optionIndex) => (

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 export const Footer = () => (
-
-	<footer className="footer bg-success bg-opacity-50 px-3">
+	// bg-success bg-opacity-50
+	<footer className="footer text-light px-3">
 
 		<div className="container-fluid">
 			<div className="row pt-3">

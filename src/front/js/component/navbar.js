@@ -55,9 +55,17 @@ export const Navbar = () => {
 						<img src="https://media.istockphoto.com/id/1023035296/es/vector/ensalada-icono-vector-de-se%C3%B1al-y-s%C3%ADmbolo-aisladas-sobre-fondo-blanco-el-concepto-de-logotipo.jpg?s=612x612&w=0&k=20&c=HMLUg1UhDlldPBK_ZNc9XBm9a5nJtbJrDk3JCj9qD30=" alt="" width="50" height="50" />
 					</a>
 
-					<li className="nav-item float-start ">
+					<button id="ir" className="btn btn-success p-0 " >
+
+						<li className="nav-item float-start ">
+							<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
+						</li>
+
+					</button>
+
+					{/* <li className="nav-item float-start ">
 						<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
-					</li>
+					</li> */}
 				</div>
 
 
@@ -68,22 +76,30 @@ export const Navbar = () => {
 
 					<div className="col-4  d-flex justify-content-center" >
 
-						<li className="nav-item ">
+						<button id="login" className="btn btn-success p-0 " >
+
+							<li className="nav-item" onClick={handlerHome}>
+								<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerHome}>Home</a>
+							</li>
+
+						</button>
+
+						{/* <li className="nav-item ">
 							<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerHome}>Home</a>
-						</li>
+						</li> */}
 					</div>
 
 					{(store.log === false) ?
 
 						<button id="login" className="btn btn-success p-0 " >
 
-							<li className="nav-item"  onClick={handlerLogIn}>
+							<li className="nav-item" onClick={handlerLogIn}>
 								<a className="nav-link active link-light" aria-current="page" href="#">Log in</a>
 							</li>
 						</button>
 
 						: <button id="login" className="btn btn-success p-0">
-							<li className="nav-item"  onClick={handlerLogOut}>
+							<li className="nav-item" onClick={handlerLogOut}>
 								<a className="nav-link active link-light" aria-current="page" href="#">Log out</a>
 							</li>
 						</button>
