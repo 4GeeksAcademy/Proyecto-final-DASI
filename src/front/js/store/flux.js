@@ -70,6 +70,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
+			productos:[]
+
 		},
 		actions: {
 
@@ -179,13 +181,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getProductosPorProductor: async () => {
-				const productorId = localStorage.getItem("productor_id");
-
+			getProductosPorProductor: async (id) => {
+				console.log(id);
 				try {
-					const response = await axios.get(process.env.BACKEND_URL + `/api/producto_by_productor/${productorId}`);
+					const response = await axios.get(process.env.BACKEND_URL + `/api/producto_by_productor/${id}`);
 					const data = response.data;
-					setStore({ nombre_producto: data.results });
+					setStore({ productos: data.results });
+					console.log(data);
+					
 
 					return data;
 				} catch (error) {
@@ -261,15 +264,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-
-
 					let data = await axios.post(process.env.BACKEND_URL + '/api/registro', {
 						username: username,
 						password: password,
 						email: email
-
-
-
 					})
 
 					console.log(data);
@@ -290,6 +288,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				localStorage.removeItem("token")
 				setStore({ log: false })
+				setStore({ is_productor: false })
+				setStore({ info_productor:"" })
+				// setStore({ nombre_producto: [] });
+				localStorage.removeItem("token")
+				localStorage.removeItem("user_id")
 
 				return false
 			},
@@ -306,17 +309,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					console.log(data.data.productor);
-
-					// console.log(getStore().info_productor);
-
-
 					localStorage.setItem("token", data.data.access_token)
 					localStorage.setItem("user_id", data.data.user_id)
-					localStorage.setItem("productor_id", data.data.info_productor.id)
+
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
 					setStore({ is_productor: data.data.productor })
+					console.log (getStore().is_productor)
 					
 
 					return true;
@@ -347,11 +346,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					// const store = getStore();
-
-
-					// if (!store.token) setStore({ log: false })
-					// else setStore({ log: true })
 
 					setStore({ log: true })
 
@@ -377,7 +371,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await axios.get(process.env.BACKEND_URL + '/api/get_productor')
 
 					console.log(data)
-					setStore({ is_productor: data.data.productor })
+					// setStore({ is_productor: data.data.productor })
 
 
 

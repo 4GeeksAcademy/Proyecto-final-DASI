@@ -12,17 +12,16 @@ export const PerfilProductor = () => {
 	let info_productor = store.info_productor
 
 	async function GetProducts() {
-		await actions.getNombreProducto();
+		await actions.getProductosPorProductor(store.info_productor.id);
 	  }
 
 	const openNewTab = () => {
 		window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');}
 	
 	  useEffect(() => {
-		// actions.getProductosPorProductor();
-		// actions.getPerfilProductor()
-		// actions.getProductor()
-		// GetProductor();
+		if (store.is_productor == true){
+			GetProducts();
+		}		
 	  }, []);
 	
 	return (

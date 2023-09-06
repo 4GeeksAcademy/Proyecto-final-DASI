@@ -13,6 +13,7 @@ export const Card = () => {
     function handlePerfilPublico(id) {
         //alert('hello');
         actions.getInfoPublicaProductor(id)
+        actions.getProductosPorProductor(id)
         //navigate("/perfil/1")
         navigate(`/perfil/${id}`)
         console.log("funciona")
