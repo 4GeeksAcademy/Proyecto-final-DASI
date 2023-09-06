@@ -73,20 +73,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
-			// pedirPerfil: async (filters) => {
-			// 	try {
-			// 		let response = await axios.post(process.env.BACKEND_URL + "/api/perfil_productor_home", filters);
-			// 		setStore({ perfil: response.data.results });
-			// 		console.log(getStore());
-
-			// 		console.log(getStore().perfil[0].nombre_huerta)
-
-
-			// 	} catch (error) {
-			// 		console.log(error);
-			// 		getStore().perfil.length === 0 ? console.log('No hay productores') : null //agregar condicional para evitar error cuando no hay perfil creado
-			// 	}
-			// },
 
 			pedirPerfil: async (filters) => {
 				try {
@@ -94,7 +80,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ perfil: response.data.results });
 					console.log(getStore());
 					if (getStore().perfil.length !== 0) {
-						// console.log(getStore().perfil[0].nombre_huerta);
 					} else {
 						console.log("No hay ningún perfil de productor.");
 					}
@@ -151,11 +136,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// ---------------------------------- OBTENER TODOS LOS PRODUCTORES -----------------------
 
 			getPerfilProductor: async () => {
-
+				const productorId = localStorage.getItem("productor_id");
+				let productor = parseInt(productorId) - 1;
 				try {
 					let response = await axios.get(process.env.BACKEND_URL + "/api/crear_perfil")
 					setStore({ perfil_productor: response.results })
-					console.log(getStore());
+					setStore({ info_productor: response.data.results[productor] })
+					console.log(response);
 
 				} catch (error) {
 					console.log("Error loading message from backend", error)
@@ -192,16 +179,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getProductoPorProductorId: async () => {
-				try {
-					const response = await axios.get(process.env.BACKEND_URL + "/api/producto_by_productor/1"); //falta agregar id de ptoductor como variable
-					const data = response.data;
+			getProductosPorProductor: async () => {
+				const productorId = localStorage.getItem("productor_id");
 
-					setStore({ nombre_producto: data.results }); // Aquí corregido
+				try {
+					const response = await axios.get(process.env.BACKEND_URL + `/api/producto_by_productor/${productorId}`);
+					const data = response.data;
+					setStore({ nombre_producto: data.results });
 
 					return data;
 				} catch (error) {
-					console.log("Error loading message from backend", error);
+					console.log("Error loading products by producer from backend", error);
 				}
 			},
 
@@ -323,14 +311,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// console.log(getStore().info_productor);
 
 
-
 					localStorage.setItem("token", data.data.access_token)
 					localStorage.setItem("user_id", data.data.user_id)
-
+					localStorage.setItem("productor_id", data.data.info_productor.id)
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
 					setStore({ is_productor: data.data.productor })
-
+					
 
 					return true;
 
@@ -380,6 +367,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					console.log(error);
 					setStore({ log: false })
+
+					return false;
+
+				}
+			},
+
+			getProductor: async () => {
+
+				try {
+
+					let data = await axios.get(process.env.BACKEND_URL + '/api/get_productor')
+
+					console.log(data)
+					setStore({ is_productor: data.data.productor })
+
+
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error);
 
 					return false;
 
