@@ -323,7 +323,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					
-					console.log(error.response.data.msg);
+					console.log(error);
 
 
 					error.response.status === 404 ? setStore({respuesta_log: error.response.data.msg }): null

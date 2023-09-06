@@ -363,7 +363,7 @@ def login():
     access_token = create_access_token(identity=email)
     
     return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"]})
-# -------------------- PROFILE --------------------
+
 
 
 @api.route("/get_productor", methods=["GET"])
@@ -381,6 +381,7 @@ def getProductor():
         return jsonify({"message": "No hay usuarios disponibles"}), 404  # Otra respuesta HTTP apropiada
 
 
+# -------------------- PROFILE --------------------
 
 @api.route("/profile", methods=["GET"])
 @jwt_required()
