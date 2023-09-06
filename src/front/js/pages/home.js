@@ -89,7 +89,7 @@ export const Home = () => {
             </button>
             <button
               type="button"
-              id="params"
+              id="op"
               className="btn btn-secondary dropdown-toggle dropdown-toggle-split btn-secondary"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -120,7 +120,7 @@ export const Home = () => {
             className="btn btn-secondary dropdown-toggle dropdown-toggle-split"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            id="params"
+            id="op"
           >
             <span className="visually-hidden">Toggle Dropdown</span>
           </button>
@@ -146,7 +146,7 @@ export const Home = () => {
             className="btn btn-secondary dropdown-toggle dropdown-toggle-split"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            id="params"
+            id="op"
           >
             <span className="visually-hidden">Toggle Dropdown</span>
           </button>
