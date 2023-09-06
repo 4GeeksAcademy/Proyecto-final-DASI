@@ -12,6 +12,7 @@ export const Registro = () => {
         password: "",
         email: "",
     });
+    const [resp, setResp] = useState("");
 
     //Crear contacto
 
@@ -34,6 +35,9 @@ export const Registro = () => {
                 password: "",
                 email: "",
             });
+            setResp("");
+            contact.username === "" || contact.email === "" || contact.password === "" ? setResp("Debes rellenar todos los campos") : null;
+
         }
 
     };
@@ -52,7 +56,7 @@ export const Registro = () => {
                         <h1 className="text-center mt-5">Regístrate</h1>
                         <div className="col-3 mt-4" id="custom-hr"></div>
                         <form onSubmit={createContact} className="col-4 m-auto text-center" >
-                           
+
                             <div className="form-group mt-5 ">
                                 {/* <label className="float-start" >Usuario</label> */}
                                 <input
@@ -87,6 +91,18 @@ export const Registro = () => {
                             {/* <button type="submit" className="btn btn-primary form-control mt-3">
                                 Regístrate
                             </button> */}
+
+                            <br />
+
+
+                            <div>
+
+                                <p className="text-danger">{resp}</p>
+
+                            </div>
+
+
+
                             <button type="submit" className="btn btn-primary mt-5 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-re">
                                 Regístrate
                             </button>
