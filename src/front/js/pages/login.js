@@ -74,7 +74,7 @@ export const Login = () => {
 
 				
 
-				<button type="submit" className="btn btn-submit mt-5 form-control col-4 fw-bold text-white fs-5">
+				<button type="submit" id="submit" className="btn btn-submit mt-5 form-control col-4 fw-bold text-white fs-5">
 					Iniciar sesión
 				</button>
 

@@ -7,14 +7,14 @@
 
 /* ------------------- LOG IN CSS ------------------- */
 
-.btn-submit{
+#submit{
     background-color: #7ba873;
     width: 53%;
     letter-spacing: 2px;
 }
 
-.btn-submit:active{
-    color: #7ba873;
+#submit:hover{
+    background-color: #699164;
 
 }
 
@@ -35,6 +35,10 @@
     background-color: #597c53;
     border-color: #597c53;
 }
+#btn-nu:hover{
+    background-color: #699164;
+
+}
   
 
 /* ------------------- NAVBAR / FOOTER ------------------- */
@@ -46,6 +50,10 @@ footer{
     background-color: #52734D;
 }
 
+/* footer p{
+    margin-right: 24px;
+} */
+
 
 nav {
     height: 85px;
@@ -53,15 +61,52 @@ nav {
 
 #login{
 
-    width: 79px;
+    width: 90px;
+    margin-left: 26px;    
     background-color: #7ba873;
     border-color: #7ba873;
+}
+
+#login:hover{
+    background-color: #699164;
+
 }
 
 #ir{
     width: 132px;
     background-color: #52734D;
     border-color: #52734D;
+}
+
+#ir:hover{
+    background-color: #699164;
+
+}
+
+#fav{
+
+    width: 111px;
+    margin-left: 26px; 
+    background-color: #7ba873;
+    border-color: #7ba873;
+}
+
+#fav:hover{
+    background-color: #699164;
+
+}
+
+#car{
+
+    width: 58px;
+    margin-left: 26px; 
+    background-color: #7ba873;
+    border-color: #7ba873;
+}
+
+#car:hover{
+    background-color: #699164;
+
 }
 
 /* ------------------- ADD PRODUCT ------------------- */

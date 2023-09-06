@@ -47,7 +47,7 @@ export const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="nav" >
-			<div className="container-fluid">
+			<div className="container-fluid px-4">
 
 				<div className="collapse navbar-collapse col-4" id="navbarSupportedContent">
 
@@ -63,18 +63,11 @@ export const Navbar = () => {
 
 					</button>
 
-					{/* <li className="nav-item float-start ">
-						<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
-					</li> */}
 				</div>
-
-
-
-
 
 				<div className="d-flex col-4 justify-content-end">
 
-					<div className="col-4  d-flex justify-content-center" >
+					<div className="col-4 d-flex justify-content-end">
 
 						<button id="login" className="btn btn-success p-0 " >
 
@@ -84,10 +77,9 @@ export const Navbar = () => {
 
 						</button>
 
-						{/* <li className="nav-item ">
-							<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerHome}>Home</a>
-						</li> */}
 					</div>
+
+					
 
 					{(store.log === false) ?
 
@@ -110,36 +102,44 @@ export const Navbar = () => {
 
 					{(store.log === true) ?
 
+						<button id="fav" className="btn btn-success p-0 " >
 
-						<li className="nav-item dropdown">
-							<a className="nav-link dropdown-toggle link-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Favoritos
-							</a>
-							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-								<li><a className="dropdown-item" href="#">Action</a></li>
-								<li><a className="dropdown-item" href="#">Another action</a></li>
-								<li><hr className="dropdown-divider" /></li>
-								<li><a className="dropdown-item" href="#">Something else here</a></li>
-							</ul>
-						</li>
+
+							<li className="nav-item dropdown">
+								<a className="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Favoritos
+								</a>
+								<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+									<li><a className="dropdown-item" href="#">Action</a></li>
+									<li><a className="dropdown-item" href="#">Another action</a></li>
+									<li><hr className="dropdown-divider" /></li>
+									<li><a className="dropdown-item" href="#">Something else here</a></li>
+								</ul>
+							</li>
+
+						</button>
 
 						: null}
+
 
 					{/* CARRITO */}
 
 					{(store.log === true) ?
+						<button id="car" className="btn btn-success p-0 " >
 
-						<li className="nav-item dropdown">
-							<a className="nav-link dropdown-toggle link-dark" href="#" id="carrito" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i className="fa-solid fa-cart-arrow-down"></i>
-							</a>
-							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-								<li><a className="dropdown-item" href="#">Action</a></li>
-								<li><a className="dropdown-item" href="#">Another action</a></li>
-								<li><hr className="dropdown-divider" /></li>
-								<li><a className="dropdown-item" href="#">Something else here</a></li>
-							</ul>
-						</li>
+
+							<li className="nav-item dropdown">
+								<a className="nav-link dropdown-toggle link-light" href="#" id="carrito" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<i className="fa-solid fa-cart-arrow-down"></i>
+								</a>
+								<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+									<li><a className="dropdown-item" href="#">Action</a></li>
+									<li><a className="dropdown-item" href="#">Another action</a></li>
+									<li><hr className="dropdown-divider" /></li>
+									<li><a className="dropdown-item" href="#">Something else here</a></li>
+								</ul>
+							</li>
+						</button>
 
 						: null}
 				</div>
