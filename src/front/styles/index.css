@@ -7,8 +7,14 @@
 /* ------------------- LOG IN CSS ------------------- */
 
 .btn-submit{
-    background-color: #91C788;
-    width: 26%;
+    background-color: #7ba873;
+    width: 53%;
+    letter-spacing: 2px;
+}
+
+.btn-submit:active{
+    background-color: #7ba873;
+
 }
 
 #log {
@@ -17,20 +23,24 @@
     padding-bottom: 4rem !important;
 }
 
+#custom-hr {
+    border-top: 1px solid #bfbbbb;
+    margin: 10px auto;
+  }
+
+#btn-nu{
+    width: 13%; 
+    letter-spacing: 2px;
+    background-color: #3c5abb;
+}
+  
+
 /* ------------------- NAVBAR / FOOTER ------------------- */
 
-#btn-home{
-    margin-left: 31rem !important;
-}
-
-#btn-login{
-
-    margin-left: 28rem !important;
-}
 
 footer{
 
-    height: 152px;
+    height: 128px;
 }
 
 /* ------------------- ADD PRODUCT ------------------- */
@@ -54,4 +64,20 @@ footer{
     font-size: 3rem;
 
     
+}
+
+/* ------------------- REGISTRO ------------------- */
+
+#btn-re{
+    width: 46%; 
+    letter-spacing: 2px;
+    background-color: #3c5abb;
+}
+
+/* ------------------- CREAR PERFIL ------------------- */
+
+#btn-cre{
+    width: 46%; 
+    letter-spacing: 2px;
+    background-color: #7ba873;
 }

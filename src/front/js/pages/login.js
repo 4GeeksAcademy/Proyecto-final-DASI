@@ -40,26 +40,29 @@ export const Login = () => {
 
 	// useEffect(() => {
 
+
 	// 	actions.getProfile();
+
 
 
 	// }, []);
 
 
 	return (
-		<div className=" text-center bg-success bg-opacity-25 pb-5" style={{ minHeight: '80vh' }}>
+		<div className=" text-center bg-success bg-opacity-25 pb-3" style={{ minHeight: '80vh' }}>
 
-			<h1 id="log">Log in</h1>
+			<h1 id="log">De la huerta</h1>
 
-			<form onSubmit={handlerSubmit} className="col-3 m-auto pb-5">
+			<form onSubmit={handlerSubmit} className="col-3 m-auto pb-3">
 
 				<div className="form-group my-4">
 					{/* <label>Email</label> */}
+					
 					<input
 						type="email"
 						value={email}
 						className="form-control"
-						placeholder="Enter email"
+						placeholder="Introduzca su email"
 						onChange={e => setEmail(e.target.value)}
 					/>
 				</div>
@@ -69,7 +72,7 @@ export const Login = () => {
 						type="password"
 						value={password}
 						className="form-control"
-						placeholder="Enter password"
+						placeholder="Introduzca su contraseña"
 						onChange={e => setPassword(e.target.value)}
 					/>
 				</div>
@@ -82,15 +85,22 @@ export const Login = () => {
 
 				</div>
 
-
-
-				<button type="submit" className="btn btn-submit mt-5 form-control col-4">
-					Submit
+				<button type="submit" className="btn btn-submit mt-5 form-control col-4 fw-bold text-white fs-5">
+					Iniciar sesión
 				</button>
+
 
 			</form>
 
-			<a href="#" className="link-primary" onClick={handlerNavigate}>Nuevo usuario</a>
+			<div className="col-3" id="custom-hr"></div>
+
+			<button className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-nu" onClick={handlerNavigate}>
+				Nuevo usuario
+			</button>
+
+			{/* <a href="#" className="link-primary text-decoration-none" onClick={handlerNavigate}>Nuevo usuario</a> */}
+
+
 
 		</div>
 	);

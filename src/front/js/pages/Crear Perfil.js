@@ -217,8 +217,11 @@ export const Perfil = () => {
 
 
 						<div className="d-flex justify-content-center">
-							<button className="btn btn-success" type="submit">
+							{/* <button className="btn btn-success" type="submit">
 								Registro
+							</button> */}
+							<button type="submit" className="btn btn-submit mt-5 mb-4 form-control col-4 fw-bold text-white fs-5" id="btn-cre">
+							Registro
 							</button>
 						</div>
 					</form>

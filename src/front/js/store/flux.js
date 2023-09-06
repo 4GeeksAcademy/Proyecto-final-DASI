@@ -306,7 +306,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					console.log(data);
+					console.log(data.data.productor);
+
 					// console.log(getStore().info_productor);
 
 
@@ -322,7 +323,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 
-					
 					console.log(error);
 
 
@@ -331,6 +331,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 					return false;
+
 
 				}
 			},
