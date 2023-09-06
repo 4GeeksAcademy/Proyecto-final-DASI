@@ -84,11 +84,12 @@ export const Home = () => {
         </ul> */}
         {categories.length > 0 ? categories.map((category, index) => (
           <div className="btn-group" key={index}>
-            <button type="button" className="btn btn-secondary ms-3 custom-dropdown-btn">
+            <button type="button" id="params" className="btn btn-secondary ms-3 custom-dropdown-btn">
               {selectedOptions[category.label] || category.label}
             </button>
             <button
               type="button"
+              id="params"
               className="btn btn-secondary dropdown-toggle dropdown-toggle-split btn-secondary"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -111,7 +112,7 @@ export const Home = () => {
           </div>
         )) : "cargando"}
         <div className="btn-group">
-          <button type="button" className="btn btn-secondary ms-3 custom-dropdown-btn">
+          <button type="button" id="params" className="btn btn-secondary ms-3 custom-dropdown-btn">
             {selectedCommunity || "Com. Autónoma"}
           </button>
           <button
@@ -119,6 +120,7 @@ export const Home = () => {
             className="btn btn-secondary dropdown-toggle dropdown-toggle-split"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            id="params"
           >
             <span className="visually-hidden">Toggle Dropdown</span>
           </button>
@@ -127,7 +129,7 @@ export const Home = () => {
               <li key={index}>
                 <button
                   className={`dropdown-item ${community === selectedCommunity ? "active" : ""}`}
-                  onClick={() => handleCommunitySelect(community)}
+                  onClick={() => handleCommunitySelect(community)} 
                 >
                   {community}
                 </button>
@@ -136,7 +138,7 @@ export const Home = () => {
           </ul>
         </div>
         <div className="btn-group">
-          <button type="button" className="btn btn-secondary ms-3 custom-dropdown-btn">
+          <button type="button" id="params" className="btn btn-secondary ms-3 custom-dropdown-btn">
             {selectedProvince || "Provincia"}
           </button>
           <button
@@ -144,6 +146,7 @@ export const Home = () => {
             className="btn btn-secondary dropdown-toggle dropdown-toggle-split"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            id="params"
           >
             <span className="visually-hidden">Toggle Dropdown</span>
           </button>
@@ -162,7 +165,7 @@ export const Home = () => {
 
         </div>
         <div className="ms-3">
-          <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+          <button type="button" id="lupa" className="btn btn-primary" onClick={handleSubmit}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>

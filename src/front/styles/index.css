@@ -5,6 +5,28 @@
 @import url("https://unpkg.com/leaflet@1.9.3/dist/leaflet.css");
 
 
+/* ------------------- HOME ------------------- */
+
+#params{
+
+    background-color: #52734D;
+    border-color: #52734D;
+}
+
+#params:hover{
+    background-color: #699164;
+
+}
+
+#lupa{
+    background-color: #7ba873;
+    border-color: #7ba873;
+
+}
+#lupa:hover{
+    background-color: #699164;
+
+}
 /* ------------------- LOG IN CSS ------------------- */
 
 #submit{
@@ -49,11 +71,6 @@ footer{
     height: 128px;
     background-color: #52734D;
 }
-
-/* footer p{
-    margin-right: 24px;
-} */
-
 
 nav {
     height: 85px;
