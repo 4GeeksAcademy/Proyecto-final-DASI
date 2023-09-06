@@ -353,10 +353,10 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if user is None:
-        return jsonify({"msg": "email do not exist"}), 404
+        return jsonify({"msg": "El email no existe"}), 404
 
     if password != user.password:
-        return jsonify({"msg": "Bad password"}), 401
+        return jsonify({"msg": "Contraseña incorrecta"}), 401
     
     
     print(user.serialize())

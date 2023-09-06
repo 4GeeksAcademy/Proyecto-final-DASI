@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-
+			respuesta_log: "",
 			log: false,
 			token: "",
 
@@ -323,9 +323,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					
+					console.log(error.response.data.msg);
 
 
-					console.log(error);
+					error.response.status === 404 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 401 ? setStore({respuesta_log: error.response.data.msg }): null
+
 
 					return false;
 
