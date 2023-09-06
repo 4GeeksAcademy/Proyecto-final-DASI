@@ -13,7 +13,7 @@
 }
 
 .btn-submit:active{
-    background-color: #7ba873;
+    color: #7ba873;
 
 }
 
@@ -31,7 +31,8 @@
 #btn-nu{
     width: 13%; 
     letter-spacing: 2px;
-    background-color: #3c5abb;
+    background-color: #597c53;
+    border-color: #597c53;
 }
   
 
@@ -41,6 +42,19 @@
 footer{
 
     height: 128px;
+    color: #597c53;
+}
+
+
+nav {
+    color: #bfc446;
+}
+
+#login{
+
+    width: 79px;
+    background-color: #7ba873;
+    border-color: #7ba873;
 }
 
 /* ------------------- ADD PRODUCT ------------------- */
@@ -69,9 +83,10 @@ footer{
 /* ------------------- REGISTRO ------------------- */
 
 #btn-re{
-    width: 46%; 
-    letter-spacing: 2px;
-    background-color: #3c5abb;
+    width: 53%; 
+    letter-spacing: 3px;
+    background-color: #597c53;
+    border-color: #597c53;
 }
 
 /* ------------------- CREAR PERFIL ------------------- */

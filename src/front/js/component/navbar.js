@@ -46,7 +46,7 @@ export const Navbar = () => {
 
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="nav" >
 			<div className="container-fluid">
 
 				<div className="collapse navbar-collapse col-4" id="navbarSupportedContent">
@@ -60,25 +60,34 @@ export const Navbar = () => {
 					</li>
 				</div>
 
-				<div className="col-4  d-flex justify-content-center" >
 
-					<li className="nav-item ">
-						<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerHome}>Home</a>
-					</li>
-				</div>
 
 
 
 				<div className="d-flex col-4 justify-content-end">
+
+					<div className="col-4  d-flex justify-content-center" >
+
+						<li className="nav-item ">
+							<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerHome}>Home</a>
+						</li>
+					</div>
+
 					{(store.log === false) ?
 
-						<li className="nav-item" id="btn-login" onClick={handlerLogIn}>
-							<a className="nav-link active link-dark" aria-current="page" href="#">Log in</a>
-						</li>
+						<button id="login" className="btn btn-success p-0 " >
 
-						: <li className="nav-item" id="btn-login" onClick={handlerLogOut}>
-							<a className="nav-link active link-dark" aria-current="page" href="#">Log out</a>
-						</li>
+							<li className="nav-item"  onClick={handlerLogIn}>
+								<a className="nav-link active link-light" aria-current="page" href="#">Log in</a>
+							</li>
+						</button>
+
+						: <button id="login" className="btn btn-success p-0">
+							<li className="nav-item"  onClick={handlerLogOut}>
+								<a className="nav-link active link-light" aria-current="page" href="#">Log out</a>
+							</li>
+						</button>
+
 					}
 
 					{/* FAVORITOS */}
