@@ -66,12 +66,6 @@ export const Home = () => {
     actions.pedirPerfil(formData);
   };
 
-  // async function handlerSubmit(e)  {
-  // 	e.preventDefault()
-  // 	await actions.login(email, password)
-  // }
-
-
 
   return (
     <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>

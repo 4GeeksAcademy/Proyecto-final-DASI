@@ -6,7 +6,6 @@ import "../../styles/home.css";
 
 export const CardProducto = () => {
 
-
     const { store, actions } = useContext(Context);
 
     let add_producto = store.productos;
@@ -15,7 +14,6 @@ export const CardProducto = () => {
 	// 	const newArray = products.filter((l) => l.id !== id);
 	// 	setProducts(newArray);
 	// }
-    console.log(add_producto)
 
     return (
 
