@@ -20,6 +20,7 @@ export const Perfil = () => {
 		donde_encontrar: "",
 		descripcion: ""
 	});
+	const [resp, setResp] = useState("");
 
 	const handleChange = event => {
 		const { name, value } = event.target;
@@ -69,6 +70,20 @@ export const Perfil = () => {
 				donde_encontrar: "",
 				descripcion: ""
 			});
+			setResp("");
+			newProfile.nombre === "" ||
+				newProfile.apellido === "" ||
+				newProfile.direccion === "" ||
+				newProfile.telefono === "" ||
+				newProfile.codigo_postal === "" ||
+				newProfile.comunidad_autonoma === "" ||
+				newProfile.provincia === "" ||
+				newProfile.nombre_huerta === "" ||
+				newProfile.problemas === "" ||
+				newProfile.donde_encontrar === "" ||
+				newProfile.descripcion === "" ? setResp("Debes rellenar todos los campos") : null;
+
+
 		}
 	}
 
@@ -214,14 +229,19 @@ export const Perfil = () => {
 							<label htmlFor="floatingInput">Donde encontrar</label>
 						</div>
 
+						<br />
 
+						<div className="d-flex justify-content-center" >
+							<p className="text-danger">{resp}</p>
+						</div>
 
 						<div className="d-flex justify-content-center">
+
 							{/* <button className="btn btn-success" type="submit">
 								Registro
 							</button> */}
 							<button type="submit" className="btn btn-submit mt-5 mb-4 form-control col-4 fw-bold text-white fs-5" id="btn-cre">
-							Registro
+								Registro
 							</button>
 						</div>
 					</form>
