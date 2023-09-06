@@ -28,7 +28,10 @@ export const Login = () => {
 		} else {
 			setEmail("");
 			setPassword("");
-			email === "" || password === "" ? setResp(<p>Debes rellenar todos los campos</p>) : null
+			setResp("");
+			// email === "" || password === "" ? setResp("Debes rellenar todos los campos") : null;
+			email === "" || password === "" ? setResp("Debes rellenar todos los campos") : setResp(store.respuesta_log);
+			
 		}
 		console.log(store.info_productor);
 		console.log(store.is_productor);
@@ -70,9 +73,12 @@ export const Login = () => {
 						onChange={e => setPassword(e.target.value)}
 					/>
 				</div>
-					{resp}
-					{resp === "" ? store.respuesta_log : null}
+
+				<br/>
+
 				<div>
+
+					<p className="text-danger">{resp}</p>
 
 				</div>
 
