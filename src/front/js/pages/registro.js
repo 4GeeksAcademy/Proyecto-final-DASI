@@ -47,43 +47,48 @@ export const Registro = () => {
     return (
         <div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
             <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <h1 className="text-center mt-5">Registro Nuevo Usuario</h1>
-                        <form onSubmit={createContact}>
-                            <div className="form-group">
-                                <label>Usuario</label>
+                <div className="row d-flex justify-content-center">
+                    <div className="col-md-8 ">
+                        <h1 className="text-center mt-5">Regístrate</h1>
+                        <div className="col-3 mt-4" id="custom-hr"></div>
+                        <form onSubmit={createContact} className="col-4 m-auto text-center" >
+                           
+                            <div className="form-group mt-5 ">
+                                {/* <label className="float-start" >Usuario</label> */}
                                 <input
                                     type="text"
                                     onChange={handleChange}
                                     className="form-control"
-                                    placeholder="Añada aquí su usuario"
+                                    placeholder="Introduzca su usuario"
                                     name="username"
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label>Email</label>
+                            <div className="form-group mt-5">
+                                {/* <label className="float-start">Email</label> */}
                                 <input
                                     type="email"
                                     onChange={handleChange}
                                     className="form-control"
-                                    placeholder="Añada aquí su Email"
+                                    placeholder="Introduzca su email"
                                     name="email" />
                             </div>
 
-                            <div className="form-group">
-                                <label>Password</label>
+                            <div className="form-group mt-5">
+                                {/* <label className="float-start">Contraseña</label> */}
                                 <input
                                     type="password"
                                     onChange={handleChange}
                                     className="form-control"
-                                    placeholder="Añada aquí su password"
+                                    placeholder="Introduzca su contraseña"
                                     name="password" />
                             </div>
 
-                            <button type="submit" className="btn btn-primary form-control mt-3">
-                                Registro
+                            {/* <button type="submit" className="btn btn-primary form-control mt-3">
+                                Regístrate
+                            </button> */}
+                            <button type="submit" className="btn btn-primary mt-5 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-re">
+                                Regístrate
                             </button>
                         </form>
                     </div>
