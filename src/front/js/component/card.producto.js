@@ -6,16 +6,14 @@ import "../../styles/home.css";
 
 export const CardProducto = () => {
 
-
     const { store, actions } = useContext(Context);
 
-    let add_producto = store.nombre_producto;
+    let add_producto = store.productos;
 
     // function deleteProduct(id) {
 	// 	const newArray = products.filter((l) => l.id !== id);
 	// 	setProducts(newArray);
 	// }
-
 
     return (
 
