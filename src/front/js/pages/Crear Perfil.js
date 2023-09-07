@@ -75,7 +75,7 @@ export const Perfil = () => {
 	return (
 		<div className="Container">
 			<div className="row justify-content-center">
-				<div className="col-md-8">
+				<div className="col-md-6">
 					<h1 className="text-center mb-5 mt-5 display-2">Crear Perfil</h1>
 					<form onSubmit={handleSubmit}>
 						<div className="form-floating mb-3">
@@ -217,10 +217,8 @@ export const Perfil = () => {
 
 
 						<div className="d-flex justify-content-center">
-							{/* <button className="btn btn-success" type="submit">
-								Registro
-							</button> */}
-							<button type="submit" className="btn btn-submit mt-5 mb-4 form-control col-4 fw-bold text-white fs-5" id="btn-cre">
+							
+							<button type="submit" className="btn btn-submit mt-5 mb-4 form-control col-4 fw-bold text-white fs-5" id="cre">
 							Registro
 							</button>
 						</div>

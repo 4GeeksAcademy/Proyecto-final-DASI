@@ -42,9 +42,9 @@ export const PerfilProductor = () => {
 				<h1 className="display-2 ms-5 mt-5">{info_productor.nombre_huerta}</h1>
 			</div>
 			<div className="row mx-5 mt-5">
-				<div className="col-2 ps-5 bg-success bg-opacity-25 me-5">
+				<div className="col-2 bg-success bg-opacity-25 me-5">
 					<ul className="mt-5 fs-4">
-						<h4 className="fs-4">Info</h4>
+						<h3 className="">Info</h3>
 						<li>Nombre: {info_productor.nombre}</li>
 						<li>Teléfono: {info_productor.telefono} </li>
 						<li>Dirección: {info_productor.direccion} </li>
