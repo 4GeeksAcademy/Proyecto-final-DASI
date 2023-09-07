@@ -26,6 +26,10 @@ export const Login = () => {
 			navigate('/')
 			actions.getProfile()
 			console.log(actions.getProductor())
+			// setEmail("");
+			// setPassword("");
+			// setResp("");
+			// email === "" || password === "" ? setResp("Debes rellenar todos los campos") : setResp(store.respuesta_log);
 		} else {
 			setEmail("");
 			setPassword("");
