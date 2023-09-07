@@ -123,6 +123,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					console.log("Perfil creado", data);
 					setStore({ info_productor: data.data.results[1] })
+					setStore({ is_productor: true })
 					console.log(getStore().info_productor);
 
 
@@ -314,9 +315,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
-					setStore({ is_productor: data.data.productor })
-					console.log (getStore().is_productor)
-					
+					setStore({ is_productor: data.data.productor })					
 
 					return true;
 

@@ -25,6 +25,7 @@ export const Login = () => {
 		if (logged) {
 			navigate('/')
 			actions.getProfile()
+			console.log(actions.getProductor())
 		} else {
 			setEmail("");
 			setPassword("");
