@@ -268,14 +268,33 @@ def add_productor():
 
     request_body = request.get_json(force=True)
 
-
+    #applying geocode method to get the location
     #making an instance of Nominatim class
     print(request_body)
     geolocator = Nominatim(user_agent="delahuerta_request")
-    loc_list = [request_body['direccion'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+    loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
     loc =  ','.join(loc_list)
     location = geolocator.geocode(loc)
     print("ok")
+
+    try :
+        loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+        loc =  ','.join(loc_list)
+        location = geolocator.geocode(loc)
+        
+
+        if location == None:
+            print("geolocation address not found, so we use municipio")
+            time.sleep(3)
+            loc_list = [request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+            loc =  ','.join(loc_list)
+            location = geolocator.geocode(loc)
+    except:
+        print ("error when geocoding, location not found, please use at least comunidad autonoma, provincia and municipio")
+        location = {"latitude":None,"longitude":None}
+            
+    
+
 
     productor = PerfilProductor(
         nombre= request_body['nombre'],
@@ -285,6 +304,7 @@ def add_productor():
         codigo_postal= request_body['codigo_postal'],
         comunidad_autonoma= request_body['comunidad_autonoma'],
         provincia= request_body['provincia'],
+        municipio= request_body['municipio'],
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
         donde_encontrar= request_body['donde_encontrar'],
