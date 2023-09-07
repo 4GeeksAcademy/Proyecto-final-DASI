@@ -301,16 +301,16 @@ def add_productor():
     print(request_body)
     geolocator = Nominatim(user_agent="delahuerta_request")
     #falta verificar dirección
-    try :
-        loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
-        loc =  ','.join(loc_list)
-        location = geolocator.geocode(loc)
-        print("ok con dirección completa")
-    except :
-        loc_list = [request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
-        loc =  ','.join(loc_list)
-        location = geolocator.geocode(loc)
-        print("ok con municipio")
+    # try :
+    #     loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+    #     loc =  ','.join(loc_list)
+    #     location = geolocator.geocode(loc)
+    #     print("ok con dirección completa")
+    # except :
+    #     loc_list = [request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+    #     loc =  ','.join(loc_list)
+    #     location = geolocator.geocode(loc)
+    #     print("ok con municipio")
     
 
 
