@@ -31,15 +31,16 @@ export const Registro = () => {
 
         if (nuevo_registro) {
             navigate('/login');
+            
         } else {
             setContact({
                 username: "",
                 password: "",
                 email: "",
             });
-            setResp(store.respuesta_log)
-            // setResp("");
-            // contact.username === "" || contact.email === "" || contact.password === "" ? setResp("Debes rellenar todos los campos") : null;
+            
+            setResp("");
+            contact.username === "" || contact.email === "" || contact.password === "" ? setResp("Debes rellenar todos los campos") : setResp(store.respuesta_log);
 
         }
         
