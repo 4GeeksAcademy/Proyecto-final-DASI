@@ -199,9 +199,9 @@ def create_user():
                 email=request_body['email'],
                 password=request_body['password'])
     
+  
     
-    
-    if request_body['email'] is "" or request_body['password'] is "" or request_body['username'] is "":
+    if request_body['email'] == "" or request_body['password'] == "" or request_body['username'] == "":
         return jsonify ({
             'msg':'Debes rellenar todos los campos'
         }), 401
@@ -363,30 +363,30 @@ def login():
 
     if user is None:
         return jsonify({"msg": "El email no existe"}), 404
-    else:
+    # else:
 
-        # Verificamos email válido (pro)
-        def validar_email(email):
-            # Patrón de expresión regular para validar el email
-            patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    #     # Verificamos email válido (pro)
+    #     def validar_email(email):
+    #         # Patrón de expresión regular para validar el email
+    #         patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
             
-            # Usamos re.match() para verificar el patrón en el email proporcionado
-            if re.match(patron_email, email):
-                return True
-            else:
-                return False
+    #         # Usamos re.match() para verificar el patrón en el email proporcionado
+    #         if re.match(patron_email, email):
+    #             return True
+    #         else:
+    #             return False
 
 
 
-        # Ejemplo de uso:
+    #     # Ejemplo de uso:
 
-        # email_ejemplo = "usuario@example.com"
-        if validar_email(email):
-            print("El email es válido.")
-        else:
-            return jsonify ({
-                'msg':'Formato de email incorrecto (revise @ .)'
-            }), 400
+    #     # email_ejemplo = "usuario@example.com"
+    #     if validar_email(email):
+    #         print("El email es válido.")
+    #     else:
+    #         return jsonify ({
+    #             'msg':'Formato de email incorrecto (revise @ .)'
+    #         }), 400
         
     if password != user.password:
         return jsonify({"msg": "Contraseña incorrecta"}), 401
