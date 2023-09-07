@@ -62,7 +62,7 @@ export const Navbar = () => {
 						</li>
 
 					</button>
-					<h1 id="titulo" className="fs.3" >De la huerta</h1>
+					<h1 id="titulo" className="fs.3 fw-semibold" >De la huerta</h1>
 
 				</div >
 

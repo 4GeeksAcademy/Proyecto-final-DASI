@@ -92,13 +92,13 @@ export const AddProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.nombre}
                         </button>
                         <ul className="dropdown-menu">
 
                             {producto.nombre.map((item, i) =>
-                                <li><a className="dropdown-item"
+                                <li><a className="dropdown-item op"
                                     onClick={handleDropdownClick}
                                     name="nombre"
                                     // key={i}
@@ -111,7 +111,7 @@ export const AddProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.unidad_medida}
                         </button>
                         <ul className="dropdown-menu">
@@ -138,7 +138,7 @@ export const AddProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.recogida}
                         </button>
                         <ul className="dropdown-menu">
@@ -150,7 +150,7 @@ export const AddProduct = () => {
                     </div>
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.tipo_produccion}
                         </button>
                         <ul className="dropdown-menu">
@@ -203,7 +203,8 @@ export const AddProduct = () => {
                     <p className="text-danger">{resp}</p>
                 </div>
 
-                <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center">
+                <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center drop-butt text-white"
+                style={{width: "200px"}}>
                     Añadir producto
                 </button>
 

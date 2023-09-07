@@ -22,7 +22,7 @@ export const Card = () => {
         <div className="row justify-content-center">
             {perfiles.map(perfil => (
                 <div key={perfil.id} className="col-sm-4 mb-3 mb-sm-0">
-                    <div className="card rounded">
+                    <div className="card rounded card-home mb-5">
                         <div className="card-body">
                             <h4 className="card-title text-center">{perfil.nombre_huerta}</h4>
                             <p className="card-text"><b>Nombre:</b> {perfil.nombre}</p>
@@ -31,7 +31,7 @@ export const Card = () => {
                             <p className="card-text"><b>Problemas:</b> {perfil.problemas || "No especificado"}</p>
                             <p className="card-text"><b>Dónde encontrar:</b> {perfil.donde_encontrar || "No especificado"}</p>
                             {/* <Link to={`/perfil/${perfil.id}`} className="btn btn-primary">Ir a su perfil</Link> */}
-                            <button type="button" className="btn btn-primary" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
+                            <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
                         </div>
                     </div>
                 </div>
