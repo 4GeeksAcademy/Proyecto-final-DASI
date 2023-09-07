@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
-import { CardProducto } from "../component/card.producto.js";
 import { InfoProductorPerfil } from "../component/info_productor_perfil.js";
 import { Context } from "../store/appContext";
 import { Whatsapp } from "../component/whatsapp.js";
+import { CardProductoPublico } from "../component/card.producto.publico.js";
 
 export const PerfilProductorPublico = () => {
    

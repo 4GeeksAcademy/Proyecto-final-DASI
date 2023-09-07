@@ -298,6 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ log: false })
 				setStore({ is_productor: false })
 				setStore({ info_productor: "" })
+				setStore({ perfil: [] });
 				// setStore({ nombre_producto: [] });
 				localStorage.removeItem("token")
 				localStorage.removeItem("user_id")
