@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-
+			respuesta_log: "",
 			log: false,
 			token: "",
 
@@ -268,7 +268,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/registro', {
+					let data = await axios.post(process.env.BACKEND_URL + '/api/users', {
 						username: username,
 						password: password,
 						email: email
@@ -280,8 +280,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 
-					console.log(error);
+					console.log(error.response.status);
+					console.log(error.response.data.msg);
 
+					error.response.status === 400 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 401 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 402 ? setStore({respuesta_log: error.response.data.msg }): null
 					return false;
 
 				}
@@ -325,6 +329,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 
 					console.log(error);
+
+					error.response.status === 400 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 404 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 401 ? setStore({respuesta_log: error.response.data.msg }): null
+
 
 					return false;
 

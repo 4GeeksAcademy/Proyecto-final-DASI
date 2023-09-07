@@ -12,29 +12,38 @@ export const Registro = () => {
         password: "",
         email: "",
     });
+    const [resp, setResp] = useState("");
 
     //Crear contacto
 
     async function createContact(e) {
         e.preventDefault()
+      
         console.log(contact.username,
             contact.password,
             contact.email)
+
         let nuevo_registro = await actions.registro(
             contact.username,
             contact.password,
             contact.email
 
         );
+
         if (nuevo_registro) {
             navigate('/login');
+            
+            
         } else {
             setContact({
                 username: "",
                 password: "",
                 email: "",
             });
+            setResp(store.respuesta_log)
+          
         }
+        
 
     };
 
@@ -56,6 +65,7 @@ export const Registro = () => {
                             <div className="form-floating mt-5 ">
                                 <input
                                     type="text"
+                                    value={contact.username}
                                     onChange={handleChange}
                                     className="form-control"
                                     placeholder="Introduzca su usuario"
@@ -67,6 +77,7 @@ export const Registro = () => {
                             <div className="form-floating mt-3">
                                 <input
                                     type="email"
+                                    value={contact.email}
                                     onChange={handleChange}
                                     className="form-control"
                                     placeholder="Introduzca su email"
@@ -78,6 +89,7 @@ export const Registro = () => {
                             <div className="form-floating mt-3">
                                 <input
                                     type="password"
+                                    value={contact.password}
                                     onChange={handleChange}
                                     className="form-control"
                                     placeholder="Introduzca su contraseña"
@@ -89,6 +101,18 @@ export const Registro = () => {
                             {/* <button type="submit" className="btn btn-primary form-control mt-3">
                                 Regístrate
                             </button> */}
+
+                            <br />
+
+
+                            <div>
+
+                                <p className="text-danger">{resp}</p>
+
+                            </div>
+
+
+
                             <button type="submit" className="btn btn-primary mt-5 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-re">
                                 Regístrate
                             </button>
