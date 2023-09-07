@@ -270,12 +270,21 @@ def add_productor():
 
 
     #making an instance of Nominatim class
+
     print(request_body)
     geolocator = Nominatim(user_agent="delahuerta_request")
-    loc_list = [request_body['direccion'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
-    loc =  ','.join(loc_list)
-    location = geolocator.geocode(loc)
-    print("ok")
+    #falta verificar dirección
+    try :
+        loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+        loc =  ','.join(loc_list)
+        location = geolocator.geocode(loc)
+        print("ok con dirección completa")
+    except :
+        loc_list = [request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+        loc =  ','.join(loc_list)
+        location = geolocator.geocode(loc)
+        print("ok con municipio")
+    
 
     productor = PerfilProductor(
         nombre= request_body['nombre'],
@@ -285,6 +294,7 @@ def add_productor():
         codigo_postal= request_body['codigo_postal'],
         comunidad_autonoma= request_body['comunidad_autonoma'],
         provincia= request_body['provincia'],
+        municipio= request_body['municipio'],
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
         donde_encontrar= request_body['donde_encontrar'],
