@@ -21,12 +21,14 @@ export const Registro = () => {
         console.log(contact.username,
             contact.password,
             contact.email)
+
         let nuevo_registro = await actions.registro(
             contact.username,
             contact.password,
             contact.email
 
         );
+
         if (nuevo_registro) {
             navigate('/login');
         } else {
@@ -35,10 +37,12 @@ export const Registro = () => {
                 password: "",
                 email: "",
             });
-            setResp("");
-            contact.username === "" || contact.email === "" || contact.password === "" ? setResp("Debes rellenar todos los campos") : null;
+            setResp(store.respuesta_log)
+            // setResp("");
+            // contact.username === "" || contact.email === "" || contact.password === "" ? setResp("Debes rellenar todos los campos") : null;
 
         }
+        
 
     };
 

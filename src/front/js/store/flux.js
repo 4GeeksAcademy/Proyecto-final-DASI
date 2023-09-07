@@ -265,7 +265,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 
-					let data = await axios.post(process.env.BACKEND_URL + '/api/registro', {
+					let data = await axios.post(process.env.BACKEND_URL + '/api/users', {
 						username: username,
 						password: password,
 						email: email
@@ -277,7 +277,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 
-					console.log(error);
+					console.log(error.response.status);
+
+					error.response.status === 401 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 400 ? setStore({respuesta_log: error.response.data.msg }): null
 
 					return false;
 

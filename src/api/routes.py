@@ -170,6 +170,11 @@ def add_user():
     item = User(username=request_body['username'],
                 password=request_body['password'],
                 email=request_body['email'])
+    
+    if item is None:
+        return jsonify({"msg": "falta información"}), 404
+
+
     db.session.add(item)
     db.session.commit()
 
@@ -193,34 +198,37 @@ def create_user():
     user = User(email=request_body['email'],
                 password=request_body['password'])
     
+    
+    
     if request_body['email'] is None or request_body['password'] is None:
         return jsonify ({
-            'msg':'missing parameters (email, password, are required)'
-        }), 400
-
-
-    # Verificamos email válido (pro)
-    def validar_email(email):
-        # Patrón de expresión regular para validar el email
-        patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        
-        # Usamos re.match() para verificar el patrón en el email proporcionado
-        if re.match(patron_email, email):
-            return True
-        else:
-            return False
-
-
-
-    # Ejemplo de uso:
-
-    # email_ejemplo = "usuario@example.com"
-    if validar_email(request_body['email']):
-        print("El email es válido.")
+            'msg':'Debes rellenar todos los campos'
+        }), 401
+    
     else:
-        return jsonify ({
-            'msg':'wrong email format(check @ .)'
-        }), 400
+
+        # Verificamos email válido (pro)
+        def validar_email(email):
+            # Patrón de expresión regular para validar el email
+            patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            
+            # Usamos re.match() para verificar el patrón en el email proporcionado
+            if re.match(patron_email, email):
+                return True
+            else:
+                return False
+
+
+
+        # Ejemplo de uso:
+
+        # email_ejemplo = "usuario@example.com"
+        if validar_email(request_body['email']):
+            print("El email es válido.")
+        else:
+            return jsonify ({
+                'msg':'Formato de email incorrecto (revise @ .)'
+            }), 400
 
     db.session.add(user)
     db.session.commit()
