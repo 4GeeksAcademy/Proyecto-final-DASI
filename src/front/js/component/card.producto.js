@@ -10,10 +10,10 @@ export const CardProducto = () => {
 
     let add_producto = store.productos;
 
-    // function deleteProduct(id) {
-	// 	const newArray = products.filter((l) => l.id !== id);
-	// 	setProducts(newArray);
-	// }
+
+    function handleDeleteProduct(id) {
+       actions.deleteProduct(id)
+    }
 
     return (
 
@@ -42,7 +42,7 @@ export const CardProducto = () => {
                                         <i className="fa-solid fa-pen-to-square btn btn-success mx-2"></i>
                                     </span>
                                 </Link>
-                                <span onClick={() => deleteProduct(item.id)}>
+                                <span onClick={() => handleDeleteProduct(item.id)}>
                                     <i className="fa-solid fa-trash btn btn-success"></i>
                                 </span>
                             </div>

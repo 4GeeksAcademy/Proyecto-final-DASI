@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			
+
 			log: false,
 			token: "",
 
@@ -70,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			productos:[]
+			productos: []
 
 		},
 		actions: {
@@ -189,7 +189,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = response.data;
 					setStore({ productos: data.results });
 					console.log(data);
-					
+
 
 					return data;
 				} catch (error) {
@@ -290,7 +290,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("token")
 				setStore({ log: false })
 				setStore({ is_productor: false })
-				setStore({ info_productor:"" })
+				setStore({ info_productor: "" })
 				// setStore({ nombre_producto: [] });
 				localStorage.removeItem("token")
 				localStorage.removeItem("user_id")
@@ -315,7 +315,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
-					setStore({ is_productor: data.data.productor })					
+					setStore({ is_productor: data.data.productor })
 
 					return true;
 
@@ -446,7 +446,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			deleteProduct: async (id) => {
+				try {
+					const response = await axios.delete(process.env.BACKEND_URL + `/api/producto/${id}`);
+					const data = response.data;
+					console.log(data)
+					const store = getStore();
+					const products = store.productos.filter((item) => item.id !== id);
+					setStore({ productos: products });
+					console.log(getStore().products)
 
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+
+				}
+			},
 
 
 			// Use getActions to call a function within a fuction
