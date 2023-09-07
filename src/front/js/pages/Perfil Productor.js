@@ -13,17 +13,20 @@ export const PerfilProductor = () => {
 
 	async function GetProducts() {
 		await actions.getProductosPorProductor(store.info_productor.id);
-	  }
+	}
 
 	const openNewTab = () => {
-		window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');}
-	
-	  useEffect(() => {
-		if (store.is_productor == true){
+		window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');
+	}
+
+	useEffect(() => {
+		if (store.is_productor == true) {
 			GetProducts();
-		}		
-	  }, []);
-	
+
+		}
+
+	}, []);
+
 	return (
 		<div className="Container" >
 			<div className="p-4" >
@@ -96,13 +99,14 @@ export const PerfilProductor = () => {
 					</ul>
 				</div>
 			</div > */}
-
-			
 			<button type="button" className="btn btn-success fixed-bottom float-end" id="wp" onClick={openNewTab}>
 				<a href="#" className="link-light" id="wp-icon" >
 					<i className="fa-brands fa-whatsapp" ></i>
 				</a>
 			</button>
+
+
+
 		</div >
 	);
 };
