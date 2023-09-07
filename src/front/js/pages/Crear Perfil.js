@@ -164,7 +164,7 @@ export const Perfil = () => {
 						</div>
 
 
-						<div className="form-floating mb-3">
+						{/* <div className="form-floating mb-3">
 
 							<input
 								type="text"
@@ -174,7 +174,7 @@ export const Perfil = () => {
 								name="municipio"
 							/>
 							<label htmlFor="floatingInput">Municipio</label>
-						</div>
+						</div> */}
 						<div className="form-floating mb-3">
 
 							<input
