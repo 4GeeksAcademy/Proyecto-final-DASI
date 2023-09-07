@@ -288,13 +288,31 @@ def add_productor():
 
     #applying geocode method to get the location
     #making an instance of Nominatim class
+
     # Requiere al menos, CA, PROV, Municipio y CP
+#     print(request_body)
+#     geolocator = Nominatim(user_agent="delahuerta_request")
+#     loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+#     loc =  ','.join(loc_list)
+#     location = geolocator.geocode(loc)
+#     print("ok")
+
+
     print(request_body)
     geolocator = Nominatim(user_agent="delahuerta_request")
-    loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
-    loc =  ','.join(loc_list)
-    location = geolocator.geocode(loc)
-    print("ok")
+    #falta verificar dirección
+    try :
+        loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+        loc =  ','.join(loc_list)
+        location = geolocator.geocode(loc)
+        print("ok con dirección completa")
+    except :
+        loc_list = [request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+        loc =  ','.join(loc_list)
+        location = geolocator.geocode(loc)
+        print("ok con municipio")
+    
+
 
     try :
         loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]

@@ -163,6 +163,18 @@ export const Perfil = () => {
 							</select>
 						</div>
 
+
+						<div className="form-floating mb-3">
+
+							<input
+								type="text"
+								onChange={handleChange}
+								className="form-control"
+								placeholder="Añada aquí su municipio"
+								name="municipio"
+							/>
+							<label htmlFor="floatingInput">Municipio</label>
+						</div>
 						<div className="form-floating mb-3">
 
 							<input

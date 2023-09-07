@@ -103,7 +103,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
+
 			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, municipio, nombre_huerta, problemas, donde_encontrar, descripcion) => {
+
 				let user_id = localStorage.getItem("user_id")
 				try {
 					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
