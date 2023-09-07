@@ -363,10 +363,35 @@ def login():
 
     if user is None:
         return jsonify({"msg": "El email no existe"}), 404
+    else:
 
+        # Verificamos email válido (pro)
+        def validar_email(email):
+            # Patrón de expresión regular para validar el email
+            patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            
+            # Usamos re.match() para verificar el patrón en el email proporcionado
+            if re.match(patron_email, email):
+                return True
+            else:
+                return False
+
+
+
+        # Ejemplo de uso:
+
+        # email_ejemplo = "usuario@example.com"
+        if validar_email(email):
+            print("El email es válido.")
+        else:
+            return jsonify ({
+                'msg':'Formato de email incorrecto (revise @ .)'
+            }), 400
+        
     if password != user.password:
         return jsonify({"msg": "Contraseña incorrecta"}), 401
     
+  
     
     print(user.serialize())
     access_token = create_access_token(identity=email)
