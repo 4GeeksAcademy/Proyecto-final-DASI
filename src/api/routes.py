@@ -23,6 +23,8 @@ from flask_jwt_extended import JWTManager
 import re
 #for geocode /#Importing the Nominatim geocoder class 
 from geopy.geocoders import Nominatim
+import time
+
 
 api = Blueprint('api', __name__)
 
@@ -280,16 +282,41 @@ def get_all_productores():
 @api.route('/perfil_productor', methods=['POST'])
 def add_productor():
 
+
+
     request_body = request.get_json(force=True)
 
-
+    #applying geocode method to get the location
     #making an instance of Nominatim class
+    # Requiere al menos, CA, PROV, Municipio y CP
     print(request_body)
     geolocator = Nominatim(user_agent="delahuerta_request")
-    loc_list = [request_body['direccion'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+    loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
     loc =  ','.join(loc_list)
     location = geolocator.geocode(loc)
     print("ok")
+
+    try :
+        loc_list = [request_body['direccion'],request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+        loc =  ','.join(loc_list)
+        location = geolocator.geocode(loc)
+        print(f"direccion usada 1: {loc}" )
+        
+
+        if location == None:
+            location = { 'latitude' :None,'longitude':None}
+            print("geolocation address not found, so we use municipio")
+            time.sleep(1)
+            loc_list = [request_body['municipio'],request_body['provincia'],request_body['comunidad_autonoma'], request_body['codigo_postal']]
+            loc =  ','.join(loc_list)
+            print(f"direccion usada 2: {loc}" )
+            location = geolocator.geocode(loc)
+    except:
+        print ("error when geocoding, location not found, please use at least comunidad autonoma, provincia and municipio")
+        
+            
+    
+
 
     productor = PerfilProductor(
         nombre= request_body['nombre'],
@@ -299,6 +326,7 @@ def add_productor():
         codigo_postal= request_body['codigo_postal'],
         comunidad_autonoma= request_body['comunidad_autonoma'],
         provincia= request_body['provincia'],
+        municipio= request_body['municipio'],
         nombre_huerta= request_body['nombre_huerta'],     
         problemas= request_body['problemas'],
         donde_encontrar= request_body['donde_encontrar'],
