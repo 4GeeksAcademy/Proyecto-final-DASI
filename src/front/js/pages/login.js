@@ -10,7 +10,7 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	
+	const [resp, setResp] = useState("");
 
 	const handlerNavigate = (e) => {
 		e.preventDefault()
@@ -29,6 +29,8 @@ export const Login = () => {
 		} else {
 			setEmail("");
 			setPassword("");
+			setResp("");
+			email === "" || password === "" ? setResp("Debes rellenar todos los campos") : setResp(store.respuesta_log);
 			
 		}
 		console.log(store.info_productor);
@@ -38,7 +40,9 @@ export const Login = () => {
 
 	// useEffect(() => {
 
+
 	// 	actions.getProfile();
+
 
 
 	// }, []);
@@ -72,12 +76,18 @@ export const Login = () => {
 					<label htmlFor="floatingInput">contraseña</label>
 				</div>
 
-				
+				<br/>
+
+
+				<div>
+
+					<p className="text-danger">{resp}</p>
+
+				</div>
 
 				<button type="submit" id="submit" className="btn btn-submit mt-5 form-control col-4 fw-bold text-white fs-5">
 					Iniciar sesión
 				</button>
-
 
 
 			</form>

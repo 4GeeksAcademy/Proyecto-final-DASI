@@ -21,6 +21,7 @@ export const Perfil = () => {
 		donde_encontrar: "",
 		descripcion: ""
 	});
+	const [resp, setResp] = useState("");
 
 	const handleChange = event => {
 		const { name, value } = event.target;
@@ -72,6 +73,20 @@ export const Perfil = () => {
 				donde_encontrar: "",
 				descripcion: ""
 			});
+			setResp("");
+			newProfile.nombre === "" ||
+				newProfile.apellido === "" ||
+				newProfile.direccion === "" ||
+				newProfile.telefono === "" ||
+				newProfile.codigo_postal === "" ||
+				newProfile.comunidad_autonoma === "" ||
+				newProfile.provincia === "" ||
+				newProfile.nombre_huerta === "" ||
+				newProfile.problemas === "" ||
+				newProfile.donde_encontrar === "" ||
+				newProfile.descripcion === "" ? setResp("Debes rellenar todos los campos") : null;
+
+
 		}
 	}
 
@@ -84,6 +99,7 @@ export const Perfil = () => {
 						<div className="form-floating mb-3">
 							<input
 								type="text"
+								value={newProfile.nombre}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Añada aquí su nombre"
@@ -148,7 +164,7 @@ export const Perfil = () => {
 						</div>
 
 
-						<div className="form-floating mb-3">
+						{/* <div className="form-floating mb-3">
 
 							<input
 								type="text"
@@ -158,7 +174,7 @@ export const Perfil = () => {
 								name="municipio"
 							/>
 							<label htmlFor="floatingInput">Municipio</label>
-						</div>
+						</div> */}
 						<div className="form-floating mb-3">
 
 							<input
@@ -241,7 +257,11 @@ export const Perfil = () => {
 							<label htmlFor="floatingInput">Donde encontrar</label>
 						</div>
 
+						<br />
 
+						<div className="d-flex justify-content-center" >
+							<p className="text-danger">{resp}</p>
+						</div>
 
 						<div className="d-flex justify-content-center">
 
