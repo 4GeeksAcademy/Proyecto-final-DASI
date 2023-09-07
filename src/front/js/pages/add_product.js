@@ -6,6 +6,7 @@ import "../../styles/home.css";
 export const AddProduct = () => {
 
     const { store, actions } = useContext(Context);
+    const [resp, setResp] = useState("");
     const navigate = useNavigate();
     const producto = store.producto;
 
@@ -49,7 +50,14 @@ export const AddProduct = () => {
                 recogida: "Recogida",
                 precio: ""
             });
-            
+            setResp("");
+            product.nombre === "" ||
+            product.cantidad === "" ||
+            product.unidad_medida === "" ||
+            product.variedad === "" ||
+            product.tipo_produccion === "" ||
+            product.recogida === "" ||
+            product.precio === "" ? setResp("Debes introducir todos los valores") : null;
         }
 
     };
@@ -191,7 +199,10 @@ export const AddProduct = () => {
                         name="precio"
                     />
                 </div>
-               
+                <div className="d-flex justify-content-center" >
+                    <p className="text-danger">{resp}</p>
+                </div>
+
                 <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center">
                     Submit
                 </button>
