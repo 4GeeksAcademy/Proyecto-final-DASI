@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			
+
 			log: false,
 			token: "",
 
@@ -70,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			productos:[]
+			productos: []
 
 		},
 		actions: {
@@ -103,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 
-			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, nombre_huerta, problemas, donde_encontrar, descripcion) => {
+			crearPerfil: async (nombre, apellido, direccion, telefono, codigo_postal, comunidad_autonoma, provincia, municipio, nombre_huerta, problemas, donde_encontrar, descripcion) => {
 				let user_id = localStorage.getItem("user_id")
 				try {
 					let data = await axios.post(process.env.BACKEND_URL + '/api/perfil_productor', {
@@ -115,6 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						codigo_postal: codigo_postal,
 						comunidad_autonoma: comunidad_autonoma,
 						provincia: provincia,
+						municipio: municipio,
 						nombre_huerta: nombre_huerta,
 						problemas: problemas,
 						donde_encontrar: donde_encontrar,
@@ -189,7 +190,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = response.data;
 					setStore({ productos: data.results });
 					console.log(data);
-					
+
 
 					return data;
 				} catch (error) {
@@ -290,7 +291,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("token")
 				setStore({ log: false })
 				setStore({ is_productor: false })
-				setStore({ info_productor:"" })
+				setStore({ info_productor: "" })
 				// setStore({ nombre_producto: [] });
 				localStorage.removeItem("token")
 				localStorage.removeItem("user_id")
@@ -315,7 +316,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
-					setStore({ is_productor: data.data.productor })					
+					setStore({ is_productor: data.data.productor })
 
 					return true;
 
