@@ -53,12 +53,11 @@ export const Registro = () => {
             <div className="container">
                 <div className="row d-flex justify-content-center">
                     <div className="col-md-8 ">
-                        <h1 className="text-center mt-5">Regístrate</h1>
+                        <h1 className="text-center mt-5 display-2">Regístrate</h1>
                         <div className="col-3 mt-4" id="custom-hr"></div>
                         <form onSubmit={createContact} className="col-4 m-auto text-center" >
-
-                            <div className="form-group mt-5 ">
-                                {/* <label className="float-start" >Usuario</label> */}
+                           
+                            <div className="form-floating mt-5 ">
                                 <input
                                     type="text"
                                     onChange={handleChange}
@@ -66,26 +65,29 @@ export const Registro = () => {
                                     placeholder="Introduzca su usuario"
                                     name="username"
                                 />
+                                <label htmlFor="floatingInput">usuario</label>
                             </div>
 
-                            <div className="form-group mt-5">
-                                {/* <label className="float-start">Email</label> */}
+                            <div className="form-floating mt-3">
                                 <input
                                     type="email"
                                     onChange={handleChange}
                                     className="form-control"
                                     placeholder="Introduzca su email"
-                                    name="email" />
+                                    name="email" 
+                                />
+                                <label htmlFor="floatingInput">email</label>
                             </div>
 
-                            <div className="form-group mt-5">
-                                {/* <label className="float-start">Contraseña</label> */}
+                            <div className="form-floating mt-3">
                                 <input
                                     type="password"
                                     onChange={handleChange}
                                     className="form-control"
                                     placeholder="Introduzca su contraseña"
-                                    name="password" />
+                                    name="password" 
+                                />
+                                <label htmlFor="floatingInput">contraseña</label>
                             </div>
 
                             {/* <button type="submit" className="btn btn-primary form-control mt-3">

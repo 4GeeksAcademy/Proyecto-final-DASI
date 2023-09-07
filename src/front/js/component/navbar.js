@@ -46,8 +46,8 @@ export const Navbar = () => {
 
 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-			<div className="container-fluid">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="nav" >
+			<div className="container-fluid px-4">
 
 				<div className="collapse navbar-collapse col-4" id="navbarSupportedContent">
 
@@ -55,66 +55,99 @@ export const Navbar = () => {
 						<img src="https://media.istockphoto.com/id/1023035296/es/vector/ensalada-icono-vector-de-se%C3%B1al-y-s%C3%ADmbolo-aisladas-sobre-fondo-blanco-el-concepto-de-logotipo.jpg?s=612x612&w=0&k=20&c=HMLUg1UhDlldPBK_ZNc9XBm9a5nJtbJrDk3JCj9qD30=" alt="" width="50" height="50" />
 					</a>
 
-					<li className="nav-item float-start ">
-						<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
-					</li>
+					<button id="btn-ir" className="btn btn-success p-0 " >
+
+						<li className="nav-item float-start ">
+							<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerPerfil}>Ir a mi huerto</a>
+						</li>
+
+					</button>
+					<h1 id="titulo" className="fs.3" >De la huerta</h1>
+
+				</div >
+
+				<div className=" d-flex justify-content-start">
+
+					
 				</div>
 
-				<div className="col-4  d-flex justify-content-center" >
-
-					<li className="nav-item ">
-						<a className="nav-link active link-dark" aria-current="page" href="#" onClick={handlerHome}>Home</a>
-					</li>
-				</div>
-
-
+				
 
 				<div className="d-flex col-4 justify-content-end">
+
+					<div className="col-4 d-flex justify-content-end">
+
+						<button id="btn-home" className="btn btn-success p-0 btn-block" >
+
+							<li className="nav-item" onClick={handlerHome}>
+								<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerHome}>Home</a>
+							</li>
+
+						</button>
+
+					</div>
+
+					
+
 					{(store.log === false) ?
 
-						<li className="nav-item" id="btn-login" onClick={handlerLogIn}>
-							<a className="nav-link active link-dark" aria-current="page" href="#">Log in</a>
-						</li>
+						<button id="btn-login" className="btn btn-success p-0 " >
 
-						: <li className="nav-item" id="btn-login" onClick={handlerLogOut}>
-							<a className="nav-link active link-dark" aria-current="page" href="#">Log out</a>
-						</li>
+							<li className="nav-item" onClick={handlerLogIn}>
+								<a className="nav-link active link-light" aria-current="page" href="#">Log in</a>
+							</li>
+						</button>
+
+						: <button id="btn-login" className="btn btn-success p-0">
+							<li className="nav-item" onClick={handlerLogOut}>
+								<a className="nav-link active link-light" aria-current="page" href="#">Log out</a>
+							</li>
+						</button>
+
 					}
 
 					{/* FAVORITOS */}
 
 					{(store.log === true) ?
 
+						<button id="btn-fav" className="btn btn-success p-0 " >
 
-						<li className="nav-item dropdown">
-							<a className="nav-link dropdown-toggle link-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Favoritos
-							</a>
-							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-								<li><a className="dropdown-item" href="#">Action</a></li>
-								<li><a className="dropdown-item" href="#">Another action</a></li>
-								<li><hr className="dropdown-divider" /></li>
-								<li><a className="dropdown-item" href="#">Something else here</a></li>
-							</ul>
-						</li>
+
+							<li className="nav-item dropdown">
+								<a className="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Favoritos
+								</a>
+								<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+									<li><a className="dropdown-item" href="#">Action</a></li>
+									<li><a className="dropdown-item" href="#">Another action</a></li>
+									<li><hr className="dropdown-divider" /></li>
+									<li><a className="dropdown-item" href="#">Something else here</a></li>
+								</ul>
+							</li>
+
+						</button>
 
 						: null}
+
 
 					{/* CARRITO */}
 
 					{(store.log === true) ?
+						<button id="btn-car" className="btn btn-success p-0 " >
 
-						<li className="nav-item dropdown">
-							<a className="nav-link dropdown-toggle link-dark" href="#" id="carrito" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i className="fa-solid fa-cart-arrow-down"></i>
-							</a>
-							<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-								<li><a className="dropdown-item" href="#">Action</a></li>
-								<li><a className="dropdown-item" href="#">Another action</a></li>
-								<li><hr className="dropdown-divider" /></li>
-								<li><a className="dropdown-item" href="#">Something else here</a></li>
-							</ul>
-						</li>
+
+							<li className="nav-item dropdown">
+								<a className="nav-link dropdown-toggle link-light" href="#" id="carrito" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<i className="fa-solid fa-cart-arrow-down"></i>
+								</a>
+								<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+									<li><a className="dropdown-item" href="#">Action</a></li>
+									<li><a className="dropdown-item" href="#">Another action</a></li>
+									<li><hr className="dropdown-divider" /></li>
+									<li><a className="dropdown-item" href="#">Something else here</a></li>
+								</ul>
+							</li>
+						</button>
 
 						: null}
 				</div>
