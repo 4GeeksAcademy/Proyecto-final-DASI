@@ -190,7 +190,7 @@ export const AddProduct = () => {
                 </div>
 
                 <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center">
-                    Submit
+                    Añadir producto
                 </button>
 
             </form>
