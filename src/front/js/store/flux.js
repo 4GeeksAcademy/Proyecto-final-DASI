@@ -447,7 +447,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			deleteProduct: async (id) => {
+				try {
+					const response = await axios.delete(process.env.BACKEND_URL + `/api/producto/${id}`);
+					const data = response.data;
+					console.log(data)
+					const store = getStore();
+					const products = store.productos.filter((item) => item.id !== id);
+					setStore({ productos: products });
+					console.log(getStore().products)
 
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+
+				}
+			},
 
 
 			// Use getActions to call a function within a fuction
