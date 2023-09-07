@@ -15,7 +15,7 @@ export const PerfilProductorPublico = () => {
             <div className="p-4" >
                 <InfoProductorPerfil />
             </div>
-            <div>
+            <div className="mb-5">
                 <CardProducto />
             </div>
             <div>
