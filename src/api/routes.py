@@ -193,13 +193,18 @@ def add_user():
 
 def create_user():
 
+    email = request.json.get("email", None)
+
     request_body = request.get_json(force=True)
 
     user = User(username=request_body['username'],
                 email=request_body['email'],
                 password=request_body['password'])
     
-  
+    usuario = User.query.filter_by(email=email).first()
+    
+    if usuario :
+        return jsonify({"msg": "El usuario ya existe"}),402
     
     if request_body['email'] == "" or request_body['password'] == "" or request_body['username'] == "":
         return jsonify ({

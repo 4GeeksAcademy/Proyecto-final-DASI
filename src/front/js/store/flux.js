@@ -282,7 +282,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					error.response.status === 400 ? setStore({respuesta_log: error.response.data.msg }): null
 					error.response.status === 401 ? setStore({respuesta_log: error.response.data.msg }): null
-					error.response.status === 404 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 402 ? setStore({respuesta_log: error.response.data.msg }): null
 					return false;
 
 				}
