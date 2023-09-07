@@ -15,6 +15,7 @@ export const Perfil = () => {
 		codigo_postal: "",
 		comunidad_autonoma: "",
 		provincia: "",
+		municipio: "",
 		nombre_huerta: "",
 		problemas: "",
 		donde_encontrar: "",
@@ -47,6 +48,7 @@ export const Perfil = () => {
 			newProfile.codigo_postal,
 			newProfile.comunidad_autonoma,
 			newProfile.provincia,
+			newProfile.municipio,
 			newProfile.nombre_huerta,
 			newProfile.problemas,
 			newProfile.donde_encontrar,
@@ -64,6 +66,7 @@ export const Perfil = () => {
 				codigo_postal: "",
 				comunidad_autonoma: "",
 				provincia: "",
+				municipio: "",
 				nombre_huerta: "",
 				problemas: "",
 				donde_encontrar: "",
@@ -150,6 +153,18 @@ export const Perfil = () => {
 								type="text"
 								onChange={handleChange}
 								className="form-control"
+								placeholder="Añada aquí su Municipio"
+								name="municipio"
+							/>
+							<label htmlFor="floatingInput">Municipio</label>
+						</div>
+
+						<div className="form-floating mb-3">
+
+							<input
+								type="text"
+								onChange={handleChange}
+								className="form-control"
 								placeholder="Añada aquí su codigo postal"
 								name="codigo_postal"
 							/>
@@ -217,9 +232,9 @@ export const Perfil = () => {
 
 
 						<div className="d-flex justify-content-center">
-							
+
 							<button type="submit" className="btn btn-submit mt-5 mb-4 form-control col-4 fw-bold text-white fs-5" id="cre">
-							Registro
+								Registro
 							</button>
 						</div>
 					</form>

@@ -91,6 +91,7 @@ class PerfilProductor(db.Model):
     codigo_postal = db.Column(db.Integer, unique=False, nullable=False)
     comunidad_autonoma = db.Column(db.String(80), unique=False, nullable=True)
     provincia = db.Column(db.String(80), unique=False, nullable=True)
+    municipio = db.Column(db.String(80), unique=False, nullable=True)
     foto_portada = db.Column(db.String(250), nullable=True)
     foto_perfil = db.Column(db.String(250), nullable=True)
     problemas = db.Column(db.String(250), nullable=True)
@@ -114,6 +115,7 @@ class PerfilProductor(db.Model):
             "codigo_postal" : self.codigo_postal,
             "comunidad_autonoma" : self.comunidad_autonoma,
             "provincia ": self.provincia,
+            "municipio ": self.municipio,
             "nombre_huerta": self.nombre_huerta,
             "problemas": self.problemas,
             "descripcion": self.descripcion,
