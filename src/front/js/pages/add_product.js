@@ -44,12 +44,12 @@ export const AddProduct = () => {
                 nombre: "Nombre",
                 cantidad: "",
                 unidad_medida: "Medida",
-                // pedido: "Pedido",
                 variedad: "",
                 tipo_produccion: "Producción",
                 recogida: "Recogida",
                 precio: ""
             });
+            
         }
 
     };
@@ -160,6 +160,7 @@ export const AddProduct = () => {
                     <label>Variedad</label>
                     <input
                         type="text"
+                        value={product.variedad}
                         onChange={handleChange}
                         className="form-control"
                         placeholder="Añada aquí la variedad de su producto"
@@ -171,6 +172,7 @@ export const AddProduct = () => {
                     <label>Cantidad</label>
                     <input
                         type="number"
+                        value={product.cantidad}
                         onChange={handleChange}
                         className="form-control"
                         placeholder="Cantidad disponible"
@@ -183,12 +185,13 @@ export const AddProduct = () => {
                     <input
                         type="number"
                         onChange={handleChange}
+                        value={product.precio}
                         className="form-control"
                         placeholder="Precio de su producto"
                         name="precio"
                     />
                 </div>
-
+               
                 <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center">
                     Submit
                 </button>
