@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
 import { CardProducto } from "../component/card.producto.js";
 import { InfoProductorPerfil } from "../component/info_productor_perfil.js";
+import { Context } from "../store/appContext";
+import { Whatsapp } from "../component/whatsapp.js";
 
 export const PerfilProductorPublico = () => {
-
-
+   
 
 
     return (
@@ -17,6 +18,10 @@ export const PerfilProductorPublico = () => {
             <div>
                 <CardProducto />
             </div>
+            <div>
+                <Whatsapp />
+            </div>
+            
 
         </div >
     );

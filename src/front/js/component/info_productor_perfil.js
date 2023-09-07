@@ -20,8 +20,10 @@ export const InfoProductorPerfil = () => {
         await actions.getNombreProducto();
     }
 
+   
     useEffect(() => {
         GetProducts();
+       
 
     }, []);
 
@@ -61,7 +63,7 @@ export const InfoProductorPerfil = () => {
                     <img className="" style={{ width: "550px", objectFit: "cover" }} src="https://static.diariofemenino.com/media/7515/huertoensuenos.jpg" />
                 </div>
             </div>
-
+          
 
         </div >
     );
