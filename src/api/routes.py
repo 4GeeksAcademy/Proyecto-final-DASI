@@ -195,12 +195,13 @@ def create_user():
 
     request_body = request.get_json(force=True)
 
-    user = User(email=request_body['email'],
+    user = User(username=request_body['username'],
+                email=request_body['email'],
                 password=request_body['password'])
     
     
     
-    if request_body['email'] is None or request_body['password'] is None:
+    if request_body['email'] is "" or request_body['password'] is "" or request_body['username'] is "":
         return jsonify ({
             'msg':'Debes rellenar todos los campos'
         }), 401
