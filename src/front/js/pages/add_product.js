@@ -52,12 +52,12 @@ export const AddProduct = () => {
             });
             setResp("");
             product.nombre === "" ||
-            product.cantidad === "" ||
-            product.unidad_medida === "" ||
-            product.variedad === "" ||
-            product.tipo_produccion === "" ||
-            product.recogida === "" ||
-            product.precio === "" ? setResp("Debes introducir todos los valores") : null;
+                product.cantidad === "" ||
+                product.unidad_medida === "" ||
+                product.variedad === "" ||
+                product.tipo_produccion === "" ||
+                product.recogida === "" ||
+                product.precio === "" ? setResp("Debes introducir todos los valores") : null;
         }
 
     };
@@ -155,8 +155,9 @@ export const AddProduct = () => {
                         </button>
                         <ul className="dropdown-menu">
 
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Orgánica</a></li>
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Ecológica</a></li>
-                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Estándard</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Convencional</a></li>
 
                         </ul>
                     </div>
@@ -204,7 +205,7 @@ export const AddProduct = () => {
                 </div>
 
                 <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center drop-butt text-white"
-                style={{width: "200px"}}>
+                    style={{ width: "200px" }}>
                     Añadir producto
                 </button>
 

@@ -41,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			nombre_producto: [],
 			producto: {
 
-				"nombre": ["Tomate", "Berenjena", "Pepino", "Lechuga", "Pimiento"],
+				"nombre": ["Tomate", "Berenjena", "Pepino", "Lechuga", "Pimiento", "Cebolla", "Puerros", "Calabacin", "Alcachofa", "Guisante", "Coliflor", "Brocoli","Esparrago","Acelga"],
 				"cantidad": "",
 				"unidad_medida": "",
 				"lista": "",
@@ -283,9 +283,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error.response.status);
 					console.log(error.response.data.msg);
 
-					error.response.status === 400 ? setStore({respuesta_log: error.response.data.msg }): null
-					error.response.status === 401 ? setStore({respuesta_log: error.response.data.msg }): null
-					error.response.status === 402 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 400 ? setStore({ respuesta_log: error.response.data.msg }) : null
+					error.response.status === 401 ? setStore({ respuesta_log: error.response.data.msg }) : null
+					error.response.status === 402 ? setStore({ respuesta_log: error.response.data.msg }) : null
 					return false;
 
 				}
@@ -331,9 +331,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					console.log(error);
 
-					error.response.status === 400 ? setStore({respuesta_log: error.response.data.msg }): null
-					error.response.status === 404 ? setStore({respuesta_log: error.response.data.msg }): null
-					error.response.status === 401 ? setStore({respuesta_log: error.response.data.msg }): null
+					error.response.status === 400 ? setStore({ respuesta_log: error.response.data.msg }) : null
+					error.response.status === 404 ? setStore({ respuesta_log: error.response.data.msg }) : null
+					error.response.status === 401 ? setStore({ respuesta_log: error.response.data.msg }) : null
 
 
 					return false;
