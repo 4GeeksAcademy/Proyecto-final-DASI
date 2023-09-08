@@ -18,9 +18,9 @@ export const PerfilProductor = () => {
 		await actions.getProductosPorProductor(store.info_productor.id);
 	}
 
-	const openNewTab = () => {
-		window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');
-	}
+	// const openNewTab = () => {
+	// 	window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');
+	// }
 
 	useEffect(() => {
 		if (store.is_productor == true) {
@@ -84,11 +84,11 @@ export const PerfilProductor = () => {
 			<div className="mb-5 mt-5">
 				<CardProducto />
 			</div>
-			<button type="button" className="btn btn-success fixed-bottom float-end" id="wp" onClick={openNewTab}>
+			{/* <button type="button" className="btn btn-success fixed-bottom float-end" id="wp" onClick={openNewTab}>
 				<a href="#" className="link-light" id="wp-icon" >
 					<i className="fa-brands fa-whatsapp" ></i>
 				</a>
-			</button>
+			</button> */}
 
 
 
