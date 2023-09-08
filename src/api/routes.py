@@ -162,23 +162,25 @@ def get_all_products_by_Id(id):
 def add_user():
 
     request_body = request.get_json(force=True)
-    # for x in request_body:
-    #     item = User(username=x['username'],
-    #                 password=x['password'],
-    #                 email=x['email'])
-    #     db.session.add(item)
-    # db.session.commit()
-
-    item = User(username=request_body['username'],
+    if isinstance(request_body, list):
+        for x in request_body:
+            item = User(username=x['username'],
+                password=x['password'],
+                email=x['email'])
+            db.session.add(item)
+        db.session.commit()
+    else:
+        item = User(username=request_body['username'],
                 password=request_body['password'],
                 email=request_body['email'])
     
-    if item is None:
-        return jsonify({"msg": "falta información"}), 404
+        if item is None:
+            return jsonify({"msg": "falta información"}), 404
+        db.session.add(item)
+        db.session.commit()
 
 
-    db.session.add(item)
-    db.session.commit()
+
 
 
 

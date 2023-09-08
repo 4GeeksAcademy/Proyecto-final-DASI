@@ -41,7 +41,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			nombre_producto: [],
 			producto: {
 
-				"nombre": ["Tomate", "Berenjena", "Pepino", "Lechuga", "Pimiento", "Cebolla", "Puerros", "Calabacin", "Alcachofa", "Guisante", "Coliflor", "Brocoli","Esparrago","Acelga"],
+				"nombre": ["Tomate", "Berenjena", "Pepino", "Lechuga", "Pimiento", "Cebolla", "Puerros", "Calabacin", "Alcachofa",
+					"Guisante", "Coliflor", "Brocoli", "Esparrago", "Acelga", "Zanahoria", "Patata", "Rabano", "Pimiento"],
 				"cantidad": "",
 				"unidad_medida": "",
 				"lista": "",
