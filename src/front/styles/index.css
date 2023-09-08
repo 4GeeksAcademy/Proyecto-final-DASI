@@ -170,6 +170,16 @@ nav {
 
 /* ------------------- ADD PRODUCT ------------------- */
 
+.drop-butt {
+    background-color: #7ba873;
+    border-color: #7ba873;
+}
+.drop-butt:hover{
+    background-color: #699164;
+
+}
+
+
 /*------------------------MAPA-------------------------*/
 
 #mapa { width: 100%; height: 580px; }
