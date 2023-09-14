@@ -56,6 +56,8 @@ export const Home = () => {
     }));
   };
 
+  const [isCardVisible, setIsCardVisible] = useState(true);
+
   const handleSubmit = () => {
     setHasSearched(true);
     const formData = {
@@ -65,13 +67,23 @@ export const Home = () => {
     };
     console.log("Datos enviados:", formData);
     actions.pedirPerfil(formData);
+    setIsCardVisible(true);
   };
+
+  const handleReset = () => {
+    setSelectedCommunity("");
+    setSelectedProvince("");
+    setSelectedOptions({});
+    setHasSearched(false);
+    setIsCardVisible(false);
+  };
+
 
 
   return (
     <div className="  bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
       <div className="pt-3 d-flex justify-content-center">
-        <h2>Busqueda de proveedores</h2>
+        <h6>Seleccione los campos y haga su busqueda para encontrar al proveedor</h6>
       </div>
       <div className="container pt-3 d-flex justify-content-center">
         {categories.length > 0 ? categories.map((category, index) => (
@@ -159,6 +171,9 @@ export const Home = () => {
           <button type="button" id="lupa" className="btn btn-primary" onClick={handleSubmit}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
+          <button type="button" className="btn btn-danger" onClick={() => handleReset()} style={{ marginLeft: '10px' }}>
+            Resetear
+          </button>
         </div>
       </div>
 
@@ -168,7 +183,7 @@ export const Home = () => {
         </div>
 
         <div className="container">
-          <Card hasSearched={hasSearched} />
+          {isCardVisible && <Card hasSearched={hasSearched} />}
         </div>
       </div>
 

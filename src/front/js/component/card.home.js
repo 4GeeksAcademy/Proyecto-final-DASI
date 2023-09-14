@@ -17,7 +17,7 @@ export const Card = ({ hasSearched }) => {
     return (
         <div className="grid-container">
             {perfiles.length === 0 && hasSearched && (
-                <p>No se encontraron resultados.</p>
+                <h6>No se encontraron resultados.</h6>
             )}
             {perfiles.map((perfil) => (
                 <div key={perfil.id} className="card rounded card-home mb-2">
