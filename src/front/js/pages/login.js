@@ -31,7 +31,7 @@ export const Login = () => {
 			setPassword("");
 			setResp("");
 			email === "" || password === "" ? setResp("Debes rellenar todos los campos") : setResp(store.respuesta_log);
-			
+
 		}
 		console.log(store.info_productor);
 		console.log(store.is_productor);
@@ -76,14 +76,18 @@ export const Login = () => {
 					<label htmlFor="floatingInput">contraseña</label>
 				</div>
 
-				<br/>
+				<br />
+
+				<div class="alert alert-danger" role="alert">
+				{resp}
+				</div>
 
 
-				<div>
+				{/* <div>
 
 					<p className="text-danger">{resp}</p>
 
-				</div>
+				</div> */}
 
 				<button type="submit" id="submit" className="btn btn-submit mt-5 form-control col-4 fw-bold text-white fs-5">
 					Iniciar sesión
