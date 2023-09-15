@@ -90,194 +90,197 @@ export const Perfil = () => {
 					<div className="alert alert-danger" role="alert">
 						Debes rellenar todos los campos
 					</div>)
-				: null;
+				: setResp(
+					<div className="alert alert-danger" role="alert">
+						Información incorrecta
+					</div>);
+		
 
-
-		}
 	}
+}
 
-	return (
-		<div className="Container">
-			<div className="row justify-content-center">
-				<div className="col-md-6">
-					<h1 className="text-center mb-5 mt-5 display-2">Crear Perfil</h1>
-					<form onSubmit={handleSubmit}>
-						<div className="form-floating mb-3">
-							<input
-								type="text"
-								value={newProfile.nombre}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Añada aquí su nombre"
-								name="nombre"
-							/>
-							<label htmlFor="floatingInput">Nombre</label>
-						</div>
-						<div className="form-floating mb-3">
+return (
+	<div className="Container">
+		<div className="row justify-content-center">
+			<div className="col-md-6">
+				<h1 className="text-center mb-5 mt-5 display-2">Crear Perfil</h1>
+				<form onSubmit={handleSubmit}>
+					<div className="form-floating mb-3">
+						<input
+							type="text"
+							value={newProfile.nombre}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Añada aquí su nombre"
+							name="nombre"
+						/>
+						<label htmlFor="floatingInput">Nombre</label>
+					</div>
+					<div className="form-floating mb-3">
 
-							<input
-								type="text"
-								value={newProfile.apellido}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Añada aquí sus apellidos"
-								name="apellido"
-							/>
-							<label htmlFor="floatingInput">Apellidos</label>
-						</div>
-						<div className="form-floating mb-3">
+						<input
+							type="text"
+							value={newProfile.apellido}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Añada aquí sus apellidos"
+							name="apellido"
+						/>
+						<label htmlFor="floatingInput">Apellidos</label>
+					</div>
+					<div className="form-floating mb-3">
 
-							<input
-								type="tel"
-								value={newProfile.telefono}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Añada aquí el telefono"
-								name="telefono"
-							/>
-							<label htmlFor="floatingInput">Telefono</label>
-						</div>
+						<input
+							type="tel"
+							value={newProfile.telefono}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Añada aquí el telefono"
+							name="telefono"
+						/>
+						<label htmlFor="floatingInput">Telefono</label>
+					</div>
 
-						<div className="form-floating mb-3">
-							<label htmlFor="floatingInput">Comunidad Autónoma</label>
-							<select
-								onChange={handleChange}
-								value={newProfile.comunidad_autonoma}
-								className="form-control"
-								name="comunidad_autonoma"
-							>
+					<div className="form-floating mb-3">
+						<label htmlFor="floatingInput">Comunidad Autónoma</label>
+						<select
+							onChange={handleChange}
+							value={newProfile.comunidad_autonoma}
+							className="form-control"
+							name="comunidad_autonoma"
+						>
 
-								<option value=""></option>
-								{Object.keys(store.communityData).map((community, index) => (
-									<option key={index} value={community}>
-										{community}
-									</option>
-								))}
-							</select>
-						</div>
+							<option value=""></option>
+							{Object.keys(store.communityData).map((community, index) => (
+								<option key={index} value={community}>
+									{community}
+								</option>
+							))}
+						</select>
+					</div>
 
-						<div className="form-floating mb-3">
-							<label htmlFor="floatingInput">Provincia</label>
-							<select
-								onChange={handleChange}
-								className="form-control"
-								name="provincia"
-							>
-								<option value=""></option>
-								{newProfile.comunidad_autonoma && store.communityData[newProfile.comunidad_autonoma]?.map((province, index) => (
-									<option key={index} value={province}>
-										{province}
-									</option>
-								))}
-							</select>
-						</div>
+					<div className="form-floating mb-3">
+						<label htmlFor="floatingInput">Provincia</label>
+						<select
+							onChange={handleChange}
+							className="form-control"
+							name="provincia"
+						>
+							<option value=""></option>
+							{newProfile.comunidad_autonoma && store.communityData[newProfile.comunidad_autonoma]?.map((province, index) => (
+								<option key={index} value={province}>
+									{province}
+								</option>
+							))}
+						</select>
+					</div>
 
-						<div className="form-floating mb-3">
+					<div className="form-floating mb-3">
 
-							<input
-								type="text"
-								value={newProfile.municipio}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Añada aquí su Municipio"
-								name="municipio"
-							/>
-							<label htmlFor="floatingInput">Municipio</label>
-						</div>
+						<input
+							type="text"
+							value={newProfile.municipio}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Añada aquí su Municipio"
+							name="municipio"
+						/>
+						<label htmlFor="floatingInput">Municipio</label>
+					</div>
 
-						<div className="form-floating mb-3">
+					<div className="form-floating mb-3">
 
-							<input
-								type="text"
-								value={newProfile.codigo_postal}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Añada aquí su codigo postal"
-								name="codigo_postal"
-							/>
-							<label htmlFor="floatingInput">Codigo Postal</label>
-						</div>
+						<input
+							type="text"
+							value={newProfile.codigo_postal}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Añada aquí su codigo postal"
+							name="codigo_postal"
+						/>
+						<label htmlFor="floatingInput">Codigo Postal</label>
+					</div>
 
-						<div className="form-floating mb-3">
+					<div className="form-floating mb-3">
 
-							<input
-								type="text"
-								value={newProfile.direccion}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Añada aquí su dirección"
-								name="direccion"
-							/>
-							<label htmlFor="floatingInput">Dirección</label>
-						</div>
-						<div className="form-floating mb-3">
-							<input
-								type="text"
-								value={newProfile.nombre_huerta}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Nombre Huerta"
-								name="nombre_huerta"
-							/>
-							<label htmlFor="floatingInput">Nombre Huerta</label>
-						</div>
+						<input
+							type="text"
+							value={newProfile.direccion}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Añada aquí su dirección"
+							name="direccion"
+						/>
+						<label htmlFor="floatingInput">Dirección</label>
+					</div>
+					<div className="form-floating mb-3">
+						<input
+							type="text"
+							value={newProfile.nombre_huerta}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Nombre Huerta"
+							name="nombre_huerta"
+						/>
+						<label htmlFor="floatingInput">Nombre Huerta</label>
+					</div>
 
-						<div className="form-floating mb-3">
-							<input
-								type="text"
-								value={newProfile.problemas}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="Tus problemas"
-								name="problemas"
-							/>
-							<label htmlFor="floatingInput">¿Cuáles son tus problemas como agricultor?</label>
-						</div>
+					<div className="form-floating mb-3">
+						<input
+							type="text"
+							value={newProfile.problemas}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="Tus problemas"
+							name="problemas"
+						/>
+						<label htmlFor="floatingInput">¿Cuáles son tus problemas como agricultor?</label>
+					</div>
 
 
-						<div className="form-floating mb-3">
+					<div className="form-floating mb-3">
 
-							<input
-								type="text"
-								value={newProfile.descripcion}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="descripcion"
-								name="descripcion"
-							/>
-							<label htmlFor="floatingInput">Descripcion</label>
-						</div>
+						<input
+							type="text"
+							value={newProfile.descripcion}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="descripcion"
+							name="descripcion"
+						/>
+						<label htmlFor="floatingInput">Descripcion</label>
+					</div>
 
-						<div className="form-floating mb-3">
+					<div className="form-floating mb-3">
 
-							<input
-								type="text"
-								value={newProfile.donde_encontrar}
-								onChange={handleChange}
-								className="form-control"
-								placeholder="donde_encontrar"
-								name="donde_encontrar"
-							/>
-							<label htmlFor="floatingInput">Donde encontrar</label>
-						</div>
+						<input
+							type="text"
+							value={newProfile.donde_encontrar}
+							onChange={handleChange}
+							className="form-control"
+							placeholder="donde_encontrar"
+							name="donde_encontrar"
+						/>
+						<label htmlFor="floatingInput">Donde encontrar</label>
+					</div>
 
-						<br />
+					<br />
 
-						<div className="d-flex justify-content-center" >
-							{resp}
-						</div>
+					<div className="d-flex justify-content-center" >
+						{resp}
+					</div>
 
-						<div className="d-flex justify-content-center">
+					<div className="d-flex justify-content-center">
 
-							<button type="submit" className="btn btn-submit mt-3 mb-4 form-control col-4 fw-bold text-white fs-5" id="cre">
-								Registro
-							</button>
-						</div>
-					</form>
-				</div>
+						<button type="submit" className="btn btn-submit mt-3 mb-4 form-control col-4 fw-bold text-white fs-5" id="cre">
+							Registro
+						</button>
+					</div>
+				</form>
 			</div>
 		</div>
-	);
+	</div>
+);
 };
 
 
