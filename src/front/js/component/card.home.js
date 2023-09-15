@@ -30,6 +30,7 @@ export const Card = () => {
                             <p className="card-text"><b>Dirección:</b> {perfil.direccion}</p>
                             <p className="card-text"><b>Problemas:</b> {perfil.problemas || "No especificado"}</p>
                             <p className="card-text"><b>Dónde encontrar:</b> {perfil.donde_encontrar || "No especificado"}</p>
+                            
                             {/* <Link to={`/perfil/${perfil.id}`} className="btn btn-primary">Ir a su perfil</Link> */}
                             <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
                         </div>
