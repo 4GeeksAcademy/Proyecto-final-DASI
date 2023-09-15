@@ -132,7 +132,7 @@ export const Navbar = () => {
 
 					{/* CARRITO */}
 
-					{(store.log === true) ?
+					{/* {(store.log === true) ?
 						<button id="btn-car" className="btn btn-success p-0 " >
 
 
@@ -149,7 +149,7 @@ export const Navbar = () => {
 							</li>
 						</button>
 
-						: null}
+						: null} */}
 				</div>
 
 			</div>
