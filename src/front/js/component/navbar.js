@@ -145,16 +145,13 @@ export const Navbar = () => {
 
 											<li id={i} key={i} className="mx-2"  onClick={e => handlePerfilPublico(el.id)}>
 
-												{/* {store.favoritos.find(item => item.nombre_huerta === el.nombre_huerta)} */}
-												{/* <Link to={`/perfil/${el.id}`}>
-														
-												</Link> */}
+												
 												{el.nombre_huerta}
 												
 
 												{/* BOTON ELIMINAR */}
 
-												< button type="button" onClick={(e) => actions.removeFav(e, el)} className="btn float-end px-2 py-0" aria-label="Close">
+												< button type="button" onClick={(e) => actions.removeFav(e, el)} className="btn float-end px-1 py-0" aria-label="Close">
 													<i className="fas fa-trash"></i>
 												</button>
 
