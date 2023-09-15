@@ -17,7 +17,7 @@ user_productor = db.Table('user_productor',
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=False, nullable=False)
+    #username = db.Column(db.String(20), unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     
@@ -62,7 +62,7 @@ class User(db.Model):
         print(user_productor)
         return {
             "id": self.id,
-            "nombre": self.username,
+            #"nombre": self.username,
             "email": self.email,
             "info_productor": info_productor,
             "productor": is_productor

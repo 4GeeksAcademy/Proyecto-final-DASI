@@ -164,14 +164,12 @@ def add_user():
     request_body = request.get_json(force=True)
     if isinstance(request_body, list):
         for x in request_body:
-            item = User(username=x['username'],
-                password=x['password'],
+            item = User(password=x['password'],
                 email=x['email'])
             db.session.add(item)
         db.session.commit()
     else:
-        item = User(username=request_body['username'],
-                password=request_body['password'],
+        item = User(password=request_body['password'],
                 email=request_body['email'])
     
         if item is None:
@@ -201,8 +199,7 @@ def create_user():
 
     request_body = request.get_json(force=True)
 
-    user = User(username=request_body['username'],
-                email=request_body['email'],
+    user = User(email=request_body['email'],
                 password=request_body['password'])
     
     usuario = User.query.filter_by(email=email).first()
@@ -210,7 +207,7 @@ def create_user():
     if usuario :
         return jsonify({"msg": "El usuario ya existe"}),402
     
-    if request_body['email'] == "" or request_body['password'] == "" or request_body['username'] == "":
+    if request_body['email'] == "" or request_body['password'] == "":
         return jsonify ({
             'msg':'Debes rellenar todos los campos'
         }), 401
