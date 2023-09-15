@@ -37,7 +37,6 @@ export const Navbar = () => {
 
 
 
-
 	useEffect(() => {
 
 		actions.getProfile();
@@ -68,10 +67,10 @@ export const Navbar = () => {
 
 				<div className=" d-flex justify-content-start">
 
-					
+
 				</div>
 
-				
+
 
 				<div className="d-flex col-4 justify-content-end">
 
@@ -87,7 +86,7 @@ export const Navbar = () => {
 
 					</div>
 
-					
+
 
 					{(store.log === false) ?
 
@@ -116,12 +115,44 @@ export const Navbar = () => {
 							<li className="nav-item dropdown">
 								<a className="nav-link dropdown-toggle link-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Favoritos
+
+
+									{/* CONTADOR */}
+
+									<span className="badge bg-secondary mx-2">{store.favoritos.length}</span>
 								</a>
+
 								<ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-									<li><a className="dropdown-item" href="#">Action</a></li>
-									<li><a className="dropdown-item" href="#">Another action</a></li>
-									<li><hr className="dropdown-divider" /></li>
-									<li><a className="dropdown-item" href="#">Something else here</a></li>
+
+									{/* CONDICIONAL LISTADO FAVORITOS */}
+
+
+									{store.favoritos.length === 0 ?
+
+										<li className="mx-2" >
+											Vacío
+										</li>
+
+										: store.favoritos.map((el, i) => (
+
+											<li id={i} key={i} className="mx-2">
+
+												{/* {store.favoritos.find(item => item.nombre_huerta === el.nombre_huerta)} */}
+												<Link to={`/perfil/${el.id}`}>
+													{el.nombre_huerta}	
+												</Link>
+
+												
+
+												{/* BOTON ELIMINAR */}
+
+												< button type="button" onClick={(e) => actions.removeFav(e, el)} className="btn float-end px-2 py-0" aria-label="Close">
+													<i className="fas fa-trash"></i>
+												</button>
+
+											</li>
+										))
+									}
 								</ul>
 							</li>
 
@@ -152,8 +183,8 @@ export const Navbar = () => {
 						: null} */}
 				</div>
 
-			</div>
-		</nav>
+			</div >
+		</nav >
 
 	);
 };
