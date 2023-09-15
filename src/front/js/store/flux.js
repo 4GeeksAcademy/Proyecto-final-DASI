@@ -265,12 +265,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- REGISTRO --------------------------
 
-			registro: async (username, password, email) => {
+			registro: async (password, email) => {
 
 				try {
 
 					let data = await axios.post(process.env.BACKEND_URL + '/api/users', {
-						username: username,
+						
 						password: password,
 						email: email
 					})
