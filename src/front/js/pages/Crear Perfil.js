@@ -81,10 +81,16 @@ export const Perfil = () => {
 				newProfile.codigo_postal === "" ||
 				newProfile.comunidad_autonoma === "" ||
 				newProfile.provincia === "" ||
+				newProfile.municipio === "" ||
 				newProfile.nombre_huerta === "" ||
 				newProfile.problemas === "" ||
 				newProfile.donde_encontrar === "" ||
-				newProfile.descripcion === "" ? setResp("Debes rellenar todos los campos") : null;
+				newProfile.descripcion === "" ?
+				setResp(
+					<div className="alert alert-danger" role="alert">
+						Debes rellenar todos los campos
+					</div>)
+				: null;
 
 
 		}
@@ -111,6 +117,7 @@ export const Perfil = () => {
 
 							<input
 								type="text"
+								value={newProfile.apellido}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Añada aquí sus apellidos"
@@ -122,6 +129,7 @@ export const Perfil = () => {
 
 							<input
 								type="tel"
+								value={newProfile.telefono}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Añada aquí el telefono"
@@ -134,6 +142,7 @@ export const Perfil = () => {
 							<label htmlFor="floatingInput">Comunidad Autónoma</label>
 							<select
 								onChange={handleChange}
+								value={newProfile.comunidad_autonoma}
 								className="form-control"
 								name="comunidad_autonoma"
 							>
@@ -167,6 +176,7 @@ export const Perfil = () => {
 
 							<input
 								type="text"
+								value={newProfile.municipio}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Añada aquí su Municipio"
@@ -179,6 +189,7 @@ export const Perfil = () => {
 
 							<input
 								type="text"
+								value={newProfile.codigo_postal}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Añada aquí su codigo postal"
@@ -191,6 +202,7 @@ export const Perfil = () => {
 
 							<input
 								type="text"
+								value={newProfile.direccion}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Añada aquí su dirección"
@@ -201,6 +213,7 @@ export const Perfil = () => {
 						<div className="form-floating mb-3">
 							<input
 								type="text"
+								value={newProfile.nombre_huerta}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Nombre Huerta"
@@ -212,6 +225,7 @@ export const Perfil = () => {
 						<div className="form-floating mb-3">
 							<input
 								type="text"
+								value={newProfile.problemas}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="Tus problemas"
@@ -225,6 +239,7 @@ export const Perfil = () => {
 
 							<input
 								type="text"
+								value={newProfile.descripcion}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="descripcion"
@@ -237,6 +252,7 @@ export const Perfil = () => {
 
 							<input
 								type="text"
+								value={newProfile.donde_encontrar}
 								onChange={handleChange}
 								className="form-control"
 								placeholder="donde_encontrar"
@@ -248,12 +264,12 @@ export const Perfil = () => {
 						<br />
 
 						<div className="d-flex justify-content-center" >
-							<p className="text-danger">{resp}</p>
+							{resp}
 						</div>
 
 						<div className="d-flex justify-content-center">
 
-							<button type="submit" className="btn btn-submit mt-5 mb-4 form-control col-4 fw-bold text-white fs-5" id="cre">
+							<button type="submit" className="btn btn-submit mt-3 mb-4 form-control col-4 fw-bold text-white fs-5" id="cre">
 								Registro
 							</button>
 						</div>

@@ -30,7 +30,16 @@ export const Login = () => {
 			setEmail("");
 			setPassword("");
 			setResp("");
-			email === "" || password === "" ? setResp("Debes rellenar todos los campos") : setResp(store.respuesta_log);
+			email === "" || password === "" ?
+
+				setResp(<div className="alert alert-danger" role="alert">
+					Debes rellenar todos los campos
+				</div>)
+
+				: setResp(
+					<div className="alert alert-danger" role="alert">
+						{store.respuesta_log}
+					</div>);
 
 		}
 		console.log(store.info_productor);
@@ -78,18 +87,13 @@ export const Login = () => {
 
 				<br />
 
-				<div class="alert alert-danger" role="alert">
+				{/* <div className="alert alert-danger" role="alert">
 				{resp}
-				</div>
-
-
-				{/* <div>
-
-					<p className="text-danger">{resp}</p>
-
 				</div> */}
 
-				<button type="submit" id="submit" className="btn btn-submit mt-5 form-control col-4 fw-bold text-white fs-5">
+				{resp}
+
+				<button type="submit" id="submit" className="btn btn-submit mt-3 form-control col-4 fw-bold text-white fs-5">
 					Iniciar sesión
 				</button>
 
@@ -101,9 +105,6 @@ export const Login = () => {
 			<button className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-nu" onClick={handlerNavigate}>
 				Nuevo usuario
 			</button>
-
-			{/* <a href="#" className="link-primary text-decoration-none" onClick={handlerNavigate}>Nuevo usuario</a> */}
-
 
 
 		</div>

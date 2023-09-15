@@ -18,7 +18,7 @@ export const Registro = () => {
 
     async function createContact(e) {
         e.preventDefault()
-      
+
         console.log(contact.username,
             contact.password,
             contact.email)
@@ -32,18 +32,21 @@ export const Registro = () => {
 
         if (nuevo_registro) {
             navigate('/login');
-            
-            
+
+
         } else {
             setContact({
                 username: "",
                 password: "",
                 email: "",
             });
-            setResp(store.respuesta_log)
-          
+            setResp(
+                <div className="alert alert-danger" role="alert">
+                    {store.respuesta_log}
+                </div>)
+
         }
-        
+
 
     };
 
@@ -61,7 +64,7 @@ export const Registro = () => {
                         <h1 className="text-center mt-5 display-2">Regístrate</h1>
                         <div className="col-3 mt-4" id="custom-hr"></div>
                         <form onSubmit={createContact} className="col-4 m-auto text-center" >
-                           
+
                             <div className="form-floating mt-5 ">
                                 <input
                                     type="text"
@@ -81,7 +84,7 @@ export const Registro = () => {
                                     onChange={handleChange}
                                     className="form-control"
                                     placeholder="Introduzca su email"
-                                    name="email" 
+                                    name="email"
                                 />
                                 <label htmlFor="floatingInput">email</label>
                             </div>
@@ -93,27 +96,18 @@ export const Registro = () => {
                                     onChange={handleChange}
                                     className="form-control"
                                     placeholder="Introduzca su contraseña"
-                                    name="password" 
+                                    name="password"
                                 />
                                 <label htmlFor="floatingInput">contraseña</label>
                             </div>
 
-                            {/* <button type="submit" className="btn btn-primary form-control mt-3">
-                                Regístrate
-                            </button> */}
-
                             <br />
 
-
-                            <div>
-
-                                <p className="text-danger">{resp}</p>
-
-                            </div>
+                            {resp}
 
 
 
-                            <button type="submit" className="btn btn-primary mt-5 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-re">
+                            <button type="submit" className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-re">
                                 Regístrate
                             </button>
                         </form>
