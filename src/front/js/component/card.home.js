@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 
 
-export const Card = (props) => {
+export const Card = () => {
     const { store, actions } = useContext(Context);
     const [isFavorite, setIsFavorite] = useState(false);
     const perfiles = store.perfil;
@@ -14,24 +14,43 @@ export const Card = (props) => {
 
     // FUNCION ICONO DE ME GUSTA
 
-    const handleClick = (e) => {
-        e.preventDefault()
+    const handleClick = (id, nombre_huerta) => {
+        // e.preventDefault()
         console.log(store.favoritos);
         let favs = [...store.favoritos]
         setIsFavorite(!isFavorite)
 
         if (!isFavorite === true) {
             favs.push({
-                name: target.nombre_huerta,
-                id: perfiles.id,
+                nombre_huerta: nombre_huerta,
+                id: id,
             })
 
         } else (
-            favs = favs.filter((item) => item.nombre_huerta !== perfiles.nombre_huerta)
+            favs = favs.filter((item) => item.nombre_huerta !== nombre_huerta)
         )
 
         actions.addFavorito(favs)
     }
+
+    // const handleClick = (e) => {
+    //     e.preventDefault()
+    //     console.log(store.favoritos);
+    //     let favs = [...store.favoritos]
+    //     setIsFavorite(!isFavorite)
+
+    //     if (!isFavorite === true) {
+    //         favs.push({
+    //             name: props.nombre_huerta,
+    //             id: perfiles.id,
+    //         })
+
+    //     } else (
+    //         favs = favs.filter((item) => item.nombre_huerta !== props.nombre_huerta)
+    //     )
+
+    //     actions.addFavorito(favs)
+    // }
 
     function handlePerfilPublico(id) {
         //alert('hello');
@@ -58,7 +77,8 @@ export const Card = (props) => {
                             <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
 
                             {(store.log === true) ?
-                                <button type="button" className="btn btn-outline-warning float-end" onClick={handleClick}>
+                                <button type="button" className="btn btn-outline-warning float-end" onClick={e => handleClick(perfil.id, perfil.nombre_huerta )}>
+                                    
                                     {
 
                                         (isFavorite) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>
@@ -73,11 +93,5 @@ export const Card = (props) => {
         </div>
     );
 
-
-};
-Card.propTypes = {
-
-    name: PropTypes.string,
-    id: PropTypes.string,
 
 };

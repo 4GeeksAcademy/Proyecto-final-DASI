@@ -35,6 +35,14 @@ export const Navbar = () => {
 		}
 	}
 
+	function handlePerfilPublico(id) {
+        //alert('hello');
+        actions.getInfoPublicaProductor(id)
+        actions.getProductosPorProductor(id)
+        navigate(`/perfil/${id}`)
+        console.log("funciona")
+    }
+
 
 
 	useEffect(() => {
@@ -135,13 +143,13 @@ export const Navbar = () => {
 
 										: store.favoritos.map((el, i) => (
 
-											<li id={i} key={i} className="mx-2">
+											<li id={i} key={i} className="mx-2"  onClick={e => handlePerfilPublico(el.id)}>
 
 												{/* {store.favoritos.find(item => item.nombre_huerta === el.nombre_huerta)} */}
-												<Link to={`/perfil/${el.id}`}>
-													{el.nombre_huerta}	
-												</Link>
-
+												{/* <Link to={`/perfil/${el.id}`}>
+														
+												</Link> */}
+												{el.nombre_huerta}
 												
 
 												{/* BOTON ELIMINAR */}
