@@ -20,16 +20,16 @@ export const Card = (props) => {
         let favs = [...store.favoritos]
         setIsFavorite(!isFavorite)
 
-        if(!isFavorite === true) {
-                favs.push ({
-                name: props.nombre_huerta,
-                id: props.id,
+        if (!isFavorite === true) {
+            favs.push({
+                name: target.nombre_huerta,
+                id: perfiles.id,
             })
 
         } else (
-            favs = favs.filter((item) => item.name !== props.item.name)
-            )
-         
+            favs = favs.filter((item) => item.nombre_huerta !== perfiles.nombre_huerta)
+        )
+
         actions.addFavorito(favs)
     }
 
@@ -56,13 +56,16 @@ export const Card = (props) => {
 
                             {/* <Link to={`/perfil/${perfil.id}`} className="btn btn-primary">Ir a su perfil</Link> */}
                             <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
-                            <button type="button" className="btn btn-outline-warning float-end" onClick={handleClick}>
-                                {
 
-                                    (isFavorite) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>
-                                }
+                            {(store.log === true) ?
+                                <button type="button" className="btn btn-outline-warning float-end" onClick={handleClick}>
+                                    {
 
-                            </button>
+                                        (isFavorite) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>
+                                    }
+
+                                </button>
+                            : null}
                         </div>
                     </div>
                 </div>
@@ -70,11 +73,11 @@ export const Card = (props) => {
         </div>
     );
 
-    
+
 };
 Card.propTypes = {
 
-        name: PropTypes.string,
-        id: PropTypes.string,
+    name: PropTypes.string,
+    id: PropTypes.string,
 
-    };
+};
