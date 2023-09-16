@@ -15,6 +15,10 @@ export const CardProducto = () => {
        actions.deleteProduct(id)
     }
 
+    function handleEditProduct (id,nombre, cantidad, unidad_medida, lista, variedad, tipo_produccion, recogida, precio){
+        actions.addValues(id,nombre, cantidad, unidad_medida, lista, variedad, tipo_produccion, recogida, precio)
+        
+    }
     return (
 
         <div className="mt-5 mx-5 border border-success border-3 rounded p-3 overflow-x-auto" >
@@ -37,7 +41,7 @@ export const CardProducto = () => {
                                 <p className="card-text">Precio: {item.precio}€</p>
                             </div>
                             <div className="fs-3 d-flex justify-content-end mb-2 me-2">
-                                <Link to="/edit_product">
+                                <Link to="/edit_product" onClick={() => handleEditProduct(item.id, item.nombre, item.cantidad, item.unidad_medida, item.lista, item.variedad, item.tipo_produccion, item.recogida, item.precio)}>
                                     <span>
                                         <i className="fa-solid fa-pen-to-square btn btn-success mx-2"></i>
                                     </span>

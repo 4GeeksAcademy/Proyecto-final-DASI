@@ -53,6 +53,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"id": "",
 
 			},
+			producto_elegido: {
+
+				"nombre": "",
+				"nombre_elegido": "",
+				"cantidad": "",
+				"unidad_medida": "",
+				"lista": "",
+				"variedad": "",
+				"tipo_produccion": "",
+				"recogida": "",
+				"precio": "",
+				"id": "",
+
+			},
 
 			respuesta_log: "",
 			log: false,
@@ -235,6 +249,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			// -------------------------- EDITAR PRODUCTO--------------------------
+
+			addValues: (id,nombre, cantidad, unidad_medida, lista, variedad, tipo_produccion, recogida, precio) => {
+				// let producto = getStore().producto_elegido
+				setStore({ "producto_elegido.nombre":  nombre })
+				setStore({ "producto_elegido.cantidad": cantidad });
+				setStore({ phone: tlf });
+				setStore({ email: mail });
+				setStore({ id: id });
+			},
 
 			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
 				try {
