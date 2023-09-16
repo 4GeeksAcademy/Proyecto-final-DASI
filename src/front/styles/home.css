@@ -114,7 +114,7 @@ li {
     cursor: default;
     transition: all 400ms ease;
 }
-.card-home:hover{
+/* .card-home:hover{
     box-shadow: 5px 5px 20px rgba(4, 44, 4, 0.4);
     transform: translateY(-3%);
-}
+} */

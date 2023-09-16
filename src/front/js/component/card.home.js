@@ -14,8 +14,8 @@ export const Card = () => {
 
     // FUNCION ICONO DE ME GUSTA
 
-    const handleClick = (id, nombre_huerta) => {
-
+    const handleClick = (e, id, nombre_huerta) => {
+        e.preventDefault()
         console.log(store.favoritos);
         let favs = [...store.favoritos]
         setIsFavorite(!isFavorite)
@@ -58,7 +58,7 @@ export const Card = () => {
                             <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
 
                             {(store.log === true) ?
-                                <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(perfil.id, perfil.nombre_huerta )}>
+                                <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(e, perfil.id, perfil.nombre_huerta )}>
                                     
                                     {
 
