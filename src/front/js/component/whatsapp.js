@@ -9,21 +9,22 @@ export const Whatsapp = () => {
     const { actions, store } = useContext(Context);
     const navigate = useNavigate()
 
+
+
+    let info_productor_publico = store.info_productor_publico
+    
     const openNewTab = () => {
         window.open(`https://api.whatsapp.com/send?phone=${info_productor_publico.telefono}`, '_blank');
     }
-
-    let info_productor_publico = store.info_productor_publico
-
 
     async function GetProducts() {
         await actions.getNombreProducto();
     }
 
-   
+
     useEffect(() => {
         GetProducts();
-       
+
 
     }, []);
 
