@@ -161,7 +161,7 @@ export const EditProduct = () => {
                         type="text"
                         onChange={handleChange}
                         className="form-control"
-                        value={store.variedad}
+                        value={product.variedad}
                         name="variedad"
                     />
                 </div>
@@ -172,7 +172,7 @@ export const EditProduct = () => {
                         type="number"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder={store.cantidad}
+                        placeholder={product.cantidad}
                         name="cantidad"
                     />
                 </div>
@@ -183,7 +183,7 @@ export const EditProduct = () => {
                         type="number"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder={store.precio}
+                        placeholder={product.precio}
                         name="precio"
                     />
                 </div>
