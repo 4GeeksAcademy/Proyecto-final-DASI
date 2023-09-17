@@ -246,6 +246,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			// -------------------------- ELIMINAR PRODUCTO --------------------------
+
+			deleteProduct: async (id) => {
+				try {
+					const response = await axios.delete(process.env.BACKEND_URL + `/api/producto/${id}`);
+					const data = response.data;
+					console.log(data)
+					const store = getStore();
+					const products = store.productos.filter((item) => item.id !== id);
+					setStore({ productos: products });
+					console.log(getStore().products)
+
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+
+				}
+			},
+
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
 			addValues: (id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
@@ -264,10 +283,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}})
 			},
 
-			upDate: async (nombre, cantidad, unidad_medida, tipo_produccion, variedad, recogida, precio, id) => {
+			upDate: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio, id) => {
 				try {
 
-					let data = await axios.put(process.env.BACKEND_URL + '/api/producto', {
+					let data = await axios.put(process.env.BACKEND_URL + `/api/producto/${id}`, {
 						nombre: nombre,
 						cantidad: cantidad,
 						unidad_medida: unidad_medida,
@@ -275,6 +294,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						tipo_produccion: tipo_produccion,
 						recogida: recogida,
 						precio: precio,
+						id:id
 
 					})
 
@@ -488,22 +508,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			deleteProduct: async (id) => {
-				try {
-					const response = await axios.delete(process.env.BACKEND_URL + `/api/producto/${id}`);
-					const data = response.data;
-					console.log(data)
-					const store = getStore();
-					const products = store.productos.filter((item) => item.id !== id);
-					setStore({ productos: products });
-					console.log(getStore().products)
-
-					return data;
-				} catch (error) {
-					console.log("Error loading message from backend", error);
-
-				}
-			},
+			
 
 
 			// Use getActions to call a function within a fuction

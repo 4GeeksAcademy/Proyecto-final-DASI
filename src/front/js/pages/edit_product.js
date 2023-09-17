@@ -16,7 +16,8 @@ export const EditProduct = () => {
         variedad: producto.variedad,
         tipo_produccion: producto.tipo_produccion,
         recogida: producto.recogida,
-        precio: producto.precio
+        precio: producto.precio,
+        id: producto.id
     });
 
     //EDITAR PRODUCTO
@@ -30,7 +31,8 @@ export const EditProduct = () => {
             product.variedad,
             product.tipo_produccion,
             product.recogida,
-            product.precio
+            product.precio,
+            product.id
 
         );
         if (nuevo_producto) {
@@ -83,7 +85,7 @@ export const EditProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.nombre}
                         </button>
                         <ul className="dropdown-menu">
@@ -101,7 +103,7 @@ export const EditProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.unidad_medida}
                         </button>
                         <ul className="dropdown-menu">
@@ -128,7 +130,7 @@ export const EditProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.recogida}
                         </button>
                         <ul className="dropdown-menu">
@@ -188,8 +190,9 @@ export const EditProduct = () => {
                     />
                 </div>
 
-                <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center">
-                    Submit
+                <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center drop-butt text-white"
+                    style={{ width: "200px" }}>
+                    Editar producto
                 </button>
 
             </form>
