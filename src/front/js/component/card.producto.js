@@ -15,8 +15,10 @@ export const CardProducto = () => {
        actions.deleteProduct(id)
     }
 
-    function handleEditProduct (id,nombre, cantidad, unidad_medida, lista, variedad, tipo_produccion, recogida, precio){
-        actions.addValues(id,nombre, cantidad, unidad_medida, lista, variedad, tipo_produccion, recogida, precio)
+    function handleEditProduct (id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio){
+        // console.log(id,nombre, cantidad, unidad_medida, lista, variedad, tipo_produccion, recogida, precio);
+        actions.addValues(id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio)
+        console.log(store.producto_elegido);
         
     }
     return (
@@ -41,7 +43,7 @@ export const CardProducto = () => {
                                 <p className="card-text">Precio: {item.precio}€</p>
                             </div>
                             <div className="fs-3 d-flex justify-content-end mb-2 me-2">
-                                <Link to="/edit_product" onClick={() => handleEditProduct(item.id, item.nombre, item.cantidad, item.unidad_medida, item.lista, item.variedad, item.tipo_produccion, item.recogida, item.precio)}>
+                                <Link to="/edit_product" onClick={() => handleEditProduct(item.id, item.nombre, item.cantidad, item.unidad_medida, item.variedad, item.tipo_produccion, item.recogida, item.precio)}>
                                     <span>
                                         <i className="fa-solid fa-pen-to-square btn btn-success mx-2"></i>
                                     </span>

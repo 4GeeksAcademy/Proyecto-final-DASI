@@ -56,10 +56,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			producto_elegido: {
 
 				"nombre": "",
-				"nombre_elegido": "",
 				"cantidad": "",
 				"unidad_medida": "",
-				"lista": "",
 				"variedad": "",
 				"tipo_produccion": "",
 				"recogida": "",
@@ -250,26 +248,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
-			addValues: (id,nombre, cantidad, unidad_medida, lista, variedad, tipo_produccion, recogida, precio) => {
-				// let producto = getStore().producto_elegido
-				setStore({ "producto_elegido.nombre":  nombre })
-				setStore({ "producto_elegido.cantidad": cantidad });
-				setStore({ phone: tlf });
-				setStore({ email: mail });
-				setStore({ id: id });
+			addValues: (id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
+				// let producto = getStore().producto_elegido.nombre
+				setStore({producto_elegido: {
+
+					"nombre": nombre,
+					"cantidad": cantidad,
+					"unidad_medida": unidad_medida,
+					"variedad": variedad,
+					"tipo_produccion": tipo_produccion,
+					"recogida": recogida,
+					"precio": precio,
+					"id": id,
+	
+				}})
 			},
 
-			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
+			upDate: async (nombre, cantidad, unidad_medida, tipo_produccion, variedad, recogida, precio, id) => {
 				try {
 
 					let data = await axios.put(process.env.BACKEND_URL + '/api/producto', {
 						nombre: nombre,
 						cantidad: cantidad,
 						unidad_medida: unidad_medida,
-						lista: lista,
 						variedad: variedad,
+						tipo_produccion: tipo_produccion,
 						recogida: recogida,
-						precio: precio
+						precio: precio,
 
 					})
 
