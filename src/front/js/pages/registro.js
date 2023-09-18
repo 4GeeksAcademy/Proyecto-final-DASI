@@ -8,7 +8,6 @@ export const Registro = () => {
     const navigate = useNavigate();
 
     const [contact, setContact] = useState({
-        username: "",
         password: "",
         email: "",
     });
@@ -19,12 +18,12 @@ export const Registro = () => {
     async function createContact(e) {
         e.preventDefault()
 
-        console.log(contact.username,
+        console.log(
             contact.password,
             contact.email)
 
         let nuevo_registro = await actions.registro(
-            contact.username,
+
             contact.password,
             contact.email
 
@@ -36,7 +35,7 @@ export const Registro = () => {
 
         } else {
             setContact({
-                username: "",
+
                 password: "",
                 email: "",
             });
@@ -65,17 +64,6 @@ export const Registro = () => {
                         <div className="col-3 mt-4" id="custom-hr"></div>
                         <form onSubmit={createContact} className="col-4 m-auto text-center" >
 
-                            <div className="form-floating mt-5 ">
-                                <input
-                                    type="text"
-                                    value={contact.username}
-                                    onChange={handleChange}
-                                    className="form-control"
-                                    placeholder="Introduzca su usuario"
-                                    name="username"
-                                />
-                                <label htmlFor="floatingInput">usuario</label>
-                            </div>
 
                             <div className="form-floating mt-3">
                                 <input
