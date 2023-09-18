@@ -58,7 +58,7 @@ export const Navbar = () => {
 
 				<div className="collapse navbar-collapse col-4" id="navbarSupportedContent">
 
-					<a className="navbar-brand" href="#">
+					<a className="navbar-brand" href="#" onClick={handlerHome}>
 						<img src="https://media.istockphoto.com/id/1023035296/es/vector/ensalada-icono-vector-de-se%C3%B1al-y-s%C3%ADmbolo-aisladas-sobre-fondo-blanco-el-concepto-de-logotipo.jpg?s=612x612&w=0&k=20&c=HMLUg1UhDlldPBK_ZNc9XBm9a5nJtbJrDk3JCj9qD30=" alt="" width="50" height="50" />
 					</a>
 

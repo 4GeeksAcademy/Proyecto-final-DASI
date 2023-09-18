@@ -92,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 // ---------------------------------- FAVORITOS -----------------------
 
 			addFavorito: (favs) => {
-				setStore({ favoritos: favs })
+				setStore({ favoritos: favs})
 			},
 
 			removeFav: (e, el) => {

@@ -67,6 +67,10 @@ export const Card = ({ hasSearched }) => {
         } else (
             favs = favs.filter((item) => item.nombre_huerta !== nombre_huerta)
         )
+        // setIsFavorite(!isFavorite);
+        // if (!isFavorite) {
+        //     actions.addFavorito(id, nombre_huerta)
+        // }
 
         actions.addFavorito(favs)
     }
@@ -96,29 +100,31 @@ export const Card = ({ hasSearched }) => {
                 <h6>No se encontraron resultados.</h6>
             )}
             {perfiles.map(perfil => (
-                <div key={perfil.id} className="col-sm-4 mb-3 mb-sm-0">
-                    <div className="card rounded card-home mb-5">
+                <div key={perfil.id} >
+                    <div className="card rounded card-home mb-2">
                         <div className="card-body">
                             <h4 className="card-title text-center">{perfil.nombre_huerta}</h4>
                             <p className="card-text"><b>Nombre:</b> {perfil.nombre}</p>
-                            <p className="card-text"><b>Apellido:</b> {perfil.apellido}</p>
-                            <p className="card-text"><b>Dirección:</b> {perfil.direccion}</p>
-                            <p className="card-text"><b>Problemas:</b> {perfil.problemas || "No especificado"}</p>
+                            {/* <p className="card-text"><b>Apellido:</b> {perfil.apellido}</p>
+                            <p className="card-text"><b>Dirección:</b> {perfil.direccion || "No especificado"}</p> */}
+                            <p className="card-text"><b>Municipio:</b> {perfil["municipio "] || "No especificado"}</p>
+                            <p className="card-text"><b>Teléfono:</b> {perfil.telefono || "No especificado"}</p>
                             <p className="card-text"><b>Dónde encontrar:</b> {perfil.donde_encontrar || "No especificado"}</p>
 
                             <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
 
                             {(store.log === true) ?
-                                <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(e, perfil.id, perfil.nombre_huerta )}>
-                                    
+                                <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(e, perfil.id, perfil.nombre_huerta)}>
+
                                     {
 
                                         (isFavorite) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>
-                                        // <i id="hover-black-heart" className={isFavorite ? "fa-solid fa-heart" : "fa-regular fa-heart"} style={{ color: isFavorite ? "black" : "#fdf51c" }}></i>
+
                                     }
 
                                 </button>
-                            : null}
+                               
+                                : null}
                         </div>
                     </div>
                 </div>
