@@ -17,32 +17,20 @@ export const Mapa = () => {
     });
 
     return (
-        <MapContainer id="mapa" center={position} zoom={6} scrollWheelZoom={false}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
 
-            {/* <Marker position={position},  {icon: myIcon}> */}
-            {/* <Marker position={position}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker> */}
+            <MapContainer id="mapa" center={position} zoom={6} scrollWheelZoom={false}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {perfiles.map(perfil => (
 
-            {/* Marker for each Productor */}
-            {perfiles.map(perfil => (
-
-                <Marker key={perfil.id} position={[perfil.latitud, perfil.longitud]}>
-                    <Popup>
-                        {perfil.nombre_huerta}
-                    </Popup>
-                </Marker >
-
-            ))}
-
-
-        </MapContainer>
+                    <Marker key={perfil.id} position={[perfil.latitud, perfil.longitud]}>
+                        <Popup>
+                            {perfil.nombre_huerta}
+                        </Popup>
+                    </Marker >
+                ))}
+            </MapContainer>
     )
-
 }
