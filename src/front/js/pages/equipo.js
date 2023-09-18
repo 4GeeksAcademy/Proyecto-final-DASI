@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import foto_daniel from "../../img/perfiles/daniel.jpeg";
 import foto_angelica from "../../img/perfiles/angelica.jpeg";
 import foto_sergio from "../../img/perfiles/sergio.jpeg";
-import foto_inti from "../../img/perfiles/inti.jpeg";
+import foto_inti from "../../img/perfiles/inti2.jpg";
 
 
 export const Equipo = () => {
