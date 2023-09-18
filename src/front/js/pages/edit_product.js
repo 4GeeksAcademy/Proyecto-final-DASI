@@ -8,15 +8,16 @@ export const EditProduct = () => {
 
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
-
+    let producto = store.producto_elegido
     const [product, setProduct] = useState({
-        nombre: store.nombre,
-        cantidad: store.cantidad,
-        unidad_medida: store.unidad_medida,
-        lista: store.lista,
-        variedad: store.variedad,
-        recogida: store.recogida,
-        precio: store.precio
+        nombre: producto.nombre,
+        cantidad: producto.cantidad,
+        unidad_medida: producto.unidad_medida,
+        variedad: producto.variedad,
+        tipo_produccion: producto.tipo_produccion,
+        recogida: producto.recogida,
+        precio: producto.precio,
+        id: producto.id
     });
 
     //EDITAR PRODUCTO
@@ -27,10 +28,11 @@ export const EditProduct = () => {
             product.nombre,
             product.cantidad,
             product.unidad_medida,
-            product.lista,
             product.variedad,
+            product.tipo_produccion,
             product.recogida,
-            product.precio
+            product.precio,
+            product.id
 
         );
         if (nuevo_producto) {
@@ -40,9 +42,8 @@ export const EditProduct = () => {
                 nombre: "Nombre",
                 cantidad: "",
                 unidad_medida: "Medida",
-                lista: "Lista",
                 variedad: "",
-                tipo: "Tipo",
+                tipo_produccion: "Producción",
                 recogida: "Recogida",
                 precio: ""
             });
@@ -84,12 +85,12 @@ export const EditProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.nombre}
                         </button>
                         <ul className="dropdown-menu">
 
-                            {store.nombre_producto.map((item) =>
+                            {store.producto.nombre.map((item) =>
                                 <li><a className="dropdown-item"
                                     onClick={handleDropdownClick}
                                     name="nombre"
@@ -102,7 +103,7 @@ export const EditProduct = () => {
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.unidad_medida}
                         </button>
                         <ul className="dropdown-menu">
@@ -113,7 +114,7 @@ export const EditProduct = () => {
                         </ul>
                     </div>
 
-                    <div className="dropdown form-group  mx-4">
+                    {/* <div className="dropdown form-group  mx-4">
 
                         <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.lista}
@@ -124,18 +125,31 @@ export const EditProduct = () => {
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="lista" href="#">Mensual</a></li>
 
                         </ul>
-                    </div>
+                    </div> */}
 
 
                     <div className="dropdown form-group  mx-4">
 
-                        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {product.recogida}
                         </button>
                         <ul className="dropdown-menu">
 
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Huerto</a></li>
                             <li><a className="dropdown-item" onClick={handleDropdownClick} name="recogida" href="#">En Mercado</a></li>
+
+                        </ul>
+                    </div>
+                    <div className="dropdown form-group  mx-4">
+
+                        <button className="btn btn-secondary dropdown-toggle drop-butt" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {product.tipo_produccion}
+                        </button>
+                        <ul className="dropdown-menu">
+
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Orgánica</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Ecológica</a></li>
+                            <li><a className="dropdown-item" onClick={handleDropdownClick} name="tipo_produccion" href="#">Convencional</a></li>
 
                         </ul>
                     </div>
@@ -149,7 +163,7 @@ export const EditProduct = () => {
                         type="text"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder={store.variedad}
+                        value={product.variedad}
                         name="variedad"
                     />
                 </div>
@@ -160,7 +174,7 @@ export const EditProduct = () => {
                         type="number"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder={store.cantidad}
+                        placeholder={product.cantidad}
                         name="cantidad"
                     />
                 </div>
@@ -171,13 +185,14 @@ export const EditProduct = () => {
                         type="number"
                         onChange={handleChange}
                         className="form-control"
-                        placeholder={store.precio}
+                        placeholder={product.precio}
                         name="precio"
                     />
                 </div>
 
-                <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center">
-                    Submit
+                <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center drop-butt text-white"
+                    style={{ width: "200px" }}>
+                    Editar producto
                 </button>
 
             </form>

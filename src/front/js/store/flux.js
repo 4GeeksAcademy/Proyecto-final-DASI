@@ -53,6 +53,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"id": "",
 
 			},
+			producto_elegido: {
+
+				"nombre": "",
+				"cantidad": "",
+				"unidad_medida": "",
+				"variedad": "",
+				"tipo_produccion": "",
+				"recogida": "",
+				"precio": "",
+				"id": "",
+
+			},
 
 			respuesta_log: "",
 			log: false,
@@ -234,19 +246,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			// -------------------------- ELIMINAR PRODUCTO --------------------------
+
+			deleteProduct: async (id) => {
+				try {
+					const response = await axios.delete(process.env.BACKEND_URL + `/api/producto/${id}`);
+					const data = response.data;
+					console.log(data)
+					const store = getStore();
+					const products = store.productos.filter((item) => item.id !== id);
+					setStore({ productos: products });
+					console.log(getStore().products)
+
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error);
+
+				}
+			},
+
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
-			upDate: async (nombre, cantidad, unidad_medida, lista, variedad, recogida, precio, id) => {
+			addValues: (id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
+				// let producto = getStore().producto_elegido.nombre
+				setStore({producto_elegido: {
+
+					"nombre": nombre,
+					"cantidad": cantidad,
+					"unidad_medida": unidad_medida,
+					"variedad": variedad,
+					"tipo_produccion": tipo_produccion,
+					"recogida": recogida,
+					"precio": precio,
+					"id": id,
+	
+				}})
+			},
+
+			upDate: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio, id) => {
 				try {
 
-					let data = await axios.put(process.env.BACKEND_URL + '/api/producto', {
+					let data = await axios.put(process.env.BACKEND_URL + `/api/producto/${id}`, {
 						nombre: nombre,
 						cantidad: cantidad,
 						unidad_medida: unidad_medida,
-						lista: lista,
 						variedad: variedad,
+						tipo_produccion: tipo_produccion,
 						recogida: recogida,
-						precio: precio
+						precio: precio,
+						id:id
 
 					})
 
@@ -460,22 +508,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			deleteProduct: async (id) => {
-				try {
-					const response = await axios.delete(process.env.BACKEND_URL + `/api/producto/${id}`);
-					const data = response.data;
-					console.log(data)
-					const store = getStore();
-					const products = store.productos.filter((item) => item.id !== id);
-					setStore({ productos: products });
-					console.log(getStore().products)
-
-					return data;
-				} catch (error) {
-					console.log("Error loading message from backend", error);
-
-				}
-			},
+			
 
 
 			// Use getActions to call a function within a fuction
