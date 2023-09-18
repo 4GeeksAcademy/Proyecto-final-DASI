@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Card } from "../component/card.home.js";
@@ -13,6 +12,8 @@ export const Home = () => {
 
   const { store, actions } = useContext(Context);
   const communityData = store.communityData;
+  const [hasSearched, setHasSearched] = useState(false); // Estado inicializado en false
+
 
   async function GetProducts() {
     await actions.getNombreProducto();
@@ -55,8 +56,10 @@ export const Home = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const [isCardVisible, setIsCardVisible] = useState(true);
 
+  const handleSubmit = () => {
+    setHasSearched(true);
     const formData = {
       selectedCommunity,
       selectedProvince,
@@ -64,24 +67,22 @@ export const Home = () => {
     };
     console.log("Datos enviados:", formData);
     actions.pedirPerfil(formData);
+    setIsCardVisible(true);
+    setSelectedCommunity("");
+    setSelectedProvince("");
+    setSelectedOptions({});
   };
+
+
 
 
   return (
     <div className="  bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
-      <div className="container pt-5 d-flex justify-content-center">
-        {/* <ul className="dropdown-menu">
-          {categoryProduct.options.map((option, optionIndex) => (
-            <li key={optionIndex}>
-              <button
-                className={`dropdown-item ${option === selectedOptions[category.label] ? "active" : ""}`}
-                onClick={() => handleOptionSelect(category.label, option.id)}
-              >
-                {option.nombre}
-              </button>
-            </li>
-          ))}
-        </ul> */}
+      <div className="pt-3 d-flex justify-content-center">
+        {/* <h5>Busca productos frescos y producidos por agricultores locales</h5> */}
+        <h5 id="titulo2" className="fs.3 fw-semibold" >Busca productos frescos y producidos por agricultores locales</h5>
+      </div>
+      <div className="container pt-3 d-flex justify-content-center">
         {categories.length > 0 ? categories.map((category, index) => (
           <div className="btn-group" key={index}>
             <button type="button" id="params" className="btn btn-secondary ms-3 custom-dropdown-btn">
@@ -129,7 +130,7 @@ export const Home = () => {
               <li key={index}>
                 <button
                   className={`dropdown-item ${community === selectedCommunity ? "active" : ""}`}
-                  onClick={() => handleCommunitySelect(community)} 
+                  onClick={() => handleCommunitySelect(community)}
                 >
                   {community}
                 </button>
@@ -162,24 +163,27 @@ export const Home = () => {
               </li>
             ))}
           </ul>
-
         </div>
         <div className="ms-3">
           <button type="button" id="lupa" className="btn btn-primary" onClick={handleSubmit}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
+          {/* <button type="button" className="btn btn-danger" onClick={() => handleReset()} style={{ marginLeft: '10px' }}>
+            Resetear
+          </button> */}
         </div>
       </div>
 
+      <div className="py-5 ms-5 d-flex justify-content-start">
+        <div style={{ width: '70%' }}>
+          < Mapa />
+        </div>
 
-      <div className="container pt-5 d-flex justify-content-center">
-        {/* <img src="https://www.google.com/maps/vt/data=9-vFr39yIfHtm7b0Jg4x_dYsFtJOlx1Gtjfe9ekL3xu4axrueV0686kJuG0Q34gDGfrnIGbtyI1-bDm1ZhnAlum_cd0wymSBwt7G4nAKteGt_Bn8Y4voGdGLEoF9S5aNU2YqhpY-jPKsvC9PJWJ4Z6nJkQvoEGJ1ho1ubZCIFlv-jWl0JnANlLKtAYh9T_sfiVoZaUS3-gRYfyiipCFwjxd8hu65hWjv7YfiLtE29s_VgCQIu-g" alt="Mapa provisional" /> */}
-        < Mapa />
+        <div className="container">
+          {isCardVisible && <Card hasSearched={hasSearched} />}
+        </div>
       </div>
 
-      <div className="container pt-4">
-        <Card />
-      </div>
 
     </div>
   );
