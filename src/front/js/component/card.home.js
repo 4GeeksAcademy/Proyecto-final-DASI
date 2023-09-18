@@ -63,6 +63,7 @@ export const Card = () => {
                                     {
 
                                         (isFavorite) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>
+                                        // <i id="hover-black-heart" className={isFavorite ? "fa-solid fa-heart" : "fa-regular fa-heart"} style={{ color: isFavorite ? "black" : "#fdf51c" }}></i>
                                     }
 
                                 </button>
