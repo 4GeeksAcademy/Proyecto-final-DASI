@@ -30,11 +30,14 @@ export const CardProductoPublico = () => {
                 <ul className="d-flex justify-content-evenly flex-wrap m-3">{add_producto.map((item => (
                     <li key={item.id}>
                         <div className="card mb-3 card-product" style={{ width: "12rem" }}>
-                            <img className="card-img-top" src="https://previews.123rf.com/images/sybirko/sybirko1802/sybirko180200008/94798081-personaje-de-dibujos-animados-de-col-lechuga-iceberg-s%C3%ADmbolo-vegetal-feliz-icono-de-comida.jpg" alt="..." />
+                            {/* <img className="card-img-top" src="https://previews.123rf.com/images/sybirko/sybirko1802/sybirko180200008/94798081-personaje-de-dibujos-animados-de-col-lechuga-iceberg-s%C3%ADmbolo-vegetal-feliz-icono-de-comida.jpg" alt="..." /> */}
                             <div className="card-body text-center fs-5">
                                 <p className="card-text">{item.nombre}</p>
                                 <p className="card-text">{item.variedad}</p>
-                                <p className="card-text">Precio:{item.precio}€</p>
+                                <p className="card-text">{item.tipo_produccion}</p>
+                                <p className="card-text">Recogida:{item.recogida}</p>
+                                <p className="card-text">Precio: {item.precio} €</p>
+                                <p className="card-text">{item.unidad_medida} </p>
                             </div>
                             {/* <div className="fs-3 d-flex justify-content-end mb-2 me-2">
                                 <Link to="/edit_product">
