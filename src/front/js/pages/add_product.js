@@ -57,7 +57,12 @@ export const AddProduct = () => {
                 product.variedad === "" ||
                 product.tipo_produccion === "" ||
                 product.recogida === "" ||
-                product.precio === "" ? setResp("Debes introducir todos los valores") : null;
+                product.precio === "" ? 
+                setResp(
+					<div className="alert alert-danger" role="alert">
+						Debes rellenar todos los campos
+					</div>)
+				: null;
         }
 
     };
@@ -204,7 +209,7 @@ export const AddProduct = () => {
                     <p className="text-danger">{resp}</p>
                 </div>
 
-                <button type="submit" className="btn btn-submit mt-5 form-control col-6 text-center drop-butt text-white"
+                <button type="submit" className="btn btn-submit mt-3 col-6 text-center drop-butt text-white"
                     style={{ width: "200px" }}>
                     Añadir producto
                 </button>
