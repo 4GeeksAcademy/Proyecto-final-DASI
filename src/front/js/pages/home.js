@@ -68,22 +68,19 @@ export const Home = () => {
     console.log("Datos enviados:", formData);
     actions.pedirPerfil(formData);
     setIsCardVisible(true);
-  };
-
-  const handleReset = () => {
     setSelectedCommunity("");
     setSelectedProvince("");
     setSelectedOptions({});
-    setHasSearched(false);
-    setIsCardVisible(false);
   };
+
 
 
 
   return (
     <div className="  bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
       <div className="pt-3 d-flex justify-content-center">
-        <h6>Seleccione los campos y haga su busqueda para encontrar al proveedor</h6>
+        {/* <h5>Busca productos frescos y producidos por agricultores locales</h5> */}
+        <h5 id="titulo2" className="fs.3 fw-semibold" >Busca productos frescos y producidos por agricultores locales</h5>
       </div>
       <div className="container pt-3 d-flex justify-content-center">
         {categories.length > 0 ? categories.map((category, index) => (
@@ -171,9 +168,9 @@ export const Home = () => {
           <button type="button" id="lupa" className="btn btn-primary" onClick={handleSubmit}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
-          <button type="button" className="btn btn-danger" onClick={() => handleReset()} style={{ marginLeft: '10px' }}>
+          {/* <button type="button" className="btn btn-danger" onClick={() => handleReset()} style={{ marginLeft: '10px' }}>
             Resetear
-          </button>
+          </button> */}
         </div>
       </div>
 
