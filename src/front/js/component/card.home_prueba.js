@@ -43,7 +43,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
-export const Card = ({ hasSearched }) => {
+export const Card_P = (props,{ hasSearched }) => {
     const { store, actions } = useContext(Context);
     const [isFavorite, setIsFavorite] = useState(false);
     const perfiles = store.perfil;
@@ -100,22 +100,21 @@ export const Card = ({ hasSearched }) => {
             {showNoResults && perfiles.length === 0 && (
                 <h6>No se encontraron resultados.</h6>
             )}
-            {perfiles.map(perfil => (
-                <div key={perfil.id} >
+            <div key={props.id} >
                     <div className="card rounded card-home mb-2">
                         <div className="card-body">
-                            <h4 className="card-title text-center">{perfil.nombre_huerta}</h4>
-                            <p className="card-text"><b>Nombre:</b> {perfil.nombre}</p>
+                            <h4 className="card-title text-center">{props.nombre_huerta}</h4>
+                            <p className="card-text"><b>Nombre:</b> {props.nombre}</p>
                             {/* <p className="card-text"><b>Apellido:</b> {perfil.apellido}</p>
                             <p className="card-text"><b>Dirección:</b> {perfil.direccion || "No especificado"}</p> */}
-                            <p className="card-text"><b>Municipio:</b> {perfil["municipio "] || "No especificado"}</p>
-                            <p className="card-text"><b>Teléfono:</b> {perfil.telefono || "No especificado"}</p>
-                            <p className="card-text"><b>Dónde encontrar:</b> {perfil.donde_encontrar || "No especificado"}</p>
+                            <p className="card-text"><b>Municipio:</b> {props.municipio}</p>
+                            <p className="card-text"><b>Teléfono:</b> {props.telefono}</p>
+                            <p className="card-text"><b>Dónde encontrar:</b> {props.donde_encontrar}</p>
 
-                            <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(perfil.id)}>Ir a perfil</button>
+                            <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(props.id)}>Ir a perfil</button>
 
                             {(store.log === true) ?
-                                <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(e, perfil.id, perfil.nombre_huerta)}>
+                                <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(e, props.id, props.nombre_huerta)}>
 
                                     {
 
@@ -129,9 +128,18 @@ export const Card = ({ hasSearched }) => {
                         </div>
                     </div>
                 </div>
-            ))}
         </div>
     );
 
+
+};
+Card_P.propTypes = {
+
+	nombre: PropTypes.string,
+	id: PropTypes.string,
+    nombre_huerta: PropTypes.string,
+    municipio: PropTypes.string,
+    telefono: PropTypes.number,
+    donde_encontrar: PropTypes.string
 
 };

@@ -19,10 +19,7 @@ export const Home = () => {
     await actions.getNombreProducto();
   }
 
-  useEffect(() => {
-    GetProducts();
-    actions.getProductor()
-  }, []);
+
 
 
   const categories = [
@@ -74,7 +71,10 @@ export const Home = () => {
   };
 
 
-
+  useEffect(() => {
+    GetProducts();
+    actions.getProductor()
+  }, []);
 
   return (
     <div className="  bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>

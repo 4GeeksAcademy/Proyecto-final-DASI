@@ -48,7 +48,6 @@ export const Navbar = () => {
 	useEffect(() => {
 
 		actions.getProfile();
-
 	}, []);
 
 

@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
-import { Home } from "./pages/home";
+// import { Home } from "./pages/home";
+import { Home_P } from "./pages/home_prueba";
 import { Demo } from "./pages/demo";
 import { Login } from "./pages/login";
 
@@ -34,7 +35,8 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
+                        {/* <Route element={<Home />} path="/" /> */}
+                        <Route element={<Home_P />} path="/" />
                         <Route element={<PerfilProductorPublico />} path="/perfil/:theid" />
                         <Route element={<PerfilProductor />} path="/perfil" />
                         <Route element={<Perfil />} path="/crear_perfil" />
