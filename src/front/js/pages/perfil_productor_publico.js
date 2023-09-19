@@ -9,9 +9,7 @@ export const PerfilProductorPublico = () => {
     const { store, actions } = useContext(Context);
 	let info_productor = store.info_productor
 
-    const openNewTab = () => {
-        window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');
-    }
+   
 
     return (
         <div className="Container" >
@@ -25,12 +23,7 @@ export const PerfilProductorPublico = () => {
             <div>
                 <Whatsapp />
             </div>
-            <button type="button" className="btn btn-success fixed-bottom float-end" id="wp" onClick={openNewTab}>
-                <a href="#" className="link-light" id="wp-icon" >
-                    <i className="fa-brands fa-whatsapp" ></i>
-                </a>
-            </button>
-
+           
 
         </div >
     );
