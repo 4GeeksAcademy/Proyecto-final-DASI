@@ -22,6 +22,11 @@ export const Navbar = () => {
 		navigate("/") /* --> Enlace a la home*/
 	}
 
+	const handlerEquipo = (e) => {
+		e.preventDefault()
+		navigate("/equipo") /* --> Enlace a la home*/
+	}
+
 	const handlerLogIn = (e) => {
 		e.preventDefault()
 		navigate("/login")
@@ -68,10 +73,10 @@ export const Navbar = () => {
 
 				<div className=" d-flex justify-content-start">
 
-					
+
 				</div>
 
-				
+
 
 				<div className="d-flex col-4 justify-content-end">
 
@@ -87,7 +92,19 @@ export const Navbar = () => {
 
 					</div>
 
-					
+					<div className="col-4 d-flex justify-content-end">
+
+						<button id="btn-home" className="btn btn-success p-0 btn-block" >
+
+							<li className="nav-item" onClick={handlerEquipo}>
+								<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerEquipo}>Equipo</a>
+							</li>
+
+						</button>
+
+					</div>
+
+
 
 					{(store.log === false) ?
 
