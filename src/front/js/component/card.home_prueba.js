@@ -78,16 +78,16 @@ export const Card_P = (props,{ hasSearched }) => {
 
     const [showNoResults, setShowNoResults] = useState(false);
 
-    useEffect(() => {
-        if (hasSearched) {
-            // Muestra el mensaje "No se encontraron resultados" después de que hayan pasado 1 segundo (ajusta el tiempo según necesites)
-            const timer = setTimeout(() => {
-                setShowNoResults(true);
-            }, 2000);
+    // useEffect(() => {
+    //     if (hasSearched) {
+    //         // Muestra el mensaje "No se encontraron resultados" después de que hayan pasado 1 segundo (ajusta el tiempo según necesites)
+    //         const timer = setTimeout(() => {
+    //             setShowNoResults(true);
+    //         }, 2000);
 
-            return () => clearTimeout(timer); // Limpia el temporizador si el componente se desmonta
-        }
-    }, [hasSearched]);
+    //         return () => clearTimeout(timer); // Limpia el temporizador si el componente se desmonta
+    //     }
+    // }, [hasSearched]);
 
     function handlePerfilPublico(id) {
         actions.getInfoPublicaProductor(id);
@@ -96,39 +96,40 @@ export const Card_P = (props,{ hasSearched }) => {
     }
 
     return (
-        <div className="grid-container">
-            {showNoResults && perfiles.length === 0 && (
-                <h6>No se encontraron resultados.</h6>
-            )}
-            <div key={props.id} className="card rounded card-home mb-2" >
-                    <div >
-                        <div className="card-body">
-                            <h4 className="card-title text-center">{props.nombre_huerta}</h4>
-                            <p className="card-text"><b>Nombre:</b> {props.nombre}</p>
-                            {/* <p className="card-text"><b>Apellido:</b> {perfil.apellido}</p>
-                            <p className="card-text"><b>Dirección:</b> {perfil.direccion || "No especificado"}</p> */}
-                            <p className="card-text"><b>Municipio:</b> {props.municipio}</p>
-                            <p className="card-text"><b>Teléfono:</b> {props.telefono}</p>
-                            <p className="card-text"><b>Dónde encontrar:</b> {props.donde_encontrar}</p>
+        // <div className="grid-container">
+        //     {showNoResults && perfiles.length === 0 && (
+        //         <h6>No se encontraron resultados.</h6>
+        //     )}
+            // <div key={props.id} >
+                <div className="card rounded card-home mb-2">
+                    <div className="card-body">
+                        <h4 className="card-title text-center">{props.nombre_huerta}</h4>
+                        <p className="card-text"><b>Nombre:</b> {props.nombre}</p>
+                        {/* <p className="card-text"><b>Apellido:</b> {perfil.apellido}</p>
+                        <p className="card-text"><b>Dirección:</b> {perfil.direccion || "No especificado"}</p> */}
+                        <p className="card-text"><b>Municipio:</b> {props.municipio}</p>
+                        <p className="card-text"><b>Teléfono:</b> {props.telefono}</p>
+                        <p className="card-text"><b>Dónde encontrar:</b> {props.donde_encontrar}</p>
 
-                            <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(props.id)}>Ir a perfil</button>
+                        <button type="button" className="btn btn-success" onClick={e => handlePerfilPublico(props.id)}>Ir a perfil</button>
 
-                            {(store.log === true) ?
-                                <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(e, props.id, props.nombre_huerta)}>
+                        {(store.log === true) ?
+                            <button type="button" className="btn btn-outline-success float-end" onClick={e => handleClick(e, props.id, props.nombre_huerta)}>
 
-                                    {
+                                {
 
-                                        (isFavorite) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>
+                                    (isFavorite) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>
 
-                                    }
+                                }
 
-                                </button>
-                               
-                                : null}
-                        </div>
+                            </button>
+                            
+                            : null}
                     </div>
+                    
                 </div>
-        </div>
+            // </div>
+        // </div>
     );
 
 
@@ -136,7 +137,7 @@ export const Card_P = (props,{ hasSearched }) => {
 Card_P.propTypes = {
 
 	nombre: PropTypes.string,
-	id: PropTypes.string,
+	id: PropTypes.number,
     nombre_huerta: PropTypes.string,
     municipio: PropTypes.string,
     telefono: PropTypes.number,

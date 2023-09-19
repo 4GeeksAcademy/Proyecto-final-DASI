@@ -71,6 +71,18 @@ export const Home_P = () => {
         setSelectedProvince("");
         setSelectedOptions({});
     };
+    const [showNoResults, setShowNoResults] = useState(false);
+
+    useEffect(() => {
+        if (hasSearched) {
+            // Muestra el mensaje "No se encontraron resultados" después de que hayan pasado 1 segundo (ajusta el tiempo según necesites)
+            const timer = setTimeout(() => {
+                setShowNoResults(true);
+            }, 2000);
+
+            return () => clearTimeout(timer); // Limpia el temporizador si el componente se desmonta
+        }
+    }, [hasSearched]);
 
 
     useEffect(() => {
@@ -177,17 +189,20 @@ export const Home_P = () => {
             </div>
 
             <div className="py-5 ms-5 d-flex justify-content-start">
-                <div style={{ width: '70%' }}>
+                <div style={{ width: '40%' }} >
                     < Mapa />
                 </div>
 
-                <div className="container">
-
+                <div className="grid-container mx-2" style={{ width: '60%' }}>
+                    {showNoResults && perfiles.length === 0 && (
+                        <h6>No se encontraron resultados.</h6>
+                    )}
                     {perfiles.map(perfil => (
-                        <div>
+                        <div key={perfil.id}>
                             {isCardVisible && <Card_P hasSearched={hasSearched}
 
                                 id={perfil.id}
+                                
                                 nombre_huerta={perfil.nombre_huerta}
                                 nombre={perfil.nombre}
                                 municipio={perfil["municipio "] || "No especificado"}
@@ -195,7 +210,7 @@ export const Home_P = () => {
                                 donde_encontrar={perfil.donde_encontrar || "No especificado"}
 
                             />}
-                        
+
                         </div>
                     ))}
 

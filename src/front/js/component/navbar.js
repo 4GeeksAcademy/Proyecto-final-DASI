@@ -78,9 +78,6 @@ export const Navbar = () => {
 				</div >
 
 				
-
-
-
 				<div className="d-flex col-6justify-content-end ">
 
 					<button id="btn-home" className="btn btn-success p-0 btn-block mx-2" >
