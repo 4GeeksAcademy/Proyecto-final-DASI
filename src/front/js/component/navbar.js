@@ -41,12 +41,12 @@ export const Navbar = () => {
 	}
 
 	function handlePerfilPublico(id) {
-        //alert('hello');
-        actions.getInfoPublicaProductor(id)
-        actions.getProductosPorProductor(id)
-        navigate(`/perfil/${id}`)
-        console.log("funciona")
-    }
+		//alert('hello');
+		actions.getInfoPublicaProductor(id)
+		actions.getProductosPorProductor(id)
+		navigate(`/perfil/${id}`)
+		console.log("funciona")
+	}
 
 
 
@@ -77,51 +77,38 @@ export const Navbar = () => {
 
 				</div >
 
-				<div className=" d-flex justify-content-start">
-
-
-				</div>
+				
 
 
 
-				<div className="d-flex col-4 justify-content-end">
+				<div className="d-flex col-6justify-content-end ">
 
-					<div className="col-4 d-flex justify-content-end">
+					<button id="btn-home" className="btn btn-success p-0 btn-block mx-2" >
 
-						<button id="btn-home" className="btn btn-success p-0 btn-block" >
+						<li className="nav-item" onClick={handlerHome}>
+							<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerHome}>Home</a>
+						</li>
 
-							<li className="nav-item" onClick={handlerHome}>
-								<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerHome}>Home</a>
-							</li>
+					</button>
+					<button id="btn-eq" className="btn btn-success p-0 btn-block mx-2" >
 
-						</button>
+						<li className="nav-item" onClick={handlerEquipo}>
+							<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerEquipo}>Equipo</a>
+						</li>
 
-					</div>
-
-					<div className="col-4 d-flex justify-content-end">
-
-						<button id="btn-home" className="btn btn-success p-0 btn-block" >
-
-							<li className="nav-item" onClick={handlerEquipo}>
-								<a className="nav-link active link-light" aria-current="page" href="#" onClick={handlerEquipo}>Equipo</a>
-							</li>
-
-						</button>
-
-					</div>
-
+					</button>
 
 
 					{(store.log === false) ?
 
-						<button id="btn-login" className="btn btn-success p-0 " >
+						<button id="btn-login" className="btn btn-success p-0 mx-2" >
 
 							<li className="nav-item" onClick={handlerLogIn}>
 								<a className="nav-link active link-light" aria-current="page" href="#">Log in</a>
 							</li>
 						</button>
 
-						: <button id="btn-login" className="btn btn-success p-0">
+						: <button id="btn-login" className="btn btn-success p-0 mx-2">
 							<li className="nav-item" onClick={handlerLogOut}>
 								<a className="nav-link active link-light" aria-current="page" href="#">Log out</a>
 							</li>
@@ -133,7 +120,7 @@ export const Navbar = () => {
 
 					{(store.log === true) ?
 
-						<button id="btn-fav" className="btn btn-success p-0 " >
+						<button id="btn-fav" className="btn btn-success p-0 mx-2" >
 
 
 							<li className="nav-item dropdown">
@@ -159,11 +146,11 @@ export const Navbar = () => {
 
 										: store.favoritos.map((el, i) => (
 
-											<li id={i} key={i} className="mx-2"  onClick={e => handlePerfilPublico(el.id)}>
+											<li id={i} key={i} className="mx-2" onClick={e => handlePerfilPublico(el.id)}>
 
-												
+
 												{el.nombre_huerta}
-												
+
 
 												{/* BOTON ELIMINAR */}
 
