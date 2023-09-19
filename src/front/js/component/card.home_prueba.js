@@ -100,8 +100,8 @@ export const Card_P = (props,{ hasSearched }) => {
             {showNoResults && perfiles.length === 0 && (
                 <h6>No se encontraron resultados.</h6>
             )}
-            <div key={props.id} >
-                    <div className="card rounded card-home mb-2">
+            <div key={props.id} className="card rounded card-home mb-2" >
+                    <div >
                         <div className="card-body">
                             <h4 className="card-title text-center">{props.nombre_huerta}</h4>
                             <p className="card-text"><b>Nombre:</b> {props.nombre}</p>
