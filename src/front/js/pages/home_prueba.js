@@ -195,14 +195,17 @@ export const Home_P = () => {
 
                 <div className="grid-container mx-2" style={{ width: '60%' }}>
                     {showNoResults && perfiles.length === 0 && (
-                        <h6>No se encontraron resultados.</h6>
+                        // <h6>No se encontraron resultados.</h6>
+                        <div className="alert alert-danger" role="alert" style={{ height: '10%' }}>
+                            No se encontraron resultados
+                        </div>
                     )}
                     {perfiles.map(perfil => (
                         <div key={perfil.id}>
                             {isCardVisible && <Card_P hasSearched={hasSearched}
 
                                 id={perfil.id}
-                                
+
                                 nombre_huerta={perfil.nombre_huerta}
                                 nombre={perfil.nombre}
                                 municipio={perfil["municipio "] || "No especificado"}

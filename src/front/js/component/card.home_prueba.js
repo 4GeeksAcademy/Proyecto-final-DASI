@@ -76,7 +76,7 @@ export const Card_P = (props,{ hasSearched }) => {
         console.log(store.favoritos);
     }
 
-    const [showNoResults, setShowNoResults] = useState(false);
+    // const [showNoResults, setShowNoResults] = useState(false);
 
     // useEffect(() => {
     //     if (hasSearched) {
@@ -96,11 +96,7 @@ export const Card_P = (props,{ hasSearched }) => {
     }
 
     return (
-        // <div className="grid-container">
-        //     {showNoResults && perfiles.length === 0 && (
-        //         <h6>No se encontraron resultados.</h6>
-        //     )}
-            // <div key={props.id} >
+   
                 <div className="card rounded card-home mb-2">
                     <div className="card-body">
                         <h4 className="card-title text-center">{props.nombre_huerta}</h4>
@@ -128,8 +124,6 @@ export const Card_P = (props,{ hasSearched }) => {
                     </div>
                     
                 </div>
-            // </div>
-        // </div>
     );
 
 
