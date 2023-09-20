@@ -10,6 +10,11 @@ export const CardProducto = () => {
 
     let add_producto = store.productos;
 
+    useEffect(() => {
+		let add_producto = JSON.parse(localStorage.getItem('productos'));
+		store.productos=add_producto
+	}, []);
+
 
     function handleDeleteProduct(id) {
         actions.deleteProduct(id)

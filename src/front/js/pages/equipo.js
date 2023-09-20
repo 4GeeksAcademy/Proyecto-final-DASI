@@ -21,7 +21,7 @@ export const Equipo = () => {
                     <div className="card-perfil">
                         <img src={foto_daniel} className="card-img-top rounded-circle" alt="Foto de Daniel" />
                         <div className="card-body">
-                            <h5 className="card-title text-center"><a class="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/daniel-carri%C3%B3n-mart%C3%ADnez-19730aba/">Daniel Carrión</a></h5>
+                            <h5 className="card-title text-center"><a className="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/daniel-carri%C3%B3n-mart%C3%ADnez-19730aba/">Daniel Carrión</a></h5>
                             {/* <p className="card-text">This is a longer card with supporting text below.</p> */}
                         </div>
                     </div>
@@ -30,7 +30,7 @@ export const Equipo = () => {
                     <div className="card-perfil">
                         <img src={foto_sergio} className="card-img-top rounded-circle" alt="Foto de Sergio" />
                         <div className="card-body">
-                            <h5 className="card-title text-center"><a class="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/sergio-reverte-4890b01b0/">Sergio Reverte</a></h5>
+                            <h5 className="card-title text-center"><a className="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/sergio-reverte-4890b01b0/">Sergio Reverte</a></h5>
                             {/* <p className="card-text">This is a longer card with supporting text below.</p> */}
                         </div>
                     </div>
@@ -39,7 +39,7 @@ export const Equipo = () => {
                     <div className="card-perfil">
                         <img src={foto_angelica} className="card-img-top rounded-circle" alt="Foto de Angelica" />
                         <div className="card-body">
-                            <h5 className="card-title text-center"><a class="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/angelica-quijada-zambrano-414387234/">Angelica Quijada</a></h5>
+                            <h5 className="card-title text-center"><a className="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/angelica-quijada-zambrano-414387234/">Angelica Quijada</a></h5>
 
                             {/* <p className="card-text">This is a longer card with supporting text below.</p> */}
                         </div>
@@ -49,7 +49,7 @@ export const Equipo = () => {
                     <div className="card-perfil">
                         <img src={foto_inti} className="card-img-top rounded-circle" alt="Foto de Inti" />
                         <div className="card-body">
-                            <h5 className="card-title text-center"><a class="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/inti-luna-aviles-8a55998/">Inti Luna</a></h5>
+                            <h5 className="card-title text-center"><a className="link-opacity-25 text-decoration-none link-dark" href="https://www.linkedin.com/in/inti-luna-aviles-8a55998/">Inti Luna</a></h5>
                             {/* <p className="card-text">This is a longer card with supporting text below.</p> */}
                         </div>
                     </div>

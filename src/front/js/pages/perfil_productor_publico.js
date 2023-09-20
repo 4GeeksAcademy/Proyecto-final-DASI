@@ -8,6 +8,13 @@ import { CardProductoPublico } from "../component/card.producto.publico.js";
 export const PerfilProductorPublico = () => {
     const { store, actions } = useContext(Context);
 	let info_productor = store.info_productor
+    useEffect(() => {
+		
+		let info_productor = JSON.parse(localStorage.getItem('info_productor'));
+		if (info_productor !== null) {
+			store.info_productor = info_productor;
+		}
+	}, []);
 
     const openNewTab = () => {
         window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');

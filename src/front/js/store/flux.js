@@ -140,7 +140,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Perfil creado", data);
 					setStore({ info_productor: data.data.results[1] })
 					setStore({ is_productor: true })
-					console.log(getStore().info_productor);
 
 
 					return true
@@ -157,6 +156,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getPerfilProductor: async () => {
 				const productorId = localStorage.getItem("productor_id");
 				let productor = parseInt(productorId) - 1;
+				console.log(productor);
 				try {
 					let response = await axios.get(process.env.BACKEND_URL + "/api/crear_perfil")
 					setStore({ perfil_productor: response.results })
@@ -203,9 +203,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await axios.get(process.env.BACKEND_URL + `/api/producto_by_productor/${id}`);
 					const data = response.data;
-					setStore({ productos: data.results });
-					console.log(data);
-
+					localStorage.setItem('productos', JSON.stringify(data.results));
+					const productosLocalStorage = JSON.parse(localStorage.getItem('productos'));
+					setStore({ productos: productosLocalStorage });
 
 					return data;
 				} catch (error) {
@@ -256,7 +256,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const store = getStore();
 					const products = store.productos.filter((item) => item.id !== id);
 					setStore({ productos: products });
-					console.log(getStore().products)
 
 					return data;
 				} catch (error) {
@@ -343,7 +342,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// -------------------------- LOG IN & LOG OUT --------------------------
 
 			logout: () => {
-				localStorage.removeItem("token")
+				
 				setStore({ log: false })
 				setStore({ is_productor: false })
 				setStore({ info_productor: "" })
@@ -351,7 +350,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// setStore({ nombre_producto: [] });
 				localStorage.removeItem("token")
 				localStorage.removeItem("user_id")
-
+				localStorage.removeItem("token")
+				localStorage.removeItem("is_productor")
+				localStorage.removeItem("info_productor")
+				localStorage.removeItem("productos")
+				
 				return false
 			},
 
@@ -367,12 +370,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					})
 
-					localStorage.setItem("token", data.data.access_token)
-					localStorage.setItem("user_id", data.data.user_id)
+					localStorage.setItem("token", data.data.access_token);
+					localStorage.setItem("user_id", data.data.user_id);
+					localStorage.setItem('info_productor', JSON.stringify(data.data.info_productor));
+					localStorage.setItem("is_productor", data.data.productor);
+					
+					const token = localStorage.getItem('token');
+					const userId = localStorage.getItem('user_id');
+					const infoProductor = JSON.parse(localStorage.getItem('info_productor'));
+					const isProductor = JSON.parse(localStorage.getItem('is_productor'));
 
-					setStore({ token: data.data.access_token })
-					setStore({ info_productor: data.data.info_productor })
-					setStore({ is_productor: data.data.productor })
+					setStore({ token: token });
+					setStore({ user_id: userId });
+					setStore({ info_productor: infoProductor });
+					setStore({ is_productor: isProductor });
 
 					return true;
 

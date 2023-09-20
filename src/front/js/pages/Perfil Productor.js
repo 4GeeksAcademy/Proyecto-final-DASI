@@ -18,16 +18,15 @@ export const PerfilProductor = () => {
 		await actions.getProductosPorProductor(store.info_productor.id);
 	}
 
-	// const openNewTab = () => {
-	// 	window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');
-	// }
-
 	useEffect(() => {
+		
+		let info_productor = JSON.parse(localStorage.getItem('info_productor'));
+		if (info_productor !== null) {
+			store.info_productor = info_productor;
+		}
 		if (store.is_productor == true) {
 			GetProducts();
-
 		}
-
 	}, []);
 
 	return (

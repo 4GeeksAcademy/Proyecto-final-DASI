@@ -9,6 +9,10 @@ export const CardProductoPublico = () => {
     const { store, actions } = useContext(Context);
 
     let add_producto = store.productos;
+    useEffect(() => {
+		let add_producto = JSON.parse(localStorage.getItem('productos'));
+		store.productos=add_producto
+	}, []);
 
 
     // function handleDeleteProduct(id) {
