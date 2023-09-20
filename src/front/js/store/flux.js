@@ -175,7 +175,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await axios.get(process.env.BACKEND_URL + `/api/perfil/${id}`);
 					const data = response.data;
 
-					setStore({ info_productor_publico: data.result }); // Aquí corregido
+					// setStore({ info_productor_publico: data.result });
+
+					localStorage.setItem('info_productor_publico', JSON.stringify(data.result));
+					let info_productor_publico = JSON.parse(localStorage.getItem('info_productor_publico'));
+					setStore({ info_productor_publico: info_productor_publico });
+
+
 
 					return data;
 				} catch (error) {
@@ -203,9 +209,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await axios.get(process.env.BACKEND_URL + `/api/producto_by_productor/${id}`);
 					const data = response.data;
+					console.log(data)
+					// localStorage.setItem('productos', JSON.stringify(data.results));
+					// const productosLocalStorage = JSON.parse(localStorage.getItem('productos'));
+					// setStore({ productos: productosLocalStorage });
 					localStorage.setItem('productos', JSON.stringify(data.results));
-					const productosLocalStorage = JSON.parse(localStorage.getItem('productos'));
-					setStore({ productos: productosLocalStorage });
+					let productos = JSON.parse(localStorage.getItem('productos'));
+					setStore({ productos: productos });
 
 					return data;
 				} catch (error) {
@@ -252,7 +262,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await axios.delete(process.env.BACKEND_URL + `/api/producto/${id}`);
 					const data = response.data;
-					console.log(data)
 					const store = getStore();
 					const products = store.productos.filter((item) => item.id !== id);
 					setStore({ productos: products });
@@ -266,20 +275,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
-			addValues: (id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
+			addValues: (id, nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
 				// let producto = getStore().producto_elegido.nombre
-				setStore({producto_elegido: {
+				setStore({
+					producto_elegido: {
 
-					"nombre": nombre,
-					"cantidad": cantidad,
-					"unidad_medida": unidad_medida,
-					"variedad": variedad,
-					"tipo_produccion": tipo_produccion,
-					"recogida": recogida,
-					"precio": precio,
-					"id": id,
-	
-				}})
+						"nombre": nombre,
+						"cantidad": cantidad,
+						"unidad_medida": unidad_medida,
+						"variedad": variedad,
+						"tipo_produccion": tipo_produccion,
+						"recogida": recogida,
+						"precio": precio,
+						"id": id,
+
+					}
+				})
 			},
 
 			upDate: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio, id) => {
@@ -293,7 +304,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						tipo_produccion: tipo_produccion,
 						recogida: recogida,
 						precio: precio,
-						id:id
+						id: id
 
 					})
 
@@ -317,12 +328,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 
 					let data = await axios.post(process.env.BACKEND_URL + '/api/users', {
-						
+
 						password: password,
 						email: email
 					})
 
-					console.log(data);
+
 
 					return true;
 
@@ -342,19 +353,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// -------------------------- LOG IN & LOG OUT --------------------------
 
 			logout: () => {
-				
+
 				setStore({ log: false })
 				setStore({ is_productor: false })
 				setStore({ info_productor: "" })
 				setStore({ perfil: [] });
-				// setStore({ nombre_producto: [] });
+				setStore({ info_productor_publico: "" });
+				console.log(getStore().is_productor)
+
 				localStorage.removeItem("token")
 				localStorage.removeItem("user_id")
 				localStorage.removeItem("token")
 				localStorage.removeItem("is_productor")
 				localStorage.removeItem("info_productor")
 				localStorage.removeItem("productos")
-				
+				localStorage.removeItem("info_productor_publico")
+
+
 				return false
 			},
 
@@ -374,7 +389,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("user_id", data.data.user_id);
 					localStorage.setItem('info_productor', JSON.stringify(data.data.info_productor));
 					localStorage.setItem("is_productor", data.data.productor);
-					
+
 					const token = localStorage.getItem('token');
 					const userId = localStorage.getItem('user_id');
 					const infoProductor = JSON.parse(localStorage.getItem('info_productor'));
@@ -519,7 +534,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
+
 
 
 			// Use getActions to call a function within a fuction

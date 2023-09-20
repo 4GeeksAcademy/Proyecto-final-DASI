@@ -7,17 +7,17 @@ import { CardProductoPublico } from "../component/card.producto.publico.js";
 
 export const PerfilProductorPublico = () => {
     const { store, actions } = useContext(Context);
-	let info_productor = store.info_productor
+	let info_productor_publico = store.info_productor_publico
+
     useEffect(() => {
-		
-		let info_productor = JSON.parse(localStorage.getItem('info_productor'));
-		if (info_productor !== null) {
-			store.info_productor = info_productor;
+		let info_productor_publico = JSON.parse(localStorage.getItem('info_productor_publico'));
+		if (info_productor_publico !== null) {
+			store.info_productor_publico = info_productor_publico;
 		}
 	}, []);
 
     const openNewTab = () => {
-        window.open(`https://api.whatsapp.com/send?phone=${info_productor.telefono}`, '_blank');
+        window.open(`https://api.whatsapp.com/send?phone=${info_productor_publico.telefono}`, '_blank');
     }
 
     return (

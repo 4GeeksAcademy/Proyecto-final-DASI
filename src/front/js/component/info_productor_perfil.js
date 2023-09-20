@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import portada from "../../img/Portada.jpg";
 import productor from "../../img/productor1.jpg";
 import perfil_lateral from "../../img/perfil_lateral.jpg";
 import { Context } from "../store/appContext";
-import PropTypes from "prop-types";
 import "../../styles/home.css";
-import { CardProducto } from "./card.producto.js";
+
 
 export const InfoProductorPerfil = () => {
 
@@ -14,24 +12,7 @@ export const InfoProductorPerfil = () => {
     const { store, actions } = useContext(Context);
 
 
-    let info_productor_publico = store.info_productor_publico
-    // console.log(info_productor_publico);
-    //console.log(info_productor_publico.id);
-
-
-    async function GetProducts() {
-        await actions.getNombreProducto();
-    }
-
-   
-    useEffect(() => {
-        GetProducts();
-       
-
-    }, []);
-
-
-
+    let info_productor_publico = store.info_productor_publico;
 
 
     return (
@@ -85,27 +66,6 @@ export const InfoProductorPerfil = () => {
 					<img className="" src={perfil_lateral} />
 				</div>
 			</div>
-
-
-
-            {/* <div className="row mx-5 mt-5">
-                <div className="col-2 ps-5 bg-success bg-opacity-25 me-5">
-                    <ul className="mt-5 fs-4">
-                        <h4 className="fs-4">Info</h4>
-                        <li>Nombre: {info_productor_publico.nombre}</li>
-                        <li>Teléfono: {info_productor_publico.telefono} </li>
-                        <li>Dirección: {info_productor_publico.direccion} </li>
-                        <li>Dónde encontrar: {info_productor_publico.donde_encontrar}</li>
-                    </ul>
-                </div>
-                <div className="col-5 text-center me-5">
-                    <span className="fs-5">{info_productor_publico.descripcion}
-                    </span>
-                </div>
-                <div className="col-2">
-                    <img className="" style={{ width: "550px", objectFit: "cover" }} src="https://static.diariofemenino.com/media/7515/huertoensuenos.jpg" />
-                </div>
-            </div> */}
           
 
         </div >

@@ -9,26 +9,20 @@ export const CardProductoPublico = () => {
     const { store, actions } = useContext(Context);
 
     let add_producto = store.productos;
+
+
     useEffect(() => {
 		let add_producto = JSON.parse(localStorage.getItem('productos'));
-		store.productos=add_producto
+		if (add_producto !== null) {
+			store.productos = add_producto;
+		}
 	}, []);
-
-
-    // function handleDeleteProduct(id) {
-    //    actions.deleteProduct(id)
-    // }
 
     return (
 
         <div className="mt-5 mx-5 border border-success border-3 p-3 overflow-x-auto" >
             <div className="d-flex justify-content-between">
                 <span className="display-4 mb-4">Productos del mes</span>
-                {/* <Link to="/add_product">
-                    <button className="btn btn-success" style={{ width: "35px", height: "35px" }}>
-                        <i className="fa-solid fa-plus"></i>
-                    </button>
-                </Link> */}
             </div>
             <div className="">
                 <ul className="d-flex justify-content-evenly flex-wrap m-3">{add_producto.map((item => (

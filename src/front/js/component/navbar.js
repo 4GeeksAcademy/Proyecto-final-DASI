@@ -9,13 +9,24 @@ export const Navbar = () => {
 	const { actions, store } = useContext(Context);
 	const navigate = useNavigate()
 
+	// const handlerPerfil = (e) => {
+	// 	e.preventDefault()
+	// 	let is_productor = JSON.parse(localStorage.getItem('is_productor'));
+	// 	console.log(is_productor);
+	// 	store.log === false && is_productor === false ? navigate('/login') :
+	// 		store.log === true && is_productor === false ? navigate('/crear_perfil') :
+	// 			navigate("/perfil")
+	// }
 	const handlerPerfil = (e) => {
 		e.preventDefault()
-		console.log(store.is_productor);
-		store.log === false && store.is_productor === false ? navigate('/login') :
-			store.log === true && store.is_productor === false ? navigate('/crear_perfil') :
-				navigate("/perfil") /* --> Enlace a perfil productor*/
+		let is_productor = JSON.parse(localStorage.getItem('is_productor'));
+		console.log(is_productor);
+		console.log(store.log);
+		(store.log === false && (is_productor === false || is_productor === null)) ? navigate('/login') :
+			(store.log === true && (is_productor === false || is_productor === null)) ? navigate('/crear_perfil') :
+				navigate("/perfil")
 	}
+
 
 	const handlerHome = (e) => {
 		e.preventDefault()

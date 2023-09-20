@@ -12,7 +12,7 @@ export const Equipo = () => {
 
             <div className="pt-3 d-flex justify-content-center">
 
-                <h8 id="titulo3" className="p-5 " >Muchas veces consumimos productos sin saber desde dónde, cómo y por quienes se producen. Con esta plataforma, queremos aportar al consumo local de productos frescos, fortalecer red social y apoyar a quienes experimentan, trabajan duro y disfrutan la vida en el campo.</h8>
+                <h5 id="titulo3" className="p-5 " >Muchas veces consumimos productos sin saber desde dónde, cómo y por quienes se producen. Con esta plataforma, queremos aportar al consumo local de productos frescos, fortalecer red social y apoyar a quienes experimentan, trabajan duro y disfrutan la vida en el campo.</h5>
             </div>
 
 
