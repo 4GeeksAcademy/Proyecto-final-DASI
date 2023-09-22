@@ -23,8 +23,11 @@ export const Contraseña = () => {
 
     async function handlerSubmit(e) {
         e.preventDefault()
-
-
+        setEmail("");
+        setResp(
+            <div className="alert alert-primary col-4" role="alert">
+                Mensaje enviado
+            </div>);
     }
 
     // };
@@ -51,7 +54,7 @@ export const Contraseña = () => {
 
                 <form onSubmit={handlerSubmit} className="col-11 pb-3 mx-4">
 
-                    <br />
+                    {/* <br /> */}
 
                     <div className="form-floating my-3">
                         <input
