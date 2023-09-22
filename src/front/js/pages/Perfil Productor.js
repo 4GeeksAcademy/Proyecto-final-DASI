@@ -40,14 +40,14 @@ export const PerfilProductor = () => {
 					</span> */}
 				</div>
 			</div>
-			<div className="d-flex">
+			{/* <div className="d-flex">
 				<img className="img-perfil" src={productor} />
 				<h1 className="display-2 fw-bolder ms-5 mt-1 mb-1">{info_productor.nombre_huerta}</h1>
-			</div>
+			</div> */}
 			<div className="row mx-5 bg-success bg-opacity-25 rounded wrapper mt-2">
 				<div className="right">
 					<div className="info">
-						<h3>Información</h3>
+						<h3 className="fs-3">{info_productor.nombre_huerta}</h3>
 						<div className="info_data">
 							<div className="data">
 								<p>Nombre</p>
@@ -68,7 +68,7 @@ export const PerfilProductor = () => {
 						</div>
 					</div>
 					<div className="descrip">
-						<h3>Descripción</h3>
+						<h2>Descripción</h2>
 						<div className="descrip_data">
 							<div className="data">
 								<p>{info_productor.descripcion}</p>
@@ -78,10 +78,10 @@ export const PerfilProductor = () => {
 
 				</div>
 				<div className="imagen">
-					<img className="" src={perfil_lateral} />
+					<img className="" src={productor} />
 				</div>
 			</div>
-			<div className="mb-5 mt-5">
+			<div className="mb-5">
 				<CardProducto />
 			</div>
 			{/* <button type="button" className="btn btn-success fixed-bottom float-end" id="wp" onClick={openNewTab}>

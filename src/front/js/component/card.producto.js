@@ -23,7 +23,7 @@ export const CardProducto = () => {
     }
     return (
 
-        <div className="mt-5 mx-5 border border-success border-3 rounded p-3 overflow-x-auto" >
+        <div className="mt-4 mx-5 border border-success border-3 rounded p-3 overflow-x-auto" >
             <div className="d-flex justify-content-between">
                 <span className="display-4 mb-4">Productos del mes</span>
                 <Link to="/add_product">

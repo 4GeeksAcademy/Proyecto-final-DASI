@@ -44,14 +44,14 @@ export const InfoProductorPerfil = () => {
                     </span> */}
                 </div>
             </div>
-            <div className="d-flex">
+            {/* <div className="d-flex">
                 <img className="img-perfil" src={productor} />
                 <h1 className="display-2 fw-bolder ms-5 mt-5">{info_productor_publico.nombre_huerta}</h1>
-            </div>
-            <div className="row mx-5 mt-5 bg-success bg-opacity-25 rounded wrapper">
+            </div> */}
+            <div className="row mx-5 bg-success bg-opacity-25 rounded wrapper mt-2">
 				<div className="right">
 					<div className="info">
-						<h3>Información</h3>
+						<h3 className="fs-3">{info_productor_publico.nombre_huerta}</h3>
 						<div className="info_data">
 							<div className="data">
 								<p>Nombre</p>
@@ -72,7 +72,7 @@ export const InfoProductorPerfil = () => {
 						</div>
 					</div>
 					<div className="descrip">
-						<h3>Descripción</h3>
+						<h2>Descripción</h2>
 						<div className="descrip_data">
 							<div className="data">
 								<p>{info_productor_publico.descripcion}</p>
@@ -82,7 +82,7 @@ export const InfoProductorPerfil = () => {
 
 				</div>
 				<div className="imagen">
-					<img className="" src={perfil_lateral} />
+					<img className="" src={productor} />
 				</div>
 			</div>
 
