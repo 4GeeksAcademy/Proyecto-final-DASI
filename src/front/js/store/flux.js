@@ -69,6 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			respuesta_log: "",
 			log: false,
 			token: "",
+			favoritos: [],
 
 			demo: [
 				{
@@ -87,6 +88,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
+
+// ---------------------------------- FAVORITOS -----------------------
+
+			addFavorito: (favs) => {
+				setStore({ favoritos: favs})
+			},
+
+			removeFav: (e, el) => {
+				e.stopPropagation()
+				const updatedItems = (getStore().favoritos.indexOf(el) != -1) ?
+					getStore().favoritos.filter((item) => item != el)
+					: null
+
+				setStore({ favoritos: updatedItems })
+
+			},
 
 
 			pedirPerfil: async (filters) => {
