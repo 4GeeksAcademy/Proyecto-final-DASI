@@ -93,9 +93,13 @@ export const Login = () => {
 
 				{resp}
 
-				<button type="submit" id="submit" className="btn btn-submit mt-3 form-control col-4 fw-bold text-white fs-5">
+				<button type="submit" id="submit" className="btn btn-submit mt-3 form-control col-4 fw-bold text-white fs-5 mb-3">
 					Iniciar sesión
 				</button>
+
+				<br/>
+
+				<a href="#" class="link-primary text-decoration-none">¿Has olvidado la contraseña?</a>
 
 
 			</form>
