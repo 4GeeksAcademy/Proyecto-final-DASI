@@ -35,9 +35,12 @@ export const Navbar = () => {
 	const handlerLogOut = (e) => {
 		e.preventDefault()
 		let logout = actions.logout()
+		// localStorage.removeItem("favo");
 		if (!logout) {
 			navigate("/login")
 		}
+		
+
 	}
 
 	function handlePerfilPublico(id) {
@@ -53,6 +56,13 @@ export const Navbar = () => {
 	useEffect(() => {
 
 		actions.getProfile();
+		if (localStorage.getItem("favo") != null) {
+        const storedJsonString = localStorage.getItem("favo");
+        const storedObject = JSON.parse(storedJsonString);
+        actions.addFavorito(storedObject)}
+
+        
+        console.log(localStorage);
 	}, []);
 
 
@@ -77,7 +87,7 @@ export const Navbar = () => {
 
 				</div >
 
-				
+
 				<div className="d-flex col-6justify-content-end ">
 
 					<button id="btn-home" className="btn btn-success p-0 btn-block mx-2" >
