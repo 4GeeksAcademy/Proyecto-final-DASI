@@ -87,7 +87,10 @@ export const Home_P = () => {
 
     useEffect(() => {
         GetProducts();
-        actions.getProductor()
+        actions.getProductor();
+        const storedJsonString = localStorage.getItem("favoritos");
+        const storedObject = JSON.parse(storedJsonString);
+        actions.addFavorito(storedObject)
     }, []);
 
     return (

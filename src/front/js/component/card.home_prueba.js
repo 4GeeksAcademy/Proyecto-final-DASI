@@ -14,7 +14,7 @@ export const Card_P = (props,{ hasSearched }) => {
 
     const handleClick = (e, id, nombre_huerta) => {
         e.preventDefault()
-        console.log(store.favoritos);
+        // console.log(store.favoritos);
         let favs = [...store.favoritos]
         setIsFavorite(!isFavorite)
 
@@ -29,7 +29,10 @@ export const Card_P = (props,{ hasSearched }) => {
         )
      
         actions.addFavorito(favs)
-        console.log(store.favoritos);
+        const jsonString = JSON.stringify(favs);
+        localStorage.setItem("favoritos", jsonString);
+        console.log(localStorage);
+        // console.log(store.favoritos);
     }
 
 
@@ -42,6 +45,8 @@ export const Card_P = (props,{ hasSearched }) => {
     useEffect(() => {
         const esFavorito = store.favoritos.some((favorite) => favorite.nombre_huerta === props.nombre_huerta);
         setIsFavorite(esFavorito);
+       
+     
     }, [store.favoritos]);
 
     return (
