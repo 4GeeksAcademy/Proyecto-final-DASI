@@ -16,6 +16,10 @@ export const Login = () => {
 		e.preventDefault()
 		navigate("/registro")
 	}
+	const recContraseña = (e) => {
+		e.preventDefault()
+		navigate("/contraseña")
+	}
 
 	async function handlerSubmit(e) {
 		e.preventDefault()
@@ -69,10 +73,10 @@ export const Login = () => {
 						type="email"
 						value={email}
 						className="form-control"
-						placeholder="Introduzca su email"
+						placeholder="Introduzca su correo electrónico"
 						onChange={e => setEmail(e.target.value)}
 					/>
-					<label htmlFor="floatingInput">email</label>
+					<label htmlFor="floatingInput">Correo electrónico</label>
 				</div>
 				<div className="form-floating">
 					<input
@@ -82,7 +86,7 @@ export const Login = () => {
 						placeholder="Introduzca su contraseña"
 						onChange={e => setPassword(e.target.value)}
 					/>
-					<label htmlFor="floatingInput">contraseña</label>
+					<label htmlFor="floatingInput">Contraseña</label>
 				</div>
 
 				<br />
@@ -99,7 +103,7 @@ export const Login = () => {
 
 				<br/>
 
-				<a href="#" class="link-primary text-decoration-none">¿Has olvidado la contraseña?</a>
+				<a href="#" class="link-primary text-decoration-none" onClick={recContraseña}>¿Has olvidado la contraseña?</a>
 
 
 			</form>
