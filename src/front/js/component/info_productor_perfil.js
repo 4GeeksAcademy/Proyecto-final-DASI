@@ -39,9 +39,9 @@ export const InfoProductorPerfil = () => {
             <div className="p-4" >
                 <img src={portada} className="img-fluid w-100 portada" alt="..." />
                 <div className="fs-3 d-flex justify-content-end">
-                    <span className="btn btn-success mx-2" style={{ marginTop: "-50px", width: "40px", height: "40px" }}>
+                    {/* <span className="btn btn-success mx-2" style={{ marginTop: "-50px", width: "40px", height: "40px" }}>
                         <i className="fa-solid fa-pen-to-square"></i>
-                    </span>
+                    </span> */}
                 </div>
             </div>
             <div className="d-flex">
