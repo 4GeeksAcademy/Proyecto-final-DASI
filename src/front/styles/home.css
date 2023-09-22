@@ -7,12 +7,12 @@
     on that page only (the ones not reused in other pages).
 */
 .portada {
-    height: 300px;
+    height: 170px;
     object-fit: cover;
 }
 .img-perfil {
-    width: 350px;
-    height: 350px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     object-fit: cover;
     margin: -130px 50px 0 30px;
@@ -58,6 +58,17 @@ li {
     color: #353c4e;
     text-transform: uppercase;
     letter-spacing: 5px;
+    font-size: 23px;
+}
+.wrapper .right .info h2,
+.wrapper .right .descrip h2{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #1a4911;
+    color: #353c4e;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
 }
 .wrapper .right .info_data,
 .wrapper .right .descrip_data{
@@ -69,16 +80,18 @@ li {
 .wrapper .right .descrip_data .data {
     width: 45%;
 }
-.wrapper .right .info_data .data h4,
-.wrapper .right .descrip_data .data h4{
-    color:  #353c4e;
-    margin-bottom: 5px;
-}
 .wrapper .right .info_data .data p,
-.wrapper .right .descrip_data .data p {
+.wrapper .right .descrip_data .data p{
+    color: #494f55;
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+.wrapper .right .info_data .data h4,
+.wrapper .right .descrip_data .data h4 {
     font-size: 20px;
     margin-bottom: 10px;
-    color: #494f55;
+    color:  #353c4e;
+    
 }
 .wrapper .imagen {
     width: 45%;
@@ -88,13 +101,15 @@ li {
     
 }
 .wrapper .imagen img {
-    width: 650px;
+    width: 60%;
+    object-fit: cover;
 }
 
 /* CARD PRODUCTO */
 
 .card-product {
-    border-radius: 6px;
+    background-color: rgb(243, 243, 112);
+    /* border-radius: 6px; */
     overflow: hidden;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
     cursor: default;
@@ -104,6 +119,21 @@ li {
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
     transform: translateY(-3%);
 }
+
+/* CARD PRODUCTO PÚBLICO*/
+
+.card-product-publico {
+    background-color: rgb(243, 243, 112);
+    /* border-radius: 6px; */
+    overflow: hidden;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    transition: all 400ms ease;
+}
+/* .card-product:hover{
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3%);
+} */
 
 /* CARD HOME */
 
