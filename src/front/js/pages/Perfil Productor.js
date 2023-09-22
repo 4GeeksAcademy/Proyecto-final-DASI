@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import portada from "../../img/Portada.jpg";
-import productor from "../../img/productor1.jpg";
-import perfil_lateral from "../../img/perfil_lateral.jpg";
+import portada from "../../img/Portada-decom.jpg";
+import productor from "../../img/Perfil-productor1.jpg";
+import perfil_lateral from "../../img/foto-info.jpg";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { CardProducto } from "../component/card.producto.js";
@@ -50,20 +50,20 @@ export const PerfilProductor = () => {
 						<h3>Información</h3>
 						<div className="info_data">
 							<div className="data">
-								<h4>Nombre</h4>
-								<p>{info_productor.nombre}</p>
+								<p>Nombre</p>
+								<h4>{info_productor.nombre}</h4>
 							</div>
 							<div className="data">
-								<h4>Teléfono</h4>
-								<p>{info_productor.telefono}</p>
+								<p>Teléfono</p>
+								<h4>{info_productor.telefono}</h4>
 							</div>
 							<div className="data">
-								<h4>Dirección</h4>
-								<p>{info_productor.direccion}</p>
+								<p>Dirección</p>
+								<h4>{info_productor.direccion}</h4>
 							</div>
 							<div className="data">
-								<h4>Dónde Encontrar</h4>
-								<p>{info_productor.donde_encontrar}</p>
+								<p>Dónde Encontrar</p>
+								<h4>{info_productor.donde_encontrar}</h4>
 							</div>
 						</div>
 					</div>

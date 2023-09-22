@@ -54,20 +54,20 @@ export const InfoProductorPerfil = () => {
 						<h3>Información</h3>
 						<div className="info_data">
 							<div className="data">
-								<h4>Nombre</h4>
-								<p>{info_productor_publico.nombre}</p>
+								<p>Nombre</p>
+								<h4>{info_productor_publico.nombre}</h4>
 							</div>
 							<div className="data">
-								<h4>Teléfono</h4>
-								<p>{info_productor_publico.telefono}</p>
+								<p>Teléfono</p>
+								<h4>{info_productor_publico.telefono}</h4>
 							</div>
 							<div className="data">
-								<h4>Dirección</h4>
-								<p>{info_productor_publico.direccion}</p>
+								<p>Dirección</p>
+								<h4>{info_productor_publico.direccion}</h4>
 							</div>
 							<div className="data">
-								<h4>Dónde Encontrar</h4>
-								<p>{info_productor_publico.donde_encontrar}</p>
+								<p>Dónde Encontrar</p>
+								<h4>{info_productor_publico.donde_encontrar}</h4>
 							</div>
 						</div>
 					</div>
