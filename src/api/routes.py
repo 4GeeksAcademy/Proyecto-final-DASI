@@ -24,9 +24,24 @@ import re
 #for geocode /#Importing the Nominatim geocoder class 
 from geopy.geocoders import Nominatim
 import time
+# for sending email
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 api = Blueprint('api', __name__)
+
+#funciones generales
+def validar_email(email):
+            # Patrón de expresión regular para validar el email
+            patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            
+            # Usamos re.match() para verificar el patrón en el email proporcionado
+            if re.match(patron_email, email):
+                return True
+            else:
+                return False
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -214,16 +229,17 @@ def create_user():
     
     else:
 
+        # se comenta porque se hizo funcion general
         # Verificamos email válido (pro)
-        def validar_email(email):
-            # Patrón de expresión regular para validar el email
-            patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        # def validar_email(email):
+        #     # Patrón de expresión regular para validar el email
+        #     patron_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
             
-            # Usamos re.match() para verificar el patrón en el email proporcionado
-            if re.match(patron_email, email):
-                return True
-            else:
-                return False
+        #     # Usamos re.match() para verificar el patrón en el email proporcionado
+        #     if re.match(patron_email, email):
+        #         return True
+        #     else:
+        #         return False
 
 
 
@@ -465,3 +481,75 @@ def check_valid():
         return False
     return True
 
+# -------------------- ENVIAR EMAIL --------------------
+
+@api.route('/recover_access', methods=['POST'])
+def send_mail():
+
+    request_body = request.get_json(force=True)
+
+    email = request_body ['email']
+
+    #check email
+    if validar_email(request_body['email']):
+        print("El email es válido.")
+    else:
+        return jsonify ({
+            'msg':'Formato de email incorrecto (revise @ .)'
+            }), 400
+
+    #check if email exist in database
+
+    user = User.query.filter_by(email=email).first()
+    
+    if user is None:
+        print("email does not exist in database")
+        response_body = {
+        'msg':'ok',
+        "result": {'Email Received': email},
+         }
+        return jsonify(response_body), 200
+        #return jsonify({"msg": "user do not exist"}), 404
+    else:
+        
+        user_info_mail =user.serialize()
+        clave_secreta = user.password
+        print(user_info_mail)
+        print(clave_secreta)
+
+        #credenciales
+        sender = 'dasi.development00@gmail.com'
+        key = "otzxcumnjunhmwxo"
+
+        recibe = email
+        asunto = "DeLaHuerta / Recuperar Acceso"
+
+        # crear mensaje
+        mensaje = MIMEMultipart()
+        mensaje["From"] =  sender
+        mensaje["To"] = recibe
+        mensaje["Subject"] = asunto
+
+        # Agrega cuerpo de mensaje
+        cuerpo = f"Este es un mensaje de recuperacion de clave. Su clave es: {clave_secreta}. En caso de que no haya solicitado porfavor contacte con nosotros"
+        mensaje.attach(MIMEText(cuerpo, "plain"))
+
+        # iniciar sesion
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(sender,key)
+
+        #enviar correo
+        texto = mensaje.as_string()
+        server.sendmail(sender, recibe, texto)
+        server.quit()
+        print("correo enviado")
+            
+        response_body = {
+            'msg':'ok',
+            "result": {'Email Received': email},
+            
+
+        }
+
+        return jsonify(response_body), 200
