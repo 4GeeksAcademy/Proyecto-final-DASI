@@ -23,12 +23,36 @@ export const Contraseña = () => {
 
     async function handlerSubmit(e) {
         e.preventDefault()
-        actions.rec(email)
-        setEmail("");
-        setResp(
-            <div className="alert alert-primary col-4" role="alert">
-                Mensaje enviado
-            </div>);
+
+        let envio = await actions.rec(email)
+
+        if (envio) {
+            setEmail("");
+            setResp(
+                <div className="alert alert-primary col-4" role="alert">
+                    Mensaje enviado
+                </div>);
+        } else {
+            
+            email === "" ?
+
+                setResp(
+                <div className="alert alert-danger col-4" role="alert">
+                    Campo incompleto
+                </div>)
+
+                : setResp(
+                    <div className="alert alert-danger col-7" role="alert">
+                        {store.respuesta_log}
+                    </div>);
+
+        }
+
+        // setEmail("");
+        // setResp(
+        //     <div className="alert alert-primary col-4" role="alert">
+        //         Mensaje enviado
+        //     </div>);
     }
 
     // };
@@ -67,7 +91,6 @@ export const Contraseña = () => {
                         />
                         <label htmlFor="floatingInput">Correo electrónico</label>
                     </div>
-
 
 
                     {resp}
