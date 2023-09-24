@@ -23,6 +23,7 @@ export const Contraseña = () => {
 
     async function handlerSubmit(e) {
         e.preventDefault()
+        actions.rec(email)
         setEmail("");
         setResp(
             <div className="alert alert-primary col-4" role="alert">
