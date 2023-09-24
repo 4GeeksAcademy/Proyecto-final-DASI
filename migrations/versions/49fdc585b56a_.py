@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 3b851c965f0b
+Revision ID: 49fdc585b56a
 Revises: 
-Create Date: 2023-09-18 08:45:01.967605
+Create Date: 2023-09-24 16:44:28.533618
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3b851c965f0b'
+revision = '49fdc585b56a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -53,6 +53,14 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('telefono')
     )
+    op.create_table('favoritos',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('perfil_productores_id', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['perfil_productores_id'], ['perfil_productores.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('productos',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productor_id', sa.Integer(), nullable=False),
@@ -89,6 +97,7 @@ def downgrade():
     op.drop_table('pedidos')
     op.drop_table('user_productor')
     op.drop_table('productos')
+    op.drop_table('favoritos')
     op.drop_table('perfil_productores')
     op.drop_table('users')
     op.drop_table('productoNombres')

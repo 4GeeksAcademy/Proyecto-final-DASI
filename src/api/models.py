@@ -65,7 +65,8 @@ class User(db.Model):
             #"nombre": self.username,
             "email": self.email,
             "info_productor": info_productor,
-            "productor": is_productor
+            "productor": is_productor,
+            "favoritos": self.favoritos
             # do not serialize the password, its a security breach
         }
 
@@ -188,8 +189,6 @@ class Pedido(db.Model):
     #productos = db.relationship('Producto', secondary=Pedido_producto, backref='Pedidos') de many to many
     
 
-    
-    
     def serialize(self):
         return {
             "id": self.id,
@@ -200,3 +199,24 @@ class Pedido(db.Model):
 
     def __repr__(self):
         return '<ProductoNombre %r>' % self.nombre  
+    
+    
+class Favorito(db.Model):
+    __tablename__ = 'favoritos'
+    id = db.Column(db.Integer, primary_key=True)
+    perfil_productores_id= db.Column(db.Integer, db.ForeignKey('perfil_productores.id'),nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
+                        nullable=False)
+    def __repr__(self):
+        return '<favoritos %r>' % self.id
+
+    def serialize(self):
+        perfil_productor_query= PerfilProductor.query.filter_by(id= self.perfil_productores_id).first()
+
+
+        return {
+            "id": self.id,
+            "favoritos":  perfil_productor_query, 
+            "user_id": self.user_id
+            # do not serialize the password, its a security breach // planet_query.serialize()['name'] // character_query.serialize()['name']
+        }
