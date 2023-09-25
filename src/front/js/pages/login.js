@@ -12,7 +12,6 @@ export const Login = () => {
 	const [password, setPassword] = useState("");
 	const [resp, setResp] = useState("");
 
-
 	const handlerNavigate = (e) => {
 		e.preventDefault()
 		navigate("/registro")
@@ -77,7 +76,7 @@ export const Login = () => {
 									type="email"
 									value={email}
 									className="form-control"
-									placeholder="Introduzca su email"
+									placeholder="Introduzca su correo electrónico"
 									onChange={e => setEmail(e.target.value)}
 								/>
 								<label htmlFor="floatingInput">email</label>
@@ -93,49 +92,27 @@ export const Login = () => {
 								<label htmlFor="floatingInput">contraseña</label>
 							</div>
 
-				<div className="form-floating my-4">
-					<input
-						type="email"
-						value={email}
-						className="form-control"
-						placeholder="Introduzca su correo electrónico"
-						onChange={e => setEmail(e.target.value)}
-					/>
-					<label htmlFor="floatingInput">Correo electrónico</label>
-				</div>
-				<div className="form-floating">
-					<input
-						type="password"
-						value={password}
-						className="form-control"
-						placeholder="Introduzca su contraseña"
-						onChange={e => setPassword(e.target.value)}
-					/>
-					<label htmlFor="floatingInput">Contraseña</label>
-				</div>
+							<br />
+
+							{resp}
+
+							<button type="submit" className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="submit">
+								Iniciar sesión
+							</button>
 
 							<br />
 
-				{resp}
-
-				<button type="submit" id="submit" className="btn btn-submit mt-3 form-control col-4 fw-bold text-white fs-5 mb-3">
-					Iniciar sesión
-				</button>
-
-				<br/>
-
-				<a href="#" class="link-primary text-decoration-none" onClick={recContraseña}>¿Has olvidado la contraseña?</a>
+							<a href="#" class="link-primary text-decoration-none" onClick={recContraseña}>¿Has olvidado la contraseña?</a>
 
 
-			</form>
-
-			<div className="col-3" id="custom-hr"></div>
-
-			<button className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-nu" onClick={handlerNavigate}>
-				Nuevo usuario
-			</button>
-
-
+						</form>
+						<div className="col-3 mt-3" id="custom-hr"></div>
+						<button className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-nu" onClick={handlerNavigate}>
+							Nuevo usuario
+						</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
