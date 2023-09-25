@@ -242,3 +242,28 @@ nav {
     background-color: #7ba873;
 }
 
+/* ------------------- CONTRASEÑA ------------------- */
+h3 {
+
+    font-family: 'Lato', sans-serif;
+    color: #597c53;
+}
+
+#rec{
+
+    background-color: #7ba873;
+    width: 53%;
+    letter-spacing: 2px;
+}
+
+#plantas{
+    color:#7ba873;
+    width: 100%;
+    height: 90%;
+    padding-right: 2rem;
+}
+
+#cuerpo-form{
+    padding-left: 3rem;
+    padding-top: 2rem;
+}

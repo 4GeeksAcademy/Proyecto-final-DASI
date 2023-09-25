@@ -12,10 +12,13 @@ export const Login = () => {
 	const [password, setPassword] = useState("");
 	const [resp, setResp] = useState("");
 
-
 	const handlerNavigate = (e) => {
 		e.preventDefault()
 		navigate("/registro")
+	}
+	const recContraseña = (e) => {
+		e.preventDefault()
+		navigate("/contraseña")
 	}
 
 	async function handlerSubmit(e) {
@@ -73,7 +76,7 @@ export const Login = () => {
 									type="email"
 									value={email}
 									className="form-control"
-									placeholder="Introduzca su email"
+									placeholder="Introduzca su correo electrónico"
 									onChange={e => setEmail(e.target.value)}
 								/>
 								<label htmlFor="floatingInput">email</label>
@@ -96,6 +99,12 @@ export const Login = () => {
 							<button type="submit" className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="submit">
 								Iniciar sesión
 							</button>
+
+							<br />
+
+							<a href="#" class="link-primary text-decoration-none" onClick={recContraseña}>¿Has olvidado la contraseña?</a>
+
+
 						</form>
 						<div className="col-3 mt-3" id="custom-hr"></div>
 						<button className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-nu" onClick={handlerNavigate}>
