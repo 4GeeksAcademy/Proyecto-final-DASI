@@ -22,6 +22,7 @@ import { Footer } from "./component/footer";
 import { Perfil } from "./pages/Crear Perfil";
 import { PerfilProductor } from "./pages/Perfil Productor";
 import { PerfilProductorPublico } from "./pages/perfil_productor_publico";
+import { Contraseña } from "./pages/recContraseña";
 
 //create your first component
 const Layout = () => {
@@ -40,6 +41,7 @@ const Layout = () => {
                         {/* <Route element={<Home />} path="/" /> */}
                         <Route element={<Home_P />} path="/" />
                         <Route element={<PerfilProductorPublico />} path="/perfil/:theid" />
+                        <Route element={<Contraseña />} path="/contraseña" />
                         <Route element={<PerfilProductor />} path="/perfil" />
                         <Route element={<Perfil />} path="/crear_perfil" />
                         <Route element={<EditProduct />} path="/edit_product" />

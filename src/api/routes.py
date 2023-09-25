@@ -504,12 +504,12 @@ def send_mail():
     
     if user is None:
         print("email does not exist in database")
-        response_body = {
-        'msg':'ok',
-        "result": {'Email Received': email},
-         }
-        return jsonify(response_body), 200
-        #return jsonify({"msg": "user do not exist"}), 404
+        # response_body = {
+        # 'msg':'ok',
+        # "result": {'Email Received': email},
+        #  }
+        # return jsonify(response_body), 200
+        return jsonify({"msg": "El usuario no existe"}), 404
     else:
         
         user_info_mail =user.serialize()
