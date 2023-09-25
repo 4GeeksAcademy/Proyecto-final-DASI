@@ -12,6 +12,7 @@ export const Login = () => {
 	const [password, setPassword] = useState("");
 	const [resp, setResp] = useState("");
 
+
 	const handlerNavigate = (e) => {
 		e.preventDefault()
 		navigate("/registro")
@@ -62,11 +63,35 @@ export const Login = () => {
 
 
 	return (
-		<div className=" text-center bg-success bg-opacity-25 pb-3" style={{ minHeight: '80vh' }}>
+		<div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
+			<div className="container">
+				<div className="row d-flex justify-content-center">
+					<div className="col-md-8 text-center">
+						<h1 className="text-center mt-5 display-2">Bienvenido</h1>
+						<div className="col-3 mt-4" id="custom-hr"></div>
+						<form onSubmit={handlerSubmit} className="col-4 m-auto text-center" >
 
-			<h1 id="log" className="display-2" >Bienvenido</h1>
 
-			<form onSubmit={handlerSubmit} className="col-3 m-auto pb-3">
+							<div className="form-floating mt-3">
+								<input
+									type="email"
+									value={email}
+									className="form-control"
+									placeholder="Introduzca su email"
+									onChange={e => setEmail(e.target.value)}
+								/>
+								<label htmlFor="floatingInput">email</label>
+							</div>
+							<div className="form-floating mt-3">
+								<input
+									type="password"
+									value={password}
+									className="form-control"
+									placeholder="Introduzca su contraseña"
+									onChange={e => setPassword(e.target.value)}
+								/>
+								<label htmlFor="floatingInput">contraseña</label>
+							</div>
 
 				<div className="form-floating my-4">
 					<input
@@ -89,11 +114,7 @@ export const Login = () => {
 					<label htmlFor="floatingInput">Contraseña</label>
 				</div>
 
-				<br />
-
-				{/* <div className="alert alert-danger" role="alert">
-				{resp}
-				</div> */}
+							<br />
 
 				{resp}
 
