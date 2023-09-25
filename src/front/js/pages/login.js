@@ -12,6 +12,7 @@ export const Login = () => {
 	const [password, setPassword] = useState("");
 	const [resp, setResp] = useState("");
 
+
 	const handlerNavigate = (e) => {
 		e.preventDefault()
 		navigate("/registro")
@@ -58,55 +59,51 @@ export const Login = () => {
 
 
 	return (
-		<div className=" text-center bg-success bg-opacity-25 pb-3" style={{ minHeight: '80vh' }}>
+		<div className="bg-success bg-opacity-25" style={{ minHeight: '80vh' }}>
+			<div className="container">
+				<div className="row d-flex justify-content-center">
+					<div className="col-md-8 text-center">
+						<h1 className="text-center mt-5 display-2">Bienvenido</h1>
+						<div className="col-3 mt-4" id="custom-hr"></div>
+						<form onSubmit={handlerSubmit} className="col-4 m-auto text-center" >
 
-			<h1 id="log" className="display-2" >Bienvenido</h1>
 
-			<form onSubmit={handlerSubmit} className="col-3 m-auto pb-3">
+							<div className="form-floating mt-3">
+								<input
+									type="email"
+									value={email}
+									className="form-control"
+									placeholder="Introduzca su email"
+									onChange={e => setEmail(e.target.value)}
+								/>
+								<label htmlFor="floatingInput">email</label>
+							</div>
+							<div className="form-floating mt-3">
+								<input
+									type="password"
+									value={password}
+									className="form-control"
+									placeholder="Introduzca su contraseña"
+									onChange={e => setPassword(e.target.value)}
+								/>
+								<label htmlFor="floatingInput">contraseña</label>
+							</div>
 
-				<div className="form-floating my-4">
-					<input
-						type="email"
-						value={email}
-						className="form-control"
-						placeholder="Introduzca su email"
-						onChange={e => setEmail(e.target.value)}
-					/>
-					<label htmlFor="floatingInput">email</label>
+							<br />
+
+							{resp}
+
+							<button type="submit" className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="submit">
+								Iniciar sesión
+							</button>
+						</form>
+						<div className="col-3 mt-3" id="custom-hr"></div>
+						<button className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-nu" onClick={handlerNavigate}>
+							Nuevo usuario
+						</button>
+					</div>
 				</div>
-				<div className="form-floating">
-					<input
-						type="password"
-						value={password}
-						className="form-control"
-						placeholder="Introduzca su contraseña"
-						onChange={e => setPassword(e.target.value)}
-					/>
-					<label htmlFor="floatingInput">contraseña</label>
-				</div>
-
-				<br />
-
-				{/* <div className="alert alert-danger" role="alert">
-				{resp}
-				</div> */}
-
-				{resp}
-
-				<button type="submit" id="submit" className="btn btn-submit mt-3 form-control col-4 fw-bold text-white fs-5">
-					Iniciar sesión
-				</button>
-
-
-			</form>
-
-			<div className="col-3" id="custom-hr"></div>
-
-			<button className="btn btn-primary mt-3 mb-3 form-control col-4 fw-bold text-white fs-5" id="btn-nu" onClick={handlerNavigate}>
-				Nuevo usuario
-			</button>
-
-
+			</div>
 		</div>
 	);
 };
