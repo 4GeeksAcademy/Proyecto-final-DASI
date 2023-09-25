@@ -204,14 +204,14 @@ class Pedido(db.Model):
 class Favorito(db.Model):
     __tablename__ = 'favoritos'
     id = db.Column(db.Integer, primary_key=True)
-    perfil_productores_id= db.Column(db.Integer, db.ForeignKey('perfil_productores.id'),nullable=True)
+    perfil_productores_nombre_huerta= db.Column(db.Integer, db.ForeignKey('perfil_productores.nombre_huerta'),nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
                         nullable=False)
     def __repr__(self):
         return '<favoritos %r>' % self.id
 
     def serialize(self):
-        perfil_productor_query= PerfilProductor.query.filter_by(id= self.perfil_productores_id).first()
+        perfil_productor_query= PerfilProductor.query.filter_by(nombre_huerta= self.perfil_productores_nombre_huerta).first()
 
 
         return {

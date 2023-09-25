@@ -22,6 +22,7 @@ export const Card_P = (props,{ hasSearched }) => {
             favs.push({
                 nombre_huerta: nombre_huerta,
                 id: id,
+                
             })
 
         } else (

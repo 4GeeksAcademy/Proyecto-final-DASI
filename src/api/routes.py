@@ -12,7 +12,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
 # from admin import setup_admin
-from api.models import db, User, ProductoNombre,Producto,PerfilProductor,Pedido
+from api.models import db, User, ProductoNombre,Producto,PerfilProductor,Pedido,Favorito
 #from models import Person
 #for authentication
 from flask_jwt_extended import create_access_token
@@ -561,7 +561,8 @@ def add_favorito(user_id):
 
     request_body = request.get_json(force=True)
 
-    favorito = Favorito(favoritos= request_body['favoritos'],
+    favorito = Favorito(
+                        perfil_productores_nombre_huerta= request_body['nombre_huerta'],
                         user_id= user_id)
     
 
