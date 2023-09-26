@@ -507,6 +507,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 			},
+			// -------------------------- recCONTRASEÑA --------------------------
+
+			rec: async (email) => {
+
+				try {
+
+					let data = await axios.post(process.env.BACKEND_URL + '/api/recover_access', {
+
+						email: email
+					})
+
+					console.log(data);
+
+					return true;
+
+				} catch (error) {
+
+					console.log(error.response.data.msg);
+
+					error.response.status === 400 ? setStore({ respuesta_log: error.response.data.msg }) : null
+					error.response.status === 404 ? setStore({ respuesta_log: error.response.data.msg }) : null
+					// error.response.status === 401 ? setStore({ respuesta_log: error.response.data.msg }) : null
+
+
+					return false;
+
+
+				}
+			},
+
 
 			
 

@@ -71,10 +71,10 @@ export const Registro = () => {
                                     value={contact.email}
                                     onChange={handleChange}
                                     className="form-control"
-                                    placeholder="Introduzca su email"
+                                    placeholder="Introduzca su correo electrónico"
                                     name="email"
                                 />
-                                <label htmlFor="floatingInput">email</label>
+                                <label htmlFor="floatingInput">Correo electrónico</label>
                             </div>
 
                             <div className="form-floating mt-3">
