@@ -29,7 +29,7 @@ export const Card_P = (props,{ hasSearched }) => {
             favs = favs.filter((item) => item.nombre_huerta !== nombre_huerta)
         )
      
-        actions.addFavorito(favs)
+        // actions.addFavorito(favs)
         const jsonString = JSON.stringify(favs);
         localStorage.setItem("favo", jsonString);
         console.log(localStorage);

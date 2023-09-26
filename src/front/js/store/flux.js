@@ -89,10 +89,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
-// ---------------------------------- FAVORITOS -----------------------
+			// ---------------------------------- FAVORITOS -----------------------
 
 			// addFavorito: (favs) => {
 			// 	setStore({ favoritos: favs})
+			// },
+			// addFavorito: async (favs) => {
+			// 	try {
+
+			// 		let data = await axios.post(process.env.BACKEND_URL + '/users/favoritos', {
+			// 			favoritos: favs
+
+			// 		})
+			// 		console.log(data);
+
+			// 		return true;
+
+			// 	} catch (error) {
+
+			// 		console.log(error);
+
+			// 		return false;
+
+			// 	}
 			// },
 
 			removeFav: (e, el) => {
@@ -284,20 +303,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
-			addValues: (id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
+			addValues: (id, nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
 				// let producto = getStore().producto_elegido.nombre
-				setStore({producto_elegido: {
+				setStore({
+					producto_elegido: {
 
-					"nombre": nombre,
-					"cantidad": cantidad,
-					"unidad_medida": unidad_medida,
-					"variedad": variedad,
-					"tipo_produccion": tipo_produccion,
-					"recogida": recogida,
-					"precio": precio,
-					"id": id,
-	
-				}})
+						"nombre": nombre,
+						"cantidad": cantidad,
+						"unidad_medida": unidad_medida,
+						"variedad": variedad,
+						"tipo_produccion": tipo_produccion,
+						"recogida": recogida,
+						"precio": precio,
+						"id": id,
+
+					}
+				})
 			},
 
 			upDate: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio, id) => {
@@ -311,7 +332,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						tipo_produccion: tipo_produccion,
 						recogida: recogida,
 						precio: precio,
-						id:id
+						id: id
 
 					})
 
@@ -335,7 +356,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 
 					let data = await axios.post(process.env.BACKEND_URL + '/api/users', {
-						
+
 						password: password,
 						email: email
 					})
@@ -556,7 +577,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			
+
 
 
 			// Use getActions to call a function within a fuction

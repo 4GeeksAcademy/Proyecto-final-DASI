@@ -556,24 +556,22 @@ def send_mail():
     
     # -------------------- FAVORITOS --------------------
 
-# @app.route('/users/<int:user_id>/favoritos', methods=['GET'])
-# def get_favoritos(user_id):
+# @api.route('/users/favoritos', methods=['POST'])
+# def add_favorito():
 
-#     # UN FAVORITO
+#     request_body = request.get_json(force=True)
 
-#     favorito_query = Favorito.query.filter_by(user_id=user_id).first()
+#     # favorito = User(favoritos=request_body['nombre_huerta'])
+#     favorito = User(favoritos=request_body['favoritos'])
+    
+
+#     db.session.add(favorito)
+#     db.session.commit()
+
 
 #     response_body = {
-#        "results": favorito_query.serialize()
+#         'msg':'ok',
+#         "results": ['Favorito Created', favorito.serialize()]
 #     }
 
-#     # TODOS LOS FAVORITOS
-
-#     # favoritos_query = Favorito.query.all()
-#     # results = list(map(lambda item: item.serialize(), favoritos_query))    
-
-#     # response_body = {
-#     #     "results": results
-#     #     }
-    
 #     return jsonify(response_body), 200
