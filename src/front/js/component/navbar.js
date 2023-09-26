@@ -56,10 +56,10 @@ export const Navbar = () => {
 	useEffect(() => {
 
 		actions.getProfile();
-		if (localStorage.getItem("favo") != null) {
-        const storedJsonString = localStorage.getItem("favo");
-        const storedObject = JSON.parse(storedJsonString);
-        actions.addFavorito(storedObject)}
+		// if (localStorage.getItem("favo") != null) {
+        // const storedJsonString = localStorage.getItem("favo");
+        // const storedObject = JSON.parse(storedJsonString);
+        // actions.addFavorito(storedObject)}
 
         
         console.log(localStorage);

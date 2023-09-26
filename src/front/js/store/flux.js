@@ -91,9 +91,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 // ---------------------------------- FAVORITOS -----------------------
 
-			addFavorito: (favs) => {
-				setStore({ favoritos: favs})
-			},
+			// addFavorito: (favs) => {
+			// 	setStore({ favoritos: favs})
+			// },
 
 			removeFav: (e, el) => {
 				e.stopPropagation()
@@ -389,6 +389,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
+					setStore({ favoritos: data.data.favoritos })
 					setStore({ is_productor: data.data.productor })
 
 					return true;

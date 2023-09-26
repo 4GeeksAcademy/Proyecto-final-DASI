@@ -18,7 +18,6 @@ def setup_admin(app):
     admin.add_view(ModelView(Producto, db.session))
     admin.add_view(ModelView(ProductoNombre, db.session))
     admin.add_view(ModelView(Pedido, db.session))
-    # admin.add_view(ModelView(Favorito, db.session))
     
 
 
