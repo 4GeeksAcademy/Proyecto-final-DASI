@@ -62,7 +62,7 @@ export const Navbar = () => {
         // actions.addFavorito(storedObject)}
 
         
-        console.log(localStorage);
+        // console.log(localStorage);
 	}, []);
 
 

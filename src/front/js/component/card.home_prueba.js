@@ -30,9 +30,10 @@ export const Card_P = (props,{ hasSearched }) => {
         )
      
         // actions.addFavorito(favs)
-        const jsonString = JSON.stringify(favs);
-        localStorage.setItem("favo", jsonString);
-        console.log(localStorage);
+        console.log(store.favoritos);
+        // const jsonString = JSON.stringify(favs);
+        // localStorage.setItem("favo", jsonString);
+        // console.log(localStorage);
         // console.log(store.favoritos);
     }
 

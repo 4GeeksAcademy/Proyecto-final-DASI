@@ -94,25 +94,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// addFavorito: (favs) => {
 			// 	setStore({ favoritos: favs})
 			// },
-			// addFavorito: async (favs) => {
-			// 	try {
+			addFavorito: async (favs) => {
+				try {
 
-			// 		let data = await axios.post(process.env.BACKEND_URL + '/users/favoritos', {
-			// 			favoritos: favs
+					let data = await axios.post(process.env.BACKEND_URL + '/users', {
+						favoritos: favs
 
-			// 		})
-			// 		console.log(data);
+					})
+					console.log(data);
+					setStore({ favoritos: data.data.favoritos })
 
-			// 		return true;
+					return true;
 
-			// 	} catch (error) {
+				} catch (error) {
 
-			// 		console.log(error);
+					console.log(error);
 
-			// 		return false;
+					return false;
 
-			// 	}
-			// },
+				}
+			},
 
 			removeFav: (e, el) => {
 				e.stopPropagation()

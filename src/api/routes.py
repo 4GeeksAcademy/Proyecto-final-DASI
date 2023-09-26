@@ -556,13 +556,17 @@ def send_mail():
     
     # -------------------- FAVORITOS --------------------
 
-# @api.route('/users/favoritos', methods=['POST'])
+
+# @api.route('/users', methods=['POST'])
 # def add_favorito():
 
 #     request_body = request.get_json(force=True)
 
-#     # favorito = User(favoritos=request_body['nombre_huerta'])
-#     favorito = User(favoritos=request_body['favoritos'])
+#     favorito = User(favoritos=request_body['favs'])
+#     # favorito = User(favoritos={
+#     #                             "id": request_body['id'], 
+#     #                             "nombre_huerta": request_body['nombre_huerta']
+#     #                            })
     
 
 #     db.session.add(favorito)
@@ -574,4 +578,4 @@ def send_mail():
 #         "results": ['Favorito Created', favorito.serialize()]
 #     }
 
-#     return jsonify(response_body), 200
+#     return jsonify({"favoritos":user.serialize()["favoritos"]}), 200
