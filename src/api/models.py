@@ -59,6 +59,8 @@ class User(db.Model):
         user_productor = PerfilProductor.query.filter_by(user_id=self.id).first()
         is_productor = False if user_productor is None else True
         info_productor = None if user_productor is None else user_productor.serialize()
+        # serialized_favoritos = [favorito.serialize() for favorito in self.favoritos]
+        serialized_favoritos = [{"id": favorito.id, "nombre_huerta": favorito.nombre_huerta} for favorito in self.favoritos]
         print(user_productor)
         return {
             "id": self.id,
@@ -66,7 +68,7 @@ class User(db.Model):
             "email": self.email,
             "info_productor": info_productor,
             "productor": is_productor,
-            "favoritos": self.favoritos
+            "favoritos": serialized_favoritos
             # do not serialize the password, its a security breach
         }
 
@@ -189,6 +191,8 @@ class Pedido(db.Model):
     #productos = db.relationship('Producto', secondary=Pedido_producto, backref='Pedidos') de many to many
     
 
+    
+    
     def serialize(self):
         return {
             "id": self.id,
@@ -199,24 +203,3 @@ class Pedido(db.Model):
 
     def __repr__(self):
         return '<ProductoNombre %r>' % self.nombre  
-    
-    
-class Favorito(db.Model):
-    __tablename__ = 'favoritos'
-    id = db.Column(db.Integer, primary_key=True)
-    perfil_productores_nombre_huerta= db.Column(db.Integer, db.ForeignKey('perfil_productores.nombre_huerta'),nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),
-                        nullable=False)
-    def __repr__(self):
-        return '<favoritos %r>' % self.id
-
-    def serialize(self):
-        perfil_productor_query= PerfilProductor.query.filter_by(nombre_huerta= self.perfil_productores_nombre_huerta).first()
-
-
-        return {
-            "id": self.id,
-            "favoritos":  perfil_productor_query, 
-            "user_id": self.user_id
-            # do not serialize the password, its a security breach // planet_query.serialize()['name'] // character_query.serialize()['name']
-        }

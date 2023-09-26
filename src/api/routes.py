@@ -12,7 +12,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 #from utils import APIException, generate_sitemap
 # from admin import setup_admin
-from api.models import db, User, ProductoNombre,Producto,PerfilProductor,Pedido,Favorito
+from api.models import db, User, ProductoNombre,Producto,PerfilProductor,Pedido
 #from models import Person
 #for authentication
 from flask_jwt_extended import create_access_token
@@ -488,7 +488,7 @@ def send_mail():
 
     request_body = request.get_json(force=True)
 
-    email = request_body ['email'] 
+    email = request_body ['email']
 
     #check email
     if validar_email(request_body['email']):
@@ -497,7 +497,7 @@ def send_mail():
         return jsonify ({
             'msg':'Formato de email incorrecto (revise @ .)'
             }), 400
-    
+
     #check if email exist in database
 
     user = User.query.filter_by(email=email).first()
@@ -554,51 +554,4 @@ def send_mail():
 
         return jsonify(response_body), 200
     
-    # -------------------- FAVORITOS --------------------
-
-@api.route('/users/<int:user_id>/favoritos/', methods=['POST'])
-def add_favorito(user_id):
-
-    request_body = request.get_json(force=True)
-
-    favorito = Favorito(
-                        perfil_productores_nombre_huerta= request_body['nombre_huerta'],
-                        user_id= user_id)
     
-
-    db.session.add(favorito)
-    db.session.commit()
-
-
-    response_body = {
-        'msg':'ok',
-        "results": ['Favorito Created', favorito.serialize()]
-    }
-
-    return jsonify(response_body), 200
-
-@api.route('/users/<int:user_id>/favoritos', methods=['GET'])
-def get_favoritos(user_id):
-
-    # UN FAVORITO
-
-    favorito_query = Favorito.query.filter_by(user_id=user_id).first()
-
-    response_body = {
-       "results": favorito_query.serialize()
-    }
-
-    # TODOS LOS FAVORITOS
-
-    # favoritos_query = Favorito.query.all()
-    # results = list(map(lambda item: item.serialize(), favoritos_query))    
-
-    # response_body = {
-    #     "results": results
-    #     }
-    
-    return jsonify(response_body), 200
-
-
-
-
