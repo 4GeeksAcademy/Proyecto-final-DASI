@@ -438,7 +438,7 @@ def login():
     print(user.serialize())
     access_token = create_access_token(identity=email)
     
-    return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"]})
+    return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"], "favoritos":user.serialize()["favoritos"]})
 
 
 
@@ -554,4 +554,26 @@ def send_mail():
 
         return jsonify(response_body), 200
     
+    # -------------------- FAVORITOS --------------------
+
+# @app.route('/users/<int:user_id>/favoritos', methods=['GET'])
+# def get_favoritos(user_id):
+
+#     # UN FAVORITO
+
+#     favorito_query = Favorito.query.filter_by(user_id=user_id).first()
+
+#     response_body = {
+#        "results": favorito_query.serialize()
+#     }
+
+#     # TODOS LOS FAVORITOS
+
+#     # favoritos_query = Favorito.query.all()
+#     # results = list(map(lambda item: item.serialize(), favoritos_query))    
+
+#     # response_body = {
+#     #     "results": results
+#     #     }
     
+#     return jsonify(response_body), 200
