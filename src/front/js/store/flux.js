@@ -69,6 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			respuesta_log: "",
 			log: false,
 			token: "",
+			favoritos: [],
 
 			demo: [
 				{
@@ -87,6 +88,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
+
+			// ---------------------------------- FAVORITOS -----------------------
+
+			addFavorito: (favs) => {
+				setStore({ favoritos: favs})
+			},
+			// addFavorito: async (favs) => {
+			// 	try {
+
+			// 		let data = await axios.post(process.env.BACKEND_URL + '/users', {
+			// 			favoritos: favs
+
+			// 		})
+			// 		console.log(data);
+			// 		setStore({ favoritos: data.data.favoritos })
+
+			// 		return true;
+
+			// 	} catch (error) {
+
+			// 		console.log(error);
+
+			// 		return false;
+
+			// 	}
+			// },
+
+			removeFav: (e, el) => {
+				e.stopPropagation()
+				const updatedItems = (getStore().favoritos.indexOf(el) != -1) ?
+					getStore().favoritos.filter((item) => item != el)
+					: null
+
+				setStore({ favoritos: updatedItems })
+
+			},
 
 
 			pedirPerfil: async (filters) => {
@@ -267,20 +304,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// -------------------------- EDITAR PRODUCTO--------------------------
 
-			addValues: (id,nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
+			addValues: (id, nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio) => {
 				// let producto = getStore().producto_elegido.nombre
-				setStore({producto_elegido: {
+				setStore({
+					producto_elegido: {
 
-					"nombre": nombre,
-					"cantidad": cantidad,
-					"unidad_medida": unidad_medida,
-					"variedad": variedad,
-					"tipo_produccion": tipo_produccion,
-					"recogida": recogida,
-					"precio": precio,
-					"id": id,
-	
-				}})
+						"nombre": nombre,
+						"cantidad": cantidad,
+						"unidad_medida": unidad_medida,
+						"variedad": variedad,
+						"tipo_produccion": tipo_produccion,
+						"recogida": recogida,
+						"precio": precio,
+						"id": id,
+
+					}
+				})
 			},
 
 			upDate: async (nombre, cantidad, unidad_medida, variedad, tipo_produccion, recogida, precio, id) => {
@@ -294,7 +333,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						tipo_produccion: tipo_produccion,
 						recogida: recogida,
 						precio: precio,
-						id:id
+						id: id
 
 					})
 
@@ -318,7 +357,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 
 					let data = await axios.post(process.env.BACKEND_URL + '/api/users', {
-						
+
 						password: password,
 						email: email
 					})
@@ -348,6 +387,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ is_productor: false })
 				setStore({ info_productor: "" })
 				setStore({ perfil: [] });
+				setStore({ favoritos: [] });
 				// setStore({ nombre_producto: [] });
 				localStorage.removeItem("token")
 				localStorage.removeItem("user_id")
@@ -372,6 +412,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					setStore({ token: data.data.access_token })
 					setStore({ info_productor: data.data.info_productor })
+					setStore({ favoritos: data.data.favoritos })
 					setStore({ is_productor: data.data.productor })
 
 					return true;
@@ -538,7 +579,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			
+
 
 
 			// Use getActions to call a function within a fuction

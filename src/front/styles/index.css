@@ -133,8 +133,7 @@ nav {
 
 #btn-login{
 
-    width: 90px;
-    margin-left: -7px;    
+    width: 90px;   
     background-color: #7ba873;
     border-color: #7ba873;
 }
@@ -146,14 +145,26 @@ nav {
 
 #btn-home{
 
-    width: 90px;
-    margin-right: 37px;    
+    width: 90px;    
     background-color: #7ba873;
    border-color: #7ba873;
 
 }
 
 #btn-home:hover{
+    background-color: #699164;
+    
+
+}
+#btn-eq{
+
+    width: 90px;  
+    background-color: #7ba873;
+   border-color: #7ba873;
+
+}
+
+#btn-eq:hover{
     background-color: #699164;
     
 
@@ -172,8 +183,7 @@ nav {
 
 #btn-fav{
 
-    width: 111px;
-    margin-left: 26px; 
+    width: 151px;
     background-color: #7ba873;
     border-color: #7ba873;
 }
@@ -183,7 +193,7 @@ nav {
 
 }
 
-#btn-car{
+/* #btn-car{
 
     width: 58px;
     margin-left: 26px; 
@@ -194,7 +204,7 @@ nav {
 #btn-car:hover{
     background-color: #699164;
 
-}
+} */
 
 /* ------------------- ADD PRODUCT ------------------- */
 

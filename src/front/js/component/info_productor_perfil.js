@@ -27,7 +27,6 @@ export const InfoProductorPerfil = () => {
     useEffect(() => {
         GetProducts();
        
-
     }, []);
 
 

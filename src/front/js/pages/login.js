@@ -102,7 +102,7 @@ export const Login = () => {
 
 							<br />
 
-							<a href="#" class="link-primary text-decoration-none" onClick={recContraseña}>¿Has olvidado la contraseña?</a>
+							<a href="#" className="link-primary text-decoration-none" onClick={recContraseña}>¿Has olvidado la contraseña?</a>
 
 
 						</form>

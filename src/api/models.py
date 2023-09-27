@@ -59,13 +59,16 @@ class User(db.Model):
         user_productor = PerfilProductor.query.filter_by(user_id=self.id).first()
         is_productor = False if user_productor is None else True
         info_productor = None if user_productor is None else user_productor.serialize()
+        # serialized_favoritos = [favorito.serialize() for favorito in self.favoritos]
+        serialized_favoritos = [favorito.id for favorito in self.favoritos]
         print(user_productor)
         return {
             "id": self.id,
             #"nombre": self.username,
             "email": self.email,
             "info_productor": info_productor,
-            "productor": is_productor
+            "productor": is_productor,
+            "favoritos": serialized_favoritos
             # do not serialize the password, its a security breach
         }
 

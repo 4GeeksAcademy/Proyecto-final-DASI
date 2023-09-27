@@ -438,7 +438,7 @@ def login():
     print(user.serialize())
     access_token = create_access_token(identity=email)
     
-    return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"]})
+    return jsonify({"access_token":access_token, "user_id":user.id, "productor":user.serialize()["productor"], "info_productor":user.serialize()["info_productor"], "favoritos":user.serialize()["favoritos"]})
 
 
 
@@ -553,3 +553,45 @@ def send_mail():
         }
 
         return jsonify(response_body), 200
+    
+    # -------------------- FAVORITOS --------------------
+
+@api.route('/users/<int:id>', methods=['PUT'])
+def edit_user_fav(id):
+
+    body = request.get_json(force=True) #{ 'username': 'new_username'}
+    usuario = User.query.filter_by(id=id).first()
+    # id = body ['id']
+    
+    # usuario = User.query.get(id)
+    # usuario.favoritos = body["favoritos"]
+    print(body["favoritos"])
+    
+
+
+    # db.session.commit()
+
+
+    return jsonify(usuario.serialize()), 200
+# @api.route('/users', methods=['POST'])
+# def add_favorito():
+
+#     request_body = request.get_json(force=True)
+
+#     favorito = User(favoritos=request_body['favs'])
+#     # favorito = User(favoritos={
+#     #                             "id": request_body['id'], 
+#     #                             "nombre_huerta": request_body['nombre_huerta']
+#     #                            })
+    
+
+#     db.session.add(favorito)
+#     db.session.commit()
+
+
+#     response_body = {
+#         'msg':'ok',
+#         "results": ['Favorito Created', favorito.serialize()]
+#     }
+
+#     return jsonify({"favoritos":user.serialize()["favoritos"]}), 200
