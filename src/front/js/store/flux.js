@@ -91,29 +91,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// ---------------------------------- FAVORITOS -----------------------
 
-			// addFavorito: (favs) => {
-			// 	setStore({ favoritos: favs})
-			// },
-			addFavorito: async (favs) => {
-				try {
-
-					let data = await axios.post(process.env.BACKEND_URL + '/users', {
-						favoritos: favs
-
-					})
-					console.log(data);
-					setStore({ favoritos: data.data.favoritos })
-
-					return true;
-
-				} catch (error) {
-
-					console.log(error);
-
-					return false;
-
-				}
+			addFavorito: (favs) => {
+				setStore({ favoritos: favs})
 			},
+			// addFavorito: async (favs) => {
+			// 	try {
+
+			// 		let data = await axios.post(process.env.BACKEND_URL + '/users', {
+			// 			favoritos: favs
+
+			// 		})
+			// 		console.log(data);
+			// 		setStore({ favoritos: data.data.favoritos })
+
+			// 		return true;
+
+			// 	} catch (error) {
+
+			// 		console.log(error);
+
+			// 		return false;
+
+			// 	}
+			// },
 
 			removeFav: (e, el) => {
 				e.stopPropagation()
@@ -387,6 +387,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ is_productor: false })
 				setStore({ info_productor: "" })
 				setStore({ perfil: [] });
+				setStore({ favoritos: [] });
 				// setStore({ nombre_producto: [] });
 				localStorage.removeItem("token")
 				localStorage.removeItem("user_id")

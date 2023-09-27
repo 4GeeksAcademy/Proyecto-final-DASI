@@ -60,7 +60,7 @@ class User(db.Model):
         is_productor = False if user_productor is None else True
         info_productor = None if user_productor is None else user_productor.serialize()
         # serialized_favoritos = [favorito.serialize() for favorito in self.favoritos]
-        serialized_favoritos = [{"id": favorito.id, "nombre_huerta": favorito.nombre_huerta} for favorito in self.favoritos]
+        serialized_favoritos = [favorito.id for favorito in self.favoritos]
         print(user_productor)
         return {
             "id": self.id,
