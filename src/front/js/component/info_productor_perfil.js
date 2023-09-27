@@ -38,40 +38,40 @@ export const InfoProductorPerfil = () => {
             <div className="p-4" >
                 <img src={portada} className="img-fluid w-100 portada" alt="..." />
                 <div className="fs-3 d-flex justify-content-end">
-                    <span className="btn btn-success mx-2" style={{ marginTop: "-50px", width: "40px", height: "40px" }}>
+                    {/* <span className="btn btn-success mx-2" style={{ marginTop: "-50px", width: "40px", height: "40px" }}>
                         <i className="fa-solid fa-pen-to-square"></i>
-                    </span>
+                    </span> */}
                 </div>
             </div>
-            <div className="d-flex">
+            {/* <div className="d-flex">
                 <img className="img-perfil" src={productor} />
                 <h1 className="display-2 fw-bolder ms-5 mt-5">{info_productor_publico.nombre_huerta}</h1>
-            </div>
-            <div className="row mx-5 mt-5 bg-success bg-opacity-25 rounded wrapper">
+            </div> */}
+            <div className="row mx-5 bg-success bg-opacity-25 rounded wrapper mt-2">
 				<div className="right">
 					<div className="info">
-						<h3>Información</h3>
+						<h2 className="fs-3" style={{fontSize: "23px"}}>{info_productor_publico.nombre_huerta}</h2>
 						<div className="info_data">
 							<div className="data">
-								<h4>Nombre</h4>
-								<p>{info_productor_publico.nombre}</p>
+								<p>Nombre</p>
+								<h4>{info_productor_publico.nombre}</h4>
 							</div>
 							<div className="data">
-								<h4>Teléfono</h4>
-								<p>{info_productor_publico.telefono}</p>
+								<p>Teléfono</p>
+								<h4>{info_productor_publico.telefono}</h4>
 							</div>
 							<div className="data">
-								<h4>Dirección</h4>
-								<p>{info_productor_publico.direccion}</p>
+								<p>Dirección</p>
+								<h4>{info_productor_publico.direccion}</h4>
 							</div>
 							<div className="data">
-								<h4>Dónde Encontrar</h4>
-								<p>{info_productor_publico.donde_encontrar}</p>
+								<p>Dónde Encontrar</p>
+								<h4>{info_productor_publico.donde_encontrar}</h4>
 							</div>
 						</div>
 					</div>
 					<div className="descrip">
-						<h3>Descripción</h3>
+						<h2 style={{fontSize: "20px"}}>Descripción</h2>
 						<div className="descrip_data">
 							<div className="data">
 								<p>{info_productor_publico.descripcion}</p>
@@ -81,7 +81,7 @@ export const InfoProductorPerfil = () => {
 
 				</div>
 				<div className="imagen">
-					<img className="" src={perfil_lateral} />
+					<img className="" src={productor} />
 				</div>
 			</div>
 
